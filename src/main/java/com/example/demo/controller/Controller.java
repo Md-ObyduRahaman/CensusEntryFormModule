@@ -7,11 +7,15 @@ public class Controller {
 	
 	@RequestMapping("/")
 	public String censusForm() {
-		System.out.println("hello CensusForm");
+		
 		
 		return "CensusEntryForm";
 	}
-	
+	@RequestMapping("/meterDetailsForm")
+	public String meterDetails() {
+		System.out.println("hello meterDetailsForm");
+		return"meterDetailsForm";
+	}
 	
 
 }
