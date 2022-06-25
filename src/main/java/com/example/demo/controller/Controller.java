@@ -13,8 +13,12 @@ public class Controller {
 	}
 	@RequestMapping("/meterDetailsForm")
 	public String meterDetails() {
-		System.out.println("hello meterDetailsForm");
 		return"meterDetailsForm";
+	}
+	@RequestMapping("/distribution")
+	public String distribution() {
+		System.out.println("hello distributionForm");
+		return"distributionForm";
 	}
 	
 
