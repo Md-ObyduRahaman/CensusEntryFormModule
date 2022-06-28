@@ -17,8 +17,13 @@ public class Controller {
 	}
 	@RequestMapping("/distribution")
 	public String distribution() {
-		System.out.println("hello distributionForm");
+		
 		return"distributionForm";
+	}
+	@RequestMapping("/")
+	public String loginPage() {
+		System.out.println("hello loginPage");
+		return"loginPage";
 	}
 	
 
