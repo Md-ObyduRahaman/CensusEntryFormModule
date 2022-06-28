@@ -32,8 +32,13 @@
 
 												<div class="input-group">
 													<label for="supplyType"><strong>Supply Type</strong> &nbsp</label>
-													<input type="number" class="form-control" name="supplyType"
-														id="supplyType">
+													<select name="select_box_type" style="width:auto;" class="form-select input-group search_select_box"
+											id="select_box_type" aria-label="">
+											<option selected>select Location</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+										</select>
 
 												</div>
 
@@ -169,7 +174,13 @@
 
 												<div class="input-group">
 													<label for="tarif"><strong>Tarif</strong> &nbsp</label>
-													<input type="number" class="form-control" name="tarif" id="tarif">
+													<select name="select_box_tarif" style="width:auto;" class="form-select input-group search_select_box"
+											id="select_box_tarif" aria-label="">
+											<option selected>select Location</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+										</select>
 
 												</div>
 
@@ -280,10 +291,15 @@
 											<div class="col-12 text-right">
 												<div class="btn-group border-black " style="display: inline;"
 													role="group" aria-label="Basic example">
-													
-													<button type="button" class="btn btn-primary">Meter Details</button>
+
+													<button type="button" class="btn btn-primary"
+														th:onclick="|window.location.href='/meterDetailsForm'|">Meter
+														Details>></button>
 													<button type="button" class="btn btn-primary">X-F Details</button>
-													<button type="button" class="btn btn-primary">Consumer>></button>
+													<button type="button"
+														th:onclick="|window.location.href='/CensusEntryForm'|"
+														class="btn btn-primary">Consumer</button>
+
 												</div>
 											</div>
 
@@ -305,7 +321,7 @@
 													<th scope="col">X-F Identification NO.</th>
 													<th scope="col">Owner</th>
 													<th scope="col">Capacity</th>
-													<th scope="col">Rating</th>		
+													<th scope="col">Rating</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -315,7 +331,7 @@
 													<td>Otto</td>
 													<td>@mdo</td>
 													<td>Mark</td>
-													
+
 
 												</tr>
 												<tr>
@@ -324,7 +340,7 @@
 													<td>Thornton</td>
 													<td>@fat</td>
 													<td>Mark</td>
-													
+
 												</tr>
 												<tr>
 													<th scope="row">3</th>
@@ -332,7 +348,7 @@
 													<td>the Bird</td>
 													<td>@twitter</td>
 													<td>Mark</td>
-													
+
 												</tr>
 											</tbody>
 										</table>
@@ -350,6 +366,21 @@
 
 	<!-- JavaScript -->
 	<div th:replace="fragments/links :: javaScriptLink"></div>
+	<script>
+	
+	var select_box_tarif = document.querySelector('#select_box_tarif');
+
+		dselect(select_box_tarif, {
+			search: true
+		});
+		var select_box_type = document.querySelector('#select_box_type');
+
+		dselect(select_box_type, {
+			search: true
+		});
+	
+	</script>
+	
 
 </body>
 

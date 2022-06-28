@@ -32,7 +32,13 @@
 
 												<div class="input-group">
 													<label for="owner"><strong>Owner</strong>&nbsp </label>
-													<input type="number" class="form-control" name="owner" id="owner">
+													<select name="select_box_owner" style="width:auto;" class="form-select input-group search_select_box"
+											id="select_box_owner" aria-label="">
+											<option selected>select Location</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+										</select>
 
 												</div>
 
@@ -40,7 +46,13 @@
 											<div class="col-md-4 mb-2">
 												<div class="input-group">
 													<label for="type"><strong>Type</strong>&nbsp </label>
-													<input type="number" class="form-control" name="type">
+													<select name="select_box_type" style="width:auto;" class="form-select input-group search_select_box"
+											id="select_box_type" aria-label="">
+											<option selected>select Location</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+										</select>
 													<div class="input-group-append">
 														<span class="input-group-text"> KWH </span>
 													</div>
@@ -50,7 +62,13 @@
 
 												<div class="input-group">
 													<label for="make"><strong>Make</strong> &nbsp</label>
-													<input type="number" class="form-control" name="make" id="make">
+													<select name="select_box_make" style="width:auto;" class="form-select input-group search_select_box"
+											id="select_box_make" aria-label="">
+											<option selected>select Location</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+										</select>
 
 												</div>
 
@@ -338,8 +356,8 @@
 										aria-label="Basic example">
 										<button type="button" class="btn btn-primary">Initial Reading</button>
 										<button type="button" class="btn btn-primary">Last Reading</button>
-										<button type="button" class="btn btn-primary">Consumer</button>
-										<button type="button" class="btn btn-primary">Distribution</button>
+										<button type="button"  th:onclick="|window.location.href='/CensusEntryForm'|" class="btn btn-primary">Consumer</button>
+										<button type="button"  th:onclick="|window.location.href='/distribution'|" class="btn btn-primary">Distribution</button>
 									</div>
 								</div>
 
@@ -410,6 +428,25 @@
 
 	<!-- JavaScript -->
 	<div th:replace="fragments/links :: javaScriptLink"></div>
+	<script>
+
+		var select_box_owner = document.querySelector('#select_box_owner');
+
+		dselect(select_box_owner, {
+			search: true
+		});
+		var select_box_type = document.querySelector('#select_box_type');
+
+		dselect(select_box_type, {
+			search: true
+		});
+		var select_box_make = document.querySelector('#select_box_make');
+
+		dselect(select_box_make, {
+			search: true
+		});
+
+	</script>
 
 </body>
 

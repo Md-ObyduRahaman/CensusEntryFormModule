@@ -8,8 +8,15 @@
 
 	<!-- Bootstrap CSS -->
 	<div th:replace="fragments/links :: cssLink"></div>
+	
 
 	<title>CensusForm</title>
+
+	<style>
+		.search_select_box select {
+			width: 100%;
+		}
+	</style>
 
 
 </head>
@@ -26,113 +33,124 @@
 		<!--End secend Part-->
 		<section class="vh-100 gradient-custom ">
 			<div class="container-fluid py-5 h-100">
-				<div class="row justify-content-center align-items-center h-100">
+				<div class="row justify-content-center align-items-center  h-100">
 					<div class="col-12 col-lg-9 col-xl-7">
-						<div class="card shadow-2-strong card-registration" style="border-radius: 15px;">
+						<div class="card  shadow-2-strong card-registration" style="border-radius: 15px;">
 							<div class="card-body p-4 p-md-5">
 								<h3 class="mb-4 pb-2 pb-md-0 mb-md-5">Consumer Census Entry(BC_CONSCEN)</h3>
 
 
-								<div class="row bg-dark text-white">
+								<div class="row  text-black">
+									<div class="col-md-3 mb-4 ">
+						<div class="input-group search_select_box">
+									<label for="supplyType"><strong>Supply Type</strong> &nbsp</label>
 
-									<div class="col-md-4 mb-4">
 
-										<h1 class="font-weight-bold">Location</h1>
-
-										<select class="form-select" aria-label="Default select example">
+										<select name="select_box" style="width:auto;" class="form-select input-group search_select_box"
+											id="select_box" aria-label="">
 											<option selected>select Location</option>
 											<option value="1">One</option>
 											<option value="2">Two</option>
 											<option value="3">Three</option>
 										</select>
-
 									</div>
-									<div class="col-md-4 mb-4">
+									</div>
+									<div class="col-md-2 mb-2">
 
-										<div class="form-outline">
+										<div class="input-group">
+										<label for="supplyType"><strong>Zone</strong> &nbsp</label>
 											<input type="text" id="zone" readonly
-												class="form-control form-control-lg mt-3" />
-											<label class="form-label" for="zone">Zone</label>
+												class="form-control form-control-lg" />
 										</div>
 
 									</div>
-									<div class="col-md-4 mb-4">
+									
+									<div class="col-md-2 mb-4">
 
-										<div class="form-outline">
+										<div class="input-group">
+										
+
+										<label class="form-label" for="circle"><strong>Circle</strong> &nbsp</label>
+
 											<input type="text" id="circle" readonly
-												class="form-control mt-3 form-control-lg" />
-											<label class="form-label" for="circle">Circle</label>
+												class="form-control  form-control-lg" />
 										</div>
 
 									</div>
 
-									<div class="col-md-3 mb-4">
+									<div class="col-md-2 mb-4">
 
-										<div class="form-outline">
+
+										<div class="input-group">
+										<label class="form-label" for="Div"><strong>Div</strong> &nbsp</label>
+
 											<input type="text" id="Div" readonly class="form-control form-control-lg" />
-											<label class="form-label" for="Div">Div</label>
 										</div>
 
 									</div>
 									<div class="col-md-3 mb-4">
 
-										<div class="form-outline">
+										<div class="input-group">
+										<label class="form-label" for="sub_div"><strong>Sub Div</strong> &nbsp</label>
 											<input type="text" id="sub_div" readonly
 												class="form-control form-control-lg" />
-											<label class="form-label" for="sub_div">Sub Div</label>
 										</div>
 
 									</div>
-									<div class="col-md-3 mb-4">
+									<div class="col-md-2 mb-4">
 
-										<div class="form-outline">
+										<div class="input-group">
+										<label class="form-label" for="book_no"><strong>Book No</strong> &nbsp</label>
 											<input type="text" id="book_no" class="form-control form-control-lg" />
-											<label class="form-label" for="book_no">Book No</label>
 										</div>
 
 									</div>
-									<div class="col-md-3 mb-4">
+									<div class="col-md-2 mb-4">
 
-										<div class="form-outline">
+										<div class="input-group">
+										<label class="form-label" for="billGrp"><strong>BillGrp</strong> &nbsp</label>
 											<input type="text" id="billGrp" readonly
 												class="form-control form-control-lg" />
-											<label class="form-label" for="billGrp">BillGrp</label>
 										</div>
 
 									</div>
 									<div class="col-md-4 mb-4">
 
-										<div class="form-outline">
-											<h1 class="font-weight-bold">Cons. Source</h1>
-											<select class="form-select" aria-label="Default select example">
-												<option selected>New</option>
-												<option value="1">One</option>
-												<option value="2">Two</option>
-												<option value="3">Three</option>
-											</select>
+										<div class="input-group search_select_box">
+										<label for="supplyType"><strong>Cons. Source</strong> &nbsp</label>
+											
+											<select name="select_box_location" style="width:auto;" class="form-select input-group search_select_box_location"
+											id="select_box_location" aria-label="">
+											<option selected>select Location</option>
+											<option value="1">One</option>
+											<option value="2">Two</option>
+											<option value="3">Three</option>
+										</select>
 										</div>
 
 									</div>
 									<div class="col-md-4 mb-4">
 
-										<div class="form-outline">
+										<div class="input-group">
+										<label class="form-label" for="walkOrder"><strong>Walk. Order</strong> &nbsp</label>
+										
 											<input type="text" id="walkOrder" class="form-control form-control-lg" />
-											<label class="form-label" for="walkOrder">Walk. Order</label>
 										</div>
 
 									</div>
 									<div class="col-md-4 mb-4">
 
-										<div class="form-outline">
+										<div class="input-group">
+										<label class="form-label" for="conSrlNo"><strong>ConSrl No.</strong> &nbsp</label>
 											<input type="text" id="conSrlNo" class="form-control form-control-lg" />
-											<label class="form-label" for="conSrlNo">ConSrl No.</label>
 										</div>
 
 									</div>
 									<div class="col-md-4 mb-4">
 
-										<div class="form-outline">
-											<h1 class="font-weight-bold">Govt. Flat</h1>
+										<div class="input-group">
+										
+											<label for="supplyType"><strong>Govt. Flat</strong> &nbsp</label>
 											<select class="form-select" aria-label="Default select example">
 												<option value="0" selected>No</option>
 												<option value="1">Yes</option>
@@ -143,18 +161,19 @@
 									</div>
 									<div class="col-md-4 mb-4">
 
-										<div class="form-outline">
+										<div class="input-group">
+										<label class="form-label" for="oldAcNo"><strong>Old A/C No.</strong> &nbsp</label>
 											<input type="text" id="oldAcNo" class="form-control form-control-lg" />
-											<label class="form-label" for="oldAcNo">Old A/C No.</label>
+											
 										</div>
 
 									</div>
 									<div class="col-md-4 mb-4">
 
-										<div class="form-outline">
+										<div class="input-group">
+										<label class="form-label" for="computerConsNo"><strong>Computer Cons No.</strong> &nbsp</label>
 											<input type="text" id="computerConsNo" readonly
 												class="form-control form-control-lg" />
-											<label class="form-label" for="computerConsNo">Computer Cons No.</label>
 										</div>
 
 									</div>
@@ -169,103 +188,116 @@
 
 
 
-								<div class="row bg-secondary text-white">
+								<div class="row  text-black">
 									<h3 class="mb-4 col-md-12 pb-2 pb-md-0 mb-md-5">Coustomer Details</h3>
 									<div class="col-md-12 mb-4">
 
-										<div class="form-outline">
-											<input type="text" id="coustomerName"  class="form-control form-control-lg" />
-											<label class="form-label" for="coustomerName">Coustomer Name</label>
+										<div class="input-group">
+										<label class="form-label" for="coustomerName"><strong>Coustomer Name</strong> &nbsp</label>
+											<input type="text" id="coustomerName"
+												class="form-control form-control-lg" />
 										</div>
 
 									</div>
 									<div class="col-md-12 mb-4">
 
-										<div class="form-outline">
-											<input type="text" id="fatherHusband" class="form-control form-control-lg" />
-											<label class="form-label" for="fatherHusband">Father/Husband Name:</label>
+										<div class="input-group">
+										<label class="form-label" for="fatherHusband"><strong>Father/Husband Name:</strong> &nbsp</label>
+											<input type="text" id="fatherHusband"
+												class="form-control form-control-lg" />
 										</div>
-										</div><div class="col-md-6 mb-4">
+									</div>
+									<div class="col-md-6 mb-4">
 
-										<div class="form-outline">
-											<input type="text" id="serviceAddress" class="form-control form-control-lg" />
-											<label class="form-label" for="serviceAddress">Service Address:</label>
-										</div> 
+										<div class="input-group">
+										<label class="form-label" for="serviceAddress"><strong>Service Address:</strong> &nbsp</label>
+											<input type="text" id="serviceAddress"
+												class="form-control form-control-lg" />
 										</div>
-										<div class="col-md-6 mb-4">
+									</div>
+									<div class="col-md-6 mb-4">
 
-										<div class="form-outline">
-											<input type="text" id="mailingAddress" class="form-control form-control-lg" />
-											<label class="form-label" for="mailingAddress">Mailing Address:</label>
+										<div class="input-group">
+										<label class="form-label" for="mailingAddress"><strong> Address</strong> &nbsp</label>
+											<input type="text" id="mailingAddress"
+												class="form-control form-control-lg" />
 										</div>
-										</div>
-										<div class="col-md-6 mb-4">
+									</div>
+									<div class="col-md-6 mb-4">
 
-										<div class="form-outline">
+										<div class="input-group">
+										<label class="form-label" for="city"><strong>City</strong> &nbsp</label>
 											<input type="text" id="city" class="form-control form-control-lg" />
-											<label class="form-label" for="city">City:</label>
 										</div>
-										</div>
-										<div class="col-md-6 mb-4">
+									</div>
+									<div class="col-md-6 mb-4">
 
-										<div class="form-outline">
-											<input type="text" id="cityReadOnly" readonly class="form-control form-control-lg" />
-											<label class="form-label" for="cityReadOnly">City:</label>
+										<div class="input-group">
+										<label class="form-label" for="cityReadOnly"><strong>City</strong>  &nbsp</label>
+											<input type="text" id="cityReadOnly" readonly
+												class="form-control form-control-lg" />
+											
 										</div>
-										</div>
-										<div class="col-md-6 mb-4">
+									</div>
+									<div class="col-md-6 mb-4">
 
-										<div class="form-outline">
-											<input type="text" id="postalCodeReadOnly" readonly class="form-control form-control-lg" />
-											<label class="form-label" for="postalCodeReadOnly">Postal code:</label>
+										<div class="input-group">
+										<label class="form-label" for="postalCodeReadOnly"><strong>Postal code</strong> &nbsp</label>
+											<input type="text" id="postalCodeReadOnly" readonly
+												class="form-control form-control-lg" />
 										</div>
-										</div>
-										<div class="col-md-6 mb-4">
+									</div>
+									<div class="col-md-6 mb-4">
 
-										<div class="form-outline">
+										<div class="input-group">
+										<label class="form-label" for="postalCode"><strong>Postal code</strong> &nbsp</label>
 											<input type="text" id="postalCode" class="form-control form-control-lg" />
-											<label class="form-label" for="postalCode">Postal code:</label>
 										</div>
-										</div>
-										<div class="col-md-6 mb-4">
+									</div>
+									<div class="col-md-6 mb-4">
 
-										<div class="form-outline">
+										<div class="input-group">
+										<label class="form-label" for="BankCode(1)"><strong>Bank Code(1) </strong> &nbsp</label>
 											<input type="text" id="BankCode(1)" class="form-control form-control-lg" />
-											<label class="form-label" for="BankCode(1)">Bank Code(1) :</label>
 										</div>
-										</div>
-										<div class="col-md-3 mb-4">
+									</div>
+									<div class="col-md-3 mb-4">
 
-										<div class="form-outline">
+										<div class="input-group">
+										<label class="form-label" for="BankCode(2)"><strong>Bank Code(2)</strong> &nbsp</label>
 											<input type="text" id="BankCode(2)" class="form-control form-control-lg" />
-											<label class="form-label" for="BankCode(2)">Bank Code(2):</label>
 										</div>
-										</div>
-										<div class="col-md-3 mb-4">
+									</div>
+									<div class="col-md-3 mb-4">
 
-										<div class="form-outline">
-											<input type="text" id="branchCode(1)" class="form-control form-control-lg" />
-											<label class="form-label" for="branchCode(1)">Branch Code(1):</label>
+										<div class="input-group">
+										<label class="form-label" for="branchCode(1)"><strong>Branch Code(1)</strong> &nbsp</label>
+											<input type="text" id="branchCode(1)"
+												class="form-control form-control-lg" />
 										</div>
-										</div>
-										<div class="col-md-6 mb-4">
+									</div>
+									<div class="col-md-6 mb-4">
 
-										<div class="form-outline">
-											<input type="text" id="branchCode(2)" class="form-control form-control-lg" />
-											<label class="form-label" for="branchCode(2)">Branch Code(2):</label>
+										<div class="input-group">
+										<label class="form-label" for="branchCode(2)"><strong>Branch Code(2):</strong> &nbsp</label>
+											<input type="text" id="branchCode(2)"
+												class="form-control form-control-lg" />
 										</div>
-										</div>
-										<div class="col-md-3 mb-4">
+									</div>
+									<div class="col-md-3 mb-4">
 
-										<button type="button" class="btn btn-primary" th:onclick="|window.location.href='/meterDetailsForm'|">Meter Details>></button>
-										</div>
-										
-										<div class="col-md-3 mb-4">
+										<button type="button" class="btn btn-primary"
+											th:onclick="|window.location.href='/meterDetailsForm'|">Meter
+											Details>></button>
+									</div>
 
-										<button type="button" class="btn btn-primary"  th:onclick="|window.location.href='/distribution'|">Distribution>></button>
-										</div>	
-										</div>
-															
+									<div class="col-md-3 mb-4">
+
+										<button type="button" class="btn btn-primary"
+											th:onclick="|window.location.href='/distribution'|">Distribution>></button>
+									</div>
+								</div>
+
 							</div>
 						</div>
 					</div>
@@ -277,6 +309,21 @@
 
 	<!-- JavaScript -->
 	<div th:replace="fragments/links :: javaScriptLink"></div>
+	<script>
+
+		var select_box_element = document.querySelector('#select_box');
+
+		dselect(select_box_element, {
+			search: true
+		});
+		
+		var search_select_box_location = document.querySelector('#select_box_location');
+
+		dselect(search_select_box_location, {
+			search: true
+		});
+
+	</script>
 
 </body>
 
