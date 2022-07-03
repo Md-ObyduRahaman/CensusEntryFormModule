@@ -1,4 +1,4 @@
-package com.example.demo.model;
+package com.dpdc.bd.model;
 
 public class CensusFormModel {
 

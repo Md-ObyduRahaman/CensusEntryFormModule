@@ -1,9 +1,9 @@
-package com.example.demo.controller;
+package com.dpdc.bd.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @org.springframework.stereotype.Controller
-public class Controller {
+public class TestController {
 	
 	@RequestMapping("/CensusEntryForm")
 	public String censusForm() {
@@ -20,11 +20,7 @@ public class Controller {
 		
 		return"distributionForm";
 	}
-	@RequestMapping("/")
-	public String loginPage() {
-		System.out.println("hello loginPage");
-		return"loginPage";
-	}
+	
 	
 
 }

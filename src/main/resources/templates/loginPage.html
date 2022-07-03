@@ -9,13 +9,18 @@
 	<!-- Bootstrap CSS -->
 	<div th:replace="fragments/links :: cssLink"></div>
 
-	<title>MeterDetailsForm</title>
+	<title>Login</title>
 
 	<style>
 		.btn-color {
 			background-color: #0e1c36;
 			color: #fff;
 
+		}
+
+		.btn:hover {
+			color: white;
+			font-size: 20px;
 		}
 
 		.profile-image-pic {
@@ -42,11 +47,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 offset-md-3">
-				<h2 class="text-center text-dark mt-5">Login Form</h2>
-				<div class="text-center mb-5 text-dark">Made by IT Bangla ltd. Developer</div>
+				<!--<div class="alert alert-danger mt-3" role="alert">
+					This is a danger alert—check it out!
+				</div>-->
+
+				<div class="alert alert-danger" role="alert" th:text="${msg}" th:if="${msg}"></div>
 				<div class="card my-5">
 
-					<form class="card-body cardbody-color p-lg-5">
+					<form class="card-body cardbody-color p-lg-5" method="post" action="#" th:action="@{/}"
+						th:object="${login}">
 
 						<div class="text-center">
 							<img src="../img/DPDC.png"
@@ -55,17 +64,16 @@
 						</div>
 
 						<div class="mb-3">
-							<input type="text" class="form-control" id="Username" aria-describedby="emailHelp"
-								placeholder="User Name">
+							<input type="text"  class="form-control"  th:value="*{USER_NAME}" id="Username" aria-describedby="emailHelp"
+								name="USER_NAME" placeholder="User Name">
 						</div>
 						<div class="mb-3">
-							<input type="password" class="form-control" id="password" placeholder="password">
+							<input type="password" name="USER_PASSWORD" th:value="*{USER_PASSWORD}" class="form-control" id="password" placeholder="password">
 						</div>
 						<div class="text-center"><button type="submit"
 								class="btn btn-color px-5 mb-5 w-100">Login</button></div>
-						<div id="emailHelp" class="form-text text-center mb-5 text-dark">Not
-							Registered? <a href="#" class="text-dark fw-bold"> Create an
-								Account</a>
+						<div id="emailHelp" class="form-text text-center mb-5 text-dark">Made by IT Bangla ltd.
+							Developer </br> <a href="#" class="text-blue fw-bold">Reset password</a>
 						</div>
 					</form>
 				</div>
