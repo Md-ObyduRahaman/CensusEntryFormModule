@@ -3,12 +3,10 @@ package com.dpdc.bd.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import com.dpdc.bd.dao.LoginDAO;
 import com.dpdc.bd.model.EMP_USER_MST;
 
@@ -37,8 +35,6 @@ public class LoginController {
 				Cookie cookie = new Cookie("user_name", user1.getUSER_NAME());
 				response.addCookie(cookie);
 
-				System.out.println("valid login");
-
 				return "redirect:/CensusEntryForm";
 			}
 
@@ -49,15 +45,23 @@ public class LoginController {
 
 		} else {
 
-			/*
-			 * User login = new User(); model.addAttribute("login", login);
-			 */
-
+			EMP_USER_MST login = new EMP_USER_MST();
+			model.addAttribute("login", login);
 			String msg = "User Id Password Missmatch! Login Failed";
 			model.addAttribute("msg", msg);
 			return "loginPage";
 		}
 
+	}
+
+	@GetMapping("/logout")
+	public String LogOut(HttpServletResponse response, Model model) {
+		EMP_USER_MST login = new EMP_USER_MST();
+		model.addAttribute("login", login);
+		Cookie cookie = new Cookie("user_name", null);
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);
+		return "loginPage";
 	}
 
 }
