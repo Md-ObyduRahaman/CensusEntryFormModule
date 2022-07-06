@@ -11,365 +11,371 @@
 
 	<title>MeterDetailsForm</title>
 
+	<style>
+		.select2-container .select2-selection--single {
+			height: 40px !important;
+
+		}
+
+		.select2-container--default .select2-selection--single {
+			border: 1px solid #ccc !important;
+			border-radius: 0px !important;
+		}
+	</style>
+
 
 </head>
 
 <body>
-<div class="container-fluid mw-100 py-2 h-100">
-
-        <!--Start First Part -->
-
-        <div class="card text-center">
-
-									<fieldset class="form-group text-left border p-3">
-										<legend class="w-auto px-2">DistributionForm</legend>
-										<div class="row">
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="supplyType"><strong>Supply Type</strong> &nbsp</label>
-													<select name="select_box_type" style="width:auto;" class="form-select input-group search_select_box"
-											id="select_box_type" aria-label="">
-											<option selected>select Location</option>
-											<option value="1">One</option>
-											<option value="2">Two</option>
-											<option value="3">Three</option>
-										</select>
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="fedderNo"><strong>Trs ID No/Fedder No</strong>
-														&nbsp</label>
-													<input type="number" class="form-control" name="fedderNo"
-														id="fedderNo">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="fedderSectionId"><strong>Trx Mfg.No./Fedder Section
-															id</strong> &nbsp</label>
-													<input type="number" class="form-control" name="fedderSectionId"
-														id="fedderSectionId">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="phaseType"><strong>Phase Type </strong> &nbsp</label>
-													<input type="number" class="form-control" name="phaseType"
-														id="phaseType">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="phaseConnect"><strong>Phase Connect</strong>
-														&nbsp</label>
-													<input type="number" class="form-control" name="phaseConnect"
-														readonly id="phaseConnect">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="meterSide"><strong>Meter Side</strong> &nbsp</label>
-													<input type="number" class="form-control" name="meterSide"
-														id="meterSide">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="saveConnTp"><strong>Save Conn. Tp</strong> &nbsp</label>
-													<input type="number" class="form-control" name="saveConnTp"
-														id="saveConnTp">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="serviceDropLength"><strong>Service Drop Length(in
-															Meter)</strong> &nbsp</label>
-													<input type="number" class="form-control" name="serviceDropLength"
-														id="serviceDropLength">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="serviceDropSize"><strong>Service Drop Size</strong>
-														&nbsp</label>
-													<input type="number" class="form-control" name="serviceDropSize"
-														id="serviceDropSize">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="33kvSubStn"><strong>33 KV Sub Stn</strong> &nbsp</label>
-													<input type="number" class="form-control" name="33kvSubStn"
-														id="33kvSubStn">
-
-												</div>
-
-											</div>
-
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="11kvSubStn"><strong>11 KV Sub Stn</strong> &nbsp</label>
-													<input type="number" class="form-control" name="11kvSubStn"
-														id="11kvSubStn">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="poleNumber"><strong>Pole Number</strong> &nbsp</label>
-													<input type="number" class="form-control" name="poleNumber"
-														id="poleNumber">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="sanctionedLoad"><strong>Sanctioned Load</strong>
-														&nbsp</label>
-													<input type="number" class="form-control" name="sanctionedLoad"
-														id="sanctionedLoad">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="tarif"><strong>Tarif</strong> &nbsp</label>
-													<select name="select_box_tarif" style="width:auto;" class="form-select input-group search_select_box"
-											id="select_box_tarif" aria-label="">
-											<option selected>select Location</option>
-											<option value="1">One</option>
-											<option value="2">Two</option>
-											<option value="3">Three</option>
-										</select>
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="monthlyConsumption"><strong>Monthly Likely
-															Consumption</strong> &nbsp</label>
-													<input type="number" class="form-control" name="monthlyConsumption"
-														id="monthlyConsumption">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="connectedLoad"><strong>Connected Load</strong>
-														&nbsp</label>
-													<input type="number" class="form-control" name="connectedLoad"
-														id="connectedLoad">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="typOfBusiness"><strong>Type of Business</strong>
-														&nbsp</label>
-													<input type="number" class="form-control" name="typOfBusiness"
-														id="typOfBusiness">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="status"><strong>Status</strong> &nbsp</label>
-													<input type="number" class="form-control" name="status" id="status">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="secDeposit"><strong>Sec. Deposit</strong> &nbsp</label>
-													<input type="number" class="form-control" name="secDeposit"
-														id="secDeposit">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="cookFuelType"><strong>Cook Fuel Type</strong>
-														&nbsp</label>
-													<input type="number" class="form-control" name="cookFuelType"
-														id="cookFuelType">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="splConsCode"><strong>SPL Cons. Code</strong>
-														&nbsp</label>
-													<input type="number" class="form-control" name="splConsCode"
-														id="splConsCode">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="assoMtrNo"><strong>Asso. Mtr No</strong> &nbsp</label>
-													<input type="text" class="form-control" name="assoMtrNo" readonly
-														id="assoMtrNo">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="rule"><strong>Rule</strong> &nbsp</label>
-													<input type="text" class="form-control" name="rule" readonly
-														id="rule">
-
-												</div>
-
-											</div>
-											<div class="col-md-4 mb-2">
-
-												<div class="input-group">
-													<label for="value"><strong>Value</strong> &nbsp</label>
-													<input type="text" class="form-control" name="value" id="value">
-
-												</div>
-
-											</div>
-											<div class="col-12 text-right">
-												<div class="btn-group border-black " style="display: inline;"
-													role="group" aria-label="Basic example">
-
-													<button type="button" class="btn btn-primary"
-														th:onclick="|window.location.href='/meterDetailsForm'|">Meter
-														Details>></button>
-													<button type="button" class="btn btn-primary">X-F Details</button>
-													<button type="button"
-														th:onclick="|window.location.href='/CensusEntryForm'|"
-														class="btn btn-primary">Consumer</button>
-
-												</div>
-											</div>
-
-										</div>
-									</fieldset>
-								</div>
-
+	<div class="container-fluid mw-100 py-2 h-100">
+
+		<!--Start First Part -->
+
+		<div class="card text-center">
+
+			<fieldset class="form-group text-left border p-3">
+				<legend class="w-auto px-2">DistributionForm</legend>
+				<div class="row">
+					<label class="col-1" for="supplyType"><strong>Supply Type</strong> &nbsp</label>
+					<div class="col-3 mb-2 supTyp_list">
+						<div class="input-group search_select_box ">
+							<select name="supTyp_list" id="supTyp_list" class="form-control select_supplyType">
+								<option selected>--Supply Type--</option>
+								<option value="1">One</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
+							</select>
+						</div>
+					</div>
+					<label class="col-2" for="fedderNo"><strong>Trs ID No/Fedder No</strong>
+								&nbsp</label>
+					<div class="col-md-2 mb-2">
+
+						<div class="input-group">
 							
+							<input type="number" class="form-control" name="fedderNo" id="fedderNo">
 
-							<div class="row">
-								<div class="col-12">
-									<fieldset class="form-group border p-3">
-										<legend class="w-auto px-2">TOD Details</legend>
+						</div>
 
-										<table class="table table-striped table-bordered">
-											<thead>
-												<tr>
-													<th scope="col">X-F Mfg No.</th>
-													<th scope="col">X-F Identification NO.</th>
-													<th scope="col">Owner</th>
-													<th scope="col">Capacity</th>
-													<th scope="col">Rating</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<th scope="row">1</th>
-													<td>Mark</td>
-													<td>Otto</td>
-													<td>@mdo</td>
-													<td>Mark</td>
+					</div>
+					<label class="col-2" for="fedderSectionId"><strong>Trx Mfg.No./Fedder Section
+							id</strong> &nbsp</label>
+					<div class="col-2 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="fedderSectionId" id="fedderSectionId">
+
+						</div>
+
+					</div>
+					<label class="col-md-1" for="phaseType"><strong>Phase Type </strong> &nbsp</label>
+					<div class="col-3 mb-2 supTyp_list">
+						<div class="input-group search_select_box ">
+							<select name="phaseType" id="phaseType" class="form-control select_phaseType">
+								<option selected>--Phase Type--</option>
+								<option value="1">One</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
+							</select>
+						</div>
+					</div>
+
+					<label class="col-2" for="phaseConnect"><strong>Phase Connect</strong>
+						&nbsp</label>
+					<div class="col-md-2 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="phaseConnect" readonly id="phaseConnect">
+
+						</div>
+
+					</div>
+					<label class="col-2" for="meterSide"><strong>Meter Side</strong> &nbsp</label>
+					<div class="col-md-2 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="meterSide" id="meterSide">
+
+						</div>
+
+					</div>
+					<label class="col-1" for="saveConnTp"><strong>Save Conn. Tp</strong> &nbsp</label>
+					<div class="col-md-3 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="saveConnTp" id="saveConnTp">
+
+						</div>
+
+					</div>
+					<label class="col-2" for="serviceDropLength"><strong>Service Drop Length(in
+							Meter)</strong> &nbsp</label>
+					<div class="col-md-2 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="serviceDropLength" id="serviceDropLength">
+
+						</div>
+
+					</div>
+
+					<label class="col-2" for="serviceDropSize"><strong>Service Drop Size</strong>
+						&nbsp</label>
+					<div class="col-md-2 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="serviceDropSize" id="serviceDropSize">
+
+						</div>
+
+					</div>
+					<label class="col-1" for="33kvSubStn"><strong>33 KV Sub Stn</strong> &nbsp</label>
+					<div class="col-md-3 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="33kvSubStn" id="33kvSubStn">
+
+						</div>
+
+					</div>
+					<label class="col-2" for="11kvSubStn"><strong>11 KV Sub Stn</strong> &nbsp</label>
+					<div class="col-md-2 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="11kvSubStn" id="11kvSubStn">
+
+						</div>
+
+					</div>
+					<label class="col-2" for="poleNumber"><strong>Pole Number</strong> &nbsp</label>
+					<div class="col-md-2 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="poleNumber" id="poleNumber">
+
+						</div>
+
+					</div>
+					<label class="col-1" for="sanctionedLoad"><strong>Sanctioned Load</strong>
+						&nbsp</label>
+					<div class="col-md-3 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="sanctionedLoad" id="sanctionedLoad">
+
+						</div>
+
+					</div>
+					<label class="col-md-2" for="tariff"><strong>Tariff</strong> &nbsp</label>
+					<div class="col-2 mb-2 supTyp_list">
+						<div class="input-group search_select_box ">
+							<select name="tariff" id="tariff" class="form-control select_tariff">
+								<option selected>--Phase Type--</option>
+								<option value="1">One</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
+							</select>
+						</div>
+					</div>
+					<label class="col-2" for="monthlyConsumption"><strong>Monthly Likely
+							Consumption</strong> &nbsp</label>
+					<div class="col-md-2 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="monthlyConsumption" id="monthlyConsumption">
+
+						</div>
+
+					</div>
+					<label class="col-1" for="connectedLoad"><strong>Connected Load</strong>
+						&nbsp</label>
+					<div class="col-md-3 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="connectedLoad" id="connectedLoad">
+
+						</div>
+
+					</div>
+					<label class="col-2" for="typOfBusiness"><strong>Type of Business</strong>
+						&nbsp</label>
+					<div class="col-md-2 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="typOfBusiness" id="typOfBusiness">
+
+						</div>
+
+					</div>
+					<label class="col-2" for="status"><strong>Status</strong> &nbsp</label>
+					<div class="col-md-2 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="status" id="status">
+
+						</div>
+
+					</div>
+					<label class="col-1" for="secDeposit"><strong>Sec. Deposit</strong> &nbsp</label>
+					<div class="col-md-3 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="secDeposit" id="secDeposit">
+
+						</div>
+
+					</div>
+					<label class="col-2" for="cookFuelType"><strong>Cook Fuel Type</strong>&nbsp</label>
+					<div class="col-2 mb-2 cookFuelType">
+						<div class="input-group search_select_box ">
+							<select name="cookFuelType" id="cookFuelType" class="form-control selectcookFuelType">
+								<option selected>--Select--</option>
+								<option value="1">One</option>
+								<option value="2">Two</option>
+								<option value="3">Three</option>
+							</select>
+						</div>
+					</div>
+					<label class="col-2" for="splConsCode"><strong>SPL Cons. Code</strong>
+						&nbsp</label>
+					<div class="col-md-2 mb-2">
+
+						<div class="input-group">
+
+							<input type="number" class="form-control" name="splConsCode" id="splConsCode">
+
+						</div>
+
+					</div>
+					<label class="col-1" for="assoMtrNo"><strong>Asso. Mtr No</strong> &nbsp</label>
+					<div class="col-md-3 mb-2">
+
+						<div class="input-group">
+
+							<input type="text" class="form-control" name="assoMtrNo" readonly id="assoMtrNo">
+
+						</div>
+
+					</div>
+					<label class="col-2" for="rule"><strong>Rule</strong> &nbsp</label>
+					<div class="col-md-2 mb-2">
+
+						<div class="input-group">
+
+							<input type="text" class="form-control" name="rule" readonly id="rule">
+
+						</div>
+
+					</div>
+					<label class="col-2" for="value"><strong>Value</strong> &nbsp</label>
+					<div class="col-md-2 mb-2">
+
+						<div class="input-group">
+
+							<input type="text" class="form-control" name="value" id="value">
+
+						</div>
+
+					</div>
+					<div class="col-12 text-right">
+						<div class="btn-group border-black " style="display: inline;" role="group"
+							aria-label="Basic example">
+
+							<button type="button" class="btn btn-primary"
+								th:onclick="|window.location.href='/meterDetailsForm'|">Meter
+								Details>></button>
+							<button type="button" class="btn btn-primary">X-F Details</button>
+							<button type="button" th:onclick="|window.location.href='/CensusEntryForm'|"
+								class="btn btn-primary">Consumer</button>
+
+						</div>
+					</div>
+
+				</div>
+			</fieldset>
+		</div>
 
 
-												</tr>
-												<tr>
-													<th scope="row">2</th>
-													<td>Jacob</td>
-													<td>Thornton</td>
-													<td>@fat</td>
-													<td>Mark</td>
 
-												</tr>
-												<tr>
-													<th scope="row">3</th>
-													<td>Larry</td>
-													<td>the Bird</td>
-													<td>@twitter</td>
-													<td>Mark</td>
+		<div class="row">
+			<div class="col-12">
+				<fieldset class="form-group border p-3">
+					<legend class="w-auto px-2">TOD Details</legend>
 
-												</tr>
-											</tbody>
-										</table>
-									</fieldset>
-								</div></div></div>
-								
+					<table class="table table-striped table-bordered">
+						<thead>
+							<tr>
+								<th scope="col">X-F Mfg No.</th>
+								<th scope="col">X-F Identification NO.</th>
+								<th scope="col">Owner</th>
+								<th scope="col">Capacity</th>
+								<th scope="col">Rating</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<th scope="row">1</th>
+								<td>Mark</td>
+								<td>Otto</td>
+								<td>@mdo</td>
+								<td>Mark</td>
+
+
+							</tr>
+							<tr>
+								<th scope="row">2</th>
+								<td>Jacob</td>
+								<td>Thornton</td>
+								<td>@fat</td>
+								<td>Mark</td>
+
+							</tr>
+							<tr>
+								<th scope="row">3</th>
+								<td>Larry</td>
+								<td>the Bird</td>
+								<td>@twitter</td>
+								<td>Mark</td>
+
+							</tr>
+						</tbody>
+					</table>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+
 
 
 	<!-- JavaScript -->
 	<div th:replace="fragments/links :: javaScriptLink"></div>
 	<script>
-	
-	var select_box_tarif = document.querySelector('#select_box_tarif');
 
-		dselect(select_box_tarif, {
-			search: true
-		});
-		var select_box_type = document.querySelector('#select_box_type');
 
-		dselect(select_box_type, {
-			search: true
-		});
-	
+
+		$('.select_phaseType').select2();
+		$('.select_supplyType').select2();
+		$('.select_tariff').select2();
+		$('.selectcookFuelType').select2();
+
+
 	</script>
-	
+
 
 </body>
 
