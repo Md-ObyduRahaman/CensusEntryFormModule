@@ -20,6 +20,11 @@ public class TestController {
 		
 		return"distributionForm";
 	}
+	@RequestMapping("/test")
+	public String test() {
+		
+		return"fragments/sidebar";
+	}
 	
 	
 
