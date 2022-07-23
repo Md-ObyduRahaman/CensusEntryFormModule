@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
 
 <head>
     <meta charset="utf-8">
@@ -23,7 +23,8 @@
 
     <div class="wrapper">
         <!-- Sidebar Holder -->
-        <nav id="sidebar">
+        
+        <nav id="sidebar" th:fragment="sidebar">
             <div class="sidebar-header">
                 <h3>Bootstrap Sidebar</h3>
             </div>
@@ -72,8 +73,9 @@
 
         <!-- Page Content Holder -->
         <div id="content">
+      
 
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="header">
                 <div class="container-fluid">
 
                     <button type="button" id="sidebarCollapse" class="navbar-btn">
@@ -103,6 +105,7 @@
                     </div>
                 </div>
             </nav>
+     
             
             </div>
     </div>

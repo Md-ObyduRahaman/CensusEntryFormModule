@@ -27,7 +27,10 @@
 </head>
 
 <body>
+  <div class="wrapper">
+   <div th:replace="fragments/sidebar :: sidebar"></div>
 	<div class="container-fluid mw-100 py-2 h-100">
+		<div th:replace="fragments/sidebar :: header"></div>
 
 		<!--Start First Part -->
 
@@ -360,7 +363,7 @@
 		</div>
 	</div>
 
-
+  </div>
 
 	<!-- JavaScript -->
 	<div th:replace="fragments/links :: javaScriptLink"></div>
