@@ -26,7 +26,8 @@ public class LoginController {
 	@PostMapping("/")
 	public String checkUserCredential(HttpServletResponse response, Model model, EMP_USER_MST user) {
 
-		EMP_USER_MST user1 = dao.getLogin(user.getUSER_NAME(), user.getUSER_PASSWORD());
+		String user_name=user.getUSER_NAME().toUpperCase();
+		EMP_USER_MST user1 = dao.getLogin(user_name, user.getUSER_PASSWORD());
 
 		if (user1 != null) {
 			if (user1.getUSER_NAME().equals(user.getUSER_NAME())
