@@ -83,8 +83,33 @@ public class GetDynamicMenuDAO {
 									+ "\">\r\n" + "                        <li>\r\n";
 							for (int menu_level_2 = 0; menu_level_2 < dynamicMenu.size(); menu_level_2++) {
 								if (dynamicMenu.get(menu_level_2).getPARENT().equals(dynamicMenu.get(menu_level_1).getMOD_ID()))
-									dataHtml += "                            <a href=\"#\">"
-											+ dynamicMenu.get(menu_level_2).getMOD_NAME() + "</a>\r\n";
+									//code starting for finding level_2 and sub menu of level_2
+									if (dynamicMenu.get(menu_level_2).getMOD_APP().equals("#")) {
+
+										dataHtml += "             \r\n" + "                <li>\r\n" + "                   \r\n"
+												+ "                    <a href=\"#pageSubmenu" + menu_level_2
+												+ "\" data-toggle=\"collapse\" aria-expanded=\"false\" class=\"dropdown-toggle\">"
+												+ dynamicMenu.get(menu_level_2).getMOD_NAME() + "</a>\r\n"
+												+ "                    <ul class=\"collapse list-unstyled\" id=\"pageSubmenu" + menu_level_2
+												+ "\">\r\n" + "                        <li>\r\n";
+										for (int menu_level_3 = 0; menu_level_3 < dynamicMenu.size(); menu_level_3++) {
+											if (dynamicMenu.get(menu_level_3).getPARENT().equals(dynamicMenu.get(menu_level_2).getMOD_ID()))
+												dataHtml += "                            <a href=\"#\">"
+														+ dynamicMenu.get(menu_level_3).getMOD_NAME() + "</a>\r\n";
+										}
+
+										dataHtml += "                        </li>\r\n"
+
+												+ "                    </ul>\r\n" + "                </li>\r\n";
+
+									}
+
+									else {
+
+										dataHtml += "                <li>\r\n" + "                    <a href=\"#\">"
+												+ dynamicMenu.get(menu_level_2).getMOD_NAME() + "</a>\r\n";
+									}
+									//code ending for finding level_2 and sub menu of level_2
 							}
 
 							dataHtml += "                        </li>\r\n"
