@@ -24,11 +24,10 @@ public class GetDynamicMenuDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	SimpleJdbcCall getAllStatesJdbcCall;
-	SimpleJdbcCall getAllStatesJdbcCall_level_1;
 
 	public GetDynamicMenuDAO(DataSource dataSource) {
 		this.getAllStatesJdbcCall = new SimpleJdbcCall(dataSource);
-		this.getAllStatesJdbcCall_level_1 = new SimpleJdbcCall(dataSource);
+
 	}
 
 	public String getDynamicMenu(String user_name) {
@@ -57,27 +56,50 @@ public class GetDynamicMenuDAO {
 				+ "            </div>\r\n" + "\r\n" + "            <ul class=\"list-unstyled components\">\r\n"
 				+ "                <p>Dummy Heading</p>\r\n";
 
-		for (int i = 0; i < dynamicMenu.size(); i++) {
-			if (dynamicMenu.get(i).getPARENT().equals("0")) {
+		for (int menu_level_0 = 0; menu_level_0 < dynamicMenu.size(); menu_level_0++) {
+			if (dynamicMenu.get(menu_level_0).getPARENT().equals("0")) {
 
-				if (dynamicMenu.get(i).getMOD_APP().equals("#")) {
-					String MID = dynamicMenu.get(i).getMOD_ID();
-					int k = this.name(Integer.valueOf(MID));
-
-					System.out.println(dynamicMenu.get(i).getMOD_ID()+"value of I"+i);
+					//code starting for finding level_0 and sub menu of level_0
+				if (dynamicMenu.get(menu_level_0).getMOD_APP().equals("#")) {
 
 					dataHtml += "             \r\n" + "                <li>\r\n" + "                   \r\n"
-							+ "                    <a href=\"#pageSubmenu" + i
+							+ "                    <a href=\"#pageSubmenu" + menu_level_0
 							+ "\" data-toggle=\"collapse\" aria-expanded=\"false\" class=\"dropdown-toggle\">"
-							+ dynamicMenu.get(i).getMOD_NAME() + "</a>\r\n"
-							+ "                    <ul class=\"collapse list-unstyled\" id=\"pageSubmenu" + i
+							+ dynamicMenu.get(menu_level_0).getMOD_NAME() + "</a>\r\n"
+							+ "                    <ul class=\"collapse list-unstyled\" id=\"pageSubmenu" + menu_level_0
 							+ "\">\r\n" + "                        <li>\r\n";
-					for (int j = 0; j < dynamicMenu.size(); j++) {
-						System.out.println("mode id..."+dynamicMenu.get(j).getMOD_ID());
-						System.out.println("parent id..."+dynamicMenu.get(i).getPARENT()+"value of I"+i);
-						if (dynamicMenu.get(j).getPARENT().equals(dynamicMenu.get(i).getMOD_ID()))
-						dataHtml += "                            <a href=\"#\">" + dynamicMenu.get(j).getMOD_NAME()
-								+ "</a>\r\n";
+					for (int menu_level_1 = 0; menu_level_1 < dynamicMenu.size(); menu_level_1++) {
+						if (dynamicMenu.get(menu_level_1).getPARENT().equals(dynamicMenu.get(menu_level_0).getMOD_ID()))
+							
+						
+						//code starting for finding level_1 and sub menu of level_1
+						if (dynamicMenu.get(menu_level_1).getMOD_APP().equals("#")) {
+
+							dataHtml += "             \r\n" + "                <li>\r\n" + "                   \r\n"
+									+ "                    <a href=\"#pageSubmenu" + menu_level_1
+									+ "\" data-toggle=\"collapse\" aria-expanded=\"false\" class=\"dropdown-toggle\">"
+									+ dynamicMenu.get(menu_level_1).getMOD_NAME() + "</a>\r\n"
+									+ "                    <ul class=\"collapse list-unstyled\" id=\"pageSubmenu" + menu_level_1
+									+ "\">\r\n" + "                        <li>\r\n";
+							for (int menu_level_2 = 0; menu_level_2 < dynamicMenu.size(); menu_level_2++) {
+								if (dynamicMenu.get(menu_level_2).getPARENT().equals(dynamicMenu.get(menu_level_1).getMOD_ID()))
+									dataHtml += "                            <a href=\"#\">"
+											+ dynamicMenu.get(menu_level_2).getMOD_NAME() + "</a>\r\n";
+							}
+
+							dataHtml += "                        </li>\r\n"
+
+									+ "                    </ul>\r\n" + "                </li>\r\n";
+
+						}
+
+						else {
+
+							dataHtml += "                <li>\r\n" + "                    <a href=\"#\">"
+									+ dynamicMenu.get(menu_level_1).getMOD_NAME() + "</a>\r\n";
+						}
+						//code ending for finding level_1 and sub menu of level_1
+						
 					}
 
 					dataHtml += "                        </li>\r\n"
@@ -89,9 +111,12 @@ public class GetDynamicMenuDAO {
 				else {
 
 					dataHtml += "                <li>\r\n" + "                    <a href=\"#\">"
-							+ dynamicMenu.get(i).getMOD_NAME() + "</a>\r\n";
+							+ dynamicMenu.get(menu_level_0).getMOD_NAME() + "</a>\r\n";
 				}
+				//code ending for finding level_0 and sub menu of level_0
 			}
+			
+			
 		}
 		dataHtml += "                </li>\r\n" + "                <li>\r\n" + "                    <a \r\n"
 				+ "							th:onclick=\"|window.location.href='/logout'|\">Logout</a>\r\n"
@@ -100,31 +125,6 @@ public class GetDynamicMenuDAO {
 		// -----------------------------------------------------------------------------------------------------------------------------------------
 
 		return dataHtml;
-	}
-
-	public int name(int moid) {
-
-		// submenu level-1
-		ArrayList<EMP_MODULES_LIST> dynamicMenu_level_1 = new ArrayList<EMP_MODULES_LIST>();
-		Map<String, Object> result_level_1 = getAllStatesJdbcCall_level_1.withCatalogName("DPG_EMP_USER_LOGIN")
-				.withProcedureName("DPD_DYNAMIC_SUB_MENU_LIST")
-				.declareParameters(new SqlOutParameter("results_0cursor", OracleTypes.VARCHAR)).execute(moid);
-
-		JSONObject json_level_1 = new JSONObject(result_level_1);
-		String fjfhdj_level_1 = json_level_1.get("CUR_DATA").toString();
-		JSONArray jsonArray_level_1 = new JSONArray(fjfhdj_level_1);
-
-		for (int i = 0; i < jsonArray_level_1.length(); i++) {
-			JSONObject jsonData_level_1 = jsonArray_level_1.getJSONObject(i);
-			dynamicMenu_level_1.add(
-					new EMP_MODULES_LIST(jsonData_level_1.optString("PARENT"), jsonData_level_1.optString("MOD_ID"),
-							jsonData_level_1.optString("MOD_APP"), jsonData_level_1.optString("EXT"),
-							jsonData_level_1.optString("ROOTLEAF"), jsonData_level_1.optString("MOD_NAME"),
-							jsonData_level_1.optString("MTYPE"), jsonData_level_1.optString("MOD_CODE"),
-							jsonData_level_1.optString("PAGE_RANG"), jsonData_level_1.optString("SHORT_NAME")));
-		}
-		return 1;
-
 	}
 
 }
