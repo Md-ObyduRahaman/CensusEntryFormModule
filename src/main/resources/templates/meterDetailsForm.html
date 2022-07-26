@@ -30,7 +30,7 @@
 <body>
 
   <div class="wrapper">
-   <div th:replace="fragments/sidebar :: sidebar"></div>
+    <span th:remove="tag" th:utext="${dataHtml}"></span>
 	<div class="container-fluid mw-100 py-2 h-100">
 		<div th:replace="fragments/sidebar :: header"></div>
 

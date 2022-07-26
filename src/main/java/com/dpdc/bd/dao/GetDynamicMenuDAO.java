@@ -1,11 +1,8 @@
 package com.dpdc.bd.dao;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.Map;
-
 import javax.sql.DataSource;
-
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +10,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
-
 import com.dpdc.bd.model.EMP_MODULES_LIST;
-
 import oracle.jdbc.internal.OracleTypes;
 
 @Repository
@@ -49,17 +44,17 @@ public class GetDynamicMenuDAO {
 					jsonData.optString("PAGE_RANG"), jsonData.optString("SHORT_NAME")));
 		}
 
-		String dString = "dynamic";
 
 		String dataHtml = " <nav id=\"sidebar\" th:fragment=\"sidebar\">\r\n"
-				+ "            <div class=\"sidebar-header\">\r\n" + "                <h3>DPDC</h3>\r\n"
+				+ "            <div class=\"sidebar-header\">\r\n"
+				+ "                 <div> <img src=\"../img/adress.jpg\" alt=\"picture not available\" width=\"200\" height=\"50\"></div>\r\n"
 				+ "            </div>\r\n" + "\r\n" + "            <ul class=\"list-unstyled components\">\r\n"
-				+ "                <p>Dummy Heading</p>\r\n";
+				+ "                <p>Dhaka Power Distribution Company</p>\r\n";
 
 		for (int menu_level_0 = 0; menu_level_0 < dynamicMenu.size(); menu_level_0++) {
 			if (dynamicMenu.get(menu_level_0).getPARENT().equals("0")) {
 
-					//code starting for finding level_0 and sub menu of level_0
+				// code starting for finding level_0 and sub menu of level_0
 				if (dynamicMenu.get(menu_level_0).getMOD_APP().equals("#")) {
 
 					dataHtml += "             \r\n" + "                <li>\r\n" + "                   \r\n"
@@ -70,61 +65,64 @@ public class GetDynamicMenuDAO {
 							+ "\">\r\n" + "                        <li>\r\n";
 					for (int menu_level_1 = 0; menu_level_1 < dynamicMenu.size(); menu_level_1++) {
 						if (dynamicMenu.get(menu_level_1).getPARENT().equals(dynamicMenu.get(menu_level_0).getMOD_ID()))
-							
-						
-						//code starting for finding level_1 and sub menu of level_1
-						if (dynamicMenu.get(menu_level_1).getMOD_APP().equals("#")) {
 
-							dataHtml += "             \r\n" + "                <li>\r\n" + "                   \r\n"
-									+ "                    <a href=\"#pageSubmenu" + menu_level_1
-									+ "\" data-toggle=\"collapse\" aria-expanded=\"false\" class=\"dropdown-toggle\">"
-									+ dynamicMenu.get(menu_level_1).getMOD_NAME() + "</a>\r\n"
-									+ "                    <ul class=\"collapse list-unstyled\" id=\"pageSubmenu" + menu_level_1
-									+ "\">\r\n" + "                        <li>\r\n";
-							for (int menu_level_2 = 0; menu_level_2 < dynamicMenu.size(); menu_level_2++) {
-								if (dynamicMenu.get(menu_level_2).getPARENT().equals(dynamicMenu.get(menu_level_1).getMOD_ID()))
-									//code starting for finding level_2 and sub menu of level_2
-									if (dynamicMenu.get(menu_level_2).getMOD_APP().equals("#")) {
+							// code starting for finding level_1 and sub menu of level_1
+							if (dynamicMenu.get(menu_level_1).getMOD_APP().equals("#")) {
 
-										dataHtml += "             \r\n" + "                <li>\r\n" + "                   \r\n"
-												+ "                    <a href=\"#pageSubmenu" + menu_level_2
-												+ "\" data-toggle=\"collapse\" aria-expanded=\"false\" class=\"dropdown-toggle\">"
-												+ dynamicMenu.get(menu_level_2).getMOD_NAME() + "</a>\r\n"
-												+ "                    <ul class=\"collapse list-unstyled\" id=\"pageSubmenu" + menu_level_2
-												+ "\">\r\n" + "                        <li>\r\n";
-										for (int menu_level_3 = 0; menu_level_3 < dynamicMenu.size(); menu_level_3++) {
-											if (dynamicMenu.get(menu_level_3).getPARENT().equals(dynamicMenu.get(menu_level_2).getMOD_ID()))
-												dataHtml += "                            <a href=\"#\">"
-														+ dynamicMenu.get(menu_level_3).getMOD_NAME() + "</a>\r\n";
+								dataHtml += "             \r\n" + "                <li>\r\n" + "                   \r\n"
+										+ "                    <a href=\"#pageSubmenu" + menu_level_1
+										+ "\" data-toggle=\"collapse\" aria-expanded=\"false\" class=\"dropdown-toggle\">"
+										+ dynamicMenu.get(menu_level_1).getMOD_NAME() + "</a>\r\n"
+										+ "                    <ul class=\"collapse list-unstyled\" id=\"pageSubmenu"
+										+ menu_level_1 + "\">\r\n" + "                        <li>\r\n";
+								for (int menu_level_2 = 0; menu_level_2 < dynamicMenu.size(); menu_level_2++) {
+									if (dynamicMenu.get(menu_level_2).getPARENT()
+											.equals(dynamicMenu.get(menu_level_1).getMOD_ID()))
+										// code starting for finding level_2 and sub menu of level_2
+										if (dynamicMenu.get(menu_level_2).getMOD_APP().equals("#")) {
+
+											dataHtml += "             \r\n" + "                <li>\r\n"
+													+ "                   \r\n"
+													+ "                    <a href=\"#pageSubmenu" + menu_level_2
+													+ "\" data-toggle=\"collapse\" aria-expanded=\"false\" class=\"dropdown-toggle\">"
+													+ dynamicMenu.get(menu_level_2).getMOD_NAME() + "</a>\r\n"
+													+ "                    <ul class=\"collapse list-unstyled\" id=\"pageSubmenu"
+													+ menu_level_2 + "\">\r\n" + "                        <li>\r\n";
+											for (int menu_level_3 = 0; menu_level_3 < dynamicMenu
+													.size(); menu_level_3++) {
+												if (dynamicMenu.get(menu_level_3).getPARENT()
+														.equals(dynamicMenu.get(menu_level_2).getMOD_ID()))
+													dataHtml += "                            <a href="+dynamicMenu.get(menu_level_3).getMOD_APP()+">"
+															+ dynamicMenu.get(menu_level_3).getMOD_NAME() + "</a>\r\n";
+											}
+
+											dataHtml += "              <hr>          </li>\r\n"
+
+													+ "                    </ul>\r\n" + "                </li>\r\n";
+
 										}
 
-										dataHtml += "                        </li>\r\n"
+										else {
 
-												+ "                    </ul>\r\n" + "                </li>\r\n";
+											dataHtml += "               <li>\r\n" + "                    <a href=\"#\">"
+													+ dynamicMenu.get(menu_level_2).getMOD_NAME() + "</a>\r\n";
+										}
+									// code ending for finding level_2 and sub menu of level_2
+								}
 
-									}
+								dataHtml += "                        </li>\r\n"
 
-									else {
+										+ "                    </ul>\r\n" + "                </li>\r\n";
 
-										dataHtml += "                <li>\r\n" + "                    <a href=\"#\">"
-												+ dynamicMenu.get(menu_level_2).getMOD_NAME() + "</a>\r\n";
-									}
-									//code ending for finding level_2 and sub menu of level_2
 							}
 
-							dataHtml += "                        </li>\r\n"
+							else {
 
-									+ "                    </ul>\r\n" + "                </li>\r\n";
+								dataHtml += "                <li>\r\n" + "                    <a href=\"#\">"
+										+ dynamicMenu.get(menu_level_1).getMOD_NAME() + "</a>\r\n";
+							}
+						// code ending for finding level_1 and sub menu of level_1
 
-						}
-
-						else {
-
-							dataHtml += "                <li>\r\n" + "                    <a href=\"#\">"
-									+ dynamicMenu.get(menu_level_1).getMOD_NAME() + "</a>\r\n";
-						}
-						//code ending for finding level_1 and sub menu of level_1
-						
 					}
 
 					dataHtml += "                        </li>\r\n"
@@ -135,19 +133,20 @@ public class GetDynamicMenuDAO {
 
 				else {
 
-					dataHtml += "                <li>\r\n" + "                    <a href=\"#\">"
+					dataHtml += "                <li>\r\n" + "                    <a href="+dynamicMenu.get(menu_level_0).getMOD_APP()+">"
 							+ dynamicMenu.get(menu_level_0).getMOD_NAME() + "</a>\r\n";
 				}
-				//code ending for finding level_0 and sub menu of level_0
+				// code ending for finding level_0 and sub menu of level_0
 			}
-			
-			
+
 		}
-		dataHtml += "                </li>\r\n" + "                <li>\r\n" + "                    <a \r\n"
-				+ "							th:onclick=\"|window.location.href='/logout'|\">Logout</a>\r\n"
-				+ "                </li>\r\n" + "            </ul>\r\n" + "\r\n" + "           \r\n"
-				+ "        </nav> ";
-		// -----------------------------------------------------------------------------------------------------------------------------------------
+		dataHtml += "                </li>\r\n" + "         <li>\r\n"
+				+ "                    <a \r\n"
+				+ "							href=\"../../../logout\">Logout</a>\r\n"
+				+ "                </li>        " + "            </ul>\r\n" + "\r\n" + "           \r\n"
+				+ "      <div >\r\n" + "                \r\n"
+				+ "                <img src=\"../img/itbt.jfif\" alt=\"picture not available\" width=\"250\" height=\"60\">\r\n"
+				+ "                \r\n" + "                </div>   </nav> ";
 
 		return dataHtml;
 	}

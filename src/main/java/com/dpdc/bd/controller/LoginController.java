@@ -36,7 +36,7 @@ public class LoginController {
 				Cookie cookie = new Cookie("user_name", user1.getUSER_NAME());
 				response.addCookie(cookie);
 
-				return "redirect:/CensusEntryForm";
+				return "redirect:/dashBoard";
 			}
 
 			else {
@@ -54,6 +54,7 @@ public class LoginController {
 		}
 
 	}
+	
 
 	@GetMapping("/logout")
 	public String LogOut(HttpServletResponse response, Model model) {

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<div th:replace="fragments/links :: cssLink"></div>
+
+
+	<title>CensusForm</title>
+
+
+	<style>
+		.select2-container .select2-selection--single {
+			height: 40px !important;
+
+		}
+
+		.select2-container--default .select2-selection--single {
+			border: 1px solid #ccc !important;
+			border-radius: 0px !important;
+		}
+		#sidebar ul li  {
+   color: white;
+    display: block;
+}
+	</style>
+
+</head>
+
+<body>
+  <div class="wrapper">
+   <span th:remove="tag" th:utext="${dataHtml}"></span>
+	<div class="container-fluid mw-100 py-2 h-100">
+	<div th:replace="fragments/sidebar :: header"></div>
+
+		<!--Start First Part -->
+
+	<h1>DashBoard</h1>
+	</div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+	<!-- JavaScript -->
+	<div th:replace="fragments/links :: javaScriptLink"></div>
+	
+
+</body>
+
+</html>

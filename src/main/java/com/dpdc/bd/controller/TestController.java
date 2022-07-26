@@ -13,30 +13,38 @@ public class TestController {
 	
 	@Resource
 	GetDynamicMenuDAO getDynamicMenuDAO;
-	
-	@RequestMapping("/CensusEntryForm")
+	 
+	@RequestMapping("/DATA_ENTRY_LT")
 	public String censusForm(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model) {
 		
 		if (user_name.equals("")) {
 			return "redirect:/";
 		}				
-		String dynamicMenu= getDynamicMenuDAO.getDynamicMenu(user_name);
+		  String dynamicMenu= getDynamicMenuDAO.getDynamicMenu(user_name);
 		model.addAttribute("dataHtml", dynamicMenu);						
 		return "CensusEntryForm";
 	}
 	@RequestMapping("/meterDetailsForm")
-	public String meterDetails() {
+	public String meterDetails(@CookieValue(value = "user_name", defaultValue = "") String user_name,Model model) {
+		 String dynamicMenu= getDynamicMenuDAO.getDynamicMenu(user_name);
+			model.addAttribute("dataHtml", dynamicMenu);	
 		return"meterDetailsForm";
 	}
 	@RequestMapping("/distribution")
-	public String distribution() {
+	public String distribution(@CookieValue(value = "user_name", defaultValue = "") String user_name,Model model) {
+		 String dynamicMenu= getDynamicMenuDAO.getDynamicMenu(user_name);
+			model.addAttribute("dataHtml", dynamicMenu);	
 		
 		return"distributionForm";
 	}
-	@RequestMapping("/test")
-	public String test() {
-		
-		return"fragments/sidebar";
+	@RequestMapping("/DASHBOARD")
+	public String test(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model) {
+		if (user_name.equals("")) {
+			return "redirect:/";
+		}				
+		  String dynamicMenu= getDynamicMenuDAO.getDynamicMenu(user_name);
+		model.addAttribute("dataHtml", dynamicMenu);
+		return"dashBoard";
 	}
 	
 	
