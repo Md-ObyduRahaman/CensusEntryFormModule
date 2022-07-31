@@ -36,7 +36,7 @@ public class LoginController {
 				Cookie cookie = new Cookie("user_name", user1.getUSER_NAME());
 				response.addCookie(cookie);
 
-				return "redirect:/dashBoard";
+				return "redirect:/DASHBOARD";
 			}
 
 			else {

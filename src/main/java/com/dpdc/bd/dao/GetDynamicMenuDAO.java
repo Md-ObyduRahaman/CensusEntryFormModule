@@ -44,11 +44,17 @@ public class GetDynamicMenuDAO {
 					jsonData.optString("PAGE_RANG"), jsonData.optString("SHORT_NAME")));
 		}
 
-
 		String dataHtml = " <nav id=\"sidebar\" th:fragment=\"sidebar\">\r\n"
-				+ "            <div class=\"sidebar-header\">\r\n"
-				+ "                 <div> <img src=\"../img/adress.jpg\" alt=\"picture not available\" width=\"200\" height=\"50\"></div>\r\n"
-				+ "            </div>\r\n" + "\r\n" + "            <ul class=\"list-unstyled components\">\r\n"
+				+ "     <div class=\"sidebar-header\">\r\n" + "               \r\n" + "\r\n" + "\r\n"
+				+ "                  <div class=\"d-flex post-entry\">\r\n"
+				+ "                    <div class=\"custom-thumbnail m-8\">\r\n"
+				+ "                      <img src=\"../img/DPDC.png\" alt=\"Image\" width=\"70\" height=\"80\" class=\"img-fluid\">\r\n"
+				+ "                    </div>\r\n"
+				+ "                    <div class=\"post-content \" style=\"margin: 10px;\">\r\n"
+				+ "                      <h4>DPDC</h4>\r\n" + "                      \r\n"
+				+ "                    </div>\r\n" + "                  </div>\r\n" + "             \r\n" + "\r\n"
+				+ "\r\n" + "\r\n" + "\r\n" + "            </div>   " + "\r\n"
+				+ "            <ul class=\"list-unstyled components\">\r\n"
 				+ "                <p>Dhaka Power Distribution Company</p>\r\n";
 
 		for (int menu_level_0 = 0; menu_level_0 < dynamicMenu.size(); menu_level_0++) {
@@ -92,7 +98,8 @@ public class GetDynamicMenuDAO {
 													.size(); menu_level_3++) {
 												if (dynamicMenu.get(menu_level_3).getPARENT()
 														.equals(dynamicMenu.get(menu_level_2).getMOD_ID()))
-													dataHtml += "                            <a href="+dynamicMenu.get(menu_level_3).getMOD_APP()+">"
+													dataHtml += "                            <a id="+dynamicMenu.get(menu_level_3).getMOD_APP()+" href="
+															+ dynamicMenu.get(menu_level_3).getMOD_APP() + ">"
 															+ dynamicMenu.get(menu_level_3).getMOD_NAME() + "</a>\r\n";
 											}
 
@@ -133,18 +140,17 @@ public class GetDynamicMenuDAO {
 
 				else {
 
-					dataHtml += "                <li>\r\n" + "                    <a href="+dynamicMenu.get(menu_level_0).getMOD_APP()+">"
+					dataHtml += "                <li>\r\n" + "                    <a href="
+							+ dynamicMenu.get(menu_level_0).getMOD_APP() + ">"
 							+ dynamicMenu.get(menu_level_0).getMOD_NAME() + "</a>\r\n";
 				}
 				// code ending for finding level_0 and sub menu of level_0
 			}
 
 		}
-		dataHtml += "                </li>\r\n" + "         <li>\r\n"
-				+ "                    <a \r\n"
-				+ "							href=\"../../../logout\">Logout</a>\r\n"
-				+ "                </li>        " + "            </ul>\r\n" + "\r\n" + "           \r\n"
-				+ "      <div >\r\n" + "                \r\n"
+		dataHtml += "                </li>\r\n" + "         <li>\r\n" + "                    <a \r\n"
+				+ "							href=\"../../../logout\">Logout</a>\r\n" + "                </li>        "
+				+ "            </ul>\r\n" + "\r\n" + "           \r\n" + "      <div >\r\n" + "                \r\n"
 				+ "                <img src=\"../img/itbt.jfif\" alt=\"picture not available\" width=\"250\" height=\"60\">\r\n"
 				+ "                \r\n" + "                </div>   </nav> ";
 
