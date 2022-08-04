@@ -53,10 +53,9 @@
 						<div class="col-md-2 mb-2 input-group search_select_box ">
 							<select name="locationOption" id="locationOption"
 								class="form-control search_select_box select_supplyType">
-								<option selected></option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
+								<option value="">Select Zone </option>
+								<option th:each="location : ${dPD_LOCATION_LIST}" th:value="${location.LOCATION_CODE}"
+									th:text="${location.LOCATION_NAME}"></option>
 							</select>
 						</div>
 						<label class="col-lg-1" for="supplyType"><strong>Zone</strong> &nbsp</label>
@@ -359,27 +358,30 @@
 
 	<!-- 		location dropdown starts  -->
 	<script>
-		$(document).ready(function () {
 
-
-			$("#locationOption").change(function () {
-				var x = $("#locationOption").val();
-				var url = "/api/location/" + x;
-				console.log(url);
-				$.ajax({
-					method: "GET",
-					url: url
-				})
-					.done(function (JsonData) {
-
-						console.log(JsonData);
-					});
+		$("#locationOption").change(function () {
+			var x = $("#locationOption").val();
+			var url = "/api/location/" + x;
+			console.log(url);
+			$.ajax({
+				method: "GET",
+				url: url
 			})
-				.fail(function () {
-					alert("Connection Error");
-				})
+				.done(function (JsonData) {															
+					const zone=JsonData.zone;
+					const sub_DIV=JsonData.sub_DIV;
+					const div=JsonData.div;
+					const circle=JsonData.circle;
 
+				document.getElementById("zone").value = zone;
+				document.getElementById("sub_div").value = sub_DIV;
+				document.getElementById("Div").value = div;
+				document.getElementById("circle").value = circle;
+
+				});
 		});
+		
+			
 
 	</script>
 	<!-- 		location dropdown ends  -->

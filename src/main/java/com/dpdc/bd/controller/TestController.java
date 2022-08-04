@@ -15,16 +15,7 @@ public class TestController {
 	@Resource
 	GetDynamicMenuDAO getDynamicMenuDAO;
 	 
-	@RequestMapping("/DATA_ENTRY_LT")
 	
-	public String censusForm(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model) {
-		
-		if (user_name.equals("")) {
-			return "redirect:/";
-		}				
-						
-		return "CensusEntryForm";
-	}
 	@RequestMapping("/meterDetailsForm")
 	public String meterDetails(@CookieValue(value = "user_name", defaultValue = "") String user_name,Model model) {
 		
