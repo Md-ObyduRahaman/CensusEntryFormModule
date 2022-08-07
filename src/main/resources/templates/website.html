@@ -1,47 +1,584 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml"
-  xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
-    <head>
-        <title>Index</title>
-    </head>
+<head>
+	<title>Bill</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<style>
+	table,
+	th,
+	td {
+		border: 1px solid black;
+		border-collapse: collapse;
+		text-align: left;
 
-    <body>
-        <select id="selection">
-            <option>Content 1</option>
-            <option>Content 2</option>
-        </select>
+		width: 20%;
+	}
 
-        <div id="replace_div">
-            Content goes here
-        </div>
+	.head_clr th {
+		background-color: pink;
+		border-collapse: collapse;
+		text-align: left;
+		width: auto;
+	}
 
-        <!-- JQury from Google CDN -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	.no_border {
+		border: 1px solid white !important;
 
-        <script>
-            $(document).ready(function () {
+	}
+</style>
 
-                //call function when page is loaded
-                getContent();
+<body style="margin:50px ;">
+	<section id="printableArea">
 
-                //set on change listener
-                $('#selection').change(getContent);
 
-                function getContent() {
+		<div class="container-fluid">
 
-                    //create url to request fragment
-                    var url = /content/;
-                    if ($('#selection').val() === "Content 1") {
-                        url = url + "content1";
-                    } else {
-                        url = url + "content2";
-                    }
+			<div class="row">
+				<div class="col-sm-2"><img src="../img/DPDC.png" alt="" height="90px" width="90px"></div>
 
-                    //load fragment and replace content
-                    $('#replace_div').load(url);
-                }
-            })
-        </script>
-    </body>
+				<div class="col-sm-9" style="text-align: center;">
+					<h4>শেখ হাসিনার উদ্যোগ ঘরে ঘরে বিদ্যুৎ</h4>
+					<h4 style="color: blue;">Dhaka Power Distribution Company</h4>
+					<h4>Office of the . . . </h4>
+					<h4 style="color: green;">Net Metering Bill</h4>
+				</div>
+
+
+				<div class="col-sm-1">
+
+
+					<img src="../img/service.png" alt="" height="45px" width="60px">
+
+
+
+
+				</div>
+
+
+			</div>
+		</div>
+
+
+
+
+		<table style="width:100%" class="head_clr">
+
+			<tr>
+				<th>Consumer Name</th>
+				<td colspan="3">50</td>
+				<th>Month</th>
+				<th>Bill NO</th>
+				<th>CD</th>
+				<th colspan="2">Issue Date</th>
+
+
+
+			</tr>
+
+			<tr>
+				<th rowspan="2">Address</th>
+				<td colspan="3" rowspan="2">50</td>
+				<td>94</td>
+				<td>94</td>
+				<td>94</td>
+				<td colspan="2">94</td>
+
+
+
+			</tr>
+			<tr>
+
+
+				<th>Location</th>
+				<th>Bill GROUP</th>
+				<th>Book No</th>
+				<th colspan="2">Walk ORD</th>
+
+
+
+			</tr>
+			<tr style="border-style: white;">
+				<th>Location</th>
+				<td colspan="3">50</td>
+				<td></td>
+				<td>94</td>
+				<td>94</td>
+				<td colspan="2">94</td>
+
+
+
+			</tr>
+			<tr>
+				<th rowspan="2">Mobile</th>
+				<td colspan="3" rowspan="2">50</td>
+				<th>PRV A/C No</th>
+				<th colspan="3">Consumer No</th>
+
+				<th>DUE DATE</th>
+
+
+			</tr>
+			<tr>
+
+				<td>94</td>
+				<td colspan="3">94</td>
+
+				<td>94</td>
+
+
+			</tr>
+			<tr>
+				<th>TRAFIC</th>
+				<th>MAIN SUB</th>
+				<th>STATUS</th>
+				<th>CT</th>
+				<th>PT</th>
+				<th>S.LOAD</th>
+				<th>MAX DEMAND</th>
+				<th>SOLAR CAPACITY</th>
+				<th>MODE</th>
+			</tr>
+			<tr>
+				<td>98</td>
+				<td>98</td>
+				<td>98</td>
+				<td>98</td>
+				<td>98</td>
+				<td>98</td>
+				<td>98</td>
+				<td>98</td>
+				<td>98</td>
+			</tr>
+
+			<tr>
+				<th>MTR TYPE</th>
+				<th>METER NO</th>
+				<th>COND</th>
+				<th>OMF</th>
+				<th colspan="5">METER SEAL NO</th>
+
+			</tr>
+			<tr>
+				<th>IMPORT EXPORT</th>
+				<td>98</td>
+				<td>98</td>
+				<td>98</td>
+				<td colspan="5">98</td>
+			</tr>
+		</table>
+
+
+		<table style="width:100% ; margin-top:20px ;" class="head_clr">
+
+			<tr>
+				<th colspan="2">CARRY OVER UNIT</th>
+				<th colspan="4">Import METER</th>
+				<th colspan="2">Export METER</th>
+
+			</tr>
+			<tr>
+				<th colspan="2">Reading</th>
+				<th colspan="2">Kwh</th>
+				<th colspan="2">KVarh</th>
+				<th colspan="2">Kwh</th>
+			</tr>
+			<tr>
+				<th>Detail</th>
+				<th>Date</th>
+				<th>SIN.REG/OFF PEAK</th>
+				<th>PEAK</th>
+				<th>SIN.REG/OFF PEAK</th>
+				<th>PEAK</th>
+				<th>SIN.REG/OFF PEAK</th>
+				<th>PEAK</th>
+			</tr>
+			<tr>
+				<th>PRESENT</th>
+				<td rowspan="2">1</td>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+			</tr>
+			<tr>
+				<th>PREVIOUS</th>
+
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+			</tr>
+			<tr>
+				<th colspan="2">DIFFERENCE</th>
+
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+			</tr>
+			<tr>
+				<th colspan="2">CONSUMED</th>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+			</tr>
+			<tr>
+				<th colspan="2">ADJUSTED UNIT</th>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+			</tr>
+			<tr>
+				<th colspan="2">X-FORMER LOSS UNIT</th>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+			</tr>
+			<tr>
+				<th colspan="2">OLD METER UNIT</th>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+			</tr>
+			<tr>
+				<th colspan="2">SUB M.CONS</th>
+				<td>2</td>
+				<td>3</td>
+				<td>4</td>
+				<td>5</td>
+				<td>6</td>
+				<td>7</td>
+			</tr>
+
+
+
+
+			<table style="width:100% ; margin-top: 10px;" class="head_clr">
+
+				<tr>
+					<th>Net Billed Unit</th>
+					<td style="padding:0px 0px 0px 0px;">50</td>
+					<td style="padding: 0px 0px 0px 0px">50</td>
+					<th>PF</th>
+					<td style="padding-right: 50px;">50</td>
+					<th>Carry Forward Unit</th>
+					<td>45</td>
+				</tr>
+
+
+			</table>
+
+
+			<table style="width:100% ; margin-top: 10px;" class="head_clr">
+
+				<tr>
+					<th colspan="6">Demand Meter Reading Details</th>
+					<th>Settelment Unit</th>
+					<td>41</td>
+				</tr>
+
+				<tr>
+					<th>present</th>
+					<td>54</td>
+					<th>Previous</th>
+					<td>45</td>
+					<th>Consumed</th>
+					<td>45</td>
+					<th>Settlemnt rate</th>
+					<td>41</td>
+				</tr>
+
+			</table>
+
+
+
+
+
+
+
+
+
+			<table style="width: 100% ; margin-top: 10px; ">
+
+
+				<tr>
+					<th>Current Charges</th>
+					<th> TAKA</th>
+					<th>Other Charges</th>
+					<th> TAKA</th>
+
+				</tr>
+
+				<tr>
+					<th>S.REG.ELEC.CHARGE</th>
+					<td>1</td>
+					<th>ADJ PRINCIPAL</th>
+					<td>3</td>
+
+				</tr>
+
+				<tr>
+					<th>Off .peak.ELEC.CHARGE</th>
+					<td>1</td>
+					<th>ADJ L.P.S</th>
+					<td>3</td>
+
+				</tr>
+
+				<tr>
+					<th>peak.ELEC.CHARGE</th>
+					<td>1</td>
+					<th>ADJ VAT</th>
+					<td>3</td>
+
+				</tr>
+
+				<tr>
+					<th>Demand CHARGE</th>
+					<td>1</td>
+					<th>ADV/ARP PRINCIPAL</th>
+					<td>3</td>
+
+				</tr>
+				<tr>
+					<th>Meter CHARGE</th>
+					<td>1</td>
+					<th>CURP & ARP.L.P.S</th>
+					<td>3</td>
+
+				</tr>
+				<tr>
+					<th>PF CHARGE</th>
+					<td>1</td>
+					<th> ADD/ARR VAT</th>
+					<td>3</td>
+
+				</tr>
+				<tr>
+					<th rowspan="3">MISC.Bill/FEE</th>
+					<td rowspan="3">1</td>
+					<th>Nem Settelment Amt</th>
+					<td>3</td>
+
+				</tr>
+				<tr>
+
+
+					<th>Principal Settelment</th>
+					<td>3</td>
+
+				</tr>
+				<tr>
+
+
+					<th> VAT Settelment</th>
+					<td>3</td>
+
+				</tr>
+				<tr>
+					<th> Principal Amount</th>
+					<td>1</td>
+					<th>VAT TOTAL </th>
+					<td>3</td>
+
+				</tr>
+				<tr>
+					<th> VAT</th>
+					<td>1</td>
+					<th rowspan="2"> AMOUNT TO BE PAID BY CONSUMER</th>
+					<td rowspan="2">3</td>
+
+				</tr>
+				<tr>
+					<th> Bill Month Total</th>
+					<td>1</td>
+
+
+
+				</tr>
+				<tr>
+					<th>LAST payment</th>
+					<td>1</td>
+					<th> AMOUNT TO BE PAID TO CONSUMER</th>
+					<td>3</td>
+
+				</tr>
+
+
+
+			</table>
+
+			<table style="width: 100% ; margin-top: 10px;" class="head_clr">
+
+				<tr>
+					<th rowspan="3"> Arrer Details</th>
+					<th> Month</th>
+					<th>Principal</th>
+					<th>MIS BILL/FEE</th>
+					<th> LPS</th>
+					<th>VAT</th>
+					<th>Total (TK)</th>
+
+				</tr>
+				<tr>
+					<td></td>
+					<td>54</td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+
+
+				</tr>
+
+			</table>
+
+
+			<table style="width:100%; margin-top:30px ;">
+				<tr>
+					<th style=" text-align: left;">PAY AT</th>
+					<td style=" text-align: right; padding: 60px 50px 0px 250px;">Executive engineer<p>Office Name &
+							01783726898 </p>
+					</td>
+				</tr>
+			</table>
+
+			<table style="width: 100% ; margin-top: 20PX;" class="no_border">
+				<tr>
+					<td style="text-align: left;">Office of the .......</td>
+					<td style="text-align: right;">Bank & Office copy</td>
+				</tr>
+
+			</table>
+
+
+
+			<table style="width:100% ; margin-top: 20px;" class="head_clr">
+
+				<tr>
+					<th>Serial NO</th>
+					<td>*</td>
+					<th>LOCATION</th>
+					<th>BILLGR</th>
+					<th>BOOK NO</th>
+					<th>WALK ORD</th>
+					<th>PAY AT</th>
+				</tr>
+				<tr>
+					<th>RCVD TK.</th>
+					<td>*</td>
+					<td>2</td>
+					<td>3</td>
+					<td>4</td>
+					<td>5</td>
+					<td>6</td>
+				</tr>
+				<tr>
+					<th>DATE</th>
+					<td>*</td>
+					<th>CONSUMER NO</th>
+					<th colspan="2">ISSUE DATE</th>
+					<th colspan="2">DUE DATE</th>
+
+				</tr>
+				<tr>
+					<th>TARIFF</th>
+					<td>*</td>
+					<td>4</td>
+					<td colspan="2">2</td>
+					<td colspan="2">3</td>
+
+
+				</tr>
+				<tr>
+					<td rowspan="3" colspan="2"></td>
+
+					<th>BILL NO</th>
+					<th>CD</th>
+					<th>VAT (TK)</th>
+					<th colspan="2">TOTAL AMOUNT (TK)</th>
+
+				</tr>
+				<tr>
+
+
+					<td>2</td>
+					<td>3</td>
+					<td>4</td>
+					<td colspan="2">5</td>
+
+				</tr>
+				<tr>
+
+
+					<th>BILL MONTH</th>
+					<th colspan="2">LPS</th>
+					<th colspan="2">AMOUNT TO BE PAID TO BE CONSUMER</th>
+				</tr>
+				<tr>
+					<th>CONS NO</th>
+					<td></td>
+					<td>2</td>
+					<td colspan="2">2</td>
+					<td colspan="2">3</td>
+
+				</tr>
+
+
+
+
+			</table>
+	</section>
+	<div class="col-12 text-right">
+		<button style="margin: 20px;" type="button" class="btn btn-primary" value="Print"
+			onclick="printDiv('printableArea')">Print Bill</button>
+	</div>
+</body>
+<script>
+	function printDiv(divName) {
+		var divToPrint = document.getElementById(divName);
+		var newWin = window.open('', 'Print-Window');
+		newWin.document.open();
+
+		newWin.document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">');
+
+
+
+		newWin.document.write('<style>table, th,td {border: 1px solid black;border - collapse: collapse;text - align: left;width: 20 %;}.head_clr th {background - color: pink;border - collapse: collapse;text - align: left;width: auto;}.no_border {border: 1px solid white!important;}</style > ');
+		newWin.document.write('<body onload="window.print()"> ');
+		newWin.document.write(divToPrint.innerHTML);
+		newWin.document.write('</body></html>');
+		newWin.document.close();
+		setTimeout(function () {newWin.close();}, 1000);
+
+	}
+
+
+</script>
+
 </html>
