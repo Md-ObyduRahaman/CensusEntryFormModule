@@ -111,7 +111,8 @@ public class GetDynamicMenuDAO {
 
 										else {
 
-											dataHtml += "               <li>\r\n" + "                    <a href=\"#\">"
+											dataHtml += "                <li>\r\n" + "                    <a href="
+													+ dynamicMenu.get(menu_level_2).getMOD_APP() + ">"
 													+ dynamicMenu.get(menu_level_2).getMOD_NAME() + "</a>\r\n";
 										}
 									// code ending for finding level_2 and sub menu of level_2
@@ -125,7 +126,8 @@ public class GetDynamicMenuDAO {
 
 							else {
 
-								dataHtml += "                <li>\r\n" + "                    <a href=\"#\">"
+								dataHtml += "                <li>\r\n" + "                    <a href="
+										+ dynamicMenu.get(menu_level_1).getMOD_APP() + ">"
 										+ dynamicMenu.get(menu_level_1).getMOD_NAME() + "</a>\r\n";
 							}
 						// code ending for finding level_1 and sub menu of level_1

@@ -46,6 +46,16 @@ public class TestController {
 
 		return"website";
 	}
+	@RequestMapping("/BILL_PRINT")
+	public String BILL_PRINT() {
+		
+		return"BILL_PRINT";
+	}
+	@RequestMapping("/ADD_METER")
+	public String ADD_METER() {
+		
+		return"DPD_BC_NET_CUSTOMERS_FORM";
+	}
 	
 	
 
