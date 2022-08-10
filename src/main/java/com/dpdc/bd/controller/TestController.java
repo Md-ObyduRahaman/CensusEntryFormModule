@@ -51,11 +51,7 @@ public class TestController {
 		
 		return"BILL_PRINT";
 	}
-	@RequestMapping("/ADD_METER")
-	public String ADD_METER() {
-		
-		return"DPD_BC_NET_CUSTOMERS_FORM";
-	}
+	
 	
 	
 

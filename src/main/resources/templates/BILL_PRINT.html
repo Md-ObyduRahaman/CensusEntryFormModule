@@ -12,7 +12,6 @@
 	<div th:replace="fragments/links :: cssLink"></div>
 </head>
 <style>
-
 	table,
 	th,
 	td {
@@ -35,437 +34,434 @@
 		border: 1px solid white !important;
 
 	}
-	
 </style>
 
-<body >
-
-
-<div class="wrapper">
+<body>
+	<div class="wrapper">
 		<span th:remove="tag" th:utext="${dataHtml}"></span>
 		<div class="container-fluid mw-100 py-2 h-100">
 			<div th:replace="fragments/sidebar :: header"></div>
 			<!--Start First Part -->
-			
+
 			<section id="printableArea">
 
 
-		<div class="container-fluid">
+				<div class="container-fluid">
 
-			<div class="row">
-				<div class="col-sm-2"><img src="../img/DPDC.png" alt="" height="130px" width="135px"></div>
+					<div class="row">
+						<div class="col-sm-2"><img src="../img/DPDC.png" alt="" height="130px" width="135px"></div>
 
-				<div class="col-sm-8" style="text-align: center;">
-					<h4>শেখ হাসিনার উদ্যোগ ঘরে ঘরে বিদ্যুৎ</h4>
-					<h4 style="color: blue;">Dhaka Power Distribution Company</h4>
-					<h4>Office of the . . . </h4>
-					<h4 style="color: green;">Net Metering Bill</h4>
+						<div class="col-sm-8" style="text-align: center;">
+							<h4>শেখ হাসিনার উদ্যোগ ঘরে ঘরে বিদ্যুৎ</h4>
+							<h4 style="color: blue;">Dhaka Power Distribution Company</h4>
+							<h4>Office of the . . . </h4>
+							<h4 style="color: green;">Net Metering Bill</h4>
+						</div>
+						<div class="col-sm-2">
+							<img src="../img/service.png" alt="" height="130px" width="140px">
+						</div>
+					</div>
 				</div>
-				<div class="col-sm-2">
-					<img src="../img/service.png" alt="" height="130px" width="140px">
-				</div>
+				<table style="width:100%" class="head_clr">
+
+					<tr>
+						<th>Consumer Name</th>
+						<td colspan="3">50</td>
+						<th>Month</th>
+						<th>Bill NO</th>
+						<th>CD</th>
+						<th colspan="2">Issue Date</th>
+					</tr>
+					<tr>
+						<th rowspan="3">Address</th>
+						<td colspan="3" rowspan="3">50</td>
+						<td>94</td>
+						<td>94</td>
+						<td>94</td>
+						<td colspan="2">94</td>
+					</tr>
+					<tr>
+						<th>Location</th>
+						<th>Bill GROUP</th>
+						<th>Book No</th>
+						<th colspan="2">Walk ORD</th>
+					</tr>
+					<tr style="border-style: white;">
+						<td></td>
+						<td>94</td>
+						<td>94</td>
+						<td colspan="2">94</td>
+					</tr>
+					<tr>
+						<th>Mobile</th>
+						<td colspan="3">50</td>
+						<th>PRV A/C No</th>
+						<th colspan="3">Consumer No</th>
+						<th>DUE DATE</th>
+					</tr>
+					<tr>
+						<th>E-mail</th>
+						<td colspan="3">50</td>
+						<td>94</td>
+						<td colspan="3">94</td>
+						<td>94</td>
+					</tr>
+					<tr>
+						<th>TARIFF</th>
+						<th>MAIN SUB</th>
+						<th>STATUS</th>
+						<th>CT</th>
+						<th>PT</th>
+						<th>S.LOAD(KW)</th>
+						<th>MAX DEMAND(KW)</th>
+						<th>SOLAR CAPACITY(KWp)</th>
+						<th>MODE</th>
+					</tr>
+					<tr>
+						<td>98</td>
+						<td>98</td>
+						<td>98</td>
+						<td>98</td>
+						<td>98</td>
+						<td>98</td>
+						<td>98</td>
+						<td>98</td>
+						<td>98</td>
+					</tr>
+
+					<tr>
+						<th>MTR TYPE</th>
+						<th>METER NO</th>
+						<th>COND</th>
+						<th>OMF</th>
+						<th colspan="5">METER SEAL NO</th>
+
+					</tr>
+					<tr>
+						<th>IMPORT EXPORT</th>
+						<td>98</td>
+						<td>98</td>
+						<td>98</td>
+						<td colspan="5">98</td>
+					</tr>
+				</table>
+				<table style="width:100% ; margin-top:5px ;" class="head_clr">
+					<tr>
+						<th colspan="2">CARRY OVER UNIT</th>
+						<th colspan="4">IMPORT METER</th>
+						<th colspan="2">EXPORT METER</th>
+					</tr>
+					<tr>
+						<th colspan="2">READING</th>
+						<th colspan="2">Kwh</th>
+						<th colspan="2">KVarh</th>
+						<th colspan="2">Kwh</th>
+					</tr>
+					<tr>
+						<th>DETAIL</th>
+						<th>Date</th>
+						<th>SIN.REG/OFF PEAK</th>
+						<th>PEAK</th>
+						<th>SIN.REG/OFF PEAK</th>
+						<th>PEAK</th>
+						<th>SIN.REG/OFF PEAK</th>
+						<th>PEAK</th>
+					</tr>
+					<tr>
+						<th>PRESENT</th>
+						<td>1</td>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+
+					</tr>
+					<tr>
+						<th>PREVIOUS</th>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+						<td>7</td>
+					</tr>
+					<tr>
+						<th colspan="2">DIFFERENCE</th>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+					</tr>
+					<tr>
+						<th colspan="2">CONSUMED</th>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+					</tr>
+					<tr>
+						<th colspan="2">ADJUSTED UNIT</th>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+					</tr>
+					<tr>
+						<th colspan="2">X-FORMER LOSS UNIT</th>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+					</tr>
+					<tr>
+						<th colspan="2">OLD METER UNIT</th>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+					</tr>
+					<tr>
+						<th colspan="2">SUB M.CONS</th>
+						<td>2</td>
+						<td>3</td>
+						<td>4</td>
+						<td>5</td>
+						<td>6</td>
+						<td>7</td>
+					</tr>
+					<table style="width:100% ; margin-top: 10px;" class="head_clr">
+
+						<tr>
+							<th>NET BILLED UNIT</th>
+							<td style="padding:0px 0px 0px 0px;">50</td>
+							<td style="padding: 0px 0px 0px 0px">50</td>
+							<th>PF</th>
+							<td style="padding-right: 50px;">50</td>
+							<th>CARRY FORWARD UNIT</th>
+							<td>45</td>
+						</tr>
+					</table>
+					<table style="width:100% ; margin-top: 10px;" class="head_clr">
+
+						<tr>
+							<th colspan="6">DEMAND METER READING DETAILS(KW)</th>
+							<th>SETTELMENT UNIT</th>
+							<td>41</td>
+						</tr>
+						<tr>
+							<th>PRESENT</th>
+							<td>54</td>
+							<th>PREVIOUS</th>
+							<td>45</td>
+							<th>CONSUMED</th>
+							<td>45</td>
+							<th>SETTLEMNT RATE</th>
+							<td>41</td>
+						</tr>
+					</table>
+					<table style="width: 100% ; margin-top: 10px; ">
+						<tr>
+							<th>CURRENT CHARGES</th>
+							<th> TAKA</th>
+							<th>OTHER CHARGES</th>
+							<th> TAKA</th>
+
+						</tr>
+						<tr>
+							<th>S.REG.ELEC.CHARGE</th>
+							<td>1</td>
+							<th>ADJ PRINCIPAL</th>
+							<td>3</td>
+						</tr>
+						<tr>
+							<th>OFF .PEAK.ELEC.CHARGE</th>
+							<td>1</td>
+							<th>ADJ L.P.S</th>
+							<td>3</td>
+						</tr>
+						<tr>
+							<th>PEAK.ELEC.CHARGE</th>
+							<td>1</td>
+							<th>ADJ VAT</th>
+							<td>3</td>
+						</tr>
+						<tr>
+							<th>DEMAND CHARGE</th>
+							<td>1</td>
+							<th>ADV/ARP PRINCIPAL</th>
+							<td>3</td>
+						</tr>
+						<tr>
+							<th>METER CHARGE</th>
+							<td>1</td>
+							<th>CURP & ARP.L.P.S</th>
+							<td>3</td>
+						</tr>
+						<tr>
+							<th>PF CHARGE</th>
+							<td>1</td>
+							<th> ADD/ARR VAT</th>
+							<td>3</td>
+						</tr>
+						<tr>
+							<th rowspan="3">MISC.Bill/FEE</th>
+							<td rowspan="3">1</td>
+							<th>NEM SETTELMENT AMT</th>
+							<td>3</td>
+
+						</tr>
+						<tr>
+							<th>PRINCIPAL SETTELMENT</th>
+							<td>3</td>
+						</tr>
+						<tr>
+							<th> VAT SETTELMENT</th>
+							<td>3</td>
+						</tr>
+						<tr>
+							<th> PRINCIPAL AMOUNT</th>
+							<td>1</td>
+							<th>VAT TOTAL </th>
+							<td>3</td>
+						</tr>
+						<tr>
+							<th> VAT</th>
+							<td>1</td>
+							<th rowspan="2"> AMOUNT TO BE PAID BY CONSUMER</th>
+							<td rowspan="2">3</td>
+						</tr>
+						<tr>
+							<th> Bill Month Total</th>
+							<td>1</td>
+						</tr>
+						<tr>
+							<th>LAST PAYMENT</th>
+							<td>1</td>
+							<th> AMOUNT TO BE PAID TO CONSUMER</th>
+							<td>3</td>
+						</tr>
+					</table>
+
+					<table style="width: 100% ; margin-top: 10px;" class="head_clr">
+						<tr>
+							<th rowspan="3"> ARRER DETAILS</th>
+							<th> MONTH</th>
+							<th>Principal</th>
+							<th>MIS BILL/FEE</th>
+							<th> LPS</th>
+							<th>VAT</th>
+							<th>TOTAL (TK)</th>
+						</tr>
+						<tr>
+							<td></td>
+							<td>54</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+					<table style="width:100%; margin-top:3px ;">
+						<tr>
+							<th style=" text-align: left;">PAY AT</th>
+							<td style=" text-align: right; padding: 50px 50px 0px 250px;">Executive engineer<p>Office
+									Name &
+									01783726898 </p>
+							</td>
+						</tr>
+					</table>
+
+					<table style="width: 100% ; margin-top: 10PX;" class="no_border">
+						<tr>
+							<td style="text-align: left;">Office of the .......</td>
+							<td style="text-align: right;">Bank & Office copy</td>
+						</tr>
+					</table>
+					<table style="width:100% ; margin-top: 10px;" class="head_clr">
+						<tr>
+							<th>Serial NO</th>
+							<td>*</td>
+							<th>LOCATION</th>
+							<th>BILLGR</th>
+							<th>BOOK NO</th>
+							<th>WALK ORD</th>
+							<th>PAY AT</th>
+						</tr>
+						<tr>
+							<th>RCVD TK.</th>
+							<td>*</td>
+							<td>2</td>
+							<td>3</td>
+							<td>4</td>
+							<td>5</td>
+							<td>6</td>
+						</tr>
+						<tr>
+							<th>DATE</th>
+							<td>*</td>
+							<th>CONSUMER NO</th>
+							<th colspan="2">ISSUE DATE</th>
+							<th colspan="2">DUE DATE</th>
+
+						</tr>
+						<tr>
+							<th>TARIFF</th>
+							<td>*</td>
+							<td>4</td>
+							<td colspan="2">2</td>
+							<td colspan="2">3</td>
+						</tr>
+						<tr>
+							<td rowspan="3" colspan="2"></td>
+
+							<th>BILL NO</th>
+							<th>CD</th>
+							<th>VAT (TK)</th>
+							<th colspan="2">TOTAL AMOUNT (TK)</th>
+
+						</tr>
+						<tr>
+							<td>2</td>
+							<td>3</td>
+							<td>4</td>
+							<td colspan="2">5</td>
+						</tr>
+						<tr>
+							<th>BILL MONTH</th>
+							<th colspan="2">LPS</th>
+							<th colspan="2">AMOUNT TO BE PAID TO BE CONSUMER</th>
+						</tr>
+						<tr>
+							<th>CONS NO</th>
+							<td></td>
+							<td>2</td>
+							<td colspan="2">2</td>
+							<td colspan="2">3</td>
+						</tr>
+					</table>
+			</section>
+			<div class="col-12 text-right">
+				<button style="margin: 20px;" type="button" class="btn btn-primary" value="Print"
+					onclick="printDiv('printableArea')">PRINT BILL</button>
 			</div>
-		</div>
-		<table style="width:100%" class="head_clr">
 
-			<tr>
-				<th>Consumer Name</th>
-				<td colspan="3">50</td>
-				<th>Month</th>
-				<th>Bill NO</th>
-				<th>CD</th>
-				<th colspan="2">Issue Date</th>
-			</tr>
-			<tr>
-				<th rowspan="3">Address</th>
-				<td colspan="3" rowspan="3">50</td>
-				<td>94</td>
-				<td>94</td>
-				<td>94</td>
-				<td colspan="2">94</td>
-			</tr>
-			<tr>
-				<th>Location</th>
-				<th>Bill GROUP</th>
-				<th>Book No</th>
-				<th colspan="2">Walk ORD</th>
-			</tr>
-			<tr style="border-style: white;">
-				<td></td>
-				<td>94</td>
-				<td>94</td>
-				<td colspan="2">94</td>
-			</tr>
-			<tr>
-				<th>Mobile</th>
-				<td colspan="3" >50</td>
-				<th>PRV A/C No</th>
-				<th colspan="3">Consumer No</th>
-				<th>DUE DATE</th>
-			</tr>
-			<tr>
-			<th>E-mail</th>
-			<td colspan="3" >50</td>
-				<td>94</td>
-				<td colspan="3">94</td>
-				<td>94</td>
-			</tr>
-			<tr>
-				<th>TARIFF</th>
-				<th>MAIN SUB</th>
-				<th>STATUS</th>
-				<th>CT</th>
-				<th>PT</th>
-				<th>S.LOAD(KW)</th>
-				<th>MAX DEMAND(KW)</th>
-				<th>SOLAR CAPACITY(KWp)</th>
-				<th>MODE</th>
-			</tr>
-			<tr>
-				<td>98</td>
-				<td>98</td>
-				<td>98</td>
-				<td>98</td>
-				<td>98</td>
-				<td>98</td>
-				<td>98</td>
-				<td>98</td>
-				<td>98</td>
-			</tr>
-
-			<tr>
-				<th>MTR TYPE</th>
-				<th>METER NO</th>
-				<th>COND</th>
-				<th>OMF</th>
-				<th colspan="5">METER SEAL NO</th>
-
-			</tr>
-			<tr>
-				<th>IMPORT EXPORT</th>
-				<td>98</td>
-				<td>98</td>
-				<td>98</td>
-				<td colspan="5">98</td>
-			</tr>
-		</table>
-		<table style="width:100% ; margin-top:5px ;" class="head_clr">
-			<tr>
-				<th colspan="2">CARRY OVER UNIT</th>
-				<th colspan="4">IMPORT METER</th>
-				<th colspan="2">EXPORT METER</th>
-			</tr>
-			<tr>
-				<th colspan="2">READING</th>
-				<th colspan="2">Kwh</th>
-				<th colspan="2">KVarh</th>
-				<th colspan="2">Kwh</th>
-			</tr>
-			<tr>
-				<th>DETAIL</th>
-				<th>Date</th>
-				<th>SIN.REG/OFF PEAK</th>
-				<th>PEAK</th>
-				<th>SIN.REG/OFF PEAK</th>
-				<th>PEAK</th>
-				<th>SIN.REG/OFF PEAK</th>
-				<th>PEAK</th>
-			</tr>
-			<tr>
-				<th>PRESENT</th>
-				<td >1</td>
-				
-				<td>2</td>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-				<td>7</td>
-				
-			</tr>
-			<tr>
-				<th>PREVIOUS</th>
-				<td>2</td>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-				<td>7</td>
-				<td>7</td>
-			</tr>
-			<tr>
-				<th colspan="2">DIFFERENCE</th>
-				<td>2</td>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-				<td>7</td>
-			</tr>
-			<tr>
-				<th colspan="2">CONSUMED</th>
-				<td>2</td>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-				<td>7</td>
-			</tr>
-			<tr>
-				<th colspan="2">ADJUSTED UNIT</th>
-				<td>2</td>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-				<td>7</td>
-			</tr>
-			<tr>
-				<th colspan="2">X-FORMER LOSS UNIT</th>
-				<td>2</td>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-				<td>7</td>
-			</tr>
-			<tr>
-				<th colspan="2">OLD METER UNIT</th>
-				<td>2</td>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-				<td>7</td>
-			</tr>
-			<tr>
-				<th colspan="2">SUB M.CONS</th>
-				<td>2</td>
-				<td>3</td>
-				<td>4</td>
-				<td>5</td>
-				<td>6</td>
-				<td>7</td>
-			</tr>
-			<table style="width:100% ; margin-top: 10px;" class="head_clr">
-
-				<tr>
-					<th>NET BILLED UNIT</th>
-					<td style="padding:0px 0px 0px 0px;">50</td>
-					<td style="padding: 0px 0px 0px 0px">50</td>
-					<th>PF</th>
-					<td style="padding-right: 50px;">50</td>
-					<th>CARRY FORWARD UNIT</th>
-					<td>45</td>
-				</tr>
-			</table>
-			<table style="width:100% ; margin-top: 10px;" class="head_clr">
-
-				<tr>
-					<th colspan="6">DEMAND METER READING DETAILS(KW)</th>
-					<th>SETTELMENT UNIT</th>
-					<td>41</td>
-				</tr>
-				<tr>
-					<th>PRESENT</th>
-					<td>54</td>
-					<th>PREVIOUS</th>
-					<td>45</td>
-					<th>CONSUMED</th>
-					<td>45</td>
-					<th>SETTLEMNT RATE</th>
-					<td>41</td>
-				</tr>
-			</table>
-			<table style="width: 100% ; margin-top: 10px; ">
-				<tr>
-					<th>CURRENT CHARGES</th>
-					<th> TAKA</th>
-					<th>OTHER CHARGES</th>
-					<th> TAKA</th>
-
-				</tr>
-				<tr>
-					<th>S.REG.ELEC.CHARGE</th>
-					<td>1</td>
-					<th>ADJ PRINCIPAL</th>
-					<td>3</td>
-				</tr>
-				<tr>
-					<th>OFF .PEAK.ELEC.CHARGE</th>
-					<td>1</td>
-					<th>ADJ L.P.S</th>
-					<td>3</td>
-				</tr>
-				<tr>
-					<th>PEAK.ELEC.CHARGE</th>
-					<td>1</td>
-					<th>ADJ VAT</th>
-					<td>3</td>
-				</tr>
-				<tr>
-					<th>DEMAND CHARGE</th>
-					<td>1</td>
-					<th>ADV/ARP PRINCIPAL</th>
-					<td>3</td>
-				</tr>
-				<tr>
-					<th>METER CHARGE</th>
-					<td>1</td>
-					<th>CURP & ARP.L.P.S</th>
-					<td>3</td>
-				</tr>
-				<tr>
-					<th>PF CHARGE</th>
-					<td>1</td>
-					<th> ADD/ARR VAT</th>
-					<td>3</td>
-				</tr>
-				<tr>
-					<th rowspan="3">MISC.Bill/FEE</th>
-					<td rowspan="3">1</td>
-					<th>NEM SETTELMENT AMT</th>
-					<td>3</td>
-
-				</tr>
-				<tr>
-					<th>PRINCIPAL SETTELMENT</th>
-					<td>3</td>
-				</tr>
-				<tr>
-					<th> VAT SETTELMENT</th>
-					<td>3</td>
-				</tr>
-				<tr>
-					<th> PRINCIPAL AMOUNT</th>
-					<td>1</td>
-					<th>VAT TOTAL </th>
-					<td>3</td>
-				</tr>
-				<tr>
-					<th> VAT</th>
-					<td>1</td>
-					<th rowspan="2"> AMOUNT TO BE PAID BY CONSUMER</th>
-					<td rowspan="2">3</td>
-				</tr>
-				<tr>
-					<th> Bill Month Total</th>
-					<td>1</td>
-				</tr>
-				<tr>
-					<th>LAST PAYMENT</th>
-					<td>1</td>
-					<th> AMOUNT TO BE PAID TO CONSUMER</th>
-					<td>3</td>
-				</tr>
-			</table>
-
-			<table style="width: 100% ; margin-top: 10px;" class="head_clr">
-				<tr>
-					<th rowspan="3"> ARRER DETAILS</th>
-					<th> MONTH</th>
-					<th>Principal</th>
-					<th>MIS BILL/FEE</th>
-					<th> LPS</th>
-					<th>VAT</th>
-					<th>TOTAL (TK)</th>
-				</tr>
-				<tr>
-					<td></td>
-					<td>54</td>
-					<td></td>
-					<td></td>
-					<td></td>
-					<td></td>
-				</tr>
-			</table>
-			<table style="width:100%; margin-top:3px ;">
-				<tr>
-					<th style=" text-align: left;">PAY AT</th>
-					<td style=" text-align: right; padding: 50px 50px 0px 250px;">Executive engineer<p>Office Name &
-							01783726898 </p>
-					</td>
-				</tr>
-			</table>
-
-			<table style="width: 100% ; margin-top: 10PX;" class="no_border">
-				<tr>
-					<td style="text-align: left;">Office of the .......</td>
-					<td style="text-align: right;">Bank & Office copy</td>
-				</tr>
-			</table>
-			<table style="width:100% ; margin-top: 10px;" class="head_clr">
-				<tr>
-					<th>Serial NO</th>
-					<td>*</td>
-					<th>LOCATION</th>
-					<th>BILLGR</th>
-					<th>BOOK NO</th>
-					<th>WALK ORD</th>
-					<th>PAY AT</th>
-				</tr>
-				<tr>
-					<th>RCVD TK.</th>
-					<td>*</td>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
-					<td>5</td>
-					<td>6</td>
-				</tr>
-				<tr>
-					<th>DATE</th>
-					<td>*</td>
-					<th>CONSUMER NO</th>
-					<th colspan="2">ISSUE DATE</th>
-					<th colspan="2">DUE DATE</th>
-
-				</tr>
-				<tr>
-					<th>TARIFF</th>
-					<td>*</td>
-					<td>4</td>
-					<td colspan="2">2</td>
-					<td colspan="2">3</td>
-				</tr>
-				<tr>
-					<td rowspan="3" colspan="2"></td>
-
-					<th>BILL NO</th>
-					<th>CD</th>
-					<th>VAT (TK)</th>
-					<th colspan="2">TOTAL AMOUNT (TK)</th>
-
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>3</td>
-					<td>4</td>
-					<td colspan="2">5</td>
-				</tr>
-				<tr>
-					<th>BILL MONTH</th>
-					<th colspan="2">LPS</th>
-					<th colspan="2">AMOUNT TO BE PAID TO BE CONSUMER</th>
-				</tr>
-				<tr>
-					<th>CONS NO</th>
-					<td></td>
-					<td>2</td>
-					<td colspan="2">2</td>
-					<td colspan="2">3</td>
-				</tr>
-			</table>
-	</section>
-	<div class="col-12 text-right">
-		<button style="margin: 20px;" type="button" class="btn btn-primary" value="Print"
-			onclick="printDiv('printableArea')">PRINT BILL</button>
-	</div>
-			
 		</div>
 	</div>
 
-	
+
 </body>
 <div th:replace="fragments/links :: javaScriptLink"></div>
 <script>
@@ -482,7 +478,7 @@
 		setTimeout(function () {newWin.close();}, 1000);
 
 	}
-	
+
 </script>
 
 

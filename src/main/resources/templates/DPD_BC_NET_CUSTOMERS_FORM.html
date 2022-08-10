@@ -59,21 +59,19 @@
 								<input type="text" id="REF_DATE" class="form-control form-control-lg" />
 							</div>
 						</div>
-						<label class=" col-lg-1" for="LOCATION_CODE"><strong>LOCATION</strong> &nbsp</label>
-						<div class="col-lg-2  input-group search_select_box ">
-							<select name="select_box_location"
-								class="form-select input-group search_select_box_location" id="select_box_location">
-								<option selected>select Location</option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
-							</select>
-						</div>
 						<label class="form-label col-lg-1" for="CONSUMER_NUM"><strong>CONS. NO</strong>
 							&nbsp</label>
 						<div class="col-lg-2 ">
 							<div class="input-group">
 								<input  type="text" id="CONSUMER_NUM" class="form-control form-control-lg" />
+							</div>
+						</div>
+						
+						<label class="form-label col-lg-1" for="LOCATION_CODE"><strong>LOCATION</strong>
+							&nbsp</label>
+						<div class="col-lg-2 ">
+							<div class="input-group">
+								<input readonly type="text" id="LOCATION_CODE" class="form-control form-control-lg" />
 							</div>
 						</div>
 						<label class="form-label col-lg-1" for="BILL_GR"><strong>BILL GRP</strong>
@@ -186,6 +184,32 @@
 
 	
 		$('.search_select_box_location').select2();
+
+
+	</script>
+	<script>
+
+		$("#CONSUMER_NUM").change(function () {
+			var x = $("#CONSUMER_NUM").val();
+			var url = "/api/locationAddMeter/" + x;
+			$.ajax({
+				method: "GET",
+				url: url
+			})
+				.done(function (JsonData) {
+					const LOCATION_CODE = JsonData.location_CODE;
+					const BILL_GR = JsonData.bill_GR;
+					const BOOK_NO = JsonData.book_NO;
+					const CHECK_DIGIT = JsonData.check_DIGIT;
+					const CUST_ID = JsonData.cust_ID;					
+					document.getElementById("LOCATION_CODE").value = LOCATION_CODE;
+					document.getElementById("BILL_GR").value = BILL_GR;
+					document.getElementById("BOOK_NO").value = BOOK_NO;
+					document.getElementById("CHECK_DIGIT").value = CHECK_DIGIT;
+					document.getElementById("CUST_ID").value = CUST_ID;					
+				});
+		});
+
 
 
 	</script>

@@ -48,7 +48,6 @@ public class CensusEntryDAO {
 					new DPD_LOCATION_LIST(jsonData.optString("LOCATION_CODE"), jsonData.optString("LOCATION_NAME")));
 		}
 		return dPD_LOCATION_LIST;
-
 	}
 
 	public DPD_LOCATION_LIST Get_DPD_Z_C_D_SD_LIST(String id) {
