@@ -3,10 +3,13 @@ package com.dpdc.bd.controller;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import com.dpdc.bd.dao.GetDynamicMenuDAO;
 import com.dpdc.bd.dao.LoginDAO;
 import com.dpdc.bd.model.EMP_USER_MST;
 
@@ -15,6 +18,8 @@ public class LoginController {
 
 	@Resource
 	LoginDAO dao;
+	@Resource
+	GetDynamicMenuDAO getDynamicMenuDAO;
 
 	@GetMapping("/")
 	public String loginPage(Model model) {
@@ -65,5 +70,6 @@ public class LoginController {
 		response.addCookie(cookie);
 		return "loginPage";
 	}
+	
 
 }

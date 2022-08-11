@@ -154,6 +154,17 @@ public class AddMeterModel {
 	public void setNET_CAPACITY(int nET_CAPACITY) {
 		NET_CAPACITY = nET_CAPACITY;
 	}
+
+	@Override
+	public String toString() {
+		return "AddMeterModel [REF_NO=" + REF_NO + ", REF_DATE=" + REF_DATE + ", LOCATION_CODE=" + LOCATION_CODE
+				+ ", BILL_GR=" + BILL_GR + ", BOOK_NO=" + BOOK_NO + ", CONSUMER_NUM=" + CONSUMER_NUM + ", CHECK_DIGIT="
+				+ CHECK_DIGIT + ", CUST_ID=" + CUST_ID + ", EFF_BILL_CYCLE_CODE=" + EFF_BILL_CYCLE_CODE + ", REMARKS="
+				+ REMARKS + ", ADJ_FLAG=" + ADJ_FLAG + ", ENL_BILL_CYCLE_CODE=" + ENL_BILL_CYCLE_CODE
+				+ ", NET_CONS_NAME=" + NET_CONS_NAME + ", NET_CUST_NUM=" + NET_CUST_NUM + ", NET_CUST_CHECK_DIGIT="
+				+ NET_CUST_CHECK_DIGIT + ", NET_CUST_ID=" + NET_CUST_ID + ", EXP_BILL_CYCLE=" + EXP_BILL_CYCLE
+				+ ", NET_CAPACITY=" + NET_CAPACITY + "]";
+	}
 	
 	
 	

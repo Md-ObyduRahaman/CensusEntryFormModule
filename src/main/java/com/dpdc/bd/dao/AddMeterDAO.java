@@ -13,7 +13,6 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 import com.dpdc.bd.model.AddMeterModel;
-import com.dpdc.bd.model.DPD_LOCATION_LIST;
 
 import oracle.jdbc.internal.OracleTypes;
 
@@ -26,10 +25,12 @@ public class AddMeterDAO {
 	private JdbcTemplate jdbcTemplate;
 	SimpleJdbcCall getAllStatesJdbcCall;
 	SimpleJdbcCall getAllStatesJdbcCallNet;
+	SimpleJdbcCall getAllStatesJdbcCallInsert;
 
 	public AddMeterDAO(DataSource dataSource) {
 		this.getAllStatesJdbcCall = new SimpleJdbcCall(dataSource);
 		this.getAllStatesJdbcCallNet = new SimpleJdbcCall(dataSource);
+		this.getAllStatesJdbcCallInsert = new SimpleJdbcCall(dataSource);
 
 	}
 	public AddMeterModel Get_AddMeterModel_LIST(String id) {
@@ -73,4 +74,24 @@ public class AddMeterDAO {
 		return addMeterModelNet;
 		
 	}
+	
+	public void insertAddMeterModel(AddMeterModel a, String user_name) {
+
+
+		System.out.println(a.toString());
+
+	Map<String, Object> result = getAllStatesJdbcCallInsert.withCatalogName("DPG_NET_METTARING")
+			.withProcedureName("DPD_BC_NET_CUSTOMERS_SAVE")
+			.declareParameters(new SqlOutParameter("results", OracleTypes.INTEGER)).execute(a.getREF_NO(),a.getREF_DATE(),
+					a.getLOCATION_CODE(),a.getBILL_GR(),a.getBOOK_NO(),a.getCONSUMER_NUM(),a.getCHECK_DIGIT(),
+					a.getCUST_ID(),a.getEFF_BILL_CYCLE_CODE(),a.getREMARKS(),a.getADJ_FLAG(),a.getENL_BILL_CYCLE_CODE(),
+					a.getNET_CONS_NAME(),a.getNET_CUST_NUM(),a.getNET_CUST_CHECK_DIGIT(),a.getNET_CUST_ID(),a.getEXP_BILL_CYCLE(),
+					a.getNET_CAPACITY(),1,user_name
+					);
+	JSONObject json = new JSONObject(result);
+	String out = json.get("O_STATUS").toString();
+	System.out.println(out);
+
+}
+	
 }
