@@ -46,13 +46,10 @@ public class GetDynamicMenuDAO {
 
 		String dataHtml = " <nav id=\"sidebar\" th:fragment=\"sidebar\">\r\n"
 				+ "     <div class=\"sidebar-header\">\r\n" + "               \r\n" + "\r\n" + "\r\n"
-				+ "                  <div class=\"d-flex post-entry\">\r\n"
 				+ "                    <div class=\"custom-thumbnail m-8\">\r\n"
-				+ "                      <img src=\"../img/DPDC.png\" alt=\"Image\" width=\"70\" height=\"80\" class=\"img-fluid\">\r\n"
+				+ "                      <img style=\"margin-left: 40px;\" src=\"../img/DPDC.png\" alt=\"Image\" width=\"100\" height=\"60\" class=\"img-fluid\">\r\n"
 				+ "                    </div>\r\n"
-				+ "                    <div class=\"post-content \" style=\"margin: 10px;\">\r\n"
-				+ "                      <h4>DPDC</h4>\r\n" + "                      \r\n"
-				+ "                    </div>\r\n" + "                  </div>\r\n" + "             \r\n" + "\r\n"
+
 				+ "\r\n" + "\r\n" + "\r\n" + "            </div>   " + "\r\n"
 				+ "            <ul class=\"list-unstyled components\">\r\n"
 				+ "                <p>Dhaka Power Distribution Company</p>\r\n";

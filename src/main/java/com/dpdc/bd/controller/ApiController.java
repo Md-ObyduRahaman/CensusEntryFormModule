@@ -41,4 +41,12 @@ public class ApiController {
 		return addMeterModel;
 		 
 	}
+	@GetMapping("/locationAddMeterNet/{id}")
+	public AddMeterModel get_Add_Meter_Net_LIST(@PathVariable("id") String id) {
+		
+		AddMeterModel addMeterModelNet =addMeterDAO.Get_AddMeterModel_NET_LIST(id);
+		
+		return addMeterModelNet;
+		
+	}
 }

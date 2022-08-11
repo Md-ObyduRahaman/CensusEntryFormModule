@@ -44,7 +44,7 @@ public class TestController {
 	@RequestMapping("/test")
 	public String test() {
 
-		return"website";
+		return"fragments/sidebar";
 	}
 	@RequestMapping("/BILL_PRINT")
 	public String BILL_PRINT() {

@@ -30,6 +30,14 @@ public class AddMeterModel {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	public AddMeterModel(String cHECK_DIGIT, int cUST_ID, String nET_CONS_NAME) {
+		super();
+		CHECK_DIGIT = cHECK_DIGIT;
+		CUST_ID = cUST_ID;
+		NET_CONS_NAME = nET_CONS_NAME;
+	}
+
 	public AddMeterModel(String lOCATION_CODE, String bILL_GR, String bOOK_NO, String cHECK_DIGIT, int cUST_ID) {
 		super();
 		LOCATION_CODE = lOCATION_CODE;
