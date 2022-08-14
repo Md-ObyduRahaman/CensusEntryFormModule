@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.css"
+		integrity="sha512-RWhcC19d8A3vE7kpXq6Ze4GcPfGe3DQWuenhXAbcGiZOaqGojLtWwit1eeM9jLGHFv8hnwpX3blJKGjTsf2HxQ=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<div th:replace="fragments/links :: cssLink"></div>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+
+	<title>Add Meter</title>
+
+
+	<style>
+		.select2-container .select2-selection--single {
+			height: 40px !important;
+
+		}
+
+		.select2-container--default .select2-selection--single {
+			border: 1px solid #ccc !important;
+			border-radius: 0px !important;
+		}
+
+		#sidebar ul li {
+			color: white;
+			display: block;
+		}
+
+		.form-label {
+			font-family: 'New', Courier;
+			font-size: 1.1em;
+			font-weight: 300;
+			line-height: 1.7em;
+			color: midnightblue;
+		}
+	</style>
+
+</head>
+
+<body>
+	<div class="wrapper">
+		<span th:remove="tag" th:utext="${dataHtml}"></span>
+		<div class="container-fluid mw-100 py-2 h-100">
+			<div th:replace="fragments/sidebar :: header"></div>
+			<!--Start First Part -->
+			<div class="card text-center">
+				<fieldset class="form-group text-left border p-3">
+					<legend class="w-auto px-2">Details</legend>
+					<form th:action="@{/ADD_METER}" method="post" th:object="${addMeterModel}">
+						<div class="row  text-black">
+							<label class="form-label col-lg-2" for="REF_NO">REF NO
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input type="text" name="REF_NO" th:value="*{REF_NO}" id="REF_NO"
+										class="form-control  form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="REF_DATE"><strong>REF_DATE</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input type="date" name="REF_DATE" th:value="*{REF_DATE}" id="REF_DATE datepicker"
+										class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="CONSUMER_NUM"><strong>CONS. NO</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input type="text" name="CONSUMER_NUM" th:value="*{CONSUMER_NUM}" id="CONSUMER_NUM"
+										class="form-control form-control-lg" />
+								</div>
+							</div>
+
+							<label class="form-label col-lg-2" for="LOCATION_CODE"><strong>LOCATION</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input readonly type="text" name="LOCATION_CODE" th:value="*{LOCATION_CODE}"
+										id="LOCATION_CODE" class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="BILL_GR"><strong>BILL GRP</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input readonly type="text" name="BILL_GR" th:value="*{BILL_GR}" id="BILL_GR"
+										class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="BOOK_NO"><strong>BOOK</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input readonly type="text" name="BOOK_NO" th:value="*{BOOK_NO}" id="BOOK_NO"
+										class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="CHECK_DIGIT"><strong>CHK DIGIT</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input readonly type="text" name="CHECK_DIGIT" th:value="*{CHECK_DIGIT}"
+										id="CHECK_DIGIT" class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="CUST_ID"><strong>CUST ID</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input readonly type="text" name="CUST_ID" th:value="*{CUST_ID}" id="CUST_ID"
+										class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="EFF_BILL_CYCLE_CODE"><strong>EFF BILL CYCLE</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input type="text" name="EFF_BILL_CYCLE_CODE" th:value="*{EFF_BILL_CYCLE_CODE}"
+										id="EFF_BILL_CYCLE_CODE" class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="REMARKS"><strong>REMARKS</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input type="text" name="REMARKS" th:value="*{REMARKS}" id="REMARKS"
+										class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="ADJ_FLAG"><strong>ADJ FLAG</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input type="number" name="ADJ_FLAG" th:value="*{ADJ_FLAG}" id="ADJ_FLAG"
+										class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="ENL_BILL_CYCLE_CODE"><strong>ENL BILL CYCLE</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input readonly type="text" name="ENL_BILL_CYCLE_CODE"
+										th:value="*{ENL_BILL_CYCLE_CODE}" id="ENL_BILL_CYCLE_CODE"
+										class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="NET_CUST_NUM"><strong>NET CONS NO</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input type="text" name="NET_CUST_NUM" th:value="*{NET_CUST_NUM}" id="NET_CUST_NUM"
+										class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="NET_CONS_NAME"><strong>NET CONS NAME</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input readonly type="text" name="NET_CONS_NAME" th:value="*{NET_CONS_NAME}"
+										id="NET_CONS_NAME" class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="NET_CUST_CHECK_DIGIT"><strong>NET CHK DIGIT</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input readonly type="text" name="NET_CUST_CHECK_DIGIT"
+										th:value="*{NET_CUST_CHECK_DIGIT}" id="NET_CUST_CHECK_DIGIT"
+										class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="NET_CUST_ID"><strong>NET CUST ID</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input readonly type="text" name="NET_CUST_ID" th:value="*{NET_CUST_ID}"
+										id="NET_CUST_ID" class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="EXP_BILL_CYCLE"><strong>EXP BILL CYCLE</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input type="text" name="EXP_BILL_CYCLE" th:value="*{EXP_BILL_CYCLE}"
+										id="EXP_BILL_CYCLE" class="form-control form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="NET_CAPACITY"><strong>NET CAPACITY</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input type="number" name="NET_CAPACITY" th:value="*{NET_CAPACITY}"
+										id="NET_CAPACITY" class="form-control form-control-lg" />
+								</div>
+							</div>
+							<div class="col-12  text-center">
+
+								<button type="submit" class="btn col-12 btn-success">Save</button>
+
+							</div>
+						</div>
+					</form>
+				</fieldset>
+				<div class="card-header mb-3" style="color: green; background-color: paleturquoise;"><strong>Data
+						Table</strong></div>
+
+
+				<table id="datatable" class="table table-striped table-bordered" style="width:100%">
+
+					<thead>
+
+						<tr>
+
+							<th>REF NO</th>
+
+							<th>REF DATE</th>
+
+							<th>LOCATION CODE</th>
+
+							<th>AREA CODE</th>
+
+							<th>CONSUMER NUM</th>
+
+							<th>EFF BILL CYCLE CODE</th>
+							<th>NET CONS NAME</th>
+							<th>NET CUST NUM</th>
+							<th>EXP BILL CYCLE</th>
+							<th>NET CAPACITY</th>
+							<th>Action</th>
+
+						</tr>
+
+					</thead>
+
+					<tbody>
+
+						<tr>
+
+							<td>Tiger Nixon</td>
+
+							<td>System Architect</td>
+
+							<td>Edinburgh</td>
+
+							<td>61</td>
+
+							<td>2011/04/25</td>
+
+							<td>$320,800</td>
+							<td>$320,800</td>
+							<td>$320,800</td>
+							<td>$320,800</td>
+							<td>$320,800</td>
+							<td><a href="#" class="btn btn-primary  text-right" target="_blank">Update</a><br>
+								<a href="#" class="btn btn-danger text-right my-1 pl-3 pr-3" target="_blank">Delete</a>
+							</td>
+
+						</tr>
+
+
+
+					</tbody>
+
+				</table>
+
+
+
+
+
+
+			</div>
+		</div>
+	</div>
+	<!-- JavaScript -->
+	<div th:replace="fragments/links :: javaScriptLink"></div>
+	<script>
+		$('.search_select_box_location').select2();
+	</script>
+	<script>
+
+		$("#CONSUMER_NUM").change(function () {
+			var x = $("#CONSUMER_NUM").val();
+			var url = "/api/locationAddMeter/" + x;
+			$.ajax({
+				method: "GET",
+				url: url
+			})
+				.done(function (JsonData) {
+					const LOCATION_CODE = JsonData.location_CODE;
+					const BILL_GR = JsonData.bill_GR;
+					const BOOK_NO = JsonData.book_NO;
+					const CHECK_DIGIT = JsonData.check_DIGIT;
+					const CUST_ID = JsonData.cust_ID;
+					document.getElementById("LOCATION_CODE").value = LOCATION_CODE;
+					document.getElementById("BILL_GR").value = BILL_GR;
+					document.getElementById("BOOK_NO").value = BOOK_NO;
+					document.getElementById("CHECK_DIGIT").value = CHECK_DIGIT;
+					document.getElementById("CUST_ID").value = CUST_ID;
+				});
+		});
+	</script>
+	<script>
+
+		$("#NET_CUST_NUM").change(function () {
+			var x = $("#NET_CUST_NUM").val();
+			var url = "/api/locationAddMeterNet/" + x;
+			$.ajax({
+				method: "GET",
+				url: url
+			})
+				.done(function (JsonData) {
+					const NET_CONS_NAME = JsonData.net_CONS_NAME;
+
+					const CHECK_DIGIT = JsonData.check_DIGIT;
+					const CUST_ID = JsonData.cust_ID;
+					document.getElementById("NET_CONS_NAME").value = NET_CONS_NAME;
+					document.getElementById("NET_CUST_CHECK_DIGIT").value = CHECK_DIGIT;
+					document.getElementById("NET_CUST_ID").value = CUST_ID;
+				});
+		});
+	</script>
+	<script>
+		$(document).ready(function () {
+			$("#EFF_BILL_CYCLE_CODE").change(function () {
+				var str = $("#EFF_BILL_CYCLE_CODE").val();
+				document.getElementById("ENL_BILL_CYCLE_CODE").value = str;
+			});
+		});
+	</script>
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"
+		integrity="sha512-9CWGXFSJ+/X0LWzSRCZFsOPhSfm6jbnL+Mpqo0o8Ke2SYr8rCTqb4/wGm+9n13HtDE1NQpAEOrMecDZw4FXQGg=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+	<script type="text/javascript">
+		
+		$(document).ready(function () {
+			$('#datatable').DataTable({
+			responsive: true
+		});
+		});
+	</script>
+
+</body>
+
+</html>

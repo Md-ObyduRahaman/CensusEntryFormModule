@@ -5,41 +5,47 @@
 	<title>Bill</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 	<div th:replace="fragments/links :: cssLink"></div>
 </head>
 <style>
 
 	table,
-	th,
-	td {
+	th
+	 {
 		border: 1px solid #c591b6;
 		border-collapse: collapse;
-		text-align: left;
+		font-family: Courier;
+		text-align: right;
+		padding-right: 30px;
 		color: #a8628d;
 		font-weight: normal;
-		font-style: initial;
+		font-style: initial;		
 		font-size: 15px;
 		width: 20%;
+		
+
 	}
+	
+	
 
 	.head_clr th,
 	td {
 		width: 10%;
 		text-align: right;
+		padding-right: 5px;
 		color: #c591b6;
 	}
 
 	.head_clr th {
+		font-family:  Courier;
 		background-color: #ffebff;
 		border-collapse: collapse;
 		text-align: center;
 		color: #a96b92;
 		height: 10px;
 		font-weight: normal;
+		font-weight: bold;
+		
 	}
 
 	.no_border {
@@ -78,27 +84,27 @@
 					<tr>
 						<th>Consumer Name</th>
 						<td colspan="3">50</td>
-						<th style="background-color: #d1eefc;">Month</th>
-						<th style="background-color: #d1eefc;">Bill NO</th>
+						<th style="background-color: #d1eefc;">MONTH</th>
+						<th style="background-color: #d1eefc;">BILL NO</th>
 						<th style="background-color: #d1eefc;">CD</th>
-						<th style="background-color: #d1eefc;" colspan="2">Issue Date</th>
+						<th style="background-color: #d1eefc;" colspan="2">ISSUE DATE</th>
 					</tr>
 					<tr>
 						<th rowspan="3">Address</th>
 						<td colspan="3" rowspan="3">50</td>
-						<td>94</td>
+						<td style="border-left: 1px solid #c591b6;">954</td>
 						<td>94</td>
 						<td>94</td>
 						<td colspan="2">94</td>
 					</tr>
 					<tr>
-						<th style="background-color: #d1eefc;">Location</th>
-						<th style="background-color: #d1eefc;">Bill GROUP</th>
-						<th style="background-color: #d1eefc;">Book No</th>
-						<th style="background-color: #d1eefc;" colspan="2">Walk ORD</th>
+						<th style="background-color: #d1eefc;">LOCATION</th>
+						<th style="background-color: #d1eefc;">BILL GROUP</th>
+						<th style="background-color: #d1eefc;">BOOK NO</th>
+						<th style="background-color: #d1eefc;" colspan="2">WALK ORD</th>
 					</tr>
 					<tr style="border-style: white;">
-						<td></td>
+						<td style="border-left: 1px solid #c591b6;"></td>
 						<td>94</td>
 						<td>94</td>
 						<td colspan="2">94</td>
@@ -107,13 +113,13 @@
 						<th>Mobile</th>
 						<td colspan="3">50</td>
 						<th>PRV A/C No</th>
-						<th colspan="3">Consumer No</th>
+						<th colspan="3">CONSUMER No</th>
 						<th>DUE DATE</th>
 					</tr>
 					<tr>
 						<th>E-mail</th>
 						<td colspan="3">50</td>
-						<td>94</td>
+						<td style="border-left: 1px solid #c591b6;">94</td>
 						<td colspan="3">94</td>
 						<td>94</td>
 					</tr>
@@ -150,15 +156,15 @@
 					</tr>
 					<tr>
 						<th>IMPORT EXPORT</th>
-						<td>98</td>
-						<td>98</td>
-						<td>98</td>
-						<td colspan="5">98</td>
+						<td style="border: 1px solid #c591b6;">98</td>
+						<td style="border: 1px solid #c591b6;">98</td>
+						<td style="border: 1px solid #c591b6;">98</td>
+						<td colspan="5" style="border: 1px solid #c591b6;">98</td>
 					</tr>
 				</table>
 				<table style="width:100% ; margin-top:2px ;" class="head_clr">
 					<tr>
-						<th colspan="2" style="background-color: #a9e58f;">CARRY OVER UNIT</th>
+						<th colspan="2" style="background-color: #a9e58f; text-align: left;">CARRY OVER UNIT</th>
 						<th colspan="4">IMPORT METER</th>
 						<th colspan="2">EXPORT METER</th>
 					</tr>
@@ -181,88 +187,88 @@
 					</tr>
 					<tr>
 						<th>PRESENT</th>
-						<td>1</td>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
-						<td>5</td>
-						<td>6</td>
-						<td>7</td>
+						<td style="border: 1px solid #c591b6;">100</td>
+						<td style="border-right: 1px solid #c591b6;">2</td>
+						<td style="border-right: 1px solid #c591b6;">3</td>
+						<td style="border-right: 1px solid #c591b6;">4</td>
+						<td style="border-right: 1px solid #c591b6;">5</td>
+						<td style="border-right: 1px solid #c591b6;">6</td>
+						<td style="border-right: 1px solid #c591b6;">7</td>
 
 					</tr>
 					<tr>
 						<th>PREVIOUS</th>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
-						<td>5</td>
-						<td>6</td>
-						<td>7</td>
-						<td>7</td>
+						<td style="border: 1px solid #c591b6;">2</td>
+						<td style="border-right: 1px solid #c591b6;">3</td>
+						<td style="border-right: 1px solid #c591b6;">4</td>
+						<td style="border-right: 1px solid #c591b6;">5</td>
+						<td style="border-right: 1px solid #c591b6;">6</td>
+						<td style="border-right: 1px solid #c591b6;">7</td>
+						<td style="border-right: 1px solid #c591b6;">7</td>
 					</tr>
 					<tr>
 						<th colspan="2">DIFFERENCE</th>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
-						<td>5</td>
-						<td>6</td>
-						<td>7</td>
+						<td style="border-right: 1px solid #c591b6;">2</td>
+						<td style="border-right: 1px solid #c591b6;">3</td>
+						<td style="border-right: 1px solid #c591b6;">4</td>
+						<td style="border-right: 1px solid #c591b6;">5</td>
+						<td style="border-right: 1px solid #c591b6;">6</td>
+						<td style="border-right: 1px solid #c591b6;">7</td>
 					</tr>
 					<tr>
 						<th colspan="2">CONSUMED</th>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
-						<td>5</td>
-						<td>6</td>
-						<td>7</td>
+						<td style="border-right: 1px solid #c591b6;">2</td>
+						<td style="border-right: 1px solid #c591b6;">3</td>
+						<td style="border-right: 1px solid #c591b6;">4</td>
+						<td style="border-right: 1px solid #c591b6;">5</td>
+						<td style="border-right: 1px solid #c591b6;">6</td>
+						<td style="border-right: 1px solid #c591b6;">7</td>
 					</tr>
 					<tr>
 						<th colspan="2">ADJUSTED UNIT</th>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
-						<td>5</td>
-						<td>6</td>
-						<td>7</td>
+						<td style="border-right: 1px solid #c591b6;">2</td>
+						<td style="border-right: 1px solid #c591b6;">3</td>
+						<td style="border-right: 1px solid #c591b6;">4</td>
+						<td style="border-right: 1px solid #c591b6;">5</td>
+						<td style="border-right: 1px solid #c591b6;">6</td>
+						<td style="border-right: 1px solid #c591b6;">7</td>
 					</tr>
 					<tr>
 						<th colspan="2">X-FORMER LOSS UNIT</th>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
-						<td>5</td>
-						<td>6</td>
-						<td>7</td>
+						<td style="border-right: 1px solid #c591b6;">2</td>
+						<td style="border-right: 1px solid #c591b6;">3</td>
+						<td style="border-right: 1px solid #c591b6;">4</td>
+						<td style="border-right: 1px solid #c591b6;">5</td>
+						<td style="border-right: 1px solid #c591b6;">6</td>
+						<td style="border-right: 1px solid #c591b6;">7</td>
 					</tr>
 					<tr>
 						<th colspan="2">OLD METER UNIT</th>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
-						<td>5</td>
-						<td>6</td>
-						<td>7</td>
+						<td style="border-right: 1px solid #c591b6;">2</td>
+						<td style="border-right: 1px solid #c591b6;">3</td>
+						<td style="border-right: 1px solid #c591b6;">4</td>
+						<td style="border-right: 1px solid #c591b6;">5</td>
+						<td style="border-right: 1px solid #c591b6;">6</td>
+						<td style="border-right: 1px solid #c591b6;">7</td>
 					</tr>
 					<tr>
 						<th colspan="2">SUB M.CONS</th>
-						<td>2</td>
-						<td>3</td>
-						<td>4</td>
-						<td>5</td>
-						<td>6</td>
-						<td>7</td>
+						<td style="border-right: 1px solid #c591b6;">2</td>
+						<td style="border-right: 1px solid #c591b6;">3</td>
+						<td style="border-right: 1px solid #c591b6;">4</td>
+						<td style="border-right: 1px solid #c591b6;">5</td>
+						<td style="border-right: 1px solid #c591b6;">6</td>
+						<td style="border-right: 1px solid #c591b6;">7</td>
 					</tr>
 
 						<tr>
 							<th style="background-color: #d1eefc;" colspan="2">NET BILLED UNIT</th>
-							<td >50</td>
-							<td>50</td>
+							<td style="border: 1px solid #c591b6;">50</td>
+							<td style="border: 1px solid #c591b6;">5880</td>
 							<th>PF</th>
-							<td >50</td>
+							<td style="border: 1px solid #c591b6;">50</td>
 							<th style="background-color: #d1eefc;">CARRY FORWARD UNIT</th>
-							<td>45</td>
+							<td style="border: 1px solid #c591b6;">45</td>
 						</tr>
 					</table>
 					<table style="width:100% ; margin-top: 2px;" class="head_clr">
@@ -313,7 +319,7 @@
 							<th>DEMAND CHARGE</th>
 							<td>1</td>
 							<th>ADV/ARP PRINCIPAL</th>
-							<td>3</td>
+							<td style="border-top: 1px solid #c591b6;">3l</td>
 						</tr>
 						<tr>
 							<th>METER CHARGE</th>
@@ -331,44 +337,44 @@
 							<th rowspan="3">MISC.Bill/FEE</th>
 							<td rowspan="3">1</td>
 							<th style="background-color: #a9e58f;">NEM SETTELMENT AMT</th>
-							<td style="background-color: #a9e58f;">3</td>
+							<td style="background-color: #a9e58f;border: 1px solid #c591b6;">34</td>
 
 						</tr>
 						<tr>
 							<th style="background-color: #a9e58f;">PRINCIPAL SETTELMENT</th>
-							<td style="background-color: #a9e58f;">3</td>
+							<td style="background-color: #a9e58f;border: 1px solid #c591b6;">3</td>
 						</tr>
 						<tr>
 							<th style="background-color: #a9e58f;"> VAT SETTELMENT</th>
-							<td style="background-color: #a9e58f;">3</td>
+							<td style="background-color: #a9e58f;border: 1px solid #c591b6;">3</td>
 						</tr>
 						<tr>
 							<th> PRINCIPAL AMOUNT</th>
-							<td>1</td>
+							<td style="border: 1px solid #c591b6;">1</td>
 							<th style="background-color: #d1eefc;">VAT TOTAL </th>
-							<td style="background-color: #d1eefc;">3</td>
+							<td style="background-color: #d1eefc;border: 1px solid #c591b6;">3</td>
 						</tr>
 						<tr>
 							<th> VAT</th>
-							<td>1</td>
+							<td style="border: 1px solid #c591b6;">1</td>
 							<th rowspan="2" style="background-color: #d1eefc;"> AMOUNT TO BE PAID BY CONSUMER</th>
-							<td rowspan="2" style="background-color: #d1eefc;">3</td>
+							<td rowspan="2" style="background-color: #d1eefc;border: 1px solid #c591b6;">3</td>
 						</tr>
 						<tr>
 							<th> Bill Month Total</th>
-							<td>1</td>
+							<td style="border: 1px solid #c591b6;">1</td>
 						</tr>
 						<tr>
 							<th>LAST PAYMENT</th>
-							<td>1</td>
+							<td style="border: 1px solid #c591b6;">1</td>
 							<th> AMOUNT TO BE PAID TO CONSUMER</th>
 							<td>3</td>
 						</tr>
 					</table>
 
-					<table style="width: 100% ; margin-top: 10px;" class="head_clr">
+					<table style="width: 100% ; margin-top: 10px;" class="head_clr head_clr_border_css ">
 						<tr>
-							<th rowspan="3"> ARRER DETAILS</th>
+							<th rowspan="4"> ARRER DETAILS</th>
 							<th> MONTH</th>
 							<th>Principal</th>
 							<th>MIS BILL/FEE</th>
@@ -384,18 +390,34 @@
 							<td></td>
 							<td></td>
 						</tr>
-					</table>
-					<table style="width:100%; margin-top:2px ;">
 						<tr>
-							<th style=" text-align: left;">PAY AT</th>
-							<td style=" text-align: right; padding: 50px 50px 0px 250px;">Executive engineer<p>Office
+							<td></td>
+							<td>54</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td>54</td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</table>
+					<table style="width:100% ; margin-top:2px ;">
+						<tr>
+							<th style=" text-align: left;border-right: 0px solid white;">PAY AT</th>
+							<td style=" text-align: right; padding: 25px 15px 0px 50px;">Executive engineer<p>Office
 									Name &
 									01783726898 </p>
 							</td>
 						</tr>
 					</table>
 
-					<table style="width: 100% ; margin-top: 2PX;" class="no_border">
+					<table style="width: 100% ; margin-top: 2PX;" >
 						<tr>
 							<td style="text-align: left;">Office of the .......</td>
 							<td style="text-align: right;">Bank & Office copy</td>
@@ -413,16 +435,16 @@
 						</tr>
 						<tr>
 							<th>RCVD TK.</th>
-							<td>*</td>
-							<td>2</td>
-							<td>3</td>
-							<td>4</td>
-							<td>5</td>
-							<td>6</td>
+							<td style="border-right: 1px solid #c591b6;">*5</td>
+							<td style="border: 1px solid #c591b6;">2</td>
+							<td style="border: 1px solid #c591b6;">3</td>
+							<td style="border: 1px solid #c591b6;">4</td>
+							<td style="border: 1px solid #c591b6;">5</td>
+							<td style="border: 1px solid #c591b6;">6</td>
 						</tr>
 						<tr>
 							<th>DATE</th>
-							<td>*</td>
+							<td >*</td>
 							<th>CONSUMER NO</th>
 							<th colspan="2">ISSUE DATE</th>
 							<th colspan="2">DUE DATE</th>
@@ -430,13 +452,13 @@
 						</tr>
 						<tr>
 							<th>TARIFF</th>
-							<td>*</td>
+							<td style="border-right: 1px solid #c591b6;">*</td>
 							<td>4</td>
-							<td colspan="2">2</td>
-							<td colspan="2">3</td>
+							<td colspan="2" style="border: 1px solid #c591b6;">2</td>
+							<td colspan="2" style="border: 1px solid #c591b6;">3</td>
 						</tr>
 						<tr>
-							<td rowspan="3" colspan="2"></td>
+							<td rowspan="3" colspan="2" style="border: 1px solid #c591b6;"></td>
 
 							<th>BILL NO</th>
 							<th>CD</th>
@@ -445,10 +467,10 @@
 
 						</tr>
 						<tr>
-							<td>2</td>
-							<td>3</td>
-							<td style="background-color: #d1eefc;">40</td>
-							<td style="background-color: #d1eefc;" colspan="2">5</td>
+							<td style="border: 1px solid #c591b6;">2</td>
+							<td style="border: 1px solid #c591b6;">3</td>
+							<td style="background-color: #d1eefc;border: 1px solid #c591b6;">40</td>
+							<td style="background-color: #d1eefc;border: 1px solid #c591b6;" colspan="2">5</td>
 						</tr>
 						<tr>
 							<th>BILL MONTH</th>
@@ -457,10 +479,10 @@
 						</tr>
 						<tr>
 							<th>CONS NO</th>
-							<td></td>
-							<td>2</td>
-							<td colspan="2">2</td>
-							<td colspan="2">3</td>
+							<td style="border: 1px solid #c591b6;"></td>
+							<td style="border: 1px solid #c591b6;">2</td>
+							<td colspan="2" style="border: 1px solid #c591b6;">2</td>
+							<td colspan="2" style="border: 1px solid #c591b6;">3</td>
 						</tr>
 					</table>
 			</section>
@@ -475,14 +497,14 @@
 
 </body>
 <div th:replace="fragments/links :: javaScriptLink"></div>
+
 <script>
 	function printDiv(divName) {
 		var divToPrint = document.getElementById(divName);
 		var newWin = window.open('', 'Print-Window');
 		newWin.document.open();
 		newWin.document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">');
-		//newWin.document.write('<style> @media print{ @page {margin-top: 30px;margin-bottom: 30px;}} table, th,td {border: 1px solid black;border - collapse: collapse;text - align: left;width: 20 %;}.head_clr th {background - color: pink;border - collapse: collapse;text-align: center;width: auto;}.no_border {border: 1px solid white!important;}</style > ');
-		newWin.document.write(' <style> table, th, td {border: 1px solid #c591b6;border-collapse: collapse;font-size: 15px;text-align: left;color: #a8628d;font-weight: normal;font-style: initial;width: 20%;}.head_clr th, td {width: 10%;text-align: right;color: #c591b6;}.head_clr th {background-color: #ffebff;border-collapse: collapse;text-align: center;color: #a96b92;height: 10px;font-weight: normal;}.no_border {border: 1px solid white !important;}</style>');
+		newWin.document.write('<style>table,th{border: 1px solid #c591b6;border-collapse: collapse;font-family: Courier;text-align: right;padding-right: 30px;color: #a8628d;font-weight: normal;font-style: initial;font-size: 15px;width: 20%}.head_clr th,td{width: 10%;padding-right: 5px;text-align: right;color: #c591b6}.head_clr th{font-family:  Courier;background-color: #ffebff;border-collapse: collapse;text-align: center;color: #a96b92;height: 10px;font-weight: normal;font-weight: bold}.no_border{border: 1px solid white !important}</style>');
 		newWin.document.write('<body onload="window.print()"> ');
 		newWin.document.write(divToPrint.innerHTML);
 		newWin.document.write('</body></html>');
