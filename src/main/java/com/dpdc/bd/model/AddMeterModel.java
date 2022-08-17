@@ -31,6 +31,35 @@ public class AddMeterModel {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
+	
+	public AddMeterModel(String rEF_NO, String rEF_DATE, String lOCATION_CODE, String bILL_GR, String bOOK_NO,
+			String cONSUMER_NUM, String cHECK_DIGIT, int cUST_ID, String eFF_BILL_CYCLE_CODE, String rEMARKS,
+			String aDJ_FLAG, String eNL_BILL_CYCLE_CODE, String nET_CONS_NAME, String nET_CUST_NUM,
+			String nET_CUST_CHECK_DIGIT, int nET_CUST_ID, String eXP_BILL_CYCLE, int nET_CAPACITY) {
+		super();
+		REF_NO = rEF_NO;
+		REF_DATE = rEF_DATE;
+		LOCATION_CODE = lOCATION_CODE;
+		BILL_GR = bILL_GR;
+		BOOK_NO = bOOK_NO;
+		CONSUMER_NUM = cONSUMER_NUM;
+		CHECK_DIGIT = cHECK_DIGIT;
+		CUST_ID = cUST_ID;
+		EFF_BILL_CYCLE_CODE = eFF_BILL_CYCLE_CODE;
+		REMARKS = rEMARKS;
+		ADJ_FLAG = aDJ_FLAG;
+		ENL_BILL_CYCLE_CODE = eNL_BILL_CYCLE_CODE;
+		NET_CONS_NAME = nET_CONS_NAME;
+		NET_CUST_NUM = nET_CUST_NUM;
+		NET_CUST_CHECK_DIGIT = nET_CUST_CHECK_DIGIT;
+		NET_CUST_ID = nET_CUST_ID;
+		EXP_BILL_CYCLE = eXP_BILL_CYCLE;
+		NET_CAPACITY = nET_CAPACITY;
+	}
+
+
+
 	public AddMeterModel(String cHECK_DIGIT, int cUST_ID, String nET_CONS_NAME) {
 		super();
 		CHECK_DIGIT = cHECK_DIGIT;

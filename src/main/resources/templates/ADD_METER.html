@@ -69,7 +69,7 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input type="date" name="REF_DATE" th:value="*{REF_DATE}" id="REF_DATE datepicker"
+									<input type="date" name="REF_DATE" th:value="*{REF_DATE}" id="REF_DATE"
 										class="form-control form-control-lg" />
 								</div>
 							</div>
@@ -206,10 +206,12 @@
 							</div>
 							<div class="col-12  text-center">
 
-								<button type="submit" class="btn col-12 btn-success">Save</button>
+								<button type="submit" id="SaveButton" class="btn col-12 mt-3 btn-success">Save</button>
 
 							</div>
-						</div>
+							<div class="alert alert-success mt-1 col-sm-12 text-center" th:text="${msg}" th:if="${msg}"
+								role="alert"></div>
+
 					</form>
 				</fieldset>
 				<div class="card-header mb-3" style="color: green; background-color: paleturquoise;"><strong>Data
@@ -219,52 +221,74 @@
 				<table id="datatable" class="table table-striped table-bordered" style="width:100%">
 
 					<thead>
-
 						<tr>
-
 							<th>REF NO</th>
-
 							<th>REF DATE</th>
-
 							<th>LOCATION CODE</th>
-
 							<th>AREA CODE</th>
-
 							<th>CONSUMER NUM</th>
-
 							<th>EFF BILL CYCLE CODE</th>
 							<th>NET CONS NAME</th>
 							<th>NET CUST NUM</th>
 							<th>EXP BILL CYCLE</th>
 							<th>NET CAPACITY</th>
 							<th>Action</th>
-
 						</tr>
-
 					</thead>
-
 					<tbody>
 
-						<tr>
+						<tr th:each="list,iterStatus : ${addMeterModelList}">
+							<td><input type="hidden" th:id="'REF_NO_'+${iterStatus.index}" th:text="${list.REF_NO}"
+									name="REF_NO" th:value="${list.REF_NO}"></input></td>
+							<td><input type="hidden" th:id="'REF_DATE_'+${iterStatus.index}" th:text="${list.REF_DATE}"
+									name="REF_DATE" th:value="${list.REF_DATE}"></input></td>
+							<td><input type="hidden" th:id="'LOCATION_CODE_'+${iterStatus.index}"
+									th:text="${list.LOCATION_CODE}" name="LOCATION_CODE"
+									th:value="${list.LOCATION_CODE}"></input></td>
+							<td th:text="${list.BOOK_NO} + '' + ${list.BILL_GR}"></td>
+							<td><input type="hidden" th:id="'CONSUMER_NUM_'+${iterStatus.index}"
+									th:text="${list.CONSUMER_NUM}" name="CONSUMER_NUM"
+									th:value="${list.CONSUMER_NUM}"></input></td>
+							<td><input type="hidden" th:id="'EFF_BILL_CYCLE_CODE_'+${iterStatus.index}"
+									th:text="${list.EFF_BILL_CYCLE_CODE}" name="EFF_BILL_CYCLE_CODE"
+									th:value="${list.EFF_BILL_CYCLE_CODE}"></input></td>
+							<td><input type="hidden" th:id="'NET_CONS_NAME_'+${iterStatus.index}"
+									th:text="${list.NET_CONS_NAME}" name="NET_CONS_NAME"
+									th:value="${list.NET_CONS_NAME}"></input></td>
+							<td><input type="hidden" th:id="'NET_CUST_NUM_'+${iterStatus.index}"
+									th:text="${list.NET_CUST_NUM}" name="NET_CUST_NUM"
+									th:value="${list.NET_CUST_NUM}"></input></td>
+							<td><input type="hidden" th:id="'EXP_BILL_CYCLE_'+${iterStatus.index}"
+									th:text="${list.EXP_BILL_CYCLE}" name="EXP_BILL_CYCLE"
+									th:value="${list.EXP_BILL_CYCLE}"></input></td>
+							<td><input type="hidden" th:id="'NET_CAPACITY_'+${iterStatus.index}"
+									th:text="${list.NET_CAPACITY}" name="NET_CAPACITY"
+									th:value="${list.NET_CAPACITY}"></input></td>
+							<td><a th:onclick="'updateById('+${iterStatus.index}+')'" id="updateButton"
+									class="btn btn-primary  text-right" target="_blank">Update</a><br>
 
-							<td>Tiger Nixon</td>
-
-							<td>System Architect</td>
-
-							<td>Edinburgh</td>
-
-							<td>61</td>
-
-							<td>2011/04/25</td>
-
-							<td>$320,800</td>
-							<td>$320,800</td>
-							<td>$320,800</td>
-							<td>$320,800</td>
-							<td>$320,800</td>
-							<td><a href="#" class="btn btn-primary  text-right" target="_blank">Update</a><br>
-								<a href="#" class="btn btn-danger text-right my-1 pl-3 pr-3" target="_blank">Delete</a>
 							</td>
+
+
+							<input type="hidden" th:id="'REMARKS_'+${iterStatus.index}" name="REMARKS"
+								th:value="${list.REMARKS}"></input>
+							<input type="hidden" th:id="'BILL_GR_'+${iterStatus.index}" name="BILL_GR"
+								th:value="${list.BILL_GR}"></input>
+							<input type="hidden" th:id="'BOOK_NO_'+${iterStatus.index}" name="BOOK_NO"
+								th:value="${list.BOOK_NO}"></input>
+							<input type="hidden" th:id="'CHECK_DIGIT_'+${iterStatus.index}" name="CHECK_DIGIT"
+								th:value="${list.CHECK_DIGIT}"></input>
+							<input type="hidden" th:id="'CUST_ID_'+${iterStatus.index}" name="CUST_ID"
+								th:value="${list.CUST_ID}"></input>
+							<input type="hidden" th:id="'ADJ_FLAG_'+${iterStatus.index}" name="ADJ_FLAG"
+								th:value="${list.ADJ_FLAG}"></input>
+							<input type="hidden" th:id="'ENL_BILL_CYCLE_CODE_'+${iterStatus.index}"
+								name="ENL_BILL_CYCLE_CODE" th:value="${list.ENL_BILL_CYCLE_CODE}"></input>
+							<input type="hidden" th:id="'NET_CUST_CHECK_DIGIT_'+${iterStatus.index}"
+								name="NET_CUST_CHECK_DIGIT" th:value="${list.NET_CUST_CHECK_DIGIT}"></input>
+							<input type="hidden" th:id="'NET_CUST_ID_'+${iterStatus.index}" name="NET_CUST_ID"
+								th:value="${list.NET_CUST_ID}"></input>
+
 
 						</tr>
 
@@ -339,6 +363,87 @@
 		});
 	</script>
 
+	<script>
+		function updateById(id) {
+			var ref_NO = document.getElementById('REF_NO_' + id).value;
+			var ref_DATE = document.getElementById('REF_DATE_' + id).value;
+			var location_CODE = document.getElementById('LOCATION_CODE_' + id).value;
+			var consumer_NUM = document.getElementById('CONSUMER_NUM_' + id).value;
+			var eff_BILL_CYCLE_CODE = document.getElementById('EFF_BILL_CYCLE_CODE_' + id).value;
+			var net_CONS_NAME = document.getElementById('NET_CONS_NAME_' + id).value;
+			var net_CUST_NUM = document.getElementById('NET_CUST_NUM_' + id).value;
+			var exp_BILL_CYCLE = document.getElementById('EXP_BILL_CYCLE_' + id).value;
+			var net_CAPACITY = document.getElementById('NET_CAPACITY_' + id).value;
+			var remarks = document.getElementById('REMARKS_' + id).value;
+			var bill_GR = document.getElementById('BILL_GR_' + id).value;
+			var book_NO = document.getElementById('BOOK_NO_' + id).value;
+			var check_DIGIT = document.getElementById('CHECK_DIGIT_' + id).value;
+			var cust_ID = document.getElementById('CUST_ID_' + id).value;
+			var adj_FLAG = document.getElementById('ADJ_FLAG_' + id).value;
+			var enl_BILL_CYCLE_CODE = document.getElementById('ENL_BILL_CYCLE_CODE_' + id).value;
+			var net_CUST_NUM = document.getElementById('NET_CUST_NUM_' + id).value;
+			var net_CUST_CHECK_DIGIT = document.getElementById('NET_CUST_CHECK_DIGIT_' + id).value;
+			var net_CUST_ID = document.getElementById('NET_CUST_ID_' + id).value;
+			var net_CONS_NAME = document.getElementById('NET_CONS_NAME_' + id).value;
+			var exp_BILL_CYCLE = document.getElementById('EXP_BILL_CYCLE_' + id).value;
+			var net_CAPACITY = document.getElementById('NET_CAPACITY_' + id).value;
+
+
+
+			document.getElementById("REF_NO").value = ref_NO;
+			document.getElementById("REF_DATE").value = ref_DATE;
+			document.getElementById("CONSUMER_NUM").value = consumer_NUM;
+			document.getElementById("REMARKS").value = remarks;
+			document.getElementById("EFF_BILL_CYCLE_CODE").value = eff_BILL_CYCLE_CODE;
+			document.getElementById("LOCATION_CODE").value = location_CODE;
+			document.getElementById("BILL_GR").value = bill_GR;
+			document.getElementById("BOOK_NO").value = book_NO;
+			document.getElementById("CHECK_DIGIT").value = check_DIGIT;
+			document.getElementById("CUST_ID").value = cust_ID;
+			document.getElementById("ADJ_FLAG").value = adj_FLAG;
+			document.getElementById("ENL_BILL_CYCLE_CODE").value = enl_BILL_CYCLE_CODE;
+			document.getElementById("NET_CUST_NUM").value = net_CUST_NUM;
+			document.getElementById("NET_CUST_CHECK_DIGIT").value = net_CUST_CHECK_DIGIT;
+			document.getElementById("NET_CUST_ID").value = net_CUST_ID;
+			document.getElementById("NET_CONS_NAME").value = net_CONS_NAME;
+			document.getElementById("EXP_BILL_CYCLE").value = exp_BILL_CYCLE;
+			document.getElementById("NET_CAPACITY").value = net_CAPACITY;
+
+			var button = document.getElementById('SaveButton');
+			button.innerHTML = "Update";
+			button.style.background = "#429bf5";
+			
+			var x= document.getElementById('REF_DATE');			
+			x.setAttribute("type", "text");
+
+			
+
+		
+			$("#REF_NO").prop("readonly", true);
+			$("#REF_DATE").prop("readonly", true);
+			$("#CONSUMER_NUM").prop("readonly", true);
+			$("#REMARKS").prop("readonly", true);
+			$("#EFF_BILL_CYCLE_CODE").prop("readonly", true);
+			$("#LOCATION_CODE").prop("readonly", true);
+			$("#BILL_GR").prop("readonly", true);
+			$("#BOOK_NO").prop("readonly", true);
+			$("#CHECK_DIGIT").prop("readonly", true);
+			$("#CUST_ID").prop("readonly", true);
+			$("#ADJ_FLAG").prop("readonly", true);
+			$("#ENL_BILL_CYCLE_CODE").prop("readonly", true);
+			$("#NET_CUST_NUM").prop("readonly", true);
+			$("#NET_CUST_CHECK_DIGIT").prop("readonly", true);
+			$("#NET_CUST_ID").prop("readonly", true);
+			$("#NET_CONS_NAME").prop("readonly", true);
+			$("#NET_CAPACITY").prop("readonly", true);
+			
+			$(window).scrollTop(0);
+
+
+		}
+
+	</script>
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
@@ -349,11 +454,8 @@
 	<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
 	<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
 	<script type="text/javascript">
-		
-		$(document).ready(function () {
-			$('#datatable').DataTable({
+		$('#datatable').DataTable({
 			responsive: true
-		});
 		});
 	</script>
 

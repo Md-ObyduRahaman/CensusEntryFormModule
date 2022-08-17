@@ -1,6 +1,7 @@
 package com.dpdc.bd.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import com.dpdc.bd.dao.AddMeterDAO;
 import com.dpdc.bd.dao.GetDynamicMenuDAO;
 import com.dpdc.bd.model.AddMeterModel;
 
-
 @Controller
 public class AddMeterController {
 	@Autowired
@@ -25,34 +25,46 @@ public class AddMeterController {
 	@Autowired
 	GetDynamicMenuDAO getDynamicMenuDAO;
 
-	@RequestMapping("/ADD_METER")
-	public String ADD_METER(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model,AddMeterModel addMeterModel) {
+	@GetMapping("/ADD_METER")
+	public String ADD_METER(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model,
+			AddMeterModel addMeterModel) {
 		if (user_name.equals("")) {
 			return "redirect:/";
 		}
+		ArrayList<AddMeterModel> addMeterModelList = addMeterDAO.Get_AddMeterModel_ALL_LIST(user_name);
+		model.addAttribute("addMeterModelList", addMeterModelList);
 		model.addAttribute("addMeterModel", addMeterModel);
-	
+
 		return "ADD_METER";
 	}
-	
-	@PostMapping("/ADD_METER")
-	public void ADD_METER_SAVE(@CookieValue(value = "user_name", defaultValue = "") String user_name,AddMeterModel addMeterModel) {
-		System.out.println(addMeterModel.toString());
 
-		//iconvDaoRafi.insertICFuelType(ic_fuel_type,user_name);
-		SimpleDateFormat formatter= new SimpleDateFormat("dd/MM/yyyy"); 
-				
+	@PostMapping("/ADD_METER")
+	public void ADD_METER_SAVE(@CookieValue(value = "user_name", defaultValue = "") String user_name,
+			AddMeterModel addMeterModel, Model model) {
+		ArrayList<AddMeterModel> addMeterModelList = addMeterDAO.Get_AddMeterModel_ALL_LIST(user_name);
+		model.addAttribute("addMeterModelList", addMeterModelList);
+		model.addAttribute("addMeterModel", addMeterModel);
+
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
 		String o = formatter.format(java.sql.Date.valueOf(addMeterModel.getREF_DATE()));
 		System.out.println(o);
 		addMeterModel.setREF_DATE(o);
-		addMeterDAO.insertAddMeterModel(addMeterModel,user_name);
-		//return "redirect:/IC_FUEL_TYPE";
-		
+		String insertStatus = addMeterDAO.insertAddMeterModel(addMeterModel, user_name);
+		int i=Integer.parseInt(insertStatus);
+		if (i==1) {
+			String msg = "Save/Update Successfull ";
+			model.addAttribute("msg", msg);
+			System.out.println(msg);
+		}
+
+		// return "redirect:/IC_FUEL_TYPE";
+
 	}
-	
+
 	@ModelAttribute
-	public void addCommonData(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model) {					
-		  String dynamicMenu= getDynamicMenuDAO.getDynamicMenu(user_name);
+	public void addCommonData(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model) {
+		String dynamicMenu = getDynamicMenuDAO.getDynamicMenu(user_name);
 		model.addAttribute("dataHtml", dynamicMenu);
 	}
 
