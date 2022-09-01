@@ -15,7 +15,6 @@ import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
 import com.dpdc.bd.model.AddMeterModel;
-import com.dpdc.bd.model.DPD_LOCATION_LIST;
 
 import oracle.jdbc.internal.OracleTypes;
 
@@ -121,5 +120,7 @@ public class AddMeterDAO {
 		}
 		return addMeterModel_LIST;
 	}
+	
+	
 
 }

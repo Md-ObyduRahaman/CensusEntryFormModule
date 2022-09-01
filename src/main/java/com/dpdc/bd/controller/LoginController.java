@@ -35,7 +35,7 @@ public class LoginController {
 		EMP_USER_MST user1 = dao.getLogin(user_name, user.getUSER_PASSWORD());
 
 		if (user1 != null) {
-			if (user1.getUSER_NAME().equals(user.getUSER_NAME())
+			if (user1.getUSER_NAME().equals(user.getUSER_NAME().toUpperCase())
 					&& user1.getUSER_PASSWORD().equals(user.getUSER_PASSWORD())) {
 
 				Cookie cookie = new Cookie("user_name", user1.getUSER_NAME());

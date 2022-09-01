@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.dpdc.bd.dao.AddMeterDAO;
+import com.dpdc.bd.dao.BillPrintDoa;
 import com.dpdc.bd.dao.CensusEntryDAO;
 import com.dpdc.bd.model.AddMeterModel;
 import com.dpdc.bd.model.DPD_LOCATION_LIST;
@@ -21,32 +22,48 @@ public class ApiController {
 	@Autowired
 	AddMeterDAO addMeterDAO;
 	@Autowired
+	BillPrintDoa billPrintDoa;
+	@Autowired
 	DPD_LOCATION_LIST dpd_LOCATION_LIST;
 	@Autowired
-	AddMeterModel  addMeterModel;
-	
+	AddMeterModel addMeterModel;
+
 	@GetMapping("/location/{id}")
 	public DPD_LOCATION_LIST get_DPD_Z_C_D_SD_LIST(@PathVariable("id") String id) {
-		
-		DPD_LOCATION_LIST DPD_Z_C_D_SD_LIST =censusEntryDAO.Get_DPD_Z_C_D_SD_LIST(id);
-		
+
+		DPD_LOCATION_LIST DPD_Z_C_D_SD_LIST = censusEntryDAO.Get_DPD_Z_C_D_SD_LIST(id);
+
 		return DPD_Z_C_D_SD_LIST;
 
 	}
+
 	@GetMapping("/locationAddMeter/{id}")
 	public AddMeterModel get_Add_Meter_List_LIST(@PathVariable("id") String id) {
-		
-		AddMeterModel addMeterModel =addMeterDAO.Get_AddMeterModel_LIST(id);
-		
+
+		AddMeterModel addMeterModel = addMeterDAO.Get_AddMeterModel_LIST(id);
+
 		return addMeterModel;
-		 
+
 	}
+
 	@GetMapping("/locationAddMeterNet/{id}")
 	public AddMeterModel get_Add_Meter_Net_LIST(@PathVariable("id") String id) {
-		
-		AddMeterModel addMeterModelNet =addMeterDAO.Get_AddMeterModel_NET_LIST(id);
-		
+
+		AddMeterModel addMeterModelNet = addMeterDAO.Get_AddMeterModel_NET_LIST(id);
+
+		return addMeterModelNet;
+
+	}
+
+	@GetMapping("/billprint/{lid}/{bid}/{cid}")
+	public AddMeterModel get_billprint_LIST(@PathVariable("lid") String lid, @PathVariable("bid") String bid,
+			@PathVariable("cid") String cid) {
+		AddMeterModel addMeterModelNet = billPrintDoa.Get_billPrint_LIST(lid,bid,cid);
+		System.out.println(addMeterModelNet);
 		return addMeterModelNet;
 		
+
+		
+
 	}
 }

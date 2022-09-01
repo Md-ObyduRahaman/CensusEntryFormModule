@@ -55,7 +55,7 @@
 			<div class="card text-center">
 				<fieldset class="form-group text-left border p-3">
 					<legend class="w-auto px-2">Details</legend>
-					<form th:action="@{/ADD_METER}" method="post" th:object="${addMeterModel}">
+					<form onkeydown="return event.key != 'Enter';" th:action="@{/ADD_METER}" method="post" th:object="${addMeterModel}">
 						<div class="row  text-black">
 							<label class="form-label col-lg-2" for="REF_NO">REF NO
 								&nbsp</label>

@@ -46,11 +46,11 @@ public class TestController {
 
 		return"fragments/sidebar";
 	}
-	@RequestMapping("/BILL_PRINT")
-	public String BILL_PRINT() {
-		
-		return"BILL_PRINT";
-	}
+	/*
+	 * @RequestMapping("/BILL_PRINT") public String BILL_PRINT() {
+	 * 
+	 * return"BILL_PRINT"; }
+	 */
 	
 	
 	

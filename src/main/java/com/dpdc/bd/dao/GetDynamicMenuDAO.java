@@ -52,7 +52,7 @@ public class GetDynamicMenuDAO {
 
 				+ "\r\n" + "\r\n" + "\r\n" + "            </div>   " + "\r\n"
 				+ "            <ul class=\"list-unstyled components\">\r\n"
-				+ "                <p>Dhaka Power Distribution Company</p>\r\n";
+				+ "        ";
 
 		for (int menu_level_0 = 0; menu_level_0 < dynamicMenu.size(); menu_level_0++) {
 			if (dynamicMenu.get(menu_level_0).getPARENT().equals("0")) {

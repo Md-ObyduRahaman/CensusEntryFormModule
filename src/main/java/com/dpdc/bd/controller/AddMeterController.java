@@ -32,6 +32,7 @@ public class AddMeterController {
 			return "redirect:/";
 		}
 		ArrayList<AddMeterModel> addMeterModelList = addMeterDAO.Get_AddMeterModel_ALL_LIST(user_name);
+		
 		model.addAttribute("addMeterModelList", addMeterModelList);
 		model.addAttribute("addMeterModel", addMeterModel);
 
@@ -39,7 +40,7 @@ public class AddMeterController {
 	}
 
 	@PostMapping("/ADD_METER")
-	public void ADD_METER_SAVE(@CookieValue(value = "user_name", defaultValue = "") String user_name,
+	public String ADD_METER_SAVE(@CookieValue(value = "user_name", defaultValue = "") String user_name,
 			AddMeterModel addMeterModel, Model model) {
 		ArrayList<AddMeterModel> addMeterModelList = addMeterDAO.Get_AddMeterModel_ALL_LIST(user_name);
 		model.addAttribute("addMeterModelList", addMeterModelList);
@@ -58,7 +59,7 @@ public class AddMeterController {
 			System.out.println(msg);
 		}
 
-		// return "redirect:/IC_FUEL_TYPE";
+		 return "redirect:/ADD_METER";
 
 	}
 
