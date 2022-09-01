@@ -3,6 +3,8 @@ package com.dpdc.bd.controller;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,7 +28,7 @@ public class BillPrintController {
 	BillPrintDoa billPrintDoa;
 
 	@GetMapping("/BILL_PRINT")
-	public String billHome(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model) {
+	public String billHome(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model,HttpServletResponse response) {
 		if (user_name.equals("")) {
 			return "redirect:/";
 		}
@@ -35,14 +37,14 @@ public class BillPrintController {
 		ArrayList<AddMeterModel> Bill_Location_LIST = billPrintDoa.Get_Location_LIST(user_name);
 		model.addAttribute("Bill_Cycle_LIST", Bill_Cycle_LIST);
 		model.addAttribute("Bill_Location_LIST", Bill_Location_LIST);
-		BillPrint billPrint=new BillPrint();
-		model.addAttribute("billPrint", billPrint);
+		
+		
 
 		return "BILL_PRINT";
 	}
 
 	@RequestMapping("/Show_BillPrint")
-	public String showBill(@CookieValue(value = "user_name", defaultValue = "") String user_name,
+	public String showBill(@CookieValue(value = "user_name", defaultValue = "") String user_name,@CookieValue(value = "book", defaultValue = "") String book,
 			AddMeterModel addMeterModel,Model model) {
 
 		if (user_name.equals("")) {
@@ -61,6 +63,8 @@ public class BillPrintController {
 				addMeterModel.getLOCATION_CODE(), addMeterModel.getBILL_GR(), addMeterModel.getBOOK_NO(),
 				addMeterModel.getCONSUMER_NUM());
 		model.addAttribute("billPrint", billPrint);
+		String books=addMeterModel.getBOOK_NO() ;
+		model.addAttribute("book", books);
 		return "demo";
 	}
 

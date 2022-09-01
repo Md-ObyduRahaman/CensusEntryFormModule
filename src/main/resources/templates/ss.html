@@ -80,7 +80,8 @@
 							<div class="btn-group border-black " id="show" role="group" aria-label="Basic example">
 								<button type="submit" class="btn mr-1 btn-primary">Show
 								</button>
-								
+								<button type="button" onclick="printDiv('printableArea')"
+									class="btn btn-success">Print</button>
 							</div>
 						</div>
 						<label for="Location" class="col-sm-2 pr-1 mb-2  col-form-label">Location</label>
@@ -107,9 +108,9 @@
 						<input readonly type="text" class="form-control col-sm-6" id="BillGroup">
 						<div class="col-sm-2"></div>
 
-						<label for="BookNo"  class="col-sm-2 pr-1 mb-2 col-form-label">Book No</label>
+						<label for="BookNo" class="col-sm-2 pr-1 mb-2 col-form-label">Book No</label>
 
-						<input type="text" th:value="${book}" class="form-control   col-sm-2" name="BOOK_NO" id="BookNo">
+						<input type="text" class="form-control   col-sm-2" name="BOOK_NO" id="BookNo">
 
 
 						<input readonly type="text" class="form-control col-sm-6" id="BookNo">
@@ -572,10 +573,10 @@
 						</tr>
 					</table>
 				</section>
-				<div class="col-12 text-right">
+				<!--<div class="col-12 text-right">
 					<button style="margin: 20px;" type="button" class="btn btn-primary" value="Print"
 						onclick="printDiv('printableArea')">PRINT BILL</button>
-				</div>
+				</div>-->
 
 			</div>
 		</div>
