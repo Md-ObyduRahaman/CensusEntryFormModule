@@ -24,6 +24,7 @@ public class AddMeterModel {
 	private String BILL_CYCLE_CODE;
 	private String AREA_CODE;
 	private String LOCATION_NAME;
+	private String CUSTOMER_NAME ;
 
 	
 
@@ -92,16 +93,28 @@ public class AddMeterModel {
 		NET_CONS_NAME = nET_CONS_NAME;
 	}
 
-	public AddMeterModel(String lOCATION_CODE, String bILL_GR, String bOOK_NO, String cHECK_DIGIT, int cUST_ID) {
+	public AddMeterModel(String lOCATION_CODE, String bILL_GR, String bOOK_NO, String cHECK_DIGIT, int cUST_ID,String cUSTOMER_NAME ) {
 		super();
 		LOCATION_CODE = lOCATION_CODE;
 		BILL_GR = bILL_GR;
 		BOOK_NO = bOOK_NO;
 		CHECK_DIGIT = cHECK_DIGIT;
 		CUST_ID = cUST_ID;
+		CUSTOMER_NAME=cUSTOMER_NAME;
+		
 	}
 	
 	
+
+	public String getCUSTOMER_NAME() {
+		return CUSTOMER_NAME;
+	}
+
+
+	public void setCUSTOMER_NAME(String cUSTOMER_NAME) {
+		CUSTOMER_NAME = cUSTOMER_NAME;
+	}
+
 
 	public String getAREA_CODE() {
 		return AREA_CODE;

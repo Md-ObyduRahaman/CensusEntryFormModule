@@ -49,7 +49,6 @@ public class AddMeterController {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 
 		String o = formatter.format(java.sql.Date.valueOf(addMeterModel.getREF_DATE()));
-		System.out.println(o);
 		addMeterModel.setREF_DATE(o);
 		String insertStatus = addMeterDAO.insertAddMeterModel(addMeterModel, user_name);
 		int i=Integer.parseInt(insertStatus);

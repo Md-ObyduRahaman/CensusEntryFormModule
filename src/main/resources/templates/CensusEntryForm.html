@@ -40,6 +40,7 @@
 </head>
 
 <body>
+
 	<div class="wrapper">
 		<span th:remove="tag" th:utext="${dataHtml}"></span>
 		<div class="container-fluid mw-100 py-2 h-100">
@@ -50,10 +51,10 @@
 			<div class="card text-center">
 
 				<fieldset class="form-group text-left border p-3">
-					<legend class="w-auto px-2">Consumer Census Entry(BC_CONSCEN)</legend>
+					<legend class="w-auto px-2"><strong>Consumer Census Entry(BC_CONSCEN)</strong></legend>
 
 					<div class="row  text-black">
-						<label class="col-lg-1" for="location"><strong>Location</strong>&nbsp </label>
+						<label class="col-lg-1" for="location">Location &nbsp </label>
 						<div class="col-md-2 mb-2 input-group search_select_box ">
 							<select name="locationOption" id="locationOption"
 								class="form-control search_select_box select_supplyType">
@@ -62,7 +63,7 @@
 									th:text="${location.LOCATION_NAME}"></option>
 							</select>
 						</div>
-						<label class="col-lg-1" for="supplyType"><strong>Zone</strong> &nbsp</label>
+						<label class="col-lg-1" for="supplyType">Zone &nbsp</label>
 						<div class="col-md-1 mb-2">
 
 							<div class="input-group">
@@ -71,7 +72,7 @@
 							</div>
 
 						</div>
-						<label class="form-label col-lg-1" for="circle"><strong>Circle</strong> &nbsp</label>
+						<label class="form-label col-lg-1" for="circle">Circle &nbsp</label>
 						<div class="col-md-1 mb-4">
 
 							<div class="input-group">
@@ -83,7 +84,7 @@
 							</div>
 
 						</div>
-						<label class="form-label col-lg-1" for="Div"><strong>Div</strong> &nbsp</label>
+						<label class="form-label col-lg-1" for="Div">Div &nbsp</label>
 						<div class="col-md-1 mb-4">
 
 
@@ -94,7 +95,7 @@
 							</div>
 
 						</div>
-						<label class="form-label col-lg-1" for="sub_div"><strong>Sub Div</strong> &nbsp</label>
+						<label class="form-label col-lg-1" for="sub_div">Sub Div &nbsp</label>
 						<div class="col-md-2 mb-4">
 
 							<div class="input-group">
@@ -104,18 +105,16 @@
 
 						</div>
 
-						<label class="form-label col-lg-1 " for="book_no"><strong>Book No</strong>
-							&nbsp</label>
+						<label class="form-label col-lg-1 " for="book_no">Book No &nbsp</label>
 						<div class="col-md-1 mb-4">
 
 							<div class="input-group">
 
-								<input type="text" id="book_no first-element"
-									class="form-control fcs form-control-lg" />
+								<input type="text" id="book_no" class="form-control fcs form-control-lg" />
 							</div>
 
 						</div>
-						<label class="form-label col-lg-1" for="billGrp"><strong>BillGrp</strong> &nbsp</label>
+						<label class="form-label col-lg-1" for="billGrp">BillGrp &nbsp</label>
 						<div class="col-md-1 mb-4">
 
 							<div class="input-group">
@@ -127,19 +126,18 @@
 
 
 
-						<label class=" col-lg-1" for="supplyType"><strong>Cons. Source</strong> &nbsp</label>
-						<div class="col-3 mb-2 input-group search_select_box ">
-							<select name="select_box_location"
-								class="form-select input-group search_select_box_location" id="select_box_location">
-								<option selected>select Location</option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
+						<label class=" col-lg-1" for="supplyType">Cons. Source &nbsp</label>
+						<div class="col-3 mb-2 ">
+							<select class="form-select form-select-sm" aria-label=".form-select-sm example">
+								<option selected value="N">New consumers</option>
+								<option value="F">Census consumers</option>
+								<option value="M">Migrated consumers</option>
+								<option value="L">Additional meter</option>
 							</select>
 						</div>
 
 
-						<label class="form-label col-lg-1 " for="walkOrder"><strong>Walk. Order</strong>
+						<label class="form-label col-lg-1 " for="walkOrder">Walk. Order
 							&nbsp</label>
 						<div class="col-md-3 mb-4">
 
@@ -150,7 +148,7 @@
 							</div>
 
 						</div>
-						<label class="form-label col-lg-1 " for="conSrlNo"><strong>ConSrl No.</strong> &nbsp</label>
+						<label class="form-label col-lg-1 " for="conSrlNo">ConSrl No. &nbsp</label>
 						<div class="col-md-1 mb-4">
 
 							<div class="input-group">
@@ -159,32 +157,23 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="supplyType"><strong>Govt. Flat</strong> &nbsp</label>
+						<label class="col-lg-1" for="supplyType">Govt. Flat &nbsp</label>
 						<div class="col-md-1 mb-4">
-
 							<div class="input-group">
-
-
 								<select class="form-select" aria-label="Default select example">
 									<option value="0" selected>No</option>
 									<option value="1">Yes</option>
-
 								</select>
 							</div>
-
 						</div>
-						<label class="form-label col-lg-1" for="oldAcNo"><strong>Old A/C No.</strong> &nbsp</label>
+						<label class="form-label col-lg-1" for="oldAcNo">Old A/C No. &nbsp</label>
 						<div class="col-md-3 mb-4">
-
 							<div class="input-group">
-
 								<input type="text" id="oldAcNo" class="form-control fcs form-control-lg" />
-
 							</div>
 
 						</div>
-						<label class="form-label col-lg-1" for="computerConsNo"><strong>Computer Cons
-								No.</strong>&nbsp</label>
+						<label class="form-label col-lg-1" for="computerConsNo">Computer Cons No. &nbsp</label>
 						<div class="col-md-3 mb-4">
 
 							<div class="input-group">
@@ -205,11 +194,10 @@
 				</fieldset>
 
 				<fieldset class="form-group text-left border p-3">
-					<legend class="w-auto px-2">Coustomer Details</legend>
+					<legend class="w-auto px-2"><strong>Coustomer Details</strong></legend>
 					<div class="row  text-black">
 
-						<label class="form-label col-lg-2" for="coustomerName"><strong>Coustomer Name</strong>
-							&nbsp</label>
+						<label class="form-label col-lg-2" for="coustomerName">Coustomer Name &nbsp</label>
 						<div class="col-md-10 mb-4">
 
 							<div class="input-group">
@@ -218,8 +206,7 @@
 							</div>
 
 						</div>
-						<label class="form-label col-lg-2" for="fatherHusband"><strong>Father/Husband Name:</strong>
-							&nbsp</label>
+						<label class="form-label col-lg-2" for="fatherHusband">Father/Husband Name:&nbsp</label>
 						<div class="col-md-10 mb-4">
 
 							<div class="input-group">
@@ -227,7 +214,7 @@
 								<input type="text" id="fatherHusband" class="form-control fcs form-control-lg" />
 							</div>
 						</div>
-						<label class="form-label col-lg-2" for="serviceAddress"><strong>Service Address:</strong>
+						<label class="form-label col-lg-2" for="serviceAddress">Service Address:
 							&nbsp</label>
 						<div class="col-md-4 mb-4">
 
@@ -236,24 +223,24 @@
 								<input type="text" id="serviceAddress" class="form-control fcs form-control-lg" />
 							</div>
 						</div>
-						<label class="form-label col-lg-2" for="mailingAddress"><strong> Address</strong> &nbsp</label>
+						<label class="form-label col-lg-2" for="mailingAddress"> Address &nbsp</label>
 						<div class="col-md-4 mb-4">
 
 							<div class="input-group">
 
-								<input type="text" id="mailingAddress" class="form-control fcs form-control-lg" />
+								<input readonly type="text" id="mailingAddress" class="form-control fcs form-control-lg" />
 							</div>
 						</div>
-						<label class="form-label col-lg-2" for="city"><strong>City</strong> &nbsp</label>
-						<div class="col-md-2 mb-4">
+						<label class="form-label col-lg-2" for="city">City &nbsp</label>
+						<div class="col-md-4 mb-4">
 
 							<div class="input-group">
 
 								<input type="text" id="city" class="form-control fcs form-control-lg" />
 							</div>
 						</div>
-						<label class="form-label col-lg-2" for="cityReadOnly"><strong>City</strong> &nbsp</label>
-						<div class="col-md-2 mb-4">
+						<label class="form-label col-lg-2" for="cityReadOnly">City &nbsp</label>
+						<div class="col-md-4 mb-4">
 
 							<div class="input-group">
 
@@ -261,17 +248,8 @@
 
 							</div>
 						</div>
-						<label class="form-label col-lg-2" for="postalCodeReadOnly"><strong>Postal code</strong>
-							&nbsp</label>
-						<div class="col-md-2 mb-4">
-
-							<div class="input-group">
-
-								<input type="text" id="postalCodeReadOnly" readonly
-									class="form-control  form-control-lg" />
-							</div>
-						</div>
-						<label class="form-label col-lg-2" for="postalCode"><strong>Postal code</strong> &nbsp</label>
+						
+						<label class="form-label col-lg-2" for="postalCode">Postal code &nbsp</label>
 						<div class="col-md-4 mb-4">
 
 							<div class="input-group">
@@ -279,7 +257,17 @@
 								<input type="text" id="postalCode" class="form-control fcs form-control-lg" />
 							</div>
 						</div>
-						<label class="form-label col-lg-2" for="BankCode(1)"><strong>Bank Code(1) </strong>
+						<label class="form-label col-lg-2" for="postalCodeReadOnly">Postal code
+							&nbsp</label>
+						<div class="col-md-4 mb-4">
+
+							<div class="input-group">
+
+								<input type="text" id="postalCodeReadOnly" readonly
+									class="form-control  form-control-lg" />
+							</div>
+						</div>
+						<label class="form-label col-lg-2" for="BankCode(1)">Bank Code(1)
 							&nbsp</label>
 						<div class="col-md-4 mb-4">
 
@@ -288,30 +276,28 @@
 								<input type="text" id="BankCode(1)" class="form-control fcs form-control-lg" />
 							</div>
 						</div>
-						<label class="form-label col-lg-2" for="BankCode(2)"><strong>Bank Code(2)</strong> &nbsp</label>
-						<div class="col-md-2 mb-4">
+						<label class="form-label col-lg-2" for="BankCode(2)">Bank Code(2) &nbsp</label>
+						<div class="col-md-4 mb-4">
 
 							<div class="input-group">
 
 								<input type="text" id="BankCode(2)" class="form-control fcs form-control-lg" />
 							</div>
 						</div>
-						<label class="form-label col-lg-2" for="branchCode(1)"><strong>Branch Code(1)</strong>
+						<label class="form-label col-lg-2" for="branchCode(1)">Branch Code(1)
 							&nbsp</label>
-						<div class="col-md-2 mb-4">
+						<div class="col-md-4 mb-4">
 
 							<div class="input-group">
 
 								<input type="text" id="branchCode(1)" class="form-control fcs form-control-lg" />
 							</div>
 						</div>
-						<label class="form-label col-lg-2" for="branchCode(2)"><strong>Branch Code(2):</strong>
+						<label class="form-label col-lg-2" for="branchCode(2)">Branch Code(2)
 							&nbsp</label>
-						<div class="col-md-2 mb-4">
-
-							<div class="input-group">
-
-								<input type="text" id="branchCode(2)" class="form-control fcs form-control-lg" />
+						<div class="col-md-4 mb-4">
+							<div class="input-group"><input type="text" id="branchCode(2)"
+									class="form-control fcs form-control-lg" />
 							</div>
 						</div>
 
@@ -319,22 +305,10 @@
 						<div class="col-12 text-right">
 							<div class="btn-group border-black " style="display: inline;" role="group"
 								aria-label="Basic example">
-
-
-
 								<button type="button" class="btn btn-primary"
-									th:onclick="|window.location.href='/meterDetailsForm'|">Meter
-									Details>></button>
-
-
-
-
+									th:onclick="|window.location.href='/meterDetailsForm'|">MeterDetails</button>
 								<button type="button" class="btn btn-primary"
-									th:onclick="|window.location.href='/distribution'|">Distribution>></button>
-
-
-
-
+									th:onclick="|window.location.href='/distribution'|">Distribution</button>
 							</div>
 						</div>
 					</div>
@@ -352,7 +326,6 @@
 
 
 
-
 	<!-- JavaScript -->
 	<div th:replace="fragments/links :: javaScriptLink"></div>
 
@@ -360,7 +333,6 @@
 
 
 		$('.select_supplyType').select2();
-		$('.search_select_box_location').select2();
 
 
 	</script>
@@ -392,6 +364,45 @@
 
 
 
+	</script>
+	<script>
+
+		$("#book_no").change(function () {
+			var bid = $("#book_no").val();
+			var lid = $("#locationOption").val();
+			var url = "/api/billGrp/" + lid + "/" + bid;
+			console.log(url);
+			$.ajax({
+				method: "GET",
+				url: url
+			})
+				.done(function (JsonData) {
+					document.getElementById("billGrp").value = JsonData;
+				});
+		});
+
+
+	</script>
+
+	<script>
+		$(document).ready(function () {
+			$("#serviceAddress").keyup(function () {
+				var serviceAddress = document.getElementById('serviceAddress').value;
+				document.getElementById("mailingAddress").value = serviceAddress;
+			});
+		});
+		$(document).ready(function () {
+			$("#city").keyup(function () {
+				var serviceAddress = document.getElementById('city').value;
+				document.getElementById("cityReadOnly").value = serviceAddress;
+			});
+		});
+		$(document).ready(function () {
+			$("#postalCode").keyup(function () {
+				var serviceAddress = document.getElementById('postalCode').value;
+				document.getElementById("postalCodeReadOnly").value = serviceAddress;
+			});
+		});
 	</script>
 	<script src=https://code.jquery.com/jquery-3.6.0.slim.min.js></script>
 	<script src="../../../../js/jquery.fcs.js"></script>

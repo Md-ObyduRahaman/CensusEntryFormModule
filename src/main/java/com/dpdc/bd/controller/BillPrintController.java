@@ -65,6 +65,17 @@ public class BillPrintController {
 		model.addAttribute("billPrint", billPrint);
 		String books=addMeterModel.getBOOK_NO() ;
 		model.addAttribute("book", books);
+		String billGrp=addMeterModel.getBILL_GR() ;
+		model.addAttribute("billGrp", billGrp);
+		String consumerNum=addMeterModel.getCONSUMER_NUM() ;
+		model.addAttribute("consumerNum", consumerNum);
+		String billCycle=addMeterModel.getBILL_CYCLE_CODE() ;
+		model.addAttribute("billCycle", billCycle);
+		String locationCode=addMeterModel.getLOCATION_CODE();
+		model.addAttribute("locationCode", locationCode);
+		String locationName=addMeterModel.getLOCATION_NAME();
+		model.addAttribute("locationName", locationName);
+		
 		return "demo";
 	}
 

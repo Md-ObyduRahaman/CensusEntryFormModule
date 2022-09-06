@@ -21,13 +21,41 @@
 			border: 1px solid #ccc !important;
 			border-radius: 0px !important;
 		}
+
+
+		.fixTableHead {
+			overflow-y: auto;
+			height: 200px;
+		}
+
+		.fixTableHead thead th {
+			position: sticky;
+			top: 0;
+		}
+
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th,
+		td {
+			padding: 8px 15px;
+
+		}
+
+		th {
+			background: #fff;
+		}
 	</style>
+
 
 
 </head>
 
 <body>
-  <div class="wrapper">
+
+ <div class="wrapper">
     <span th:remove="tag" th:utext="${dataHtml}"></span>
 	<div class="container-fluid mw-100 py-2 h-100">
 		<div th:replace="fragments/sidebar :: header"></div>
@@ -37,9 +65,9 @@
 		<div class="card text-center">
 
 			<fieldset class="form-group text-left border p-3">
-				<legend class="w-auto px-2">DistributionForm</legend>
+				<legend class="w-auto px-2"><strong>DistributionForm</strong></legend>
 				<div class="row">
-					<label class="col-lg-1" for="supplyType"><strong>Supply Type</strong> &nbsp</label>
+					<label class="col-lg-1" for="supplyType">Supply Type</label>
 					<div class="col-3 mb-2 supTyp_list">
 						<div class="input-group search_select_box ">
 							<select name="supTyp_list" id="supTyp_list" class="form-control select_supplyType">
@@ -50,8 +78,7 @@
 							</select>
 						</div>
 					</div>
-					<label class="col-lg-2" for="fedderNo"><strong>Trs ID No/Fedder No</strong>
-								&nbsp</label>
+					<label class="col-lg-2" for="fedderNo">Trs ID No/Fedder No</label>
 					<div class="col-md-2 mb-2">
 
 						<div class="input-group">
@@ -61,8 +88,8 @@
 						</div>
 
 					</div>
-					<label class="col-lg-2" for="fedderSectionId"><strong>Trx Mfg.No./Fedder Section
-							id</strong> &nbsp</label>
+					<label class="col-lg-2" for="fedderSectionId">Trx Mfg.No./Fedder Section
+							id &nbsp</label>
 					<div class="col-lg-2 mb-2">
 
 						<div class="input-group">
@@ -72,7 +99,7 @@
 						</div>
 
 					</div>
-					<label class="col-md-1" for="phaseType"><strong>Phase Type </strong> &nbsp</label>
+					<label class="col-md-1" for="phaseType">Phase Type &nbsp</label>
 					<div class="col-lg-3 mb-2 supTyp_list">
 						<div class="input-group search_select_box ">
 							<select name="phaseType" id="phaseType" class="form-control select_phaseType">
@@ -84,7 +111,7 @@
 						</div>
 					</div>
 
-					<label class="col-lg-2" for="phaseConnect"><strong>Phase Connect</strong>
+					<label class="col-lg-2" for="phaseConnect">Phase Connect
 						&nbsp</label>
 					<div class="col-md-2 mb-2">
 
@@ -95,7 +122,7 @@
 						</div>
 
 					</div>
-					<label class="col-lg-2" for="meterSide"><strong>Meter Side</strong> &nbsp</label>
+					<label class="col-lg-2" for="meterSide">Meter Side &nbsp</label>
 					<div class="col-md-2 mb-2">
 
 						<div class="input-group">
@@ -105,7 +132,7 @@
 						</div>
 
 					</div>
-					<label class="col-lg-1" for="saveConnTp"><strong>Save Conn. Tp</strong> &nbsp</label>
+					<label class="col-lg-1" for="saveConnTp">Save Conn. Tp &nbsp</label>
 					<div class="col-md-3 mb-2">
 
 						<div class="input-group">
@@ -115,8 +142,8 @@
 						</div>
 
 					</div>
-					<label class="col-lg-2" for="serviceDropLength"><strong>Service Drop Length(in
-							Meter)</strong> &nbsp</label>
+					<label class="col-lg-2" for="serviceDropLength">Service Drop Length(in
+							Meter) &nbsp</label>
 					<div class="col-md-2 mb-2">
 
 						<div class="input-group">
@@ -127,7 +154,7 @@
 
 					</div>
 
-					<label class="col-lg-2" for="serviceDropSize"><strong>Service Drop Size</strong>
+					<label class="col-lg-2" for="serviceDropSize">Service Drop Size
 						&nbsp</label>
 					<div class="col-md-2 mb-2">
 
@@ -138,7 +165,7 @@
 						</div>
 
 					</div>
-					<label class="col-lg-1" for="33kvSubStn"><strong>33 KV Sub Stn</strong> &nbsp</label>
+					<label class="col-lg-1" for="33kvSubStn">33 KV Sub Stn &nbsp</label>
 					<div class="col-md-3 mb-2">
 
 						<div class="input-group">
@@ -148,7 +175,7 @@
 						</div>
 
 					</div>
-					<label class="col-lg-2" for="11kvSubStn"><strong>11 KV Sub Stn</strong> &nbsp</label>
+					<label class="col-lg-2" for="11kvSubStn">11 KV Sub Stn &nbsp</label>
 					<div class="col-md-2 mb-2">
 
 						<div class="input-group">
@@ -158,7 +185,7 @@
 						</div>
 
 					</div>
-					<label class="col-lg-2" for="poleNumber"><strong>Pole Number</strong> &nbsp</label>
+					<label class="col-lg-2" for="poleNumber">Pole Number &nbsp</label>
 					<div class="col-md-2 mb-2">
 
 						<div class="input-group">
@@ -168,7 +195,7 @@
 						</div>
 
 					</div>
-					<label class="col-lg-1" for="sanctionedLoad"><strong>Sanctioned Load</strong>
+					<label class="col-lg-1" for="sanctionedLoad">Sanctioned Load
 						&nbsp</label>
 					<div class="col-md-3 mb-2">
 
@@ -179,7 +206,7 @@
 						</div>
 
 					</div>
-					<label class="col-md-2" for="tariff"><strong>Tariff</strong> &nbsp</label>
+					<label class="col-md-2" for="tariff">Tariff &nbsp</label>
 					<div class="col-lg-2 mb-2 supTyp_list">
 						<div class="input-group search_select_box ">
 							<select name="tariff" id="tariff" class="form-control select_tariff">
@@ -190,8 +217,8 @@
 							</select>
 						</div>
 					</div>
-					<label class="col-lg-2" for="monthlyConsumption"><strong>Monthly Likely
-							Consumption</strong> &nbsp</label>
+					<label class="col-lg-2" for="monthlyConsumption">Monthly Likely
+							Consumption &nbsp</label>
 					<div class="col-md-2 mb-2">
 
 						<div class="input-group">
@@ -201,7 +228,7 @@
 						</div>
 
 					</div>
-					<label class="col-lg-1" for="connectedLoad"><strong>Connected Load</strong>
+					<label class="col-lg-1" for="connectedLoad">Connected Load
 						&nbsp</label>
 					<div class="col-md-3 mb-2">
 
@@ -212,7 +239,7 @@
 						</div>
 
 					</div>
-					<label class="col-lg-2" for="typOfBusiness"><strong>Type of Business</strong>
+					<label class="col-lg-2" for="typOfBusiness">Type of Business
 						&nbsp</label>
 					<div class="col-md-2 mb-2">
 
@@ -223,7 +250,7 @@
 						</div>
 
 					</div>
-					<label class="col-lg-2" for="status"><strong>Status</strong> &nbsp</label>
+					<label class="col-lg-2" for="status">Status &nbsp</label>
 					<div class="col-md-2 mb-2">
 
 						<div class="input-group">
@@ -233,7 +260,7 @@
 						</div>
 
 					</div>
-					<label class="col-lg-1" for="secDeposit"><strong>Sec. Deposit</strong> &nbsp</label>
+					<label class="col-lg-1" for="secDeposit">Sec. Deposit &nbsp</label>
 					<div class="col-md-3 mb-2">
 
 						<div class="input-group">
@@ -243,7 +270,7 @@
 						</div>
 
 					</div>
-					<label class="col-lg-2" for="cookFuelType"><strong>Cook Fuel Type</strong>&nbsp</label>
+					<label class="col-lg-2" for="cookFuelType">Cook Fuel Type&nbsp</label>
 					<div class="col-lg-2 mb-2 cookFuelType">
 						<div class="input-group search_select_box ">
 							<select name="cookFuelType" id="cookFuelType" class="form-control selectcookFuelType">
@@ -254,7 +281,7 @@
 							</select>
 						</div>
 					</div>
-					<label class="col-lg-2" for="splConsCode"><strong>SPL Cons. Code</strong>
+					<label class="col-lg-2" for="splConsCode">SPL Cons. Code
 						&nbsp</label>
 					<div class="col-md-2 mb-2">
 
@@ -265,7 +292,7 @@
 						</div>
 
 					</div>
-					<label class="col-lg-1" for="assoMtrNo"><strong>Asso. Mtr No</strong> &nbsp</label>
+					<label class="col-lg-1" for="assoMtrNo">Asso. Mtr No &nbsp</label>
 					<div class="col-md-3 mb-2">
 
 						<div class="input-group">
@@ -275,7 +302,7 @@
 						</div>
 
 					</div>
-					<label class="col-lg-2" for="rule"><strong>Rule</strong> &nbsp</label>
+					<label class="col-lg-2" for="rule">Rule &nbsp</label>
 					<div class="col-md-2 mb-2">
 
 						<div class="input-group">
@@ -285,7 +312,7 @@
 						</div>
 
 					</div>
-					<label class="col-lg-2" for="value"><strong>Value</strong> &nbsp</label>
+					<label class="col-lg-2" for="value">Value &nbsp</label>
 					<div class="col-md-2 mb-2">
 
 						<div class="input-group">
@@ -301,7 +328,7 @@
 
 							<button type="button" class="btn btn-primary"
 								th:onclick="|window.location.href='/meterDetailsForm'|">Meter
-								Details>></button>
+								Details</button>
 							<button type="button" class="btn btn-primary">X-F Details</button>
 							<button type="button" th:onclick="|window.location.href='/CensusEntryForm'|"
 								class="btn btn-primary">Consumer</button>
@@ -314,13 +341,13 @@
 		</div>
 
 
-
-		<div class="row">
+        <legend class="w-auto px-2"> <strong>TOD Details</strong></legend>
+		<div class="row fixTableHead">
 			<div class="col-12">
 				<fieldset class="form-group border p-3">
-					<legend class="w-auto px-2">TOD Details</legend>
+					
 
-					<table class="table table-striped table-bordered">
+					<table class="table table-striped table-bordered ">
 						<thead>
 							<tr>
 								<th scope="col">X-F Mfg No.</th>
@@ -332,7 +359,8 @@
 						</thead>
 						<tbody>
 							<tr>
-								<th scope="row">1</th>
+								<!-- <th scope="row">1</th> -->
+                                <td>1</td>
 								<td>Mark</td>
 								<td>Otto</td>
 								<td>@mdo</td>
@@ -341,7 +369,8 @@
 
 							</tr>
 							<tr>
-								<th scope="row">2</th>
+								<!-- <th scope="row">2</th> -->
+                                <td>2</td>
 								<td>Jacob</td>
 								<td>Thornton</td>
 								<td>@fat</td>
@@ -349,7 +378,8 @@
 
 							</tr>
 							<tr>
-								<th scope="row">3</th>
+								<!-- <th scope="row">3</th> -->
+                                <td>3</td>
 								<td>Larry</td>
 								<td>the Bird</td>
 								<td>@twitter</td>
@@ -378,6 +408,7 @@
 
 
 	</script>
+
 
 
 </body>

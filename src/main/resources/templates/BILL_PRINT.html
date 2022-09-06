@@ -62,12 +62,12 @@
 		<div class="card">
 			<div th:replace="fragments/sidebar :: header"></div>
 			<div class="card-body">
-				<form th:action="@{/Show_BillPrint}" method="post" th:object="${AddMeterModel}">
+				<form onkeydown="return event.key != 'Enter';" th:action="@{/Show_BillPrint}" method="post" th:object="${AddMeterModel}">
 
 					<div class="form-group row">
 
 						<label for="BillCycleCode" class="col-sm-2  col-form-label">Bill Cycle</label>
-						<div class="col-sm-6  input-group search_select_box ">
+						<div class="col-sm-2  input-group search_select_box ">
 							<select id="select_box_BillCycle" class="form-control  search_select_box_BillCycle" name="BILL_CYCLE_CODE"
 								onchange="locationFunction()">
 								<option th:value="0" selected>select BillCycle</option>
@@ -75,13 +75,13 @@
 									th:text="${code.BILL_CYCLE_CODE}"  ></option>
 							</select>
 						</div>
+						<div class="col-sm-4"></div>
 
 						<div class="col-4 mb-2 ">
 							<div class="btn-group border-black " id="show" role="group" aria-label="Basic example">
 								<button type="submit" class="btn mr-1 btn-primary">Show
 								</button>
-								<button type="button" onclick="printDiv('printableArea')"
-									class="btn btn-success">Print</button>
+								
 							</div>
 						</div>
 						<label for="Location" class="col-sm-2 pr-1 mb-2  col-form-label">Location</label>
@@ -96,7 +96,7 @@
 						</div>
 
 
-						<input readonly type="text" class="form-control Location col-sm-6" id="Location">
+						<input readonly type="text" class="form-control Location col-sm-6" name="LOCATION_NAME" id="Location">
 						<div class="col-sm-2"></div>
 
 						<label for="BillGroup" class="col-sm-2 pr-1 mb-2  col-form-label">Bill Group</label>
@@ -117,7 +117,7 @@
 
 						<label for="Area" class="col-sm-2 pr-1 mb-2  col-form-label">Area</label>
 
-						<input type="text" name="AREA_CODE" class="form-control   col-sm-2" id="AREA_CODE">
+						<input type="text" required name="AREA_CODE" class="form-control   col-sm-2" id="AREA_CODE">
 
 
 						<input readonly type="text" class="form-control col-sm-6" id="Area">
@@ -236,6 +236,7 @@
 
 
 </script>
+
 
 
 

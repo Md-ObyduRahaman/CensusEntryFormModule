@@ -11,6 +11,8 @@ public class DPD_LOCATION_LIST {
 	private String DIV;
 	private String SUB_DIV;
 	private String CIRCLE;
+	private String BILL_GRP;
+	
 	
 	
 	
@@ -31,6 +33,13 @@ public class DPD_LOCATION_LIST {
 		DIV = dIV;
 		SUB_DIV = sUB_DIV;
 		CIRCLE = cIRCLE;
+	}
+	
+	public String getBILL_GRP() {
+		return BILL_GRP;
+	}
+	public void setBILL_GRP(String bILL_GRP) {
+		BILL_GRP = bILL_GRP;
 	}
 	public String getLOCATION_CODE() {
 		return LOCATION_CODE;

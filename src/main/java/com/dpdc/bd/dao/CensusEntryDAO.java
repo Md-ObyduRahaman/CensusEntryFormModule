@@ -24,10 +24,12 @@ public class CensusEntryDAO {
 	private JdbcTemplate jdbcTemplate;
 	SimpleJdbcCall getAllStatesJdbcCall;
 	SimpleJdbcCall getAllStatesJdbcCall1;
+	SimpleJdbcCall getAllStatesJdbcCallbillGrp;
 
 	public CensusEntryDAO(DataSource dataSource) {
 		this.getAllStatesJdbcCall = new SimpleJdbcCall(dataSource);
 		this.getAllStatesJdbcCall1 = new SimpleJdbcCall(dataSource);
+		this.getAllStatesJdbcCallbillGrp = new SimpleJdbcCall(dataSource);
 
 	}
 
@@ -69,6 +71,25 @@ public class CensusEntryDAO {
 		}
 		return DPD_Z_C_D_SD_LIST;
 
+	}
+	public String Get_billGrp(String P_LOCATION,String P_BOOK) {
+		
+		DPD_LOCATION_LIST DPD_Z_C_D_SD_LIST = new DPD_LOCATION_LIST();
+		Map<String, Object> result = getAllStatesJdbcCallbillGrp.withCatalogName("DPG_EMP_CONSUMER_CENSUS_ENTRY")
+				.withProcedureName("DPD_BILL_GROUP")
+				.declareParameters(new SqlOutParameter("results_cursor", OracleTypes.VARCHAR)).execute(P_LOCATION,P_BOOK);
+		
+		JSONObject json = new JSONObject(result);
+		String jString = json.get("CUR_DATA").toString();
+		JSONArray jsonArray = new JSONArray(jString);
+		
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonData = jsonArray.getJSONObject(i);
+			DPD_Z_C_D_SD_LIST.setBILL_GRP(jsonData.optString("BILL_GRP"));
+			
+		}
+		return DPD_Z_C_D_SD_LIST.getBILL_GRP();
+		
 	}
 
 }

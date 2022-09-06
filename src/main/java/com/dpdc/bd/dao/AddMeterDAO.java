@@ -50,7 +50,8 @@ public class AddMeterDAO {
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonData = jsonArray.getJSONObject(i);
 			addMeterModel = new AddMeterModel(jsonData.optString("LOCATION_CODE"), jsonData.optString("BILL_GROUP"),
-					jsonData.optString("BOOK"), jsonData.optString("CHECK_DIGIT"), jsonData.optInt("CUST_ID"));
+					jsonData.optString("BOOK"), jsonData.optString("CHECK_DIGIT"), jsonData.optInt("CUST_ID"),
+					jsonData.optString("CUSTOMER_NAME"));
 		}
 		return addMeterModel;
 
@@ -91,7 +92,7 @@ public class AddMeterDAO {
 		JSONObject json = new JSONObject(result);
 		String out = json.get("O_STATUS").toString();
 		System.out.println(out);
-		
+
 		return out;
 
 	}
@@ -109,9 +110,10 @@ public class AddMeterDAO {
 
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonData = jsonArray.getJSONObject(i);
-			addMeterModel_LIST.add(new AddMeterModel(jsonData.optString("REF_NO"), jsonData.optString("REF_DATE").substring(0, 10),
-					jsonData.optString("LOCATION_CODE"), jsonData.optString("BILL_GR"), jsonData.optString("BOOK_NO"),
-					jsonData.optString("CONSUMER_NUM"), jsonData.optString("CHECK_DIGIT"), jsonData.optInt("CUST_ID"),
+			addMeterModel_LIST.add(new AddMeterModel(jsonData.optString("REF_NO"),
+					jsonData.optString("REF_DATE").substring(0, 10), jsonData.optString("LOCATION_CODE"),
+					jsonData.optString("BILL_GR"), jsonData.optString("BOOK_NO"), jsonData.optString("CONSUMER_NUM"),
+					jsonData.optString("CHECK_DIGIT"), jsonData.optInt("CUST_ID"),
 					jsonData.optString("EFF_BILL_CYCLE_CODE"), jsonData.optString("REMARKS"),
 					jsonData.optString("ADJ_FLAG"), jsonData.optString("ENL_BILL_CYCLE_CODE"),
 					jsonData.optString("NET_CONS_NAME"), jsonData.optString("NET_CUST_NUM"),
@@ -120,7 +122,5 @@ public class AddMeterDAO {
 		}
 		return addMeterModel_LIST;
 	}
-	
-	
 
 }

@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CensusEntryFormApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CensusEntryFormApplication.class, args);
+		SpringApplication.run(CensusEntryFormApplication.class, args); 
 	}
 
 }

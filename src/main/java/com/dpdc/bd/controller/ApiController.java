@@ -36,6 +36,15 @@ public class ApiController {
 		return DPD_Z_C_D_SD_LIST;
 
 	}
+	@GetMapping("/billGrp/{lid}/{bid}")
+	public String get_billGrp(@PathVariable("lid") String P_LOCATION,@PathVariable("bid") String P_BOOK) {		
+		String BILL_GRP = censusEntryDAO.Get_billGrp(P_LOCATION, P_BOOK);	
+		System.out.println(P_LOCATION);
+		System.out.println(P_BOOK);
+		System.out.println(BILL_GRP);
+		return BILL_GRP;
+		
+	}
 
 	@GetMapping("/locationAddMeter/{id}")
 	public AddMeterModel get_Add_Meter_List_LIST(@PathVariable("id") String id) {
