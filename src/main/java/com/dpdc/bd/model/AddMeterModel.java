@@ -64,7 +64,7 @@ public class AddMeterModel {
 	public AddMeterModel(String rEF_NO, String rEF_DATE, String lOCATION_CODE, String bILL_GR, String bOOK_NO,
 			String cONSUMER_NUM, String cHECK_DIGIT, int cUST_ID, String eFF_BILL_CYCLE_CODE, String rEMARKS,
 			String aDJ_FLAG, String eNL_BILL_CYCLE_CODE, String nET_CONS_NAME, String nET_CUST_NUM,
-			String nET_CUST_CHECK_DIGIT, int nET_CUST_ID, String eXP_BILL_CYCLE, int nET_CAPACITY) {
+			String nET_CUST_CHECK_DIGIT, int nET_CUST_ID, String eXP_BILL_CYCLE, int nET_CAPACITY,String cUSTOMER_NAME) {
 		super();
 		REF_NO = rEF_NO;
 		REF_DATE = rEF_DATE;
@@ -84,6 +84,7 @@ public class AddMeterModel {
 		NET_CUST_ID = nET_CUST_ID;
 		EXP_BILL_CYCLE = eXP_BILL_CYCLE;
 		NET_CAPACITY = nET_CAPACITY;
+		CUSTOMER_NAME=cUSTOMER_NAME;
 	}
 
 	public AddMeterModel(String cHECK_DIGIT, int cUST_ID, String nET_CONS_NAME) {
@@ -298,8 +299,10 @@ public class AddMeterModel {
 				+ ", NET_CONS_NAME=" + NET_CONS_NAME + ", NET_CUST_NUM=" + NET_CUST_NUM + ", NET_CUST_CHECK_DIGIT="
 				+ NET_CUST_CHECK_DIGIT + ", NET_CUST_ID=" + NET_CUST_ID + ", EXP_BILL_CYCLE=" + EXP_BILL_CYCLE
 				+ ", NET_CAPACITY=" + NET_CAPACITY + ", BILL_CYCLE_CODE=" + BILL_CYCLE_CODE + ", AREA_CODE=" + AREA_CODE
-				+ ", LOCATION_NAME=" + LOCATION_NAME + "]";
+				+ ", LOCATION_NAME=" + LOCATION_NAME + ", CUSTOMER_NAME=" + CUSTOMER_NAME + "]";
 	}
+
+
 
 
 

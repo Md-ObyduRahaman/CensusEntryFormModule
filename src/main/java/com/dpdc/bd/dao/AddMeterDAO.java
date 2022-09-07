@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
@@ -118,9 +119,17 @@ public class AddMeterDAO {
 					jsonData.optString("ADJ_FLAG"), jsonData.optString("ENL_BILL_CYCLE_CODE"),
 					jsonData.optString("NET_CONS_NAME"), jsonData.optString("NET_CUST_NUM"),
 					jsonData.optString("NET_CUST_CHECK_DIGIT"), jsonData.optInt("NET_CUST_ID"),
-					jsonData.optString("EXP_BILL_CYCLE"), jsonData.optInt("NET_CAPACITY")));
+					jsonData.optString("EXP_BILL_CYCLE"), jsonData.optInt("NET_CAPACITY"),jsonData.optString("CUSTOMER_NAME")));
 		}
 		return addMeterModel_LIST;
 	}
+	public ArrayList<AddMeterModel> listeff_BILL_CYCLE_CODE() {
 
+		String sql = "SELECT BILL_CYCLE_CODE FROM BC_BILL_CYCLE_MASTER ORDER BY BILL_CYCLE_CODE DESC";
+				
+		ArrayList<AddMeterModel> listShop_Br = (ArrayList<AddMeterModel>) jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(AddMeterModel.class));
+
+		return listShop_Br;
+	}
 }
