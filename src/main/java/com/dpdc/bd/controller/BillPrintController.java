@@ -28,7 +28,8 @@ public class BillPrintController {
 	BillPrintDoa billPrintDoa;
 
 	@GetMapping("/BILL_PRINT")
-	public String billHome(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model,HttpServletResponse response) {
+	public String billHome(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model,
+			HttpServletResponse response) {
 		if (user_name.equals("")) {
 			return "redirect:/";
 		}
@@ -37,15 +38,13 @@ public class BillPrintController {
 		ArrayList<AddMeterModel> Bill_Location_LIST = billPrintDoa.Get_Location_LIST(user_name);
 		model.addAttribute("Bill_Cycle_LIST", Bill_Cycle_LIST);
 		model.addAttribute("Bill_Location_LIST", Bill_Location_LIST);
-		
-		
 
 		return "BILL_PRINT";
 	}
 
 	@RequestMapping("/Show_BillPrint")
-	public String showBill(@CookieValue(value = "user_name", defaultValue = "") String user_name,@CookieValue(value = "book", defaultValue = "") String book,
-			AddMeterModel addMeterModel,Model model) {
+	public String showBill(@CookieValue(value = "user_name", defaultValue = "") String user_name,
+			@CookieValue(value = "book", defaultValue = "") String book, AddMeterModel addMeterModel, Model model) {
 
 		if (user_name.equals("")) {
 			return "redirect:/";
@@ -59,23 +58,42 @@ public class BillPrintController {
 		addMeterModel.setLOCATION_CODE(str.substring(str.length() - 2));
 
 		System.out.println(addMeterModel.toString());
-		BillPrint billPrint= billPrintDoa.get_billPrint_ShowAddMeterModelInfo(addMeterModel.getBILL_CYCLE_CODE(),
+		String string = addMeterModel.getBILL_CYCLE_CODE();
+
+		ArrayList<AddMeterModel> Get_billPrint_LIST = billPrintDoa.Get_billPrint_LIST(
+				addMeterModel.getBILL_CYCLE_CODE(), addMeterModel.getLOCATION_CODE(), addMeterModel.getBILL_GR(),
+				addMeterModel.getBOOK_NO(), addMeterModel.getAREA_CODE(), addMeterModel.getCONSUMER_NUM());
+		if (1 < Get_billPrint_LIST.size()) {
+
+			for (int i = 0; i < Get_billPrint_LIST.size(); i++) {
+
+				BillPrint billPrint = billPrintDoa.get_billPrint_ShowAddMeterModelInfo(
+						Get_billPrint_LIST.get(i).getBILL_CYCLE_CODE(), Get_billPrint_LIST.get(i).getLOCATION_CODE(),
+						Get_billPrint_LIST.get(i).getBILL_GR(), Get_billPrint_LIST.get(i).getBOOK_NO(),
+						Get_billPrint_LIST.get(i).getCONSUMER_NUM());
+
+				System.out.println(billPrint.toString());
+				System.out.println("..........................................................");
+			}
+		}
+
+		BillPrint billPrint = billPrintDoa.get_billPrint_ShowAddMeterModelInfo(addMeterModel.getBILL_CYCLE_CODE(),
 				addMeterModel.getLOCATION_CODE(), addMeterModel.getBILL_GR(), addMeterModel.getBOOK_NO(),
 				addMeterModel.getCONSUMER_NUM());
 		model.addAttribute("billPrint", billPrint);
-		String books=addMeterModel.getBOOK_NO() ;
+		String books = addMeterModel.getBOOK_NO();
 		model.addAttribute("book", books);
-		String billGrp=addMeterModel.getBILL_GR() ;
+		String billGrp = addMeterModel.getBILL_GR();
 		model.addAttribute("billGrp", billGrp);
-		String consumerNum=addMeterModel.getCONSUMER_NUM() ;
+		String consumerNum = addMeterModel.getCONSUMER_NUM();
 		model.addAttribute("consumerNum", consumerNum);
-		String billCycle=addMeterModel.getBILL_CYCLE_CODE() ;
+		String billCycle = addMeterModel.getBILL_CYCLE_CODE();
 		model.addAttribute("billCycle", billCycle);
-		String locationCode=addMeterModel.getLOCATION_CODE();
+		String locationCode = addMeterModel.getLOCATION_CODE();
 		model.addAttribute("locationCode", locationCode);
-		String locationName=addMeterModel.getLOCATION_NAME();
+		String locationName = addMeterModel.getLOCATION_NAME();
 		model.addAttribute("locationName", locationName);
-		
+
 		return "demo";
 	}
 

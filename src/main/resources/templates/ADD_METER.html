@@ -42,6 +42,18 @@
 			line-height: 1.7em;
 			color: midnightblue;
 		}
+
+		/* Chrome, Safari, Edge, Opera */
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		/* Firefox */
+		input[type=number] {
+			-moz-appearance: textfield;
+		}
 	</style>
 
 </head>
@@ -65,7 +77,7 @@
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
-							<label class="form-label col-lg-2" for="REF_DATE"><strong>REF_DATE</strong>
+							<label class="form-label col-lg-2" for="REF_DATE"><strong>REF DATE</strong>
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
@@ -89,8 +101,11 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input type="text" name="CHECK_DIGIT" th:value="*{CHECK_DIGIT}" id="CHECK_DIGIT"
-										onchange="locationFunction()" class="form-control fcs form-control-lg" />
+									<input
+										oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+										type="number" maxlength="1" name="CHECK_DIGIT" th:value="*{CHECK_DIGIT}"
+										id="CHECK_DIGIT" onchange="locationFunction()"
+										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="CONSUMER_NUM"><strong>CONS. NAME</strong>
@@ -138,9 +153,9 @@
 								&nbsp</label>
 							<div class="col-lg-2 " id="effBill">
 								<div class="input-group ">
-									<select name="EFF_BILL_CYCLE_CODE" id="EFF_BILL_CYCLE_CODE" 
-										class="form-control  search_select_box select_supplyType">
-										<option value=""></option>
+									<select name="EFF_BILL_CYCLE_CODE" id="EFF_BILL_CYCLE_CODE"
+										class="form-control fcs search_select_box select_supplyType">
+										<option value="0">Please select</option>
 										<option th:each="l : ${eff_BILL_CYCLE_CODE}" th:value="${l.BILL_CYCLE_CODE}"
 											th:text="${l.BILL_CYCLE_CODE}"></option>
 									</select>
@@ -150,8 +165,7 @@
 
 							<div class="col-lg-2 " id="effBillt" style="display: none;">
 								<div class="input-group">
-									<input readonly type="text" name="EFF_BILL_CYCLE_CODE"
-										th:value="*{EFF_BILL_CYCLE_CODE}" id="EFF_BILL_CYCLE_CODEt"
+									<input type="text" name="EFF_BILL_CYCLE_CODE_UPDATE" id="EFF_BILL_CYCLE_CODEt"
 										class="form-control  form-control-lg" />
 								</div>
 							</div>
@@ -180,35 +194,42 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input type="number" name="NET_CAPACITY" th:value="*{NET_CAPACITY}"
-										id="NET_CAPACITY" class="form-control fcs form-control-lg" />
+									<input
+										oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+										type="number" maxlength="3" name="NET_CAPACITY" id="NET_CAPACITY"
+										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="NET_METER_DIGIT"><strong>NET METER DIGIT</strong>
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input type="number" name="NET_METER_DIGIT" th:value="*{NET_CAPACITY}"
-										id="NET_METER_DIGIT" class="form-control fcs form-control-lg" />
+									<input
+										oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+										type="number" maxlength="1" name="NET_METER_DIGIT" id="NET_METER_DIGIT"
+										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="NET_METER_OMF"><strong>NET METER OMF</strong>
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input type="number" name="NET_METER_OMF" th:value="*{NET_CAPACITY}"
-										id="NET_METER_OMF" class="form-control fcs form-control-lg" />
+									<input
+										oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+										type="number" maxlength="6" name="NET_METER_OMF" id="NET_METER_OMF"
+										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="REMARKS"><strong>REMARKS</strong>
 								&nbsp</label>
 							<div class="col-lg-10 ">
 								<div class="input-group">
-								<textarea class="form-control fcs" name="REMARKS" th:value="*{REMARKS}" id="REMARKS" rows="3"></textarea>
-									
+									<textarea class="form-control fcs" name="REMARKS" th:value="*{REMARKS}" id="REMARKS"
+										rows="3"></textarea>
+
 								</div>
 							</div>
-						
+
 							<div class="col-12  text-center">
 
 								<button type="submit" id="SaveButton"
@@ -259,8 +280,12 @@
 							<td><input type="hidden" th:id="'EFF_BILL_CYCLE_CODE_'+${iterStatus.index}"
 									th:text="${list.EFF_BILL_CYCLE_CODE}" name="EFF_BILL_CYCLE_CODE"
 									th:value="${list.EFF_BILL_CYCLE_CODE}"></input></td>
-							<td><input type="hidden" ></input></td>
-							<td><input type="hidden"></input></td>
+							<td><input type="hidden" th:id="'NET_METER_DIGIT_'+${iterStatus.index}"
+									th:text="${list.NET_METER_DIGIT}" name="NET_METER_DIGIT"
+									th:value="${list.NET_METER_DIGIT}"></input></td>
+							<td><input type="hidden" th:id="'NET_METER_OMF_'+${iterStatus.index}"
+									th:text="${list.NET_METER_OMF}" name="NET_METER_OMF;
+" th:value="${list.NET_METER_OMF}"></input></td>
 							<td><input type="hidden" th:id="'EXP_BILL_CYCLE_'+${iterStatus.index}"
 									th:text="${list.EXP_BILL_CYCLE}" name="EXP_BILL_CYCLE"
 									th:value="${list.EXP_BILL_CYCLE}"></input></td>
@@ -272,10 +297,7 @@
 									th:value="${list.CUSTOMER_NAME}"></input></td>
 							<td><a th:onclick="'updateById('+${iterStatus.index}+')'" id="updateButton"
 									class="btn btn-primary  text-right" target="_blank">Update</a><br>
-
 							</td>
-
-
 							<input type="hidden" th:id="'REMARKS_'+${iterStatus.index}" name="REMARKS"
 								th:value="${list.REMARKS}"></input>
 							<input type="hidden" th:id="'BILL_GR_'+${iterStatus.index}" name="BILL_GR"
@@ -325,7 +347,7 @@
 			var consumer_NUM = document.getElementById('CONSUMER_NUM_' + id).value;
 			var eff_BILL_CYCLE_CODE = document.getElementById('EFF_BILL_CYCLE_CODE_' + id).value;
 
-			
+
 			var exp_BILL_CYCLE = document.getElementById('EXP_BILL_CYCLE_' + id).value;
 			var net_CAPACITY = document.getElementById('NET_CAPACITY_' + id).value;
 			var remarks = document.getElementById('REMARKS_' + id).value;
@@ -335,9 +357,11 @@
 			var cust_ID = document.getElementById('CUST_ID_' + id).value;
 			var adj_FLAG = document.getElementById('ADJ_FLAG_' + id).value;
 			var enl_BILL_CYCLE_CODE = document.getElementById('ENL_BILL_CYCLE_CODE_' + id).value;
-			
+
 			var exp_BILL_CYCLE = document.getElementById('EXP_BILL_CYCLE_' + id).value;
-			var net_CAPACITY = document.getElementById('NET_CAPACITY_' + id).value;
+			var net_METER_DIGIT = document.getElementById('NET_METER_DIGIT_' + id).value;
+			var customer_NAME = document.getElementById('CUSTOMER_NAME_' + id).value;
+			var net_METER_OMF = document.getElementById('NET_METER_OMF_' + id).value;
 
 
 
@@ -353,13 +377,17 @@
 			document.getElementById("CUST_ID").value = cust_ID;
 			document.getElementById("ADJ_FLAG").value = adj_FLAG;
 			document.getElementById("ENL_BILL_CYCLE_CODE").value = enl_BILL_CYCLE_CODE;
-			
+			document.getElementById("NET_METER_DIGIT").value = net_METER_DIGIT;
+			console.log(net_METER_OMF)
+			document.getElementById("NET_METER_OMF").value = net_METER_OMF;
+
 			document.getElementById("EXP_BILL_CYCLE").value = exp_BILL_CYCLE;
 			document.getElementById("NET_CAPACITY").value = net_CAPACITY;
+			document.getElementById("CUSTOMER_NAME").value = customer_NAME;
 
-			var button = document.getElementById('SaveButton');
-			button.innerHTML = "Update";
-			button.style.background = "#429bf5";
+			//var button = document.getElementById('SaveButton');
+			//button.innerHTML = "Update";
+			//button.style.background = "#429bf5";
 
 			var x = document.getElementById('REF_DATE');
 			x.setAttribute("type", "text");
@@ -372,7 +400,7 @@
 			$("#REF_NO").prop("readonly", true);
 			$("#REF_DATE").prop("readonly", true);
 			$("#CONSUMER_NUM").prop("readonly", true);
-			$("#REMARKS").prop("readonly", true);
+			$("#REMARKS").prop("readonly", false);
 			$("#LOCATION_CODE").prop("readonly", true);
 			$("#BILL_GR").prop("readonly", true);
 			$("#BOOK_NO").prop("readonly", true);
@@ -380,11 +408,11 @@
 			$("#CUST_ID").prop("readonly", true);
 			$("#ADJ_FLAG").prop("readonly", true);
 			$("#ENL_BILL_CYCLE_CODE").prop("readonly", true);
-			$("#NET_METER_OMF").prop("readonly", true);
-			$("#NET_METER_DIGIT").prop("readonly", true);
-			
-			$("#NET_CAPACITY").prop("readonly", true);
-			$("#EXP_BILL_CYCLE").prop("readonly", false);
+			$("#NET_METER_OMF").prop("readonly", false);
+			$("#NET_METER_DIGIT").prop("readonly", false);
+
+			$("#NET_CAPACITY").prop("readonly", false);
+			$("#EXP_BILL_CYCLE").prop("readonly", true);
 
 			$(window).scrollTop(0);
 

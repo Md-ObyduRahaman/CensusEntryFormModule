@@ -53,6 +53,12 @@ public class AddMeterController {
 
 		String o = formatter.format(java.sql.Date.valueOf(addMeterModel.getREF_DATE()));
 		addMeterModel.setREF_DATE(o);
+		String string=addMeterModel.getEFF_BILL_CYCLE_CODE_UPDATE();
+		if (string.length()!=0) {
+			addMeterModel.setEFF_BILL_CYCLE_CODE(string);
+			
+			
+		}
 		String insertStatus = addMeterDAO.insertAddMeterModel(addMeterModel, user_name);
 		int i=Integer.parseInt(insertStatus);
 		if (i==1) {

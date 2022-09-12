@@ -67,7 +67,7 @@ public class ApiController {
 	@GetMapping("/billprint/{lid}/{bid}/{cid}")
 	public AddMeterModel get_billprint_LIST(@PathVariable("lid") String lid, @PathVariable("bid") String bid,
 			@PathVariable("cid") String cid) {
-		AddMeterModel addMeterModelNet = billPrintDoa.Get_billPrint_LIST(lid,bid,cid);
+		AddMeterModel addMeterModelNet = billPrintDoa.Get_billPrint(lid,bid,"","","",cid);
 		System.out.println(addMeterModelNet);
 		return addMeterModelNet;
 		

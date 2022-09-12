@@ -80,16 +80,14 @@ public class AddMeterDAO {
 
 	public String insertAddMeterModel(AddMeterModel a, String user_name) {
 
-		System.out.println(a.toString());
 
 		Map<String, Object> result = getAllStatesJdbcCallInsert.withCatalogName("DPG_NET_METTARING")
 				.withProcedureName("DPD_BC_NET_CUSTOMERS_SAVE")
 				.declareParameters(new SqlOutParameter("results", OracleTypes.INTEGER)).execute(a.getREF_NO(),
 						a.getREF_DATE(), a.getLOCATION_CODE(), a.getBILL_GR(), a.getBOOK_NO(), a.getCONSUMER_NUM(),
 						a.getCHECK_DIGIT(), a.getCUST_ID(), a.getEFF_BILL_CYCLE_CODE(), a.getREMARKS(), a.getADJ_FLAG(),
-						a.getENL_BILL_CYCLE_CODE(), a.getNET_CONS_NAME(), a.getNET_CUST_NUM(),
-						a.getNET_CUST_CHECK_DIGIT(), a.getNET_CUST_ID(), a.getEXP_BILL_CYCLE(), a.getNET_CAPACITY(), 1,
-						user_name);
+						a.getENL_BILL_CYCLE_CODE(), a.getEXP_BILL_CYCLE(), a.getNET_CAPACITY(), a.getNET_METER_DIGIT(),
+						a.getNET_METER_OMF(), a.getCUSTOMER_NAME(), 1, user_name);
 		JSONObject json = new JSONObject(result);
 		String out = json.get("O_STATUS").toString();
 		System.out.println(out);
@@ -117,16 +115,17 @@ public class AddMeterDAO {
 					jsonData.optString("CHECK_DIGIT"), jsonData.optInt("CUST_ID"),
 					jsonData.optString("EFF_BILL_CYCLE_CODE"), jsonData.optString("REMARKS"),
 					jsonData.optString("ADJ_FLAG"), jsonData.optString("ENL_BILL_CYCLE_CODE"),
-					jsonData.optString("NET_CONS_NAME"), jsonData.optString("NET_CUST_NUM"),
-					jsonData.optString("NET_CUST_CHECK_DIGIT"), jsonData.optInt("NET_CUST_ID"),
-					jsonData.optString("EXP_BILL_CYCLE"), jsonData.optInt("NET_CAPACITY"),jsonData.optString("CUSTOMER_NAME")));
+					jsonData.optString("EXP_BILL_CYCLE"), jsonData.optString("CUSTOMER_NAME"),
+					jsonData.optInt("NET_METER_DIGIT"), jsonData.optInt("NET_METER_OMF"),
+					jsonData.optInt("NET_CAPACITY")));
 		}
 		return addMeterModel_LIST;
 	}
+
 	public ArrayList<AddMeterModel> listeff_BILL_CYCLE_CODE() {
 
 		String sql = "SELECT BILL_CYCLE_CODE FROM BC_BILL_CYCLE_MASTER ORDER BY BILL_CYCLE_CODE DESC";
-				
+
 		ArrayList<AddMeterModel> listShop_Br = (ArrayList<AddMeterModel>) jdbcTemplate.query(sql,
 				BeanPropertyRowMapper.newInstance(AddMeterModel.class));
 

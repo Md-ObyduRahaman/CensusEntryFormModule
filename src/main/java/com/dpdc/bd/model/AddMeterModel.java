@@ -25,6 +25,9 @@ public class AddMeterModel {
 	private String AREA_CODE;
 	private String LOCATION_NAME;
 	private String CUSTOMER_NAME ;
+	private int  NET_METER_DIGIT ;
+	private int NET_METER_OMF ;
+	private String EFF_BILL_CYCLE_CODE_UPDATE;
 
 	
 
@@ -61,10 +64,12 @@ public class AddMeterModel {
 		// TODO Auto-generated constructor stub
 	}
 
+	
+
 	public AddMeterModel(String rEF_NO, String rEF_DATE, String lOCATION_CODE, String bILL_GR, String bOOK_NO,
 			String cONSUMER_NUM, String cHECK_DIGIT, int cUST_ID, String eFF_BILL_CYCLE_CODE, String rEMARKS,
-			String aDJ_FLAG, String eNL_BILL_CYCLE_CODE, String nET_CONS_NAME, String nET_CUST_NUM,
-			String nET_CUST_CHECK_DIGIT, int nET_CUST_ID, String eXP_BILL_CYCLE, int nET_CAPACITY,String cUSTOMER_NAME) {
+			String aDJ_FLAG, String eNL_BILL_CYCLE_CODE, String eXP_BILL_CYCLE, String cUSTOMER_NAME,
+			int nET_METER_DIGIT, int nET_METER_OMF,int nET_CAPACITY) {
 		super();
 		REF_NO = rEF_NO;
 		REF_DATE = rEF_DATE;
@@ -78,14 +83,13 @@ public class AddMeterModel {
 		REMARKS = rEMARKS;
 		ADJ_FLAG = aDJ_FLAG;
 		ENL_BILL_CYCLE_CODE = eNL_BILL_CYCLE_CODE;
-		NET_CONS_NAME = nET_CONS_NAME;
-		NET_CUST_NUM = nET_CUST_NUM;
-		NET_CUST_CHECK_DIGIT = nET_CUST_CHECK_DIGIT;
-		NET_CUST_ID = nET_CUST_ID;
 		EXP_BILL_CYCLE = eXP_BILL_CYCLE;
-		NET_CAPACITY = nET_CAPACITY;
-		CUSTOMER_NAME=cUSTOMER_NAME;
+		CUSTOMER_NAME = cUSTOMER_NAME;
+		NET_METER_DIGIT = nET_METER_DIGIT;
+		NET_METER_OMF = nET_METER_OMF;
+		NET_CAPACITY =nET_CAPACITY;
 	}
+
 
 	public AddMeterModel(String cHECK_DIGIT, int cUST_ID, String nET_CONS_NAME) {
 		super();
@@ -106,6 +110,38 @@ public class AddMeterModel {
 	}
 	
 	
+	
+	
+
+	public String getEFF_BILL_CYCLE_CODE_UPDATE() {
+		return EFF_BILL_CYCLE_CODE_UPDATE;
+	}
+
+
+	public void setEFF_BILL_CYCLE_CODE_UPDATE(String eFF_BILL_CYCLE_CODE_UPDATE) {
+		EFF_BILL_CYCLE_CODE_UPDATE = eFF_BILL_CYCLE_CODE_UPDATE;
+	}
+
+
+	public int getNET_METER_DIGIT() {
+		return NET_METER_DIGIT;
+	}
+
+
+	public void setNET_METER_DIGIT(int nET_METER_DIGIT) {
+		NET_METER_DIGIT = nET_METER_DIGIT;
+	}
+
+
+	public int getNET_METER_OMF() {
+		return NET_METER_OMF;
+	}
+
+
+	public void setNET_METER_OMF(int nET_METER_OMF) {
+		NET_METER_OMF = nET_METER_OMF;
+	}
+
 
 	public String getCUSTOMER_NAME() {
 		return CUSTOMER_NAME;
@@ -299,8 +335,12 @@ public class AddMeterModel {
 				+ ", NET_CONS_NAME=" + NET_CONS_NAME + ", NET_CUST_NUM=" + NET_CUST_NUM + ", NET_CUST_CHECK_DIGIT="
 				+ NET_CUST_CHECK_DIGIT + ", NET_CUST_ID=" + NET_CUST_ID + ", EXP_BILL_CYCLE=" + EXP_BILL_CYCLE
 				+ ", NET_CAPACITY=" + NET_CAPACITY + ", BILL_CYCLE_CODE=" + BILL_CYCLE_CODE + ", AREA_CODE=" + AREA_CODE
-				+ ", LOCATION_NAME=" + LOCATION_NAME + ", CUSTOMER_NAME=" + CUSTOMER_NAME + "]";
+				+ ", LOCATION_NAME=" + LOCATION_NAME + ", CUSTOMER_NAME=" + CUSTOMER_NAME + ", NET_METER_DIGIT="
+				+ NET_METER_DIGIT + ", NET_METER_OMF=" + NET_METER_OMF + "]";
 	}
+
+
+	
 
 
 

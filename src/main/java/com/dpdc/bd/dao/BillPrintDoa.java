@@ -28,6 +28,7 @@ public class BillPrintDoa {
 	SimpleJdbcCall getAllStatesJdbcCallGetBillCycleList;
 	SimpleJdbcCall getAllStatesJdbcCallGetLocation;
 	SimpleJdbcCall getAllStatesJdbcCallGetbillprintFormInfo;
+	SimpleJdbcCall getAllStatesJdbcCallGetbillprintForm;
 	SimpleJdbcCall getAllStatesJdbcCallGetbillprintShowinfo;
 
 	public BillPrintDoa(DataSource dataSource) {
@@ -36,6 +37,7 @@ public class BillPrintDoa {
 		this.getAllStatesJdbcCallGetLocation = new SimpleJdbcCall(dataSource);
 		this.getAllStatesJdbcCallGetbillprintFormInfo = new SimpleJdbcCall(dataSource);
 		this.getAllStatesJdbcCallGetbillprintShowinfo = new SimpleJdbcCall(dataSource);
+		this.getAllStatesJdbcCallGetbillprintForm = new SimpleJdbcCall(dataSource);
 
 	}
 
@@ -76,13 +78,34 @@ public class BillPrintDoa {
 		return Bill_Location_LIST;
 	}
 
-	public AddMeterModel Get_billPrint_LIST(String P_BILL_CYCLE, String P_LOCATION, String P_CUSTOMER_NO) {
+	public ArrayList<AddMeterModel> Get_billPrint_LIST(String P_BILL_CYCLE, String P_LOCATION,String P_BILL_GROUP,String P_BOOK,String P_AREA_CODE, String P_CUSTOMER_NO) {
 
-		AddMeterModel Bill_Location_LIST = new AddMeterModel();
+		ArrayList<AddMeterModel> Bill_Location_LIST = new ArrayList<AddMeterModel>();
 		Map<String, Object> result = getAllStatesJdbcCallGetbillprintFormInfo
 				.withCatalogName("DPG_NET_METTAR_BILL_PRINT").withProcedureName("DPD_CUSTOMER_DATA")
 				.declareParameters(new SqlOutParameter("results_cursor", OracleTypes.VARCHAR))
-				.execute(P_LOCATION, P_BILL_CYCLE, P_CUSTOMER_NO);
+				.execute( P_BILL_CYCLE,P_LOCATION,P_BILL_GROUP,P_BOOK,P_AREA_CODE, P_CUSTOMER_NO);
+
+		JSONObject json = new JSONObject(result);
+		String jString = json.get("CUR_DATA").toString();
+		JSONArray jsonArray = new JSONArray(jString);
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonData = jsonArray.getJSONObject(i);
+			Bill_Location_LIST.add(new AddMeterModel(jsonData.optString("LOCATION_CODE"),
+					jsonData.optString("BILL_GROUP"), jsonData.optString("BOOK"), jsonData.optString("CONSUMER_NUM"),
+					jsonData.optString("BILL_CYCLE_CODE"), jsonData.optString("AREA_CODE")));
+		}
+		return Bill_Location_LIST;
+	}
+	public AddMeterModel Get_billPrint(String P_BILL_CYCLE, String P_LOCATION,String P_BILL_GROUP,String P_BOOK,String P_AREA_CODE, String P_CUSTOMER_NO) {
+
+		AddMeterModel Bill_Location_LIST = new AddMeterModel();
+		Map<String, Object> result = getAllStatesJdbcCallGetbillprintForm
+				.withCatalogName("DPG_NET_METTAR_BILL_PRINT").withProcedureName("DPD_CUSTOMER_DATA")
+				.declareParameters(new SqlOutParameter("results_cursor", OracleTypes.VARCHAR))
+				.execute(P_LOCATION, P_BILL_CYCLE,P_BILL_GROUP,P_BOOK,P_AREA_CODE, P_CUSTOMER_NO);
+
 
 		JSONObject json = new JSONObject(result);
 		String jString = json.get("CUR_DATA").toString();
