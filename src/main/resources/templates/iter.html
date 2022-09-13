@@ -23,12 +23,12 @@
 <body>
 	<h1>hello</h1>
 
-	<div th:each="code : ${Bill_Cycle_LIST}" class="container-fluid">
+	<div th:each="code : ${billPrints}" class="container-fluid">
 		<h1>Example</h1>
 		<table  style="border: 1px solid black;">
 
 		<tr >
-			<td th:text="${code.BILL_CYCLE_CODE}" />
+			<td th:text="${code.CUST_ID}" />
 			<td th:text="hello" />				
 		</tr>
 		<tr>

@@ -49,6 +49,7 @@ public class BillPrintController {
 		if (user_name.equals("")) {
 			return "redirect:/";
 		}
+		ArrayList<BillPrint> billPrint=new ArrayList<BillPrint>();
 		ArrayList<AddMeterModel> Bill_Cycle_LIST = billPrintDoa.Get_Bill_Cycle_LIST(user_name);
 		ArrayList<AddMeterModel> Bill_Location_LIST = billPrintDoa.Get_Location_LIST(user_name);
 		model.addAttribute("Bill_Cycle_LIST", Bill_Cycle_LIST);
@@ -63,23 +64,22 @@ public class BillPrintController {
 		ArrayList<AddMeterModel> Get_billPrint_LIST = billPrintDoa.Get_billPrint_LIST(
 				addMeterModel.getBILL_CYCLE_CODE(), addMeterModel.getLOCATION_CODE(), addMeterModel.getBILL_GR(),
 				addMeterModel.getBOOK_NO(), addMeterModel.getAREA_CODE(), addMeterModel.getCONSUMER_NUM());
-		if (1 < Get_billPrint_LIST.size()) {
+		
 
 			for (int i = 0; i < Get_billPrint_LIST.size(); i++) {
 
-				BillPrint billPrint = billPrintDoa.get_billPrint_ShowAddMeterModelInfo(
+				BillPrint bill = billPrintDoa.get_billPrint_ShowAddMeterModelInfo(
 						Get_billPrint_LIST.get(i).getBILL_CYCLE_CODE(), Get_billPrint_LIST.get(i).getLOCATION_CODE(),
 						Get_billPrint_LIST.get(i).getBILL_GR(), Get_billPrint_LIST.get(i).getBOOK_NO(),
 						Get_billPrint_LIST.get(i).getCONSUMER_NUM());
+				
+				billPrint.add(bill);
 
-				System.out.println(billPrint.toString());
-				System.out.println("..........................................................");
+				
 			}
-		}
+		
 
-		BillPrint billPrint = billPrintDoa.get_billPrint_ShowAddMeterModelInfo(addMeterModel.getBILL_CYCLE_CODE(),
-				addMeterModel.getLOCATION_CODE(), addMeterModel.getBILL_GR(), addMeterModel.getBOOK_NO(),
-				addMeterModel.getCONSUMER_NUM());
+		
 		model.addAttribute("billPrint", billPrint);
 		String books = addMeterModel.getBOOK_NO();
 		model.addAttribute("book", books);
