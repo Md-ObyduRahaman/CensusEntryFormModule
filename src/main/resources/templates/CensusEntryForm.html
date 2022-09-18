@@ -49,271 +49,293 @@
 			<!--Start First Part -->
 
 			<div class="card text-center">
+				<form th:action="@{/DATA_ENTRY_LT}" method="post" th:object="${censusFormModel}">
 
-				<fieldset class="form-group text-left border p-3">
-					<legend class="w-auto px-2"><strong>Consumer Census Entry(BC_CONSCEN)</strong></legend>
+					<fieldset class="form-group text-left border p-3">
+						<legend class="w-auto px-2"><strong>Consumer Census Entry</strong></legend>
 
-					<div class="row  text-black">
-						<label class="col-lg-1" for="location">Location &nbsp </label>
-						<div class="col-md-2 mb-2 input-group search_select_box ">
-							<select name="locationOption" id="locationOption"
-								class="form-control search_select_box select_supplyType">
-								<option value="">Select Zone </option>
-								<option th:each="location : ${dPD_LOCATION_LIST}" th:value="${location.LOCATION_CODE}"
-									th:text="${location.LOCATION_NAME}"></option>
-							</select>
-						</div>
-						<label class="col-lg-1" for="supplyType">Zone &nbsp</label>
-						<div class="col-md-1 mb-2">
-
-							<div class="input-group">
-
-								<input type="text" id="zone" readonly class="form-control form-control-lg" />
-							</div>
-
-						</div>
-						<label class="form-label col-lg-1" for="circle">Circle &nbsp</label>
-						<div class="col-md-1 mb-4">
-
-							<div class="input-group">
-
-
-
-
-								<input type="text" id="circle" readonly class="form-control  form-control-lg" />
-							</div>
-
-						</div>
-						<label class="form-label col-lg-1" for="Div">Div &nbsp</label>
-						<div class="col-md-1 mb-4">
-
-
-							<div class="input-group">
-
-
-								<input type="text" id="Div" readonly class="form-control form-control-lg" />
-							</div>
-
-						</div>
-						<label class="form-label col-lg-1" for="sub_div">Sub Div &nbsp</label>
-						<div class="col-md-2 mb-4">
-
-							<div class="input-group">
-
-								<input type="text" id="sub_div" readonly class="form-control form-control-lg" />
-							</div>
-
-						</div>
-
-						<label class="form-label col-lg-1 " for="book_no">Book No &nbsp</label>
-						<div class="col-md-1 mb-4">
-
-							<div class="input-group">
-
-								<input type="text" id="book_no" class="form-control fcs form-control-lg" />
-							</div>
-
-						</div>
-						<label class="form-label col-lg-1" for="billGrp">BillGrp &nbsp</label>
-						<div class="col-md-1 mb-4">
-
-							<div class="input-group">
-
-								<input type="text" id="billGrp" readonly class="form-control form-control-lg" />
-							</div>
-
-						</div>
-
-
-
-						<label class=" col-lg-1" for="supplyType">Cons. Source &nbsp</label>
-						<div class="col-3 mb-2 ">
-							<select class="form-select form-select-sm" aria-label=".form-select-sm example">
-								<option selected value="N">New consumers</option>
-								<option value="F">Census consumers</option>
-								<option value="M">Migrated consumers</option>
-								<option value="L">Additional meter</option>
-							</select>
-						</div>
-
-
-						<label class="form-label col-lg-1 " for="walkOrder">Walk. Order
-							&nbsp</label>
-						<div class="col-md-3 mb-4">
-
-							<div class="input-group">
-
-
-								<input type="number" maxlength="5" id="walkOrder" class="form-control fcs form-control-lg" />
-							</div>
-
-						</div>
-						<label class="form-label col-lg-1 " for="conSrlNo">ConSrl No. &nbsp</label>
-						<div class="col-md-1 mb-4">
-
-							<div class="input-group">
-
-								<input type="text" id="conSrlNo" class="form-control form-control-lg fcs" />
-							</div>
-
-						</div>
-						<label class="col-lg-1" for="supplyType">Govt. Flat &nbsp</label>
-						<div class="col-md-1 mb-4">
-							<div class="input-group">
-								<select class="form-select" aria-label="Default select example">
-									<option value="0" selected>No</option>
-									<option value="1">Yes</option>
+						<div class="row  text-black">
+							<label class="col-lg-1" for="location">Location &nbsp </label>
+							<div class="col-md-2 mb-2 input-group search_select_box ">
+								<select name="locationOption" id="locationOption"
+									class="form-control search_select_box select_supplyType">
+									<option value="">Select Zone </option>
+									<option th:each="location : ${dPD_LOCATION_LIST}"
+										th:value="${location.LOCATION_CODE}" th:text="${location.LOCATION_NAME}">
+									</option>
 								</select>
 							</div>
-						</div>
-						<label class="form-label col-lg-1" for="oldAcNo">Old A/C No. &nbsp</label>
-						<div class="col-md-3 mb-4">
-							<div class="input-group">
-								<input type="text" id="oldAcNo" class="form-control fcs form-control-lg" />
-							</div>
+							<label class="col-lg-1" for="supplyType">Zone &nbsp</label>
+							<div class="col-md-1 mb-2">
 
-						</div>
-						<label class="form-label col-lg-1" for="computerConsNo">Computer Cons No. &nbsp</label>
-						<div class="col-md-3 mb-4">
+								<div class="input-group">
 
-							<div class="input-group">
-
-
-								<input type="text" id="computerConsNo" readonly class="form-control form-control-lg" />
-							</div>
-
-						</div>
-
-
-
-
-
-
-					</div>
-
-				</fieldset>
-
-				<fieldset class="form-group text-left border p-3">
-					<legend class="w-auto px-2"><strong>Coustomer Details</strong></legend>
-					<div class="row  text-black">
-
-						<label class="form-label col-lg-2" for="coustomerName">Coustomer Name &nbsp</label>
-						<div class="col-md-10 mb-4">
-
-							<div class="input-group">
-
-								<input type="text" id="coustomerName" class="form-control fcs form-control-lg" />
-							</div>
-
-						</div>
-						<label class="form-label col-lg-2" for="fatherHusband">Father/Husband Name:&nbsp</label>
-						<div class="col-md-10 mb-4">
-
-							<div class="input-group">
-
-								<input type="text" id="fatherHusband" class="form-control fcs form-control-lg" />
-							</div>
-						</div>
-						<label class="form-label col-lg-2" for="serviceAddress">Service Address:
-							&nbsp</label>
-						<div class="col-md-4 mb-4">
-
-							<div class="input-group">
-
-								<input type="text" id="serviceAddress" class="form-control fcs form-control-lg" />
-							</div>
-						</div>
-						<label class="form-label col-lg-2" for="mailingAddress"> Address &nbsp</label>
-						<div class="col-md-4 mb-4">
-
-							<div class="input-group">
-
-								<input readonly type="text" id="mailingAddress" class="form-control  form-control-lg" />
-							</div>
-						</div>
-						<label class="form-label col-lg-2" for="city">City &nbsp</label>
-						<div class="col-md-4 mb-4">
-
-							<div class="input-group">
-
-								<input type="text" id="city" class="form-control fcs form-control-lg" />
-							</div>
-						</div>
-						<label class="form-label col-lg-2" for="cityReadOnly">City &nbsp</label>
-						<div class="col-md-4 mb-4">
-
-							<div class="input-group">
-
-								<input type="text" id="cityReadOnly" readonly class="form-control form-control-lg" />
+									<input type="text" id="zone" readonly class="form-control form-control-lg" />
+								</div>
 
 							</div>
+							<label class="form-label col-lg-1" for="circle">Circle &nbsp</label>
+							<div class="col-md-1 mb-4">
+
+								<div class="input-group">
+
+
+
+
+									<input type="text" id="circle" name="CIRCLE" readonly
+										class="form-control  form-control-lg" />
+								</div>
+
+							</div>
+							<label class="form-label col-lg-1" for="Div">Div &nbsp</label>
+							<div class="col-md-1 mb-4">
+
+
+								<div class="input-group">
+
+
+									<input type="text" id="Div" name="DIVISION" readonly
+										class="form-control form-control-lg" />
+								</div>
+
+							</div>
+							<label class="form-label col-lg-1" for="sub_div">Sub Div &nbsp</label>
+							<div class="col-md-2 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" id="sub_div" readonly class="form-control form-control-lg" />
+								</div>
+
+							</div>
+
+							<label class="form-label col-lg-1 " for="book_no">Book No &nbsp</label>
+							<div class="col-md-1 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" id="book_no" class="form-control fcs form-control-lg" />
+								</div>
+
+							</div>
+							<label class="form-label col-lg-1" for="billGrp">BillGrp &nbsp</label>
+							<div class="col-md-1 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" id="billGrp" name="BILL_GRP" readonly
+										class="form-control form-control-lg" />
+								</div>
+
+							</div>
+
+
+
+							<label class=" col-lg-1" for="supplyType">Cons. Source &nbsp</label>
+							<div class="col-3 mb-2 ">
+								<select name="CONSUMER_STATUS" class="form-select form-select-sm"
+									aria-label=".form-select-sm example">
+									<option selected value="N">New consumers</option>
+									<option value="F">Census consumers</option>
+									<option value="M">Migrated consumers</option>
+									<option value="L">Additional meter</option>
+								</select>
+							</div>
+
+
+							<label class="form-label col-lg-1 " for="walkOrder">Walk. Order
+								&nbsp</label>
+							<div class="col-md-3 mb-4">
+
+								<div class="input-group">
+
+
+									<input type="number" name="WALKING_SEQUENCE" maxlength="5" id="walkOrder"
+										class="form-control fcs form-control-lg" />
+								</div>
+
+							</div>
+							<label class="form-label col-lg-1 " for="conSrlNo">ConSrl No. &nbsp</label>
+							<div class="col-md-1 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" id="conSrlNo" name="CONS_SRL_NO"
+										class="form-control form-control-lg fcs" />
+								</div>
+
+							</div>
+							<label class="col-lg-1" for="supplyType">Govt. Flat &nbsp</label>
+							<div class="col-md-1 mb-4">
+								<div class="input-group">
+									<select name="CONSUMER_FLAG" class="form-select"
+										aria-label="Default select example">
+										<option value="0" selected>No</option>
+										<option value="1">Yes</option>
+									</select>
+								</div>
+							</div>
+							<label class="form-label col-lg-1" for="oldAcNo">Old A/C No. &nbsp</label>
+							<div class="col-md-3 mb-4">
+								<div class="input-group">
+									<input name="OLD_TRANS_CONNECTION_ID" type="text" id="oldAcNo"
+										class="form-control fcs form-control-lg" />
+								</div>
+
+							</div>
+							<label class="form-label col-lg-1" for="computerConsNo">Computer Cons No. &nbsp</label>
+							<div class="col-md-3 mb-4">
+
+								<div class="input-group">
+
+
+									<input type="text" id="computerConsNo" name="" readonly
+										class="form-control form-control-lg" />
+								</div>
+
+							</div>
+
+
+
+
+
+
 						</div>
-						
-						<label class="form-label col-lg-2" for="postalCode">Postal code &nbsp</label>
-						<div class="col-md-4 mb-4">
 
-							<div class="input-group">
+					</fieldset>
 
-								<input type="number" id="postalCode" class="form-control fcs form-control-lg" />
+					<fieldset class="form-group text-left border p-3">
+						<legend class="w-auto px-2"><strong>Customer Details</strong></legend>
+						<div class="row  text-black">
+
+							<label class="form-label col-lg-2" for="coustomerName">Customer Name &nbsp</label>
+							<div class="col-md-10 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" id="coustomerName" class="form-control fcs form-control-lg" />
+								</div>
+
+							</div>
+							<label class="form-label col-lg-2" for="fatherHusband">Father/Husband Name:&nbsp</label>
+							<div class="col-md-10 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" id="fatherHusband" name="CUSTOMER_NAME"
+										class="form-control fcs form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="serviceAddress">Service Address:
+								&nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" id="serviceAddress" name="SERV_ADDR_DESCR1"
+										class="form-control fcs form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="mailingAddress"> Address &nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input readonly name="MAIL_ADDR_DESCR1" type="text" id="mailingAddress"
+										class="form-control  form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="city">City &nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" id="city" name="MAIL_CITY"
+										class="form-control fcs form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="cityReadOnly">City &nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" id="cityReadOnly" name="SERV_CITY" readonly
+										class="form-control form-control-lg" />
+
+								</div>
+							</div>
+
+							<label class="form-label col-lg-2" for="postalCode">Postal code &nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input type="number" id="postalCode" name="MAIL_PIN_CODE"
+										class="form-control fcs form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="postalCodeReadOnly">Postal code
+								&nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input type="number" id="postalCodeReadOnly" readonly name="SERV_PIN_CODE"
+										class="form-control  form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="BankCode(1)">Bank Code(1)
+								&nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" name="BANK_CODE" id="BankCode(1)"
+										class="form-control fcs form-control-lg" />
+								</div>
+							</div>
+
+							<label class="form-label col-lg-2" for="branchCode(1)">Branch Code(1)
+								&nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" name="BRANCH_CODE" id="branchCode(1)"
+										class="form-control fcs form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="BankCode(2)">Bank Code(2) &nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" name="BANK_CODE_1" id="BankCode(2)"
+										class="form-control fcs form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="branchCode(2)">Branch Code(2)
+								&nbsp</label>
+							<div class="col-md-4 mb-4">
+								<div class="input-group"><input type="text" id="branchCode(2)" name="BRANCH_CODE_1"
+										class="form-control fcs form-control-lg" />
+								</div>
+							</div>
+
+
+							<div class="col-12 text-right">
+								<div class="btn-group border-black " style="display: inline;" role="group"
+									aria-label="Basic example">
+									<button type="button" class="btn btn-primary"
+										th:onclick="|window.location.href='/meterDetailsForm'|">MeterDetails</button>
+									<button type="button" class="btn btn-primary"
+										th:onclick="|window.location.href='/distribution'|">Distribution</button>
+									<button type="submit" class="btn btn-success">Save</button>
+								</div>
 							</div>
 						</div>
-						<label class="form-label col-lg-2" for="postalCodeReadOnly">Postal code
-							&nbsp</label>
-						<div class="col-md-4 mb-4">
-
-							<div class="input-group">
-
-								<input type="text" id="postalCodeReadOnly" readonly
-									class="form-control  form-control-lg" />
-							</div>
-						</div>
-						<label class="form-label col-lg-2" for="BankCode(1)">Bank Code(1)
-							&nbsp</label>
-						<div class="col-md-4 mb-4">
-
-							<div class="input-group">
-
-								<input type="number" id="BankCode(1)" class="form-control fcs form-control-lg" />
-							</div>
-						</div>
-						
-						<label class="form-label col-lg-2" for="branchCode(1)">Branch Code(1)
-							&nbsp</label>
-						<div class="col-md-4 mb-4">
-
-							<div class="input-group">
-
-								<input type="number" id="branchCode(1)" class="form-control fcs form-control-lg" />
-							</div>
-						</div>
-						<label class="form-label col-lg-2" for="BankCode(2)">Bank Code(2) &nbsp</label>
-						<div class="col-md-4 mb-4">
-
-							<div class="input-group">
-
-								<input type="number" id="BankCode(2)" class="form-control fcs form-control-lg" />
-							</div>
-						</div>
-						<label class="form-label col-lg-2" for="branchCode(2)">Branch Code(2)
-							&nbsp</label>
-						<div class="col-md-4 mb-4">
-							<div class="input-group"><input type="number" id="branchCode(2)"
-									class="form-control fcs form-control-lg" />
-							</div>
-						</div>
-
-
-						<div class="col-12 text-right">
-							<div class="btn-group border-black " style="display: inline;" role="group"
-								aria-label="Basic example">
-								<button type="button" class="btn btn-primary"
-									th:onclick="|window.location.href='/meterDetailsForm'|">MeterDetails</button>
-								<button type="button" class="btn btn-primary"
-									th:onclick="|window.location.href='/distribution'|">Distribution</button>
-							</div>
-						</div>
-					</div>
-				</fieldset>
+					</fieldset>
+				</form>
 			</div>
 		</div>
 	</div>

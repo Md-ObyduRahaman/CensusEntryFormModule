@@ -9,6 +9,7 @@ import javax.sql.DataSource;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
@@ -78,34 +79,14 @@ public class BillPrintDoa {
 		return Bill_Location_LIST;
 	}
 
-	public ArrayList<AddMeterModel> Get_billPrint_LIST(String P_BILL_CYCLE, String P_LOCATION,String P_BILL_GROUP,String P_BOOK,String P_AREA_CODE, String P_CUSTOMER_NO) {
+	public AddMeterModel Get_billPrint_LIST(String P_BILL_CYCLE, String P_LOCATION, String P_BILL_GROUP, String P_BOOK,
+			String P_AREA_CODE, String P_CUSTOMER_NO) {
 
-		ArrayList<AddMeterModel> Bill_Location_LIST = new ArrayList<AddMeterModel>();
+		AddMeterModel Bill_Location_LIST = new AddMeterModel();
 		Map<String, Object> result = getAllStatesJdbcCallGetbillprintFormInfo
 				.withCatalogName("DPG_NET_METTAR_BILL_PRINT").withProcedureName("DPD_CUSTOMER_DATA")
 				.declareParameters(new SqlOutParameter("results_cursor", OracleTypes.VARCHAR))
-				.execute( P_BILL_CYCLE,P_LOCATION,P_BILL_GROUP,P_BOOK,P_AREA_CODE, P_CUSTOMER_NO);
-
-		JSONObject json = new JSONObject(result);
-		String jString = json.get("CUR_DATA").toString();
-		JSONArray jsonArray = new JSONArray(jString);
-
-		for (int i = 0; i < jsonArray.length(); i++) {
-			JSONObject jsonData = jsonArray.getJSONObject(i);
-			Bill_Location_LIST.add(new AddMeterModel(jsonData.optString("LOCATION_CODE"),
-					jsonData.optString("BILL_GROUP"), jsonData.optString("BOOK"), jsonData.optString("CONSUMER_NUM"),
-					jsonData.optString("BILL_CYCLE_CODE"), jsonData.optString("AREA_CODE")));
-		}
-		return Bill_Location_LIST;
-	}
-	public AddMeterModel Get_billPrint(String P_BILL_CYCLE, String P_LOCATION,String P_BILL_GROUP,String P_BOOK,String P_AREA_CODE, String P_CUSTOMER_NO) {
-
-		AddMeterModel Bill_Location_LIST = new AddMeterModel();
-		Map<String, Object> result = getAllStatesJdbcCallGetbillprintForm
-				.withCatalogName("DPG_NET_METTAR_BILL_PRINT").withProcedureName("DPD_CUSTOMER_DATA")
-				.declareParameters(new SqlOutParameter("results_cursor", OracleTypes.VARCHAR))
-				.execute(P_LOCATION, P_BILL_CYCLE,P_BILL_GROUP,P_BOOK,P_AREA_CODE, P_CUSTOMER_NO);
-
+				.execute(P_BILL_CYCLE, P_LOCATION, P_BILL_GROUP, P_BOOK, P_AREA_CODE, P_CUSTOMER_NO);
 
 		JSONObject json = new JSONObject(result);
 		String jString = json.get("CUR_DATA").toString();
@@ -120,10 +101,54 @@ public class BillPrintDoa {
 		return Bill_Location_LIST;
 	}
 
-	public BillPrint get_billPrint_ShowAddMeterModelInfo(String P_BILL_CYCLE, String P_LOCATION, String P_BILL_GROUP,
-			String P_BOOK, String P_CUSTOMER_NO) {
+	public AddMeterModel Get_billPrint(String P_BILL_CYCLE, String P_LOCATION, String P_BILL_GROUP, String P_BOOK,
+			String P_AREA_CODE, String P_CUSTOMER_NO) {
 
-		BillPrint Bill_print = new BillPrint();
+		AddMeterModel Bill_Location_LIST = new AddMeterModel();
+		Map<String, Object> result = getAllStatesJdbcCallGetbillprintForm.withCatalogName("DPG_NET_METTAR_BILL_PRINT")
+				.withProcedureName("DPD_CUSTOMER_DATA")
+				.declareParameters(new SqlOutParameter("results_cursor", OracleTypes.VARCHAR))
+				.execute(P_LOCATION, P_BILL_CYCLE, P_BILL_GROUP, P_BOOK, P_AREA_CODE, P_CUSTOMER_NO);
+
+		JSONObject json = new JSONObject(result);
+		String jString = json.get("CUR_DATA").toString();
+		JSONArray jsonArray = new JSONArray(jString);
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonData = jsonArray.getJSONObject(i);
+			Bill_Location_LIST = new AddMeterModel(jsonData.optString("LOCATION_CODE"),
+					jsonData.optString("BILL_GROUP"), jsonData.optString("BOOK"), jsonData.optString("CONSUMER_NUM"),
+					jsonData.optString("BILL_CYCLE_CODE"), jsonData.optString("AREA_CODE"));
+		}
+		return Bill_Location_LIST;
+	}
+
+	public ArrayList<AddMeterModel> listeff_BILL_GROUP() {
+
+		String sql = "SELECT  BILL_GROUP AS BILL_GR FROM BC_BILL_GROUP where BILL_GROUP in (select bill_gr from BC_NET_CUSTOMERS)  ORDER BY BILL_GROUP ASC";
+
+		ArrayList<AddMeterModel> listeff_BILL_GROUP = (ArrayList<AddMeterModel>) jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(AddMeterModel.class));
+
+		return listeff_BILL_GROUP;
+	}
+	public ArrayList<AddMeterModel> listeff_BOOK_NO(String P_LOC_CODE, String  P_BILL_GR) {
+		
+		
+		
+		String sql = "SELECT DISTINCT BOOK_NO FROM BC_NET_CUSTOMERS WHERE LOCATION_CODE ='"+P_LOC_CODE+"' AND BILL_GR='"+P_BILL_GR+"'";
+				
+		
+		ArrayList<AddMeterModel> listeff_BOOK_NO = (ArrayList<AddMeterModel>) jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(AddMeterModel.class));
+		
+		return listeff_BOOK_NO;
+	}
+
+	public ArrayList<BillPrint> get_billPrint_ShowAddMeterModelInfo(String P_BILL_CYCLE, String P_LOCATION,
+			String P_BILL_GROUP, String P_BOOK, String P_CUSTOMER_NO) {
+
+		ArrayList<BillPrint> Bill_print = new ArrayList<BillPrint>();
 		Map<String, Object> result = getAllStatesJdbcCallGetbillprintShowinfo
 				.withCatalogName("DPG_NET_METTAR_BILL_PRINT").withProcedureName("DPD_BILL_PRINT")
 				.declareParameters(new SqlOutParameter("results_cursor", OracleTypes.VARCHAR))
@@ -135,7 +160,7 @@ public class BillPrintDoa {
 
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonData = jsonArray.getJSONObject(i);
-			Bill_print = new BillPrint(jsonData.optString("CUST_ID"), jsonData.optString("BMONTH"),
+			Bill_print.add(new BillPrint(jsonData.optString("CUST_ID"), jsonData.optString("BMONTH"),
 					jsonData.optString("NO_OF_COPIES"), jsonData.optString("USAGE_TYPE"),
 					jsonData.optString("BILL_STATUS"), jsonData.optString("LOCATION_CODE"),
 					jsonData.optString("LOCATION_NAME"), jsonData.optString("FEEDER_NAME"),
@@ -217,7 +242,7 @@ public class BillPrintDoa {
 					jsonData.optString("CF_UNIT"), jsonData.optString("BF_UNIT"), jsonData.optString("SETTLEMENT_UNIT"),
 					jsonData.optString("UTILITY_RATE"), jsonData.optString("NET_SETTLEMENT_AMT"),
 					jsonData.optString("NET_PRIN_ADJ_AMT"), jsonData.optString("NET_VAT_ADJ_AMT"),
-					jsonData.optString("NET_TOT_BILL"));
+					jsonData.optString("NET_TOT_BILL")));
 
 		}
 

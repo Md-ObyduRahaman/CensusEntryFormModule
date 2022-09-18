@@ -50,6 +50,17 @@
 		th {
 			background: #fff;
 		}
+		/* Chrome, Safari, Edge, Opera */
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		/* Firefox */
+		input[type=number] {
+			-moz-appearance: textfield;
+		}
 	</style>
 
 
@@ -71,8 +82,8 @@
 				<fieldset class="form-group text-left border p-3">
 					<legend class="w-auto px-2">Meter details</legend>
 					<div class="row">
-						<label class="col-lg-1" for="coustomerName">Owner &nbsp </label>
-						<div class="col-lg-3 mb-2 input-group search_select_box ">
+						<label class="col-lg-2" for="coustomerName">Owner &nbsp </label>
+						<div class="col-lg-2 mb-2 input-group search_select_box ">
 							<select name="owner_list" id="owner_list" class="form-control select_owner_list">
 								<option selected></option>
 								<option value="1">One</option>
@@ -80,8 +91,8 @@
 								<option value="3">Three</option>
 							</select>
 						</div>
-						<label class="col-lg-1" for="type">Type &nbsp </label>
-						<div class="col-lg-3 mb-2  input-group search_select_box ">
+						<label class="col-lg-2" for="type">Type &nbsp </label>
+						<div class="col-lg-2 mb-2  input-group search_select_box ">
 							<select name="type_list" id="type_list" class="form-control select">
 								<option selected></option>
 								<option value="1">One</option>
@@ -90,8 +101,8 @@
 							</select>
 							<span class="input-group-text"> KWH </span>
 						</div>
-						<label class="col-lg-1" for="type">Make &nbsp </label>
-						<div class="col-lg-3 mb-2 input-group search_select_box ">
+						<label class="col-lg-2" for="type">Make &nbsp </label>
+						<div class="col-lg-2 mb-2 input-group search_select_box ">
 							<select name="make_list" id="make_list" class="form-control select_make_list">
 								<option selected></option>
 								<option value="1">One</option>
@@ -100,8 +111,8 @@
 							</select>
 
 						</div>
-						<label class="col-lg-1" for="location">Location &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="location">Location &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -111,8 +122,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="yrOfManuf">Yr Of Manuf &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="yrOfManuf">Yr Of Manuf &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -121,8 +132,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="yrOfInst">Yr Of Inst. &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="yrOfInst">Yr Of Inst. &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -131,8 +142,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="meterNo">Meter No. &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="meterNo">Meter No. &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -141,8 +152,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="digit(KW)">Digit(KW) &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="digit(KW)">Digit(KW) &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -151,8 +162,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="digit(Cum)">Digit(Cum) &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="digit(Cum)">Digit(Cum) &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -161,8 +172,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="meterDigit">Meter Digit &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="meterDigit">Meter Digit &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -171,9 +182,9 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="currRatting">Curr. Ratting
+						<label class="col-lg-2" for="currRatting">Curr. Ratting
 							&nbsp</label>
-						<div class="col-md-3 mb-2">
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -182,8 +193,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="voltRatting">Volt Rating &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="voltRatting">Volt Rating &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -192,8 +203,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="mtrCond">Mtr Cond &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="mtrCond">Mtr Cond &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -202,8 +213,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="mtrCond(KW)">Mtr Cond(KW) &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="mtrCond(KW)">Mtr Cond(KW) &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -212,9 +223,9 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="assKWHMtrNo">Ass. KWH Mtr No.
+						<label class="col-lg-2" for="assKWHMtrNo">Ass. KWH Mtr No.
 							&nbsp</label>
-						<div class="col-md-3 mb-2">
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -223,8 +234,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="DAILmF(KWH)">Dail MF(KWH) &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="DAILmF(KWH)">Dail MF(KWH) &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -233,9 +244,9 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="dailMf(kvarh)">Dail MF(KVARH)
+						<label class="col-lg-2" for="dailMf(kvarh)">Dail MF(KVARH)
 							&nbsp</label>
-						<div class="col-md-3 mb-2">
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -244,8 +255,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="DAILmF(KW)">Dail MF(KW) &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="DAILmF(KW)">Dail MF(KW) &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -254,8 +265,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="DAILmF(KVA)">Dail MF(KVA) &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="DAILmF(KVA)">Dail MF(KVA) &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -264,8 +275,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="ptRatio">PT Ratio &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="ptRatio">PT Ratio &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -274,8 +285,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="ctRatio">Ct Ratio &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="ctRatio">Ct Ratio &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -284,8 +295,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="omf(kwh)">OMF(KWH) &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="omf(kwh)">OMF(KWH) &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -295,15 +306,15 @@
 
 						</div>
 
-						<label class="col-lg-1" for="omf(kvarh)">OMF(KVARH) &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="omf(kvarh)">OMF(KVARH) &nbsp</label>
+						<div class="col-md-2 mb-2">
 							<div class="input-group">
 								<input type="number" class="form-control fcs" name="omf(kvarh)" id="omf(kvarh)">
 							</div>
 						</div>
 
-						<label class="col-lg-1" for="omf(kw)">OMF(KW) &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="omf(kw)">OMF(KW) &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -312,8 +323,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="omf(kva)">OMF(KVA) &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="omf(kva)">OMF(KVA) &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -322,8 +333,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="meterSeal">Meter seal &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="meterSeal">Meter seal &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -332,8 +343,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="protType">Prot Type &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="protType">Prot Type &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -342,8 +353,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="TSno">T S No. &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="TSno">T S No. &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -352,8 +363,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="TSsetting">T S setting &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="TSsetting">T S setting &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 
@@ -362,8 +373,8 @@
 							</div>
 
 						</div>
-						<label class="col-lg-1" for="TSseal">TS seal &nbsp</label>
-						<div class="col-md-3 mb-2">
+						<label class="col-lg-2" for="TSseal">TS seal &nbsp</label>
+						<div class="col-md-2 mb-2">
 
 							<div class="input-group">
 

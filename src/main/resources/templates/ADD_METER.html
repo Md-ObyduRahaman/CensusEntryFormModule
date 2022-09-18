@@ -91,7 +91,7 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input type="text" maxlength="7" name="CONSUMER_NUM" onchange="locationFunction()"
+									<input type="number" maxlength="7" name="CONSUMER_NUM" onchange="locationFunction()"
 										th:value="*{CONSUMER_NUM}" id="CONSUMER_NUM"
 										onkeyup="moveCursor(this, 'CHECK_DIGIT')"
 										class="form-control fcs form-control-lg" />
@@ -229,6 +229,8 @@
 
 								</div>
 							</div>
+								<div class="alert alert-success mt-1 col-sm-12 text-center" th:text="${msg}" th:if="${msg}"
+								role="alert"></div>
 
 							<div class="col-12  text-center">
 
@@ -236,11 +238,11 @@
 									class="btn col-12  mt-3 btn-success ">Save</button>
 
 							</div>
-							<div class="alert alert-success mt-1 col-sm-12 text-center" th:text="${msg}" th:if="${msg}"
-								role="alert"></div>
-
+							
 					</form>
+					
 				</fieldset>
+			
 				<div class="card-header mb-3" style="color: green; background-color: paleturquoise;"><strong>Data
 						Table</strong></div>
 
@@ -389,16 +391,16 @@
 			//button.innerHTML = "Update";
 			//button.style.background = "#429bf5";
 
-			var x = document.getElementById('REF_DATE');
-			x.setAttribute("type", "text");
+			//var x = document.getElementById('REF_DATE');
+			//x.setAttribute("type", "text");
 			$("#effBill").hide();
 			$("#effBillt").show();
 
 
 
 
-			$("#REF_NO").prop("readonly", true);
-			$("#REF_DATE").prop("readonly", true);
+			$("#REF_NO").prop("readonly", false);
+			$("#REF_DATE").prop("readonly", false);
 			$("#CONSUMER_NUM").prop("readonly", true);
 			$("#REMARKS").prop("readonly", false);
 			$("#LOCATION_CODE").prop("readonly", true);

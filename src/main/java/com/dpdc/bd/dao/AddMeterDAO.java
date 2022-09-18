@@ -90,8 +90,6 @@ public class AddMeterDAO {
 						a.getNET_METER_OMF(), a.getCUSTOMER_NAME(), 1, user_name);
 		JSONObject json = new JSONObject(result);
 		String out = json.get("O_STATUS").toString();
-		System.out.println(out);
-
 		return out;
 
 	}
@@ -126,9 +124,10 @@ public class AddMeterDAO {
 
 		String sql = "SELECT BILL_CYCLE_CODE FROM BC_BILL_CYCLE_MASTER ORDER BY BILL_CYCLE_CODE DESC";
 
-		ArrayList<AddMeterModel> listShop_Br = (ArrayList<AddMeterModel>) jdbcTemplate.query(sql,
+		ArrayList<AddMeterModel> BILL_CYCLE_CODE = (ArrayList<AddMeterModel>) jdbcTemplate.query(sql,
 				BeanPropertyRowMapper.newInstance(AddMeterModel.class));
 
-		return listShop_Br;
+		return BILL_CYCLE_CODE;
 	}
+	
 }

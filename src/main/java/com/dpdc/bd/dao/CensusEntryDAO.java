@@ -13,6 +13,8 @@ import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
 import org.springframework.stereotype.Repository;
 
+import com.dpdc.bd.model.AddMeterModel;
+import com.dpdc.bd.model.CensusFormModel;
 import com.dpdc.bd.model.DPD_LOCATION_LIST;
 
 import oracle.jdbc.internal.OracleTypes;
@@ -25,11 +27,13 @@ public class CensusEntryDAO {
 	SimpleJdbcCall getAllStatesJdbcCall;
 	SimpleJdbcCall getAllStatesJdbcCall1;
 	SimpleJdbcCall getAllStatesJdbcCallbillGrp;
+	SimpleJdbcCall getAllStatesJdbcCallInsert;
 
 	public CensusEntryDAO(DataSource dataSource) {
 		this.getAllStatesJdbcCall = new SimpleJdbcCall(dataSource);
 		this.getAllStatesJdbcCall1 = new SimpleJdbcCall(dataSource);
 		this.getAllStatesJdbcCallbillGrp = new SimpleJdbcCall(dataSource);
+		this.getAllStatesJdbcCallInsert = new SimpleJdbcCall(dataSource);
 
 	}
 
@@ -90,6 +94,27 @@ public class CensusEntryDAO {
 		}
 		return DPD_Z_C_D_SD_LIST.getBILL_GRP();
 		
+	}
+	
+
+
+	public String insertCensusEntry(CensusFormModel a, String user_name) {
+
+
+		Map<String, Object> result = getAllStatesJdbcCallInsert.withCatalogName("DPG_CENSUS")
+				.withProcedureName("DPD_CENSUS_CUSTOMERS_SAVE")
+				.declareParameters(new SqlOutParameter("results", OracleTypes.INTEGER)).execute(a.getBANK_CODE(),
+						a.getBANK_CODE_1(), a.getBILL_GRP(), a.getBLOCK_NO(), a.getBRANCH_CODE(), a.getBRANCH_CODE_1(),
+						a.getCONS_SRL_NO(), a.getCIRCLE(), a.getCONSUMER_FLAG(), a.getCONSUMER_STATUS(), a.getCUSTOMER_NAME(),
+						a.getCUSTOMER_NUM(), a.getDIVISION(), a.getF_H_NAME(), a.getLOCATION_CODE(),
+						a.getMAIL_ADDR_DESCR1(), a.getMAIL_ADDR_DESCR1(),a.getMAIL_ADDR_DESCR1(),a.getMAIL_PIN_CODE(),
+						a.getMAIL_CITY(),a.getOLD_TRANS_CONNECTION_ID(),a.getSERV_ADDR_DESCR1(),a.getSERV_ADDR_DESCR1(),
+						a.getSERV_ADDR_DESCR1(),a.getSERV_CITY(),a.getSERV_PIN_CODE(),a.getWALKING_SEQUENCE(),a.getZONE(),user_name);
+		JSONObject json = new JSONObject(result);
+		String out = json.get("O_STATUS").toString();
+		System.out.println(out);
+		return out;
+
 	}
 
 }

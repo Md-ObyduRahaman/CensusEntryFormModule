@@ -1,5 +1,7 @@
 package com.dpdc.bd.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,9 +41,7 @@ public class ApiController {
 	@GetMapping("/billGrp/{lid}/{bid}")
 	public String get_billGrp(@PathVariable("lid") String P_LOCATION,@PathVariable("bid") String P_BOOK) {		
 		String BILL_GRP = censusEntryDAO.Get_billGrp(P_LOCATION, P_BOOK);	
-		System.out.println(P_LOCATION);
-		System.out.println(P_BOOK);
-		System.out.println(BILL_GRP);
+		
 		return BILL_GRP;
 		
 	}
@@ -74,5 +74,15 @@ public class ApiController {
 
 		
 
+	}
+	@GetMapping("/bookList/{lid}/{bid}")
+	public ArrayList<AddMeterModel> get_book_LIST(@PathVariable("lid") String lid, @PathVariable("bid") String bid
+			) {
+		ArrayList<AddMeterModel> addMeterModelNet = billPrintDoa.listeff_BOOK_NO(lid,bid);
+		return addMeterModelNet;
+		
+		
+		
+		
 	}
 }

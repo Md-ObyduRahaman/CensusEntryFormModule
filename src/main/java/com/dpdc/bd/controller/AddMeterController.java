@@ -31,13 +31,12 @@ public class AddMeterController {
 		if (user_name.equals("")) {
 			return "redirect:/";
 		}
-		ArrayList<AddMeterModel> addMeterModelList = addMeterDAO.Get_AddMeterModel_ALL_LIST(user_name);
-		
+		ArrayList<AddMeterModel> addMeterModelList = addMeterDAO.Get_AddMeterModel_ALL_LIST(user_name);		
 		model.addAttribute("addMeterModelList", addMeterModelList);
 		ArrayList<AddMeterModel> eff_BILL_CYCLE_CODE = addMeterDAO.listeff_BILL_CYCLE_CODE();
 		model.addAttribute("eff_BILL_CYCLE_CODE", eff_BILL_CYCLE_CODE);
+		
 		model.addAttribute("addMeterModel", addMeterModel);
-
 		return "ADD_METER";
 	}
 
