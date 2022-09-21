@@ -67,7 +67,7 @@ public class BillPrintController {
 
 		System.out.println(addMeterModel.toString());
 		String string = addMeterModel.getBILL_CYCLE_CODE();
-		if (addMeterModel.getCONSUMER_NUM() != "") {
+	/*	if (addMeterModel.getCONSUMER_NUM() != "") {
 			AddMeterModel Get_billPrint_LIST = billPrintDoa.Get_billPrint_LIST(addMeterModel.getBILL_CYCLE_CODE(),
 					addMeterModel.getLOCATION_CODE(), addMeterModel.getBILL_GR(), addMeterModel.getBOOK_NO(),
 					addMeterModel.getAREA_CODE(), addMeterModel.getCONSUMER_NUM());
@@ -76,11 +76,11 @@ public class BillPrintController {
 					Get_billPrint_LIST.getBOOK_NO(), Get_billPrint_LIST.getCONSUMER_NUM());
 		}
 
-		else {
+		else {*/
 			billPrint = billPrintDoa.get_billPrint_ShowAddMeterModelInfo(addMeterModel.getBILL_CYCLE_CODE(),
 					addMeterModel.getLOCATION_CODE(), addMeterModel.getBILL_GR(), addMeterModel.getBOOK_NO(),
 					addMeterModel.getCONSUMER_NUM());
-		}
+		//}
 
 		if (billPrint.isEmpty()) {
 			String msg = "Data is not Available right now, please input correct information and try again! ";

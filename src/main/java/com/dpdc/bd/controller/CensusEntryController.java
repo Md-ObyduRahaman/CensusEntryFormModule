@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -25,14 +26,43 @@ public class CensusEntryController {
 	GetDynamicMenuDAO getDynamicMenuDAO;
 
 	@GetMapping("/DATA_ENTRY_LT")
+	public String censusFormTable(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model) {
+		if (user_name.equals("")) {
+			return "redirect:/";
+		}
+		String dynamicMenu = getDynamicMenuDAO.getDynamicMenu(user_name);
+		model.addAttribute("dataHtml", dynamicMenu);
+		ArrayList<CensusFormModel> listOf_CensusEntity = censusEntryDAO.listOf_CensusFormModel();
+		model.addAttribute("listOf_CensusEntity", listOf_CensusEntity);
+
+		
+		return "CensusEntryTable";
+	}
+	@GetMapping("/DATA_ENTRY_LT_FORM")
 	public String censusForm(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model) {
 		if (user_name.equals("")) {
 			return "redirect:/";
 		}
+		String dynamicMenu = getDynamicMenuDAO.getDynamicMenu(user_name);
+		model.addAttribute("dataHtml", dynamicMenu);
 		ArrayList<DPD_LOCATION_LIST> dPD_LOCATION_LIST = censusEntryDAO.Get_DPD_LOCATION_LIST(user_name);
 		model.addAttribute("dPD_LOCATION_LIST", dPD_LOCATION_LIST);
-
 		return "CensusEntryForm";
+	}
+	@GetMapping("/DATA_ENTRY_LT_FORM_Update/{id}")
+	public String censusFormUpdate(@CookieValue(value = "user_name", defaultValue = "") String user_name,@PathVariable("id") String CUST_INT_ID, Model model) {
+		if (user_name.equals("")) {
+			return "redirect:/";
+		}
+		String dynamicMenu = getDynamicMenuDAO.getDynamicMenu(user_name);
+		model.addAttribute("dataHtml", dynamicMenu);
+		ArrayList<DPD_LOCATION_LIST> dPD_LOCATION_LIST = censusEntryDAO.Get_DPD_LOCATION_LIST(user_name);
+		model.addAttribute("dPD_LOCATION_LIST", dPD_LOCATION_LIST);
+		CensusFormModel single_CensusFormUpdate_Data = censusEntryDAO.Single_CensusFormUpdate_Data(CUST_INT_ID);
+		model.addAttribute("SCD", single_CensusFormUpdate_Data);
+		model.addAttribute("LOCATION_CODE", single_CensusFormUpdate_Data.getLOCATION_CODE());
+		
+		return "CensusUpdateEntryForm";
 	}
 
 	@PostMapping("/DATA_ENTRY_LT")
@@ -41,14 +71,18 @@ public class CensusEntryController {
 		if (user_name.equals("")) {
 			return "redirect:/";
 		}
-		censusEntryDAO.insertCensusEntry(censusFormModel, user_name);
-		System.out.println(censusFormModel.toString());
-		return  "redirect:/DATA_ENTRY_LT";
-	}
-
-	@ModelAttribute
-	public void addCommonData(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model) {
 		String dynamicMenu = getDynamicMenuDAO.getDynamicMenu(user_name);
 		model.addAttribute("dataHtml", dynamicMenu);
+		String insertStatus= censusEntryDAO.insertCensusEntry(censusFormModel, user_name);
+		System.out.println(censusFormModel.toString());
+		int i=Integer.parseInt(insertStatus);
+		if (i==1) {
+			String msg = "Save/Update Successfull ";
+			model.addAttribute("msg", msg);
+			System.out.println(msg);
+		}
+		return  "CensusEntryForm";
 	}
+
+	
 }

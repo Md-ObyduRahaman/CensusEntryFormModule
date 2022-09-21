@@ -35,6 +35,17 @@
 			color: white;
 			display: block;
 		}
+		/* Chrome, Safari, Edge, Opera */
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		/* Firefox */
+		input[type=number] {
+			-moz-appearance: textfield;
+		}
 	</style>
 
 </head>
@@ -45,9 +56,6 @@
 		<span th:remove="tag" th:utext="${dataHtml}"></span>
 		<div class="container-fluid mw-100 py-2 h-100">
 			<div th:replace="fragments/sidebar :: header"></div>
-			
-			<div class="alert alert-success mt-1 col-sm-12 text-center" th:text="${msg}" th:if="${msg}"
-								role="alert"></div>
 
 			<!--Start First Part -->
 
@@ -62,9 +70,10 @@
 							<div class="col-md-2 mb-2 input-group search_select_box ">
 								<select required name="LOCATION_CODE" id="locationOption"
 									class="form-control search_select_box select_supplyType">
-									<option value="">Select Zone </option>
 									<option th:each="location : ${dPD_LOCATION_LIST}"
-										th:value="${location.LOCATION_CODE}" th:text="${location.LOCATION_NAME}">
+										th:value="${location.LOCATION_CODE}"
+										th:selected="${location.LOCATION_CODE}==${LOCATION_CODE}"
+										th:text="${location.LOCATION_NAME}">
 									</option>
 								</select>
 							</div>
@@ -73,7 +82,8 @@
 
 								<div class="input-group">
 
-									<input type="text" name="ZONE" id="zone" readonly class="form-control form-control-lg" />
+									<input type="text" id="zone" name="ZONE" th:value="${SCD.ZONE}" readonly
+										class="form-control form-control-lg" />
 								</div>
 
 							</div>
@@ -85,7 +95,7 @@
 
 
 
-									<input type="text" id="circle" name="CIRCLE" readonly
+									<input type="text" id="circle" name="CIRCLE" readonly th:value="${SCD.CIRCLE}"
 										class="form-control  form-control-lg" />
 								</div>
 
@@ -97,7 +107,7 @@
 								<div class="input-group">
 
 
-									<input type="text" id="Div" name="DIVISION" readonly
+									<input type="text" id="Div" name="DIVISION" readonly th:value="${SCD.DIVISION}"
 										class="form-control form-control-lg" />
 								</div>
 
@@ -107,7 +117,8 @@
 
 								<div class="input-group">
 
-									<input type="text" id="sub_div" readonly class="form-control form-control-lg" />
+									<input type="text" id="sub_div" name="SUB_DIVISION" th:value="${SCD.SUB_DIVISION}"
+										readonly class="form-control form-control-lg" />
 								</div>
 
 							</div>
@@ -126,7 +137,7 @@
 
 								<div class="input-group">
 
-									<input type="text" id="billGrp" name="BILL_GRP" readonly
+									<input type="text" id="billGrp" name="BILL_GRP" th:value="${SCD.BILL_GRP}" readonly
 										class="form-control form-control-lg" />
 								</div>
 
@@ -135,13 +146,16 @@
 
 
 							<label class=" col-lg-2" for="supplyType">Cons. Source &nbsp</label>
-							<div class="col-sm-3 mb-2 ">
+							<div class="col-3 mb-2 ">
 								<select name="CONSUMER_STATUS" id="CONSUMER_STATUS" class="form-select form-select-sm"
 									aria-label=".form-select-sm example">
-									<option selected value="N">New consumers</option>
-									<option value="F">Census consumers</option>
-									<option value="M">Migrated consumers</option>
-									<option value="L">Additional meter</option>
+									<option value="N" th:selected="${SCD.CONSUMER_STATUS =='N'} ">New consumers</option>
+									<option value="F" th:selected="${SCD.CONSUMER_STATUS =='F'} ">Census consumers
+									</option>
+									<option value="M" th:selected="${SCD.CONSUMER_STATUS =='M'} ">Migrated consumers
+									</option>
+									<option value="L" th:selected="${SCD.CONSUMER_STATUS =='L'} ">Additional meter
+									</option>
 								</select>
 							</div>
 
@@ -153,7 +167,8 @@
 								<div class="input-group">
 
 
-									<input type="text"   name="WALKING_SEQUENCE" required pattern=".{4,4}" maxlength="4"  id="walkOrder"
+									<input type="text" required th:value="${SCD.WALKING_SEQUENCE}"
+										name="WALKING_SEQUENCE" pattern=".{4,4}" id="walkOrder"
 										class="form-control fcs form-control-lg" />
 								</div>
 
@@ -163,7 +178,7 @@
 
 								<div class="input-group">
 
-									<input type="text" id="conSrlNo" name="CONS_SRL_NO"
+									<input type="text" id="conSrlNo" name="CONS_SRL_NO" th:value="${SCD.CONS_SRL_NO}"
 										class="form-control form-control-lg fcs" />
 								</div>
 
@@ -182,6 +197,7 @@
 							<div class="col-md-2 mb-4">
 								<div class="input-group">
 									<input name="OLD_TRANS_CONNECTION_ID" type="text" id="oldAcNo"
+										th:value="${SCD.OLD_TRANS_CONNECTION_ID}"
 										class="form-control fcs form-control-lg" />
 								</div>
 
@@ -216,7 +232,8 @@
 
 								<div class="input-group">
 
-									<input type="text" id="coustomerName" oninput="this.value = this.value.toUpperCase()" name="CUSTOMER_NAME" class="form-control fcs form-control-lg" />
+									<input type="text" id="coustomerName" name="CUSTOMER_NAME" oninput="this.value = this.value.toUpperCase()"
+										th:value="${SCD.CUSTOMER_NAME}" class="form-control fcs form-control-lg" />
 								</div>
 
 							</div>
@@ -225,7 +242,7 @@
 
 								<div class="input-group">
 
-									<input type="text" id="fatherHusband" name="F_H_NAME"
+									<input type="text" id="fatherHusband" name="F_H_NAME" th:value="${SCD.F_H_NAME}"
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
@@ -236,7 +253,7 @@
 								<div class="input-group">
 
 									<input type="text" id="serviceAddress" name="SERV_ADDR_DESCR1"
-										class="form-control fcs form-control-lg" />
+										th:value="${SCD.SERV_ADDR_DESCR1}" class="form-control fcs form-control-lg" />
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="mailingAddress"> Address &nbsp</label>
@@ -244,8 +261,8 @@
 
 								<div class="input-group">
 
-									<input readonly name="MAIL_ADDR_DESCR1" type="text" id="mailingAddress"
-										class="form-control  form-control-lg" />
+									<input readonly name="MAIL_ADDR_DESCR1" th:value="${SCD.MAIL_ADDR_DESCR1}"
+										type="text" id="mailingAddress" class="form-control  form-control-lg" />
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="city">City &nbsp</label>
@@ -253,7 +270,7 @@
 
 								<div class="input-group">
 
-									<input type="text" id="city" name="MAIL_CITY"
+									<input type="text" id="city" name="MAIL_CITY" th:value="${SCD.MAIL_CITY}"
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
@@ -263,7 +280,7 @@
 								<div class="input-group">
 
 									<input type="text" id="cityReadOnly" name="SERV_CITY" readonly
-										class="form-control form-control-lg" />
+										th:value="${SCD.SERV_CITY}" class="form-control form-control-lg" />
 
 								</div>
 							</div>
@@ -273,7 +290,8 @@
 
 								<div class="input-group">
 
-									<input type="number" id="postalCode" min="1000" max="9999" name="MAIL_PIN_CODE"
+									<input type="number" id="postalCode" name="MAIL_PIN_CODE" 
+										required min="1000" max="9999" th:value="${SCD.MAIL_PIN_CODE}"
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
@@ -284,7 +302,7 @@
 								<div class="input-group">
 
 									<input type="number" id="postalCodeReadOnly" readonly name="SERV_PIN_CODE"
-										class="form-control  form-control-lg" />
+										th:value="${SCD.SERV_PIN_CODE}" class="form-control  form-control-lg" />
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="BankCode(1)">Bank Code(1)
@@ -293,7 +311,7 @@
 
 								<div class="input-group">
 
-									<input type="text" name="BANK_CODE" id="BankCode(1)" required pattern=".{4,4}"
+									<input type="text" name="BANK_CODE" id="BankCode(1)" required pattern=".{4,4}" th:value="${SCD.BANK_CODE}"
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
@@ -305,6 +323,7 @@
 								<div class="input-group">
 
 									<input type="text" name="BRANCH_CODE" id="branchCode(1)" required pattern=".{4,4}"
+										maxlength="4" th:value="${SCD.BRANCH_CODE}"
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
@@ -313,18 +332,19 @@
 
 								<div class="input-group">
 
-									<input type="text" name="BANK_CODE_1" id="BankCode(2)" pattern=".{4,4}"
+									<input type="text" name="BANK_CODE_1" id="BankCode(2)" th:value="${SCD.BANK_CODE_1}"
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="branchCode(2)">Branch Code(2)
 								&nbsp</label>
 							<div class="col-md-4 mb-4">
-								<div class="input-group"><input type="text" id="branchCode(2)" name="BRANCH_CODE_1" pattern=".{4,4}"
-										class="form-control fcs form-control-lg" />
+								<div class="input-group"><input type="text" id="branchCode(2)" name="BRANCH_CODE_1"
+										th:value="${SCD.BRANCH_CODE_1}" class="form-control fcs form-control-lg" />
 								</div>
 							</div>
-
+							<input type="hidden" name="CUST_INT_ID" id="CUST_INT_ID" th:value="${SCD.CUST_INT_ID}"
+								class="form-control fcs form-control-lg" />
 
 							<div class="col-12 text-right">
 								<div class="btn-group border-black " style="display: inline;" role="group"
@@ -333,7 +353,7 @@
 										th:onclick="|window.location.href='/meterDetailsForm'|">MeterDetails</button>
 									<button type="button" class="btn btn-primary"
 										th:onclick="|window.location.href='/distribution'|">Distribution</button>
-									<button type="submit" class="btn btn-success">Save</button>
+									<button type="submit" class="btn btn-info">Update</button>
 								</div>
 							</div>
 						</div>
@@ -413,18 +433,18 @@
 
 		$("#CONSUMER_STATUS").change(function () {
 			var consumer_STATUS = $("#CONSUMER_STATUS").val();
-			
-			if(consumer_STATUS=="L")
-			{
+
+			if (consumer_STATUS == "L") {
 				$("#computerConsNo").prop("readonly", false);
+				
 			}
-			else{
+			else {
 				$("#computerConsNo").prop("readonly", true);
 				const input = document.getElementById('computerConsNo');
 				console.log(input)
 				input.value = '';
 			}
-			
+
 		});
 
 
@@ -460,6 +480,9 @@
 			$(document).fcs(".fcs");
 		});
 	</script>
+
+
+
 
 	<!-- 		location dropdown ends  -->
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"

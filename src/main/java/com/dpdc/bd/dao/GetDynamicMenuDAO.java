@@ -95,7 +95,7 @@ public class GetDynamicMenuDAO {
 													.size(); menu_level_3++) {
 												if (dynamicMenu.get(menu_level_3).getPARENT()
 														.equals(dynamicMenu.get(menu_level_2).getMOD_ID()))
-													dataHtml += "                            <a id="+dynamicMenu.get(menu_level_3).getMOD_APP()+" href="
+													dataHtml += "                            <a id="+dynamicMenu.get(menu_level_3).getMOD_APP()+" href=../../../"
 															+ dynamicMenu.get(menu_level_3).getMOD_APP() + ">"
 															+ dynamicMenu.get(menu_level_3).getMOD_NAME() + "</a>\r\n";
 											}
@@ -108,7 +108,7 @@ public class GetDynamicMenuDAO {
 
 										else {
 
-											dataHtml += "                <li>\r\n" + "                    <a href="
+											dataHtml += "                <li>\r\n" + "                    <a href=../../../"
 													+ dynamicMenu.get(menu_level_2).getMOD_APP() + ">"
 													+ dynamicMenu.get(menu_level_2).getMOD_NAME() + "</a>\r\n";
 										}
@@ -123,7 +123,7 @@ public class GetDynamicMenuDAO {
 
 							else {
 
-								dataHtml += "                <li>\r\n" + "                    <a href="
+								dataHtml += "                <li>\r\n" + "                    <a href=../../../"
 										+ dynamicMenu.get(menu_level_1).getMOD_APP() + ">"
 										+ dynamicMenu.get(menu_level_1).getMOD_NAME() + "</a>\r\n";
 							}
@@ -139,7 +139,7 @@ public class GetDynamicMenuDAO {
 
 				else {
 
-					dataHtml += "                <li>\r\n" + "                    <a href="
+					dataHtml += "                <li>\r\n" + "                    <a href=../../../"
 							+ dynamicMenu.get(menu_level_0).getMOD_APP() + ">"
 							+ dynamicMenu.get(menu_level_0).getMOD_NAME() + "</a>\r\n";
 				}

@@ -16,21 +16,23 @@ public class CensusFormModel {
 	private String CONSUMER_STATUS;
 	private String CUSTOMER_NAME;
 	private String CUSTOMER_NUM;
+	private String CUST_INT_ID;
 	private String DIVISION;
 	private String F_H_NAME;
 	private String LOCATION_CODE;
 	private String MAIL_ADDR_DESCR1;
 	private String MAIL_ADDR_DESCR2;
 	private String MAIL_ADDR_DESCR3;
-	private int MAIL_PIN_CODE;
+	private String MAIL_PIN_CODE;
 	private String MAIL_CITY;
 	private String OLD_TRANS_CONNECTION_ID;
 	private String SERV_ADDR_DESCR1;
 	private String SERV_ADDR_DESCR2;
 	private String SERV_ADDR_DESCR3;
 	private String SERV_CITY;
-	private int SERV_PIN_CODE;
-	private int WALKING_SEQUENCE;
+	private String SUB_DIVISION;
+	private String SERV_PIN_CODE;
+	private String WALKING_SEQUENCE;
 	private String ZONE;
 	public CensusFormModel() {
 		super();
@@ -39,9 +41,9 @@ public class CensusFormModel {
 	public CensusFormModel(String bANK_CODE, String bANK_CODE_1, String bILL_GRP, String bLOCK_NO, String bRANCH_CODE,
 			String bRANCH_CODE_1, String cONS_SRL_NO, String cIRCLE, String cONSUMER_FLAG, String cONSUMER_STATUS,
 			String cUSTOMER_NAME, String cUSTOMER_NUM, String dIVISION, String f_H_NAME, String lOCATION_CODE,
-			String mAIL_ADDR_DESCR1, String mAIL_ADDR_DESCR2, String mAIL_ADDR_DESCR3, int mAIL_PIN_CODE,
+			String mAIL_ADDR_DESCR1, String mAIL_ADDR_DESCR2, String mAIL_ADDR_DESCR3, String mAIL_PIN_CODE,
 			String mAIL_CITY, String oLD_TRANS_CONNECTION_ID, String sERV_ADDR_DESCR1, String sERV_ADDR_DESCR2,
-			String sERV_ADDR_DESCR3, String sERV_CITY, int sERV_PIN_CODE, int wALKING_SEQUENCE, String zONE) {
+			String sERV_ADDR_DESCR3, String sERV_CITY, String sERV_PIN_CODE, String wALKING_SEQUENCE, String zONE) {
 		super();
 		BANK_CODE = bANK_CODE;
 		BANK_CODE_1 = bANK_CODE_1;
@@ -101,6 +103,19 @@ public class CensusFormModel {
 	}
 	public void setBRANCH_CODE(String bRANCH_CODE) {
 		BRANCH_CODE = bRANCH_CODE;
+	}
+	
+	public String getSUB_DIVISION() {
+		return SUB_DIVISION;
+	}
+	public void setSUB_DIVISION(String sUB_DIVISION) {
+		SUB_DIVISION = sUB_DIVISION;
+	}
+	public String getCUST_INT_ID() {
+		return CUST_INT_ID;
+	}
+	public void setCUST_INT_ID(String cUST_INT_ID) {
+		CUST_INT_ID = cUST_INT_ID;
 	}
 	public String getBRANCH_CODE_1() {
 		return BRANCH_CODE_1;
@@ -180,10 +195,10 @@ public class CensusFormModel {
 	public void setMAIL_ADDR_DESCR3(String mAIL_ADDR_DESCR3) {
 		MAIL_ADDR_DESCR3 = mAIL_ADDR_DESCR3;
 	}
-	public int getMAIL_PIN_CODE() {
+	public String getMAIL_PIN_CODE() {
 		return MAIL_PIN_CODE;
 	}
-	public void setMAIL_PIN_CODE(int mAIL_PIN_CODE) {
+	public void setMAIL_PIN_CODE(String mAIL_PIN_CODE) {
 		MAIL_PIN_CODE = mAIL_PIN_CODE;
 	}
 	public String getMAIL_CITY() {
@@ -222,16 +237,16 @@ public class CensusFormModel {
 	public void setSERV_CITY(String sERV_CITY) {
 		SERV_CITY = sERV_CITY;
 	}
-	public int getSERV_PIN_CODE() {
+	public String getSERV_PIN_CODE() {
 		return SERV_PIN_CODE;
 	}
-	public void setSERV_PIN_CODE(int sERV_PIN_CODE) {
+	public void setSERV_PIN_CODE(String sERV_PIN_CODE) {
 		SERV_PIN_CODE = sERV_PIN_CODE;
 	}
-	public int getWALKING_SEQUENCE() {
+	public String getWALKING_SEQUENCE() {
 		return WALKING_SEQUENCE;
 	}
-	public void setWALKING_SEQUENCE(int wALKING_SEQUENCE) {
+	public void setWALKING_SEQUENCE(String wALKING_SEQUENCE) {
 		WALKING_SEQUENCE = wALKING_SEQUENCE;
 	}
 	public String getZONE() {
@@ -246,14 +261,16 @@ public class CensusFormModel {
 				+ ", BLOCK_NO=" + BLOCK_NO + ", BRANCH_CODE=" + BRANCH_CODE + ", BRANCH_CODE_1=" + BRANCH_CODE_1
 				+ ", CONS_SRL_NO=" + CONS_SRL_NO + ", CIRCLE=" + CIRCLE + ", CONSUMER_FLAG=" + CONSUMER_FLAG
 				+ ", CONSUMER_STATUS=" + CONSUMER_STATUS + ", CUSTOMER_NAME=" + CUSTOMER_NAME + ", CUSTOMER_NUM="
-				+ CUSTOMER_NUM + ", DIVISION=" + DIVISION + ", F_H_NAME=" + F_H_NAME + ", LOCATION_CODE="
-				+ LOCATION_CODE + ", MAIL_ADDR_DESCR1=" + MAIL_ADDR_DESCR1 + ", MAIL_ADDR_DESCR2=" + MAIL_ADDR_DESCR2
-				+ ", MAIL_ADDR_DESCR3=" + MAIL_ADDR_DESCR3 + ", MAIL_PIN_CODE=" + MAIL_PIN_CODE + ", MAIL_CITY="
-				+ MAIL_CITY + ", OLD_TRANS_CONNECTION_ID=" + OLD_TRANS_CONNECTION_ID + ", SERV_ADDR_DESCR1="
-				+ SERV_ADDR_DESCR1 + ", SERV_ADDR_DESCR2=" + SERV_ADDR_DESCR2 + ", SERV_ADDR_DESCR3=" + SERV_ADDR_DESCR3
-				+ ", SERV_CITY=" + SERV_CITY + ", SERV_PIN_CODE=" + SERV_PIN_CODE + ", WALKING_SEQUENCE="
-				+ WALKING_SEQUENCE + ", ZONE=" + ZONE + "]";
+				+ CUSTOMER_NUM + ", CUST_INT_ID=" + CUST_INT_ID + ", DIVISION=" + DIVISION + ", F_H_NAME=" + F_H_NAME
+				+ ", LOCATION_CODE=" + LOCATION_CODE + ", MAIL_ADDR_DESCR1=" + MAIL_ADDR_DESCR1 + ", MAIL_ADDR_DESCR2="
+				+ MAIL_ADDR_DESCR2 + ", MAIL_ADDR_DESCR3=" + MAIL_ADDR_DESCR3 + ", MAIL_PIN_CODE=" + MAIL_PIN_CODE
+				+ ", MAIL_CITY=" + MAIL_CITY + ", OLD_TRANS_CONNECTION_ID=" + OLD_TRANS_CONNECTION_ID
+				+ ", SERV_ADDR_DESCR1=" + SERV_ADDR_DESCR1 + ", SERV_ADDR_DESCR2=" + SERV_ADDR_DESCR2
+				+ ", SERV_ADDR_DESCR3=" + SERV_ADDR_DESCR3 + ", SERV_CITY=" + SERV_CITY + ", SUB_DIVISION="
+				+ SUB_DIVISION + ", SERV_PIN_CODE=" + SERV_PIN_CODE + ", WALKING_SEQUENCE=" + WALKING_SEQUENCE
+				+ ", ZONE=" + ZONE + "]";
 	}
+	
 	
 	
 

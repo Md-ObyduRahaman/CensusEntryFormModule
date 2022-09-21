@@ -1,5 +1,6 @@
 package com.dpdc.bd.dao;
 
+import java.beans.BeanProperty;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.sql.DataSource;
 import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.SqlOutParameter;
 import org.springframework.jdbc.core.simple.SimpleJdbcCall;
@@ -69,52 +71,70 @@ public class CensusEntryDAO {
 
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonData = jsonArray.getJSONObject(i);
-			DPD_Z_C_D_SD_LIST=new DPD_LOCATION_LIST(
-							jsonData.optString("ZONE"), jsonData.optString("DIV"),
-							jsonData.optString("SUB_DIV"), jsonData.optString("CIRCLE"));
+			DPD_Z_C_D_SD_LIST = new DPD_LOCATION_LIST(jsonData.optString("ZONE"), jsonData.optString("DIV"),
+					jsonData.optString("SUB_DIV"), jsonData.optString("CIRCLE"));
 		}
 		return DPD_Z_C_D_SD_LIST;
 
 	}
-	public String Get_billGrp(String P_LOCATION,String P_BOOK) {
-		
+
+	public String Get_billGrp(String P_LOCATION, String P_BOOK) {
+
 		DPD_LOCATION_LIST DPD_Z_C_D_SD_LIST = new DPD_LOCATION_LIST();
 		Map<String, Object> result = getAllStatesJdbcCallbillGrp.withCatalogName("DPG_EMP_CONSUMER_CENSUS_ENTRY")
 				.withProcedureName("DPD_BILL_GROUP")
-				.declareParameters(new SqlOutParameter("results_cursor", OracleTypes.VARCHAR)).execute(P_LOCATION,P_BOOK);
-		
+				.declareParameters(new SqlOutParameter("results_cursor", OracleTypes.VARCHAR))
+				.execute(P_LOCATION, P_BOOK);
+
 		JSONObject json = new JSONObject(result);
 		String jString = json.get("CUR_DATA").toString();
 		JSONArray jsonArray = new JSONArray(jString);
-		
+
 		for (int i = 0; i < jsonArray.length(); i++) {
 			JSONObject jsonData = jsonArray.getJSONObject(i);
 			DPD_Z_C_D_SD_LIST.setBILL_GRP(jsonData.optString("BILL_GRP"));
-			
+
 		}
 		return DPD_Z_C_D_SD_LIST.getBILL_GRP();
-		
-	}
-	
 
+	}
 
 	public String insertCensusEntry(CensusFormModel a, String user_name) {
-
 
 		Map<String, Object> result = getAllStatesJdbcCallInsert.withCatalogName("DPG_CENSUS")
 				.withProcedureName("DPD_CENSUS_CUSTOMERS_SAVE")
 				.declareParameters(new SqlOutParameter("results", OracleTypes.INTEGER)).execute(a.getBANK_CODE(),
 						a.getBANK_CODE_1(), a.getBILL_GRP(), a.getBLOCK_NO(), a.getBRANCH_CODE(), a.getBRANCH_CODE_1(),
-						a.getCONS_SRL_NO(), a.getCIRCLE(), a.getCONSUMER_FLAG(), a.getCONSUMER_STATUS(), a.getCUSTOMER_NAME(),
-						a.getCUSTOMER_NUM(), a.getDIVISION(), a.getF_H_NAME(), a.getLOCATION_CODE(),
-						a.getMAIL_ADDR_DESCR1(), a.getMAIL_ADDR_DESCR1(),a.getMAIL_ADDR_DESCR1(),a.getMAIL_PIN_CODE(),
-						a.getMAIL_CITY(),a.getOLD_TRANS_CONNECTION_ID(),a.getSERV_ADDR_DESCR1(),a.getSERV_ADDR_DESCR1(),
-						a.getSERV_ADDR_DESCR1(),a.getSERV_CITY(),a.getSERV_PIN_CODE(),a.getWALKING_SEQUENCE(),a.getZONE(),user_name);
+						a.getCONS_SRL_NO(), a.getCIRCLE(), a.getCONSUMER_FLAG(), a.getCONSUMER_STATUS(),
+						a.getCUSTOMER_NAME(), a.getCUSTOMER_NUM(), a.getDIVISION(), a.getF_H_NAME(),
+						a.getLOCATION_CODE(), a.getMAIL_ADDR_DESCR1(), a.getMAIL_ADDR_DESCR1(), a.getMAIL_ADDR_DESCR1(),
+						a.getMAIL_PIN_CODE(), a.getMAIL_CITY(), a.getOLD_TRANS_CONNECTION_ID(), a.getSERV_ADDR_DESCR1(),
+						a.getSERV_ADDR_DESCR1(), a.getSERV_ADDR_DESCR1(), a.getSERV_CITY(), a.getSERV_PIN_CODE(),
+						a.getWALKING_SEQUENCE(), a.getZONE(),a.getCUST_INT_ID(), user_name);
 		JSONObject json = new JSONObject(result);
 		String out = json.get("O_STATUS").toString();
 		System.out.println(out);
 		return out;
 
+	}
+
+	public ArrayList<CensusFormModel> listOf_CensusFormModel() {
+
+		String sql = "SELECT * FROM BC_CONSUMER_INTERFACE WHERE SOURCE_FLAG='BC_CONSCEN' ORDER BY CUSTOMER_NAME ASC ";
+
+		ArrayList<CensusFormModel> listeff_CensusFormModel = (ArrayList<CensusFormModel>) jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(CensusFormModel.class));
+
+		return listeff_CensusFormModel;
+	}
+
+	public CensusFormModel Single_CensusFormUpdate_Data(String CUST_INT_ID) {
+
+		String sql = "SELECT * FROM BC_CONSUMER_INTERFACE where CUST_INT_ID= ?";
+
+		CensusFormModel single_CensusFormUpdate_Data = (CensusFormModel) jdbcTemplate.queryForObject(sql,
+				new Object[] { CUST_INT_ID }, new BeanPropertyRowMapper(CensusFormModel.class));
+		return single_CensusFormUpdate_Data;
 	}
 
 }
