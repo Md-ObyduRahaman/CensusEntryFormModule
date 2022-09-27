@@ -6,6 +6,8 @@ import org.springframework.stereotype.Component;
 public class CensusFormModel {
 	private String BANK_CODE;
 	private String BANK_CODE_1;
+	private String BANK_NAME;
+	private String BRANCH_NAME;
 	private String BILL_GRP;
 	private String BLOCK_NO;
 	private String BRANCH_CODE;
@@ -38,41 +40,26 @@ public class CensusFormModel {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public CensusFormModel(String bANK_CODE, String bANK_CODE_1, String bILL_GRP, String bLOCK_NO, String bRANCH_CODE,
-			String bRANCH_CODE_1, String cONS_SRL_NO, String cIRCLE, String cONSUMER_FLAG, String cONSUMER_STATUS,
-			String cUSTOMER_NAME, String cUSTOMER_NUM, String dIVISION, String f_H_NAME, String lOCATION_CODE,
-			String mAIL_ADDR_DESCR1, String mAIL_ADDR_DESCR2, String mAIL_ADDR_DESCR3, String mAIL_PIN_CODE,
-			String mAIL_CITY, String oLD_TRANS_CONNECTION_ID, String sERV_ADDR_DESCR1, String sERV_ADDR_DESCR2,
-			String sERV_ADDR_DESCR3, String sERV_CITY, String sERV_PIN_CODE, String wALKING_SEQUENCE, String zONE) {
-		super();
-		BANK_CODE = bANK_CODE;
-		BANK_CODE_1 = bANK_CODE_1;
-		BILL_GRP = bILL_GRP;
-		BLOCK_NO = bLOCK_NO;
-		BRANCH_CODE = bRANCH_CODE;
-		BRANCH_CODE_1 = bRANCH_CODE_1;
-		CONS_SRL_NO = cONS_SRL_NO;
-		CIRCLE = cIRCLE;
-		CONSUMER_FLAG = cONSUMER_FLAG;
-		CONSUMER_STATUS = cONSUMER_STATUS;
-		CUSTOMER_NAME = cUSTOMER_NAME;
-		CUSTOMER_NUM = cUSTOMER_NUM;
-		DIVISION = dIVISION;
-		F_H_NAME = f_H_NAME;
-		LOCATION_CODE = lOCATION_CODE;
-		MAIL_ADDR_DESCR1 = mAIL_ADDR_DESCR1;
-		MAIL_ADDR_DESCR2 = mAIL_ADDR_DESCR2;
-		MAIL_ADDR_DESCR3 = mAIL_ADDR_DESCR3;
-		MAIL_PIN_CODE = mAIL_PIN_CODE;
-		MAIL_CITY = mAIL_CITY;
-		OLD_TRANS_CONNECTION_ID = oLD_TRANS_CONNECTION_ID;
-		SERV_ADDR_DESCR1 = sERV_ADDR_DESCR1;
-		SERV_ADDR_DESCR2 = sERV_ADDR_DESCR2;
-		SERV_ADDR_DESCR3 = sERV_ADDR_DESCR3;
-		SERV_CITY = sERV_CITY;
-		SERV_PIN_CODE = sERV_PIN_CODE;
-		WALKING_SEQUENCE = wALKING_SEQUENCE;
-		ZONE = zONE;
+	
+	
+	
+	public String getBRANCH_NAME() {
+		return BRANCH_NAME;
+	}
+
+
+
+	public void setBRANCH_NAME(String bRANCH_NAME) {
+		BRANCH_NAME = bRANCH_NAME;
+	}
+
+
+
+	public String getBANK_NAME() {
+		return BANK_NAME;
+	}
+	public void setBANK_NAME(String bANK_NAME) {
+		BANK_NAME = bANK_NAME;
 	}
 	public String getBANK_CODE() {
 		return BANK_CODE;

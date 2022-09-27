@@ -44,12 +44,13 @@
 		th,
 		td {
 			padding: 8px 15px;
-			
+
 		}
 
 		th {
 			background: #fff;
 		}
+
 		/* Chrome, Safari, Edge, Opera */
 		input::-webkit-outer-spin-button,
 		input::-webkit-inner-spin-button {
@@ -70,9 +71,9 @@
 
 <body>
 
- <div class="wrapper">
+	<div class="wrapper">
 		<span th:remove="tag" th:utext="${dataHtml}"></span>
-		<div class="container-fluid mw-100 py-2 h-100" >
+		<div class="container-fluid mw-100 py-2 h-100">
 			<div th:replace="fragments/sidebar :: header"></div>
 
 			<!--Start First Part -->
@@ -84,26 +85,25 @@
 					<div class="row">
 						<label class="col-lg-2" for="coustomerName">Owner &nbsp </label>
 						<div class="col-lg-2 mb-2 input-group search_select_box ">
-							<select name="owner_list" id="owner_list" class="form-control select_owner_list">
-								<option selected></option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
+							<select name="METER_OWNER" id="owner_list" class="form-control select_owner_list">
+								<option selected value="1">DPDC</option>
+								<option value="2">Customer</option>
 							</select>
 						</div>
 						<label class="col-lg-2" for="type">Type &nbsp </label>
 						<div class="col-lg-2 mb-2  input-group search_select_box ">
-							<select name="type_list" id="type_list" class="form-control select">
-								<option selected></option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
+							<select name="METER_TYPE" id="type_list" class="form-control select">
+								<option selected>select</option>
+								<option th:each="code : ${listOf_BC_METER_TYPECODE_MAP}" th:value="${code.NEW_METER_TYPECODE}"
+									th:text="${code.NEW_METER_TYPECODE}+'-'+${code.METER_TYPE_DESC}"
+									>
+								</option>
 							</select>
 							<span class="input-group-text"> KWH </span>
 						</div>
 						<label class="col-lg-2" for="type">Make &nbsp </label>
 						<div class="col-lg-2 mb-2 input-group search_select_box ">
-							<select name="make_list" id="make_list" class="form-control select_make_list">
+							<select name="METER_MAKE" id="make_list" class="form-control select_make_list">
 								<option selected></option>
 								<option value="1">One</option>
 								<option value="2">Two</option>
@@ -116,7 +116,7 @@
 
 							<div class="input-group">
 
-								<input type="number" class="form-control fcs" name="location"
+								<input type="number" class="form-control fcs" name="METER_LOC"
 									id="location first-element">
 
 							</div>
@@ -127,7 +127,8 @@
 
 							<div class="input-group">
 
-								<input type="number" class="form-control fcs" name="yrOfManuf" id="yrOfManuf">
+								<input type="number" min="1000" max="9999" class="form-control fcs" name="yrOfManuf"
+									id="yrOfManuf">
 
 							</div>
 
@@ -137,7 +138,8 @@
 
 							<div class="input-group">
 
-								<input type="number" class="form-control fcs" name="yrOfInst" id="yrOfInst">
+								<input type="number" min="1000" max="9999" class="form-control fcs" name="yrOfInst"
+									id="yrOfInst">
 
 							</div>
 
@@ -147,7 +149,8 @@
 
 							<div class="input-group">
 
-								<input type="number" class="form-control fcs" name="meterNo" id="meterNo">
+								<input type="text" maxlength="20" class="form-control fcs" name="METER_NUM"
+									id="meterNo">
 
 							</div>
 
@@ -157,7 +160,8 @@
 
 							<div class="input-group">
 
-								<input type="number" class="form-control fcs" name="digit(KW)" id="digit(KW)">
+								<input type="text" maxlength="1" class="form-control fcs" name="METER_DIGIT_KW"
+									id="digit(KW)">
 
 							</div>
 
@@ -167,7 +171,8 @@
 
 							<div class="input-group">
 
-								<input type="number" class="form-control fcs" name="digit(Cum)" id="digit(Cum)">
+								<input type="text" maxlength="1" class="form-control fcs" name="digit(Cum)"
+									id="digit(Cum)">
 
 							</div>
 
@@ -177,7 +182,8 @@
 
 							<div class="input-group">
 
-								<input type="number" class="form-control fcs" name="meterDigit" id="meterDigit">
+								<input type="text" maxlength="1" class="form-control fcs" name="METER_DIGIT"
+									id="meterDigit">
 
 							</div>
 
@@ -188,7 +194,7 @@
 
 							<div class="input-group">
 
-								<input type="number" class="form-control fcs" name="currRatting" id="currRatting">
+								<input type="number" class="form-control fcs" name="CURR_RATING" id="currRatting">
 
 							</div>
 
@@ -198,7 +204,7 @@
 
 							<div class="input-group">
 
-								<input type="number" class="form-control fcs" name="voltRatting" id="voltRatting">
+								<input type="number" class="form-control fcs" name="VOLT_VALUE" id="voltRatting">
 
 							</div>
 
@@ -208,7 +214,7 @@
 
 							<div class="input-group">
 
-								<input type="number" class="form-control fcs" name="mtrCond" id="mtrCond">
+								<input type="number" class="form-control fcs" name="METER_CONDITION" id="mtrCond">
 
 							</div>
 
@@ -229,7 +235,8 @@
 
 							<div class="input-group">
 
-								<input type="number" class="form-control fcs" name="assKWHMtrNo" id="assKWHMtrNo">
+								<input type="number" class="form-control fcs" name="ASSOCIATED_KWH_METER_NUM"
+									id="assKWHMtrNo">
 
 							</div>
 
@@ -398,11 +405,13 @@
 							class="btn btn-primary">Consumer</button>
 						<button type="button" th:onclick="|window.location.href='/distribution'|"
 							class="btn btn-primary">Distribution</button>
+						<button type="button" th:onclick="|window.location.href='/distribution'|"
+							class="btn btn-success">Save</button>
 					</div>
 				</div>
 
 			</div>
-            <legend class="w-auto px-2">TOD Details</legend>
+			<legend class="w-auto px-2">TOD Details</legend>
 			<div class="row fixTableHead">
 				<div class="col-lg-12">
 					<fieldset class="form-group border p-3">

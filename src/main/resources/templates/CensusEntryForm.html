@@ -6,11 +6,12 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.css"
 		integrity="sha512-RWhcC19d8A3vE7kpXq6Ze4GcPfGe3DQWuenhXAbcGiZOaqGojLtWwit1eeM9jLGHFv8hnwpX3blJKGjTsf2HxQ=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
+		
 	<div th:replace="fragments/links :: cssLink"></div>
 
 
@@ -35,6 +36,17 @@
 			color: white;
 			display: block;
 		}
+			/* Chrome, Safari, Edge, Opera */
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		/* Firefox */
+		input[type=number] {
+			-moz-appearance: textfield;
+		}
 	</style>
 
 </head>
@@ -45,9 +57,9 @@
 		<span th:remove="tag" th:utext="${dataHtml}"></span>
 		<div class="container-fluid mw-100 py-2 h-100">
 			<div th:replace="fragments/sidebar :: header"></div>
-			
-			<div class="alert alert-success mt-1 col-sm-12 text-center" th:text="${msg}" th:if="${msg}"
-								role="alert"></div>
+
+			<div class="alert alert-success mt-1 col-sm-12 text-center" th:text="${msg}" th:if="${msg}" role="alert">
+			</div>
 
 			<!--Start First Part -->
 
@@ -61,7 +73,7 @@
 							<label class="col-lg-1" for="location">Location &nbsp </label>
 							<div class="col-md-2 mb-2 input-group search_select_box ">
 								<select required name="LOCATION_CODE" id="locationOption"
-									class="form-control search_select_box select_supplyType">
+									class="form-control search_select_box select_supplyType ">
 									<option value="">Select Zone </option>
 									<option th:each="location : ${dPD_LOCATION_LIST}"
 										th:value="${location.LOCATION_CODE}" th:text="${location.LOCATION_NAME}">
@@ -73,7 +85,8 @@
 
 								<div class="input-group">
 
-									<input type="text" name="ZONE" id="zone" readonly class="form-control form-control-lg" />
+									<input type="text" name="ZONE" id="zone" readonly
+										class="form-control form-control-lg" />
 								</div>
 
 							</div>
@@ -139,8 +152,7 @@
 								<select name="CONSUMER_STATUS" id="CONSUMER_STATUS" class="form-select form-select-sm"
 									aria-label=".form-select-sm example">
 									<option selected value="N">New consumers</option>
-									<option value="F">Census consumers</option>
-									<option value="M">Migrated consumers</option>
+
 									<option value="L">Additional meter</option>
 								</select>
 							</div>
@@ -153,8 +165,8 @@
 								<div class="input-group">
 
 
-									<input type="text"   name="WALKING_SEQUENCE" required pattern=".{4,4}" maxlength="4"  id="walkOrder"
-										class="form-control fcs form-control-lg" />
+									<input type="text" name="WALKING_SEQUENCE" required pattern=".{4,4}" maxlength="4"
+										id="walkOrder" class="form-control fcs form-control-lg" />
 								</div>
 
 							</div>
@@ -163,7 +175,7 @@
 
 								<div class="input-group">
 
-									<input type="text" id="conSrlNo" name="CONS_SRL_NO"
+									<input type="text" id="conSrlNo" name="CONS_SRL_NO" required maxlength="4"
 										class="form-control form-control-lg fcs" />
 								</div>
 
@@ -216,7 +228,9 @@
 
 								<div class="input-group">
 
-									<input type="text" id="coustomerName" oninput="this.value = this.value.toUpperCase()" name="CUSTOMER_NAME" class="form-control fcs form-control-lg" />
+									<input type="text" maxlength="40" id="coustomerName"
+										oninput="this.value = this.value.toUpperCase()" name="CUSTOMER_NAME"
+										class="form-control fcs form-control-lg" />
 								</div>
 
 							</div>
@@ -225,7 +239,7 @@
 
 								<div class="input-group">
 
-									<input type="text" id="fatherHusband" name="F_H_NAME"
+									<input type="text" id="fatherHusband" name="F_H_NAME" maxlength="40"
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
@@ -273,7 +287,7 @@
 
 								<div class="input-group">
 
-									<input type="number" id="postalCode" min="1000" max="9999" name="MAIL_PIN_CODE"
+									<input type="number" id="postalCode" min="1000" max="9999" name="MAIL_PIN_CODE" required
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
@@ -292,9 +306,12 @@
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
-
-									<input type="text" name="BANK_CODE" id="BankCode(1)" required pattern=".{4,4}"
-										class="form-control fcs form-control-lg" />
+									<select name="BANK_CODE" id="tariff" class="form-control select_tariff">
+										<option value="">Select code </option>
+										<option th:each="code : ${listeff_BC_BANKS}" th:value="${code.BANK_CODE}"
+											th:text="${code.BANK_CODE}+'-'+${code.BANK_NAME}">
+										</option>
+									</select>
 								</div>
 							</div>
 
@@ -303,9 +320,12 @@
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
-
-									<input type="text" name="BRANCH_CODE" id="branchCode(1)" required pattern=".{4,4}"
-										class="form-control fcs form-control-lg" />
+									<select name="BRANCH_CODE" id="tariff" class="form-control select_tariff">
+										<option value="null">Select code </option>
+										<option th:each="code : ${listOf_BRANCH_CODE}"
+											th:value="${code.BRANCH_CODE}" th:text="${code.BRANCH_CODE}+'-'+${code.BRANCH_NAME}">
+										</option>
+									</select>
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="BankCode(2)">Bank Code(2) &nbsp</label>
@@ -313,54 +333,87 @@
 
 								<div class="input-group">
 
-									<input type="text" name="BANK_CODE_1" id="BankCode(2)" pattern=".{4,4}"
-										class="form-control fcs form-control-lg" />
+									<select name="BANK_CODE_1" id="tariff" class="form-control select_tariff">
+										<option value="">Select code </option>
+										<option th:each="code : ${listeff_BC_BANKS}" th:value="${code.BANK_CODE}"
+											th:text="${code.BANK_CODE}+'-'+${code.BANK_NAME}">
+										</option>
+									</select>
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="branchCode(2)">Branch Code(2)
 								&nbsp</label>
 							<div class="col-md-4 mb-4">
-								<div class="input-group"><input type="text" id="branchCode(2)" name="BRANCH_CODE_1" pattern=".{4,4}"
-										class="form-control fcs form-control-lg" />
-								</div>
-							</div>
-
-
-							<div class="col-12 text-right">
-								<div class="btn-group border-black " style="display: inline;" role="group"
-									aria-label="Basic example">
-									<button type="button" class="btn btn-primary"
-										th:onclick="|window.location.href='/meterDetailsForm'|">MeterDetails</button>
-									<button type="button" class="btn btn-primary"
-										th:onclick="|window.location.href='/distribution'|">Distribution</button>
-									<button type="submit" class="btn btn-success">Save</button>
+								<div class="input-group">
+									<select name="BRANCH_CODE_1" id="tariff" class="form-control select_tariff">
+										<option value="null">Select code </option>
+										<option th:each="code : ${listOf_BRANCH_CODE}"
+											th:value="${code.BRANCH_CODE}" th:text="${code.BRANCH_CODE}+'-'+${code.BRANCH_NAME}">
+										</option>
+									</select>
+									
 								</div>
 							</div>
 						</div>
-					</fieldset>
-				</form>
+
+
+						<div class="col-12 text-right">
+							<div class="btn-group border-black " style="display: inline;" role="group"
+								aria-label="Basic example">
+
+								<button type="button" class="btn btn-primary"
+									th:onclick="|window.location.href='/meterDetailsForm'|" disabled>MeterDetails</button>
+								<button type="button" class="btn btn-primary"
+									th:onclick="|window.location.href='/distribution'|" disabled>Distribution</button>
+								<button type="submit" class="btn btn-success">Save</button>
+							</div>
+						</div>
+			</div>
+			</fieldset>
+			
+			<div class="row form-inline" style="margin-left: 450px;">
+	
+</div>
+			</form>
+		</div>
+	</div>
+	</div>
+
+
+
+<!-- Modal -->
+	<div th:if="${flag}== '1'" class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 style="color: rgb(40, 136, 80)" class="modal-title" id="exampleModalLongTitle">
+						Message</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<h1 style="color: rgb(40, 136, 80)">Successfully Save</h1>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+				</div>
 			</div>
 		</div>
 	</div>
 
 
 
-
-
-
-
-
-
-
 	<!-- JavaScript -->
 	<div th:replace="fragments/links :: javaScriptLink"></div>
+	
 
 	<script>
-
-
-		$('.select_supplyType').select2();
-
-
+		$('.select_supplyType').select2({
+			tags: true,
+			tokenSeparators: [',', ' ']
+		})
 	</script>
 
 	<!-- 		location dropdown starts  -->
@@ -413,18 +466,17 @@
 
 		$("#CONSUMER_STATUS").change(function () {
 			var consumer_STATUS = $("#CONSUMER_STATUS").val();
-			
-			if(consumer_STATUS=="L")
-			{
+
+			if (consumer_STATUS == "L") {
 				$("#computerConsNo").prop("readonly", false);
 			}
-			else{
+			else {
 				$("#computerConsNo").prop("readonly", true);
 				const input = document.getElementById('computerConsNo');
 				console.log(input)
 				input.value = '';
 			}
-			
+
 		});
 
 
@@ -453,6 +505,7 @@
 	<script src=https://code.jquery.com/jquery-3.6.0.slim.min.js></script>
 	<script src="../../../../js/jquery.fcs.js"></script>
 	<script src="../../../../js/jquery.fcs.min.js"></script>
+	
 	<script>
 
 		jQuery(document).ready(function ($) {

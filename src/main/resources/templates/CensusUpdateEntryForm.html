@@ -35,6 +35,7 @@
 			color: white;
 			display: block;
 		}
+
 		/* Chrome, Safari, Edge, Opera */
 		input::-webkit-outer-spin-button,
 		input::-webkit-inner-spin-button {
@@ -178,7 +179,7 @@
 
 								<div class="input-group">
 
-									<input type="text" id="conSrlNo" name="CONS_SRL_NO" th:value="${SCD.CONS_SRL_NO}"
+									<input type="text" id="conSrlNo" required name="CONS_SRL_NO" th:value="${SCD.CONS_SRL_NO}" maxlength="4"
 										class="form-control form-control-lg fcs" />
 								</div>
 
@@ -232,8 +233,9 @@
 
 								<div class="input-group">
 
-									<input type="text" id="coustomerName" name="CUSTOMER_NAME" oninput="this.value = this.value.toUpperCase()"
-										th:value="${SCD.CUSTOMER_NAME}" class="form-control fcs form-control-lg" />
+									<input type="text" id="coustomerName" name="CUSTOMER_NAME"
+										oninput="this.value = this.value.toUpperCase()" th:value="${SCD.CUSTOMER_NAME}"
+										class="form-control fcs form-control-lg" />
 								</div>
 
 							</div>
@@ -290,8 +292,8 @@
 
 								<div class="input-group">
 
-									<input type="number" id="postalCode" name="MAIL_PIN_CODE" 
-										required min="1000" max="9999" th:value="${SCD.MAIL_PIN_CODE}"
+									<input type="number" id="postalCode" name="MAIL_PIN_CODE" required min="1000"
+										max="9999" th:value="${SCD.MAIL_PIN_CODE}"
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
@@ -310,9 +312,12 @@
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
-
-									<input type="text" name="BANK_CODE" id="BankCode(1)" required pattern=".{4,4}" th:value="${SCD.BANK_CODE}"
-										class="form-control fcs form-control-lg" />
+									<select name="BANK_CODE" id="tariff" class="form-control select_tariff">
+										<option value="">Select code </option>
+										<option th:each="code : ${listeff_BC_BANKS}" th:value="${code.BANK_CODE}"
+											th:text="${code.BANK_CODE}+'-'+${code.BANK_NAME}" th:selected="${code.BANK_CODE}==${SCD.BANK_CODE}">
+										</option>
+									</select>
 								</div>
 							</div>
 
@@ -321,10 +326,12 @@
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
-
-									<input type="text" name="BRANCH_CODE" id="branchCode(1)" required pattern=".{4,4}"
-										maxlength="4" th:value="${SCD.BRANCH_CODE}"
-										class="form-control fcs form-control-lg" />
+									<select name="BRANCH_CODE" id="tariff" class="form-control select_tariff">
+										<option value="null">Select code </option>
+										<option th:each="code : ${listOf_BRANCH_CODE}"
+											th:value="${code.BRANCH_CODE}" th:selected="${code.BRANCH_CODE}==${SCD.BRANCH_CODE}" th:text="${code.BRANCH_CODE}+'-'+${code.BRANCH_NAME}">
+										</option>
+									</select>
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="BankCode(2)">Bank Code(2) &nbsp</label>
@@ -332,15 +339,24 @@
 
 								<div class="input-group">
 
-									<input type="text" name="BANK_CODE_1" id="BankCode(2)" th:value="${SCD.BANK_CODE_1}"
-										class="form-control fcs form-control-lg" />
+									<select name="BANK_CODE_1" id="tariff" class="form-control select_tariff">
+										<option value="">Select code </option>
+										<option th:each="code : ${listeff_BC_BANKS}" th:value="${code.BANK_CODE}"
+											th:text="${code.BANK_CODE}+'-'+${code.BANK_NAME}" th:selected="${code.BANK_CODE}==${SCD.BANK_CODE_1}">
+										</option>
+									</select>
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="branchCode(2)">Branch Code(2)
 								&nbsp</label>
 							<div class="col-md-4 mb-4">
-								<div class="input-group"><input type="text" id="branchCode(2)" name="BRANCH_CODE_1"
-										th:value="${SCD.BRANCH_CODE_1}" class="form-control fcs form-control-lg" />
+								<div class="input-group">
+									<select name="BRANCH_CODE_1" id="tariff" class="form-control select_tariff">
+										<option value="null">Select code </option>
+									
+									<option th:each="code : ${listOf_BRANCH_CODE}"
+											th:value="${code.BRANCH_CODE}" th:selected="${code.BRANCH_CODE}==${SCD.BRANCH_CODE_1}" th:text="${code.BRANCH_CODE}+'-'+${code.BRANCH_NAME}">
+										</option></select>
 								</div>
 							</div>
 							<input type="hidden" name="CUST_INT_ID" id="CUST_INT_ID" th:value="${SCD.CUST_INT_ID}"
@@ -353,7 +369,7 @@
 										th:onclick="|window.location.href='/meterDetailsForm'|">MeterDetails</button>
 									<button type="button" class="btn btn-primary"
 										th:onclick="|window.location.href='/distribution'|">Distribution</button>
-									<button type="submit" class="btn btn-info">Update</button>
+									<button type="submit" id="uptdBtn" class="btn btn-info">Update</button>
 								</div>
 							</div>
 						</div>
@@ -436,7 +452,7 @@
 
 			if (consumer_STATUS == "L") {
 				$("#computerConsNo").prop("readonly", false);
-				
+
 			}
 			else {
 				$("#computerConsNo").prop("readonly", true);
@@ -448,6 +464,27 @@
 		});
 
 
+	</script>
+	<script th:inline="javascript">
+		/*<![CDATA[*/
+
+		var msg = [[${msg}]];
+		var flag = [[${flag}]];
+		
+		if(flag==2){
+		var button = document.getElementById('uptdBtn');
+			button.innerHTML = "Save";
+			button.style.background = "#00004d";
+			alert(msg);
+			}
+			else if(flag==2){
+				var button = document.getElementById('uptdBtn');
+			button.innerHTML = "Update";
+			button.style.background = "#00004d";
+			alert(msg);
+			}
+
+		/*]]>*/
 	</script>
 
 	<script>
@@ -473,13 +510,20 @@
 	<script src=https://code.jquery.com/jquery-3.6.0.slim.min.js></script>
 	<script src="../../../../js/jquery.fcs.js"></script>
 	<script src="../../../../js/jquery.fcs.min.js"></script>
+	
 	<script>
 
 		jQuery(document).ready(function ($) {
 			$("#first-element").focus();
 			$(document).fcs(".fcs");
+
+
+
+			
 		});
 	</script>
+	
+
 
 
 

@@ -5,14 +5,17 @@ import java.util.ArrayList;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dpdc.bd.dao.BillPrintDoa;
+import com.dpdc.bd.dao.CensusEntryDAO;
 import com.dpdc.bd.dao.GetDynamicMenuDAO;
 import com.dpdc.bd.model.AddMeterModel;
+import com.dpdc.bd.model.DPD_LOCATION_LIST;
 
 @org.springframework.stereotype.Controller
 public class TestController {
@@ -21,12 +24,10 @@ public class TestController {
 	GetDynamicMenuDAO getDynamicMenuDAO;
 	@Resource
 	BillPrintDoa billPrintDoa;
+	@Resource
+	CensusEntryDAO censusEntryDAO;
 
-	@RequestMapping("/meterDetailsForm")
-	public String meterDetails(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model) {
-
-		return "meterDetailsForm";
-	}
+	
 
 	@RequestMapping("/distribution")
 	public String distribution(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model) {
@@ -50,21 +51,21 @@ public class TestController {
 		model.addAttribute("dataHtml", dynamicMenu);
 	}
 
-	@RequestMapping("/test")
+	@RequestMapping("/test2")
 	public String test() {
 
 		return "fragments/sidebar";
 	}
 	
-	  @RequestMapping("/itr") 
-	  public String BILL_PRINT(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model,HttpServletResponse response) {
+	
+	  @RequestMapping("/test") 
+	  public String BILL_PRINT(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model) {
 			if (user_name.equals("")) {
 				return "redirect:/";
 			}
 
-			ArrayList<AddMeterModel> Bill_Cycle_LIST = billPrintDoa.Get_Bill_Cycle_LIST(user_name);
-			
-			model.addAttribute("Bill_Cycle_LIST", Bill_Cycle_LIST);
+			ArrayList<DPD_LOCATION_LIST> dPD_LOCATION_LIST = censusEntryDAO.Get_DPD_LOCATION_LIST(user_name);
+			model.addAttribute("dPD_LOCATION_LIST", dPD_LOCATION_LIST);
 	  return"iter"; }
 	  
 	 

@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<div th:replace="fragments/links :: cssLink"></div>
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css">
+
+	<title>Census Table</title>
+</head>
+
+<body>
+	<div class="wrapper">
+		<span th:remove="tag" th:utext="${dataHtml}"></span>
+		<div class="container-fluid mw-100 py-2 h-100">
+			<div th:replace="fragments/sidebar :: header"></div>
+
+			<button type="button" th:onclick="|window.location.href='/DATA_ENTRY_LT_FORM'|"
+				class="btn btn-primary btn-lg btn-block mb-5">Create new customer Meter</button>
+			<table id="datatable" class="table table-striped">
+				<thead>
+					<tr>					
+						<th scope="col">Walk. Order</th>
+						<th scope="col">Customer Name</th>
+						<th scope="col">Address</th>
+						<th scope="col">Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="list,iterStatus : ${listeff_BC_CONSUMER_INTERFACE}">
+					
+						<td><input type="hidden" th:id="'WALKING_SEQUENCE_'+${iterStatus.index}"
+								th:text="${list.WALKING_SEQUENCE}" name="WALKING_SEQUENCE"
+								th:value="${list.WALKING_SEQUENCE}">
+						</td>
+						<td><input type="hidden" th:id="'CUSTOMER_NAME_'+${iterStatus.index}"
+								th:text="${list.CUSTOMER_NAME}" name="CUSTOMER_NAME"
+								th:value="${list.CUSTOMER_NAME}"></input></td>
+						<td><input type="hidden" th:id="'MAIL_CITY_'+${iterStatus.index}" th:text="${list.MAIL_CITY}"
+								name="MAIL_CITY" th:value="${list.MAIL_CITY}"></input></td>
+						<input type="hidden" th:id="'CUST_INT_ID_'+${iterStatus.index}" name="CUST_INT_ID"
+							th:value="${list.CUST_INT_ID}"></input>
+						<td><a th:href="@{'/meterDetailsForm/' + ${list.CUST_INT_ID}}" id="updateButton"
+								class="btn btn-success  text-right">Save</a></td>
+					</tr>
+
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+</body>
+<div th:replace="fragments/links :: javaScriptLink"></div>
+<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+<script type="text/javascript">
+	$('#datatable').DataTable({
+		responsive: true
+	});
+</script>
+<script>
+	function updateById(id) {
+
+		console.log(id + "............")
+		var cid = document.getElementById('CUST_INT_ID_' + id).value;
+		console.log(cid)
+
+		var urlString = "/DATA_ENTRY_LT_FORM_Update/" + cid;
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				//var response = xhttp.response.json();
+
+
+
+
+
+
+
+
+			}
+		};
+		xhttp.open("GET", urlString, true);
+
+		xhttp.send();
+
+
+	}
+</script>
+
+</html>

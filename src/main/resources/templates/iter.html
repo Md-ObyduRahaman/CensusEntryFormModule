@@ -23,20 +23,15 @@
 <body>
 	<h1>hello</h1>
 
-	<div th:each="code : ${billPrints}" class="container-fluid">
-		<h1>Example</h1>
-		<table  style="border: 1px solid black;">
-
-		<tr >
-			<td th:text="${code.CUST_ID}" />
-			<td th:text="hello" />				
-		</tr>
-		<tr>
-		<td th:text="ok" />
-			<td th:text="hello" />		
-		</tr>
-		</table>
-		<h1>Example</h1>
+	<label class="col-lg-1" for="location">Location &nbsp </label>
+	<div class="col-md-2 mb-2 input-group search_select_box ">
+		<select required name="LOCATION_CODE" id="locationOption"
+			class="form-control search_select_box select_supplyType">
+			<option value="">Select Zone </option>
+			<option th:each="location : ${dPD_LOCATION_LIST}" th:value="${location.LOCATION_CODE}"
+				th:text="${location.LOCATION_NAME}">
+			</option>
+		</select>
 	</div>
 
 </body>
