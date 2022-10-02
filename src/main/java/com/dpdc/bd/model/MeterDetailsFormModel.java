@@ -9,7 +9,7 @@ public class MeterDetailsFormModel {
 	private int FEEDER_TRANS_ID;
 	private String PHASE_TYPE;
 	private String PHASE_CONNECT;
-	private int SERV_CONNEC_TYPE;
+	private String SERV_CONNEC_TYPE;
 	private String SERV_DROP_LENGTH;
 	private String SERV_DROP_SIZE;
 	private String SUB_STATION_33;
@@ -19,7 +19,7 @@ public class MeterDetailsFormModel {
 	private String USAGE_CATEGORY;
 	private int LIKELY_MONTHLY_CONSUMP;
 	private String CONNECT_LOAD;
-	private int CONSUMER_STATUS;
+	private String CONSUMER_STATUS;
 	private int SECURITY_DEPOSIT;
 	private String COOK_FUEL_TYPE;
 	private String BUS_TYPE_CODE;
@@ -35,6 +35,7 @@ public class MeterDetailsFormModel {
 	private String CODE_DESCR;
 	private String CODE_DESCR_tarrif;
 	private String CUSTOMER_TYPE;
+	private String CUST_INT_ID;
 
 	public MeterDetailsFormModel() {
 		super();
@@ -43,6 +44,18 @@ public class MeterDetailsFormModel {
 	
 
 	
+	public String getCUST_INT_ID() {
+		return CUST_INT_ID;
+	}
+
+
+
+	public void setCUST_INT_ID(String cUST_INT_ID) {
+		CUST_INT_ID = cUST_INT_ID;
+	}
+
+
+
 	public String getCUSTOMER_TYPE() {
 		return CUSTOMER_TYPE;
 	}
@@ -149,11 +162,11 @@ public class MeterDetailsFormModel {
 		PHASE_CONNECT = pHASE_CONNECT;
 	}
 
-	public int getSERV_CONNEC_TYPE() {
+	public String getSERV_CONNEC_TYPE() {
 		return SERV_CONNEC_TYPE;
 	}
 
-	public void setSERV_CONNEC_TYPE(int sERV_CONNEC_TYPE) {
+	public void setSERV_CONNEC_TYPE(String sERV_CONNEC_TYPE) {
 		SERV_CONNEC_TYPE = sERV_CONNEC_TYPE;
 	}
 
@@ -229,11 +242,11 @@ public class MeterDetailsFormModel {
 		CONNECT_LOAD = cONNECT_LOAD;
 	}
 
-	public int getCONSUMER_STATUS() {
+	public String getCONSUMER_STATUS() {
 		return CONSUMER_STATUS;
 	}
 
-	public void setCONSUMER_STATUS(int cONSUMER_STATUS) {
+	public void setCONSUMER_STATUS(String cONSUMER_STATUS) {
 		CONSUMER_STATUS = cONSUMER_STATUS;
 	}
 

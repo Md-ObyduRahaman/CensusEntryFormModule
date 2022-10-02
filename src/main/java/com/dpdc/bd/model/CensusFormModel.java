@@ -36,6 +36,8 @@ public class CensusFormModel {
 	private String SERV_PIN_CODE;
 	private String WALKING_SEQUENCE;
 	private String ZONE;
+	private String METER_NUM;
+	private String METER_TYPE_DESC_CODE;
 	public CensusFormModel() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -43,6 +45,30 @@ public class CensusFormModel {
 	
 	
 	
+	public String getMETER_NUM() {
+		return METER_NUM;
+	}
+
+
+
+	public void setMETER_NUM(String mETER_NUM) {
+		METER_NUM = mETER_NUM;
+	}
+
+
+
+	public String getMETER_TYPE_DESC_CODE() {
+		return METER_TYPE_DESC_CODE;
+	}
+
+
+
+	public void setMETER_TYPE_DESC_CODE(String mETER_TYPE_DESC_CODE) {
+		METER_TYPE_DESC_CODE = mETER_TYPE_DESC_CODE;
+	}
+
+
+
 	public String getBRANCH_NAME() {
 		return BRANCH_NAME;
 	}

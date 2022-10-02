@@ -35,6 +35,7 @@ public class CensusEntryDAO {
 	SimpleJdbcCall getAllStatesJdbcCallbillGrp;
 	SimpleJdbcCall getAllStatesJdbcCallInsert;
 	SimpleJdbcCall getAllStatesJdbcCallInsertMeterDetails;
+	SimpleJdbcCall getAllStatesJdbcCallInsertMeterDetailsentryForm;
 
 	public CensusEntryDAO(DataSource dataSource) {
 		this.getAllStatesJdbcCall = new SimpleJdbcCall(dataSource);
@@ -42,6 +43,7 @@ public class CensusEntryDAO {
 		this.getAllStatesJdbcCallbillGrp = new SimpleJdbcCall(dataSource);
 		this.getAllStatesJdbcCallInsert = new SimpleJdbcCall(dataSource);
 		this.getAllStatesJdbcCallInsertMeterDetails = new SimpleJdbcCall(dataSource);
+		this.getAllStatesJdbcCallInsertMeterDetailsentryForm = new SimpleJdbcCall(dataSource);
 
 	}
 
@@ -143,6 +145,32 @@ public class CensusEntryDAO {
 
 	}
 
+	public String insertMeterDetailsFormEntry(MeterDetails a, String user_name, String O_CUST_ID) {
+
+		Map<String, Object> result = getAllStatesJdbcCallInsertMeterDetailsentryForm.withCatalogName("DPG_CENSUS")
+				.withProcedureName("DPD_CENSUS_METERDETAILS_INSERT")
+				/*
+				 * .declareParameters(new SqlOutParameter("O_STATUS",
+				 * OracleTypes.INTEGER)).execute(O_CUST_ID, a.getMETER_OWNER(),
+				 * a.getMETER_TYPE(), "BC_CONSCEN", user_name, a.getMETER_MFG_DATE(),
+				 * a.getMETER_INST_DATE(), a.getMETER_NUM(), a.getMETER_DIGIT_KW(),
+				 * a.getMETER_DIGIT_CUM(), a.getMETER_DIGIT(), a.getCURR_RATING(),
+				 * 
+				 * a.getVOLT_VALUE(), a.getMETER_CONDITION(), a.getASSOCIATED_KWH_METER_NUM(),
+				 * a.getSCALE_FACTOR_KW(), a.getSCALE_FACTOR_KVARH(), a.getSCALE_FACTOR_KVA(),
+				 * a.getPT_NUMERATOR(), a.getCT_NUMERATOR(), a.getOVERALL_MF_KWH(),
+				 * a.getMETER_SEAL(), a.getPROT_TYPE(), a.getTIME_SWITCH_NUM(),
+				 * a.getTIME_SWITCH_START(), a.getTIME_SWITCH_SEAL());
+				 */
+				.declareParameters(new SqlOutParameter("O_STATUS", OracleTypes.INTEGER)).execute(1, '2', "s",
+						"BC_CONSCEN", user_name, 02/03/2202, 02/03/2021, 12, 12, 12, 1, "1", 1, "1", "1", 1, 2, 3,
+						4, 5, 6, "f", "g", "h", "i", "j");
+		JSONObject json = new JSONObject(result);
+		String out = json.get("O_STATUS").toString();
+		return out;
+
+	}
+
 	public ArrayList<CensusFormModel> listOf_CensusFormModel() {
 
 		String sql = "SELECT * FROM BC_CONSUMER_INTERFACE WHERE SOURCE_FLAG='BC_CONSCEN' ORDER BY CUSTOMER_NAME ASC ";
@@ -152,31 +180,36 @@ public class CensusEntryDAO {
 
 		return listeff_CensusFormModel;
 	}
+
 	public ArrayList<CensusFormModel> listOf_Bank_Code() {
-		
+
 		String sql = "SELECT * FROM BC_BANKS ";
-		
+
 		ArrayList<CensusFormModel> listeff_BC_BANKS = (ArrayList<CensusFormModel>) jdbcTemplate.query(sql,
 				BeanPropertyRowMapper.newInstance(CensusFormModel.class));
-		
+
 		return listeff_BC_BANKS;
 	}
-	public ArrayList<CensusFormModel> listOf_BC_CONSUMER_INTERFACE() {
-		
-		String sql = "SELECT * FROM BC_CONSUMER_INTERFACE";
-		
+
+	public ArrayList<CensusFormModel> listOf_BC_CONSUMER_INTERFACE(String P) {
+
+		String sql = "SELECT BMI.METER_NUM, CONCAT (BMI.METER_TYPE, BMTM.METER_TYPE_DESC) AS METER_TYPE_DESC_CODE\r\n"
+				+ "  FROM BC_METER_INTERFACE  BMI\r\n" + "       INNER JOIN BC_METER_TYPECODE_MAP BMTM\r\n"
+				+ "           ON BMI.METER_TYPE = BMTM.OLD_METER_TYPECODE\r\n" + " WHERE REF_ID = '" + P + "'";
+
 		ArrayList<CensusFormModel> listeff_BC_CONSUMER_INTERFACE = (ArrayList<CensusFormModel>) jdbcTemplate.query(sql,
 				BeanPropertyRowMapper.newInstance(CensusFormModel.class));
-		
+
 		return listeff_BC_CONSUMER_INTERFACE;
 	}
+
 	public ArrayList<CensusFormModel> listOf_BRANCH_CODE() {
-		
+
 		String sql = "SELECT * FROM BC_BANK_BRANCHES";
-		
+
 		ArrayList<CensusFormModel> listOf_BRANCH_CODE = (ArrayList<CensusFormModel>) jdbcTemplate.query(sql,
 				BeanPropertyRowMapper.newInstance(CensusFormModel.class));
-		
+
 		return listOf_BRANCH_CODE;
 	}
 
@@ -214,28 +247,79 @@ public class CensusEntryDAO {
 
 		String sql = "select * from BC_SPL_CODE";
 
-		ArrayList<MeterDetailsFormModel> listOf_BC_SPL_CODE_list = (ArrayList<MeterDetailsFormModel>) jdbcTemplate.query(sql,
-				BeanPropertyRowMapper.newInstance(MeterDetailsFormModel.class));
+		ArrayList<MeterDetailsFormModel> listOf_BC_SPL_CODE_list = (ArrayList<MeterDetailsFormModel>) jdbcTemplate
+				.query(sql, BeanPropertyRowMapper.newInstance(MeterDetailsFormModel.class));
 
 		return listOf_BC_SPL_CODE_list;
 	}
+	public MeterDetailsFormModel singleDistribution(String CUST_INT_ID) {
+		
+		String sql = "select * from BC_CONSUMER_INTERFACE WHERE CUST_INT_ID = ?";
+			
+		MeterDetailsFormModel singleDistribution = (MeterDetailsFormModel) jdbcTemplate.queryForObject(sql,
+				new Object[] { CUST_INT_ID }, new BeanPropertyRowMapper(MeterDetailsFormModel.class));
+						
+		return singleDistribution;
+	}
+
 	public ArrayList<MeterDetailsFormModel> listOf_Status_list() {
-		
+
 		String sql = "select * from BC_CUSTOMER_TYPE_CODE";
-		
+
 		ArrayList<MeterDetailsFormModel> listOf_Status_list = (ArrayList<MeterDetailsFormModel>) jdbcTemplate.query(sql,
 				BeanPropertyRowMapper.newInstance(MeterDetailsFormModel.class));
-		
+
 		return listOf_Status_list;
 	}
+
 	public ArrayList<MeterDetails> listOf_BC_METER_TYPECODE_MAP() {
-		
+
 		String sql = "select * from BC_METER_TYPECODE_MAP";
-		
+
 		ArrayList<MeterDetails> listOf_BC_METER_TYPECODE_MAP = (ArrayList<MeterDetails>) jdbcTemplate.query(sql,
 				BeanPropertyRowMapper.newInstance(MeterDetails.class));
-		
+
 		return listOf_BC_METER_TYPECODE_MAP;
+	}
+
+	public ArrayList<MeterDetails> listOf_BC_MANUF_CODE() {
+
+		String sql = "select * from BC_MANUF_CODE";
+
+		ArrayList<MeterDetails> listOf_BC_MANUF_CODE = (ArrayList<MeterDetails>) jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(MeterDetails.class));
+
+		return listOf_BC_MANUF_CODE;
+	}
+
+	public ArrayList<MeterDetails> listOf_BC_METER_LOCATION() {
+
+		String sql = "select * from BC_METER_LOCATION";
+
+		ArrayList<MeterDetails> listOf_BC_METER_LOCATION = (ArrayList<MeterDetails>) jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(MeterDetails.class));
+
+		return listOf_BC_METER_LOCATION;
+	}
+
+	public ArrayList<MeterDetails> listOf_BC_RATED_CURRENT() {
+
+		String sql = "select * from BC_RATED_CURRENT";
+
+		ArrayList<MeterDetails> listOf_BC_RATED_CURRENT = (ArrayList<MeterDetails>) jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(MeterDetails.class));
+
+		return listOf_BC_RATED_CURRENT;
+	}
+
+	public ArrayList<MeterDetails> listOf_BC_DEFECTIVE_CODE() {
+
+		String sql = "select * from BC_DEFECTIVE_CODE";
+
+		ArrayList<MeterDetails> listOf_BC_DEFECTIVE_CODE = (ArrayList<MeterDetails>) jdbcTemplate.query(sql,
+				BeanPropertyRowMapper.newInstance(MeterDetails.class));
+
+		return listOf_BC_DEFECTIVE_CODE;
 	}
 
 	public CensusFormModel Single_CensusFormUpdate_Data(String CUST_INT_ID) {

@@ -59,13 +59,11 @@ public class TestController {
 	
 	
 	  @RequestMapping("/test") 
-	  public String BILL_PRINT(@CookieValue(value = "user_name", defaultValue = "") String user_name, Model model) {
-			if (user_name.equals("")) {
-				return "redirect:/";
-			}
+	  public String BILL_PRINT() {
+				
+			
 
-			ArrayList<DPD_LOCATION_LIST> dPD_LOCATION_LIST = censusEntryDAO.Get_DPD_LOCATION_LIST(user_name);
-			model.addAttribute("dPD_LOCATION_LIST", dPD_LOCATION_LIST);
+			
 	  return"iter"; }
 	  
 	 

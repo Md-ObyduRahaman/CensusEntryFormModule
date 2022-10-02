@@ -151,10 +151,7 @@
 								<select name="CONSUMER_STATUS" id="CONSUMER_STATUS" class="form-select form-select-sm"
 									aria-label=".form-select-sm example">
 									<option value="N" th:selected="${SCD.CONSUMER_STATUS =='N'} ">New consumers</option>
-									<option value="F" th:selected="${SCD.CONSUMER_STATUS =='F'} ">Census consumers
-									</option>
-									<option value="M" th:selected="${SCD.CONSUMER_STATUS =='M'} ">Migrated consumers
-									</option>
+									
 									<option value="L" th:selected="${SCD.CONSUMER_STATUS =='L'} ">Additional meter
 									</option>
 								</select>
@@ -367,8 +364,8 @@
 									aria-label="Basic example">
 									<button type="button" class="btn btn-primary"
 										th:onclick="|window.location.href='/meterDetailsForm'|">MeterDetails</button>
-									<button type="button" class="btn btn-primary"
-										th:onclick="|window.location.href='/distribution'|">Distribution</button>
+									<a th:href="@{'/' + ${URL}+'/' + ${SCD.CUST_INT_ID}}" id="updateButton"
+								class="btn btn-success  text-right">Distribution</a>
 									<button type="submit" id="uptdBtn" class="btn btn-info">Update</button>
 								</div>
 							</div>

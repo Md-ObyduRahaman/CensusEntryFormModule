@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<div th:replace="fragments/links :: cssLink"></div>
+
+	<title>MeterDetailsForm</title>
+
+	<style>
+		.select2-container .select2-selection--single {
+			height: 40px !important;
+
+		}
+
+		.select2-container--default .select2-selection--single {
+			border: 1px solid #ccc !important;
+			border-radius: 0px !important;
+		}
+
+
+		.fixTableHead {
+			overflow-y: auto;
+			height: 200px;
+		}
+
+		.fixTableHead thead th {
+			position: sticky;
+			top: 0;
+		}
+
+		table {
+			border-collapse: collapse;
+			width: 100%;
+		}
+
+		th,
+		td {
+			padding: 8px 15px;
+
+		}
+
+		th {
+			background: #fff;
+		}
+		
+		/* Chrome, Safari, Edge, Opera */
+		input::-webkit-outer-spin-button,
+		input::-webkit-inner-spin-button {
+			-webkit-appearance: none;
+			margin: 0;
+		}
+
+		/* Firefox */
+		input[type=number] {
+			-moz-appearance: textfield;
+		}
+	</style>
+
+
+
+</head>
+
+<body>
+
+	<div class="wrapper">
+		<span th:remove="tag" th:utext="${dataHtml}"></span>
+		<div class="container-fluid mw-100 py-2 h-100">
+			<div th:replace="fragments/sidebar :: header"></div>
+
+			<!--Start First Part -->
+
+
+			<form th:action="@{/distribution}" method="post" th:object="${detailsFormModel}">
+				<fieldset class="form-group text-left border p-3">
+					<legend class="w-auto px-2"><strong>DistributionForm</strong></legend>
+					<div class="row">
+						<label class="col-lg-2" for="supplyType">Supply Type</label>
+						<div class="col-sm-2 mb-2 supTyp_list">
+							<div class="input-group search_select_box ">
+								<select name="SUPPLY_TYPE" id="supTyp_list" class="form-control select_supplyType">
+									<option value="T" th:selected="${SDB.SUPPLY_TYPE =='T'}" >Transformer</option>
+									<option value="F" th:selected="${SDB.SUPPLY_TYPE =='F'}" >Feeder</option>
+								</select>
+							</div>
+						</div>
+						<label class="col-lg-2" for="fedderNo">Trs ID No/Fedder No</label>
+						<div class="col-md-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="text" class="form-control" th:value="${SDB.FEEDER_TRANS_CODE}" name="FEEDER_TRANS_CODE" id="fedderNo">
+
+							</div>
+
+						</div>
+						<label class="col-lg-2" for="fedderSectionId">Trx Mfg.No./Fedder Section
+							id &nbsp</label>
+						<div class="col-lg-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="number" required class="form-control" th:value="${SDB.FEEDER_TRANS_ID}" name="FEEDER_TRANS_ID" id="fedderSectionId">
+
+							</div>
+
+						</div>
+						<label class="col-sm-2" for="phaseType">Phase Type &nbsp</label>
+						<div class="col-sm-2 mb-2 supTyp_list">
+							<div class="input-group search_select_box ">
+								<select name="PHASE_TYPE" id="phaseType" class="form-control select_phaseType">
+									<option th:selected="${SDB.PHASE_TYPE =='1'}" value="1">Single phase</option>
+									<option th:selected="${SDB.PHASE_TYPE =='3'}" value="3">Three phase</option>
+								</select>
+							</div>
+						</div>
+
+						<label class="col-lg-2" for="phaseConnect">Phase Connect
+							&nbsp</label>
+						<div class="col-md-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="text" min="0" max="20" class="form-control" th:value="${SDB.PHASE_CONNECT}" name="PHASE_CONNECT" readonly
+									id="phaseConnect">
+
+							</div>
+
+						</div>
+						<label class="col-lg-2" for="meterSide">Meter Side &nbsp</label>
+						<div class="col-md-2 mb-2">
+
+							<div class="input-group">
+
+								<select name="meterSide" id="meterSide" class="form-control selectrule">
+									<option value="LT" selected>LT</option>
+									<option value="HT">HT</option>
+								</select>
+
+							</div>
+
+						</div>
+						<label class="col-sm-2" for="saveConnTp">Serv Conn. Tp &nbsp</label>
+						<div class="col-sm-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="number" required min="0" max="9" th:value="${SDB.SERV_CONNEC_TYPE}" class="form-control" name="SERV_CONNEC_TYPE"
+									id="saveConnTp">
+
+							</div>
+
+						</div>
+						<label class="col-lg-2" for="serviceDropLength">Service Drop Length(in
+							Meter) &nbsp</label>
+						<div class="col-md-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="text" class="form-control" name="SERV_DROP_LENGTH" th:value="${SDB.SERV_DROP_LENGTH}" id="serviceDropLength">
+
+							</div>
+
+						</div>
+
+						<label class="col-lg-2" for="serviceDropSize">Service Drop Size
+							&nbsp</label>
+						<div class="col-md-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="text" class="form-control" th:value="${SDB.SERV_DROP_SIZE}" name="SERV_DROP_SIZE" id="serviceDropSize">
+
+							</div>
+
+						</div>
+						<label class="col-sm-2" for="33kvSubStn">33 KV Sub Stn &nbsp</label>
+						<div class="col-sm-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="text" class="form-control" th:value="${SDB.SUB_STATION_33}" name="SUB_STATION_33" id="33kvSubStn">
+
+							</div>
+
+						</div>
+						<label class="col-lg-2" for="11kvSubStn">11 KV Sub Stn &nbsp</label>
+						<div class="col-md-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="text" class="form-control" th:value="${SDB.SUB_STATION_11}" name="SUB_STATION_11" id="11kvSubStn">
+
+							</div>
+
+						</div>
+						<div class="col-4"></div>
+						<label class="col-lg-2" for="poleNumber">Pole Number &nbsp</label>
+						<div class="col-md-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="text" class="form-control" th:value="${SDB.POLE_NUM}" name="POLE_NUM" id="poleNumber">
+
+							</div>
+
+						</div>
+						<label class="col-sm-2" for="sanctionedLoad">Sanctioned Load
+							&nbsp</label>
+						<div class="col-sm-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="text" class="form-control" th:value="${SDB.SANC_LOAD}" name="SANC_LOAD" id="sanctionedLoad">
+
+							</div>
+
+						</div>
+						<div class="col-4"></div>
+						<label class="col-md-2" for="tariff">Tariff &nbsp</label>
+						<div class="col-lg-2 mb-2 supTyp_list">
+							<div class="input-group search_select_box ">
+								<select name="USAGE_CATEGORY" id="tariff" class="form-control select_tariff">
+									<option th:each="code : ${listOf_USAGE_CATEGORY_CODE}"
+										th:value="${code.USAGE_CATEGORY_CODE}" th:selected="${code.USAGE_CATEGORY_CODE}==${SDB.USAGE_CATEGORY_CODE}" th:text="${code.USAGE_CATEGORY_CODE}+ '-' + ${code.CODE_DESCR_tarrif}"></option>
+								
+								</select>
+							</div>
+						</div>
+						<label class="col-lg-2" for="monthlyConsumption">Monthly Likely
+							Consumption &nbsp</label>
+						<div class="col-md-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="number" required class="form-control" name="LIKELY_MONTHLY_CONSUMP" th:value="${SDB.LIKELY_MONTHLY_CONSUMP}"
+									id="monthlyConsumption">
+
+							</div>
+
+						</div>
+						<div class="col-4"></div>
+						<label class="col-sm-2" for="connectedLoad">Connected Load
+							&nbsp</label>
+						<div class="col-sm-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="text" class="form-control" name="CONNECT_LOAD" th:value="${SDB.CONNECT_LOAD}" id="connectedLoad">
+
+							</div>
+
+						</div>
+						<label class="col-lg-2" for="typOfBusiness">Type of Business
+							&nbsp</label>
+						<div class="col-lg-2 mb-2 cookFuelType">
+							<div class="input-group search_select_box ">
+								<select name="BUS_TYPE_CODE" id="typOfBusiness"
+									class="form-control selectTypOfBusiness">
+											<option value="null" >select</option>
+									<option th:each="code : ${listOf_Bus_type}" th:value="${code.BUS_TYPE_CODE}" th:selected="${code.BUS_TYPE_CODE}==${SDB.BUS_TYPE_CODE}"
+										th:text="${code.BUS_TYPE_CODE}+ '-' + ${code.BUS_TYPE_DESC}"></option>
+								</select>
+							</div>
+						</div>
+						<label class="col-lg-2" for="status">Status &nbsp</label>
+						<div class="col-lg-2 mb-2 cookFuelType">
+							<div class="input-group search_select_box ">
+							
+								<select name="CUSTOMER_TYPE" id="status" class="form-control selectstatus">
+									<option value="null" >select</option>
+									<option th:each="code : ${listOf_Status_list}" th:value="${code.CUSTOMER_TYPE_CODE}" th:selected="${code.CUSTOMER_TYPE_CODE}==${SDB.CUSTOMER_TYPE_CODE}"
+										th:text="${code.CUSTOMER_TYPE_CODE}+ '-' + ${code.CODE_DESCR}"></option>
+								
+								</select>
+							</div>
+						</div>
+						
+						<label class="col-sm-2" for="secDeposit">Sec. Deposit &nbsp</label>
+						<div class="col-sm-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="number"  required class="form-control" th:value="${SDB.SECURITY_DEPOSIT}" name="SECURITY_DEPOSIT" id="secDeposit">
+
+							</div>
+
+						</div>
+						<label class="col-lg-2" for="cookFuelType">Cook Fuel Type&nbsp</label>
+						<div class="col-lg-2 mb-2 cookFuelType">
+							<div class="input-group search_select_box ">
+								<select name="COOK_FUEL_TYPE" id="cookFuelType" class="form-control selectcookFuelType">
+									<option th:selected="${SDB.COOK_FUEL_TYPE =='01'}" value="01">Gas</option>
+									<option th:selected="${SDB.COOK_FUEL_TYPE =='02'}" value="02">Electricity</option>
+									<option th:selected="${SDB.COOK_FUEL_TYPE =='03'}" value="03">L.P Gas</option>
+									<option th:selected="${SDB.COOK_FUEL_TYPE =='04'}" value="04">Kerosene</option>
+									<option th:selected="${SDB.COOK_FUEL_TYPE =='05'}" value="05">Wood</option>
+									<option th:selected="${SDB.COOK_FUEL_TYPE =='99'}" value="99">Others</option>
+								</select>
+							</div>
+						</div>
+						<label class="col-lg-2" for="splConsCode">SPL Cons. Code
+							&nbsp</label>
+						<div class="col-lg-2 mb-2 cookFuelType">
+							<div class="input-group search_select_box ">
+								<select name="SPL_CONS_CODE" id="splConsCode" class="form-control selectsplConsCode">
+									<option th:each="code : ${listOf_BC_SPL_CODE_list}" th:value="${code.SPL_CONS_CODE}" th:selected="${code.SPL_CONS_CODE}==${SDB.SPL_CONS_CODE}"
+										th:text="${code.SPL_CODE_DESC}"></option>
+								</select>
+							</div>
+						</div>
+						<label class="col-lg-2" for="SplBill">SPL Bill type &nbsp</label>
+						<div class="col-lg-2 mb-2 cookFuelType">
+							<div class="input-group search_select_box ">
+								<select name="SPL_TYPE" id="SplBill" class="form-control selectSplBill">
+
+									<option th:each="code : ${listOf_BC_SPL_TYPE}" th:value="${code.SPL_TYPE_CODE}" th:selected="${code.SPL_TYPE_CODE}==${SDB.SPL_TYPE_CODE}"
+										th:text="${code.SPL_TYPE_DESC}"></option>
+								</select>
+							</div>
+						</div>
+						<label class="col-sm-2" for="assoMtrNo">Asso. Mtr No &nbsp</label>
+						<div class="col-sm-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="text" class="form-control"  name="assoMtrNo" readonly id="assoMtrNo">
+
+							</div>
+
+						</div>
+						<label class="col-lg-2" for="rule">Rule &nbsp</label>
+						<div class="col-md-2 mb-2">
+
+							<div class="input-group">
+
+								<select disabled="true" name="rule" id="rule" class="form-control selectrule">
+									<option value="null" selected>Blank</option>
+									<option value="PP">PP</option>
+									<option value="CL">CL</option>
+									<option value="SL">SL</option>
+								</select>
+
+							</div>
+
+						</div>
+						<label class="col-lg-2" for="value">Value &nbsp</label>
+						<div class="col-md-2 mb-2">
+
+							<div class="input-group">
+
+								<input type="text" class="form-control" name="value" id="value" readonly>
+
+							</div>
+
+						</div>
+						<div class="col-12 text-right">
+							<div class="btn-group border-black " style="display: inline;" role="group"
+								aria-label="Basic example">
+
+								<button type="button" class="btn btn-primary"
+									th:onclick="|window.location.href='/meterDetailsForm'|">Meter
+									Details</button>
+								<button type="button" class="btn btn-primary">X-F Details</button>
+								<button type="button" th:onclick="|window.location.href='/CensusEntryForm'|"
+									class="btn btn-primary">Consumer</button>
+								<button type="submit" class="btn btn-success">Save</button>
+
+							</div>
+						</div>
+
+					</div>
+				</fieldset>
+
+			</form>
+
+
+		</div>
+
+	</div>
+
+
+
+
+
+</body>
+<!-- JavaScript -->
+<div th:replace="fragments/links :: javaScriptLink"></div>
+<script>
+
+
+
+	$('.select_tariff').select2();
+	$('.selectTypOfBusiness').select2();
+	$('.selectstatus').select2();
+
+
+</script>
+<script>
+$("#phaseType").change(function () {
+		var consumer_phaseType = $("#phaseType").val();
+		if (consumer_phaseType == "3") {
+			$("#phaseConnect").prop("readonly", false);
+			}
+			else{
+				$("#phaseConnect").prop("readonly", true);
+			const input1 = document.getElementById('phaseConnect');
+			input1.value = '';
+				
+			}
+		});
+
+</script>
+<script>
+
+	$("#SplBill").change(function () {
+		var consumer_STATUS = $("#SplBill").val();
+
+		if (consumer_STATUS == "CPC") {
+			$("#assoMtrNo").prop("readonly", false);
+			$("#rule").prop("disabled", false);
+			$("#value").prop("readonly", false);
+
+		}
+		else if (consumer_STATUS == "REG") {
+			$("#assoMtrNo").prop("readonly", true);
+			$("#rule").prop("disabled", true);
+			$("#value").prop("readonly", true);
+			const input1 = document.getElementById('assoMtrNo');
+			input1.value = '';
+			const input2 = document.getElementById('rule');
+			input2.value = '';
+			const input3 = document.getElementById('value');
+			input3.value = '';
+
+		}
+
+		else {
+			$("#assoMtrNo").prop("readonly", true);
+			$("#rule").prop("disabled", false);
+			$("#value").prop("readonly", false);
+			const input = document.getElementById('assoMtrNo');
+			input.value = '';
+		}
+
+	});
+
+
+</script>
+
+</html>

@@ -81,316 +81,339 @@
 			<div class="card text-center">
 
 				<fieldset class="form-group text-left border p-3">
-					<legend class="w-auto px-2">Meter details</legend>
-					<div class="row">
-						<label class="col-lg-2" for="coustomerName">Owner &nbsp </label>
-						<div class="col-lg-2 mb-2 input-group search_select_box ">
-							<select name="METER_OWNER" id="owner_list" class="form-control select_owner_list">
-								<option selected value="1">DPDC</option>
-								<option value="2">Customer</option>
-							</select>
-						</div>
-						<label class="col-lg-2" for="type">Type &nbsp </label>
-						<div class="col-lg-2 mb-2  input-group search_select_box ">
-							<select name="METER_TYPE" id="type_list" class="form-control select">
-								<option selected>select</option>
-								<option th:each="code : ${listOf_BC_METER_TYPECODE_MAP}" th:value="${code.NEW_METER_TYPECODE}"
-									th:text="${code.NEW_METER_TYPECODE}+'-'+${code.METER_TYPE_DESC}"
-									>
-								</option>
-							</select>
-							<span class="input-group-text"> KWH </span>
-						</div>
-						<label class="col-lg-2" for="type">Make &nbsp </label>
-						<div class="col-lg-2 mb-2 input-group search_select_box ">
-							<select name="METER_MAKE" id="make_list" class="form-control select_make_list">
-								<option selected></option>
-								<option value="1">One</option>
-								<option value="2">Two</option>
-								<option value="3">Three</option>
-							</select>
+					<form th:action="@{/meterDetailsForm}" method="post" th:object="${meterDetails}">
+						<legend class="w-auto px-2">Meter details</legend>
+						<div class="row">
+							<label class="col-lg-2" for="coustomerName">Owner &nbsp </label>
+							<div class="col-lg-2 mb-2 input-group search_select_box ">
+								<select name="METER_OWNER" id="owner_list" class="form-control select_owner_list">
+									<option selected value="1">DPDC</option>
+									<option value="2">Customer</option>
+								</select>
+							</div>
+							<label class="col-lg-2" for="type">Type &nbsp </label>
+							<div class="col-lg-2 mb-2  input-group search_select_box ">
+								<select name="METER_TYPE" id="type_list" class="form-control select">
+									<option selected>select</option>
+									<option th:each="code : ${listOf_BC_METER_TYPECODE_MAP}"
+										th:value="${code.OLD_METER_TYPECODE}"
+										th:text="${code.OLD_METER_TYPECODE}+'-'+${code.METER_TYPE_DESC}">
+									</option>
+								</select>
+								<span class="input-group-text"> KWH </span>
+							</div>
+							<label class="col-lg-2" for="type">Make &nbsp </label>
+							<div class="col-lg-2 mb-2 input-group search_select_box ">
+								<select name="METER_MAKE" id="make_list" class="form-control select_make_list">
+									<option selected></option>
+									<option th:each="code : ${listOf_BC_MANUF_CODE}" th:value="${code.MANUF_CODE}"
+										th:text="${code.MANUF_CODE}+'-'+${code.MANUF_NAME}">
+									</option>
+								</select>
 
-						</div>
-						<label class="col-lg-2" for="location">Location &nbsp</label>
-						<div class="col-md-2 mb-2">
+							</div>
+							<label class="col-lg-2" for="location">Location &nbsp</label>
+							<div class="col-md-2 mb-2">
 
-							<div class="input-group">
+								<div class="input-group">
 
-								<input type="number" class="form-control fcs" name="METER_LOC"
-									id="location first-element">
+
+									<select name="METER_LOC" id="location" class="form-control select_make_list">
+										<option selected></option>
+										<option th:each="code : ${listOf_BC_METER_LOCATION}"
+											th:value="${code.METER_LOCATION_CODE}"
+											th:text="${code.METER_LOCATION_CODE}+'-'+${code.LOCATON_DESCR}">
+										</option>
+									</select>
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="yrOfManuf">Yr Of Manuf &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text"  class="form-control fcs" name="METER_MFG_DATE"
+										id="yrOfManuf">
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="yrOfInst">Yr Of Inst. &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" class="form-control fcs" name="METER_INST_DATE" id="yrOfInst">
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="meterNo">Meter No. &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" maxlength="20" class="form-control fcs" name="METER_NUM"
+										id="meterNo">
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="digit(KW)">Digit(KW) &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" maxlength="1" class="form-control fcs" name="METER_DIGIT_KW"
+										id="digit(KW)">
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="digit(Cum)">Digit(Cum) &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" maxlength="1" class="form-control fcs" name="METER_DIGIT_CUM"
+										id="digit(Cum)">
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="meterDigit">Meter Digit &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" maxlength="1" class="form-control fcs" name="METER_DIGIT"
+										id="meterDigit">
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="currRatting">Curr. Ratting
+								&nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<select name="CURR_RATING" id="make_list" class="form-control select_make_list">
+										<option selected></option>
+										<option th:each="code : ${listOf_BC_RATED_CURRENT}"
+											th:value="${code.RATED_CURRENT_CODE}"
+											th:text="${code.RATED_CURRENT_CODE}+'-'+${code.DESCR}">
+										</option>
+									</select>
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="voltRatting">Volt Rating &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" class="form-control fcs" name="VOLT_VALUE" id="voltRatting">
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="mtrCond">Mtr Cond &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+
+									<select name="METER_CONDITION" id="make_list" class="form-control select_make_list">
+										<option selected></option>
+										<option th:each="code : ${listOf_BC_DEFECTIVE_CODE}"
+											th:value="${code.DEFECTIVE_CODE}"
+											th:text="${code.DEFECTIVE_CODE}+'-'+${code.DEFECTIVE_DESC}">
+										</option>
+									</select>
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="mtrCond(KW)">Mtr Cond(KW) &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" class="form-control fcs" name="METER_CONDITION" id="mtrCond(KW)">
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="assKWHMtrNo">Ass. KWH Mtr No.
+								&nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" class="form-control fcs" name="ASSOCIATED_KWH_METER_NUM"
+										id="assKWHMtrNo">
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="DAILmF(KWH)">Dail MF(KWH) &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" class="form-control fcs" name="DAILmF(KWH)" id="SCALE_FACTOR_KW">
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="dailMf(kvarh)">Dail MF(KVARH)
+								&nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" class="form-control fcs" name="SCALE_FACTOR_KVARH"
+										id="dailMf(kvarh)">
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="DAILmF(KW)">Dail MF(KW) &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" class="form-control fcs" name="SCALE_FACTOR_KW" id="DAILmF(KW)">
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="DAILmF(KVA)">Dail MF(KVA) &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" class="form-control" name="SCALE_FACTOR_KVA" id="DAILmF(KVA)"
+										readonly>
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="ptRatio">PT Ratio &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" class="form-control fcs" name="PT_NUMERATOR" id="ptRatio">
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="ctRatio">Ct Ratio &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" class="form-control fcs" name="CT_NUMERATOR" id="ctRatio">
+
+								</div>
+
+							</div>
+							<label class="col-lg-2" for="omf(kwh)">OMF(KWH) &nbsp</label>
+							<div class="col-md-2 mb-2">
+
+								<div class="input-group">
+
+									<input type="text" class="form-control fcs" name="OVERALL_MF_KWH" id="omf(kwh)">
+
+								</div>
 
 							</div>
 
-						</div>
-						<label class="col-lg-2" for="yrOfManuf">Yr Of Manuf &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" min="1000" max="9999" class="form-control fcs" name="yrOfManuf"
-									id="yrOfManuf">
-
+							<label class="col-lg-2" for="omf(kvarh)">OMF(KVARH) &nbsp</label>
+							<div class="col-md-2 mb-2">
+								<div class="input-group">
+									<input type="text" class="form-control fcs" name="OVERALL_MF_KVARH" id="omf(kvarh)">
+								</div>
 							</div>
 
-						</div>
-						<label class="col-lg-2" for="yrOfInst">Yr Of Inst. &nbsp</label>
-						<div class="col-md-2 mb-2">
+							<label class="col-lg-2" for="omf(kw)">OMF(KW) &nbsp</label>
+							<div class="col-md-2 mb-2">
 
-							<div class="input-group">
+								<div class="input-group">
 
-								<input type="number" min="1000" max="9999" class="form-control fcs" name="yrOfInst"
-									id="yrOfInst">
+									<input type="text" class="form-control fcs" name="OVERALL_MF_KW" id="omf(kw)">
 
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="meterNo">Meter No. &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="text" maxlength="20" class="form-control fcs" name="METER_NUM"
-									id="meterNo">
+								</div>
 
 							</div>
+							<label class="col-lg-2" for="omf(kva)">OMF(KVA) &nbsp</label>
+							<div class="col-md-2 mb-2">
 
-						</div>
-						<label class="col-lg-2" for="digit(KW)">Digit(KW) &nbsp</label>
-						<div class="col-md-2 mb-2">
+								<div class="input-group">
 
-							<div class="input-group">
+									<input type="text" class="form-control" name="OVERALL_MF_KVA" id="omf(kva)"
+										readonly>
 
-								<input type="text" maxlength="1" class="form-control fcs" name="METER_DIGIT_KW"
-									id="digit(KW)">
-
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="digit(Cum)">Digit(Cum) &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="text" maxlength="1" class="form-control fcs" name="digit(Cum)"
-									id="digit(Cum)">
+								</div>
 
 							</div>
+							<label class="col-lg-2" for="meterSeal">Meter seal &nbsp</label>
+							<div class="col-md-2 mb-2">
 
-						</div>
-						<label class="col-lg-2" for="meterDigit">Meter Digit &nbsp</label>
-						<div class="col-md-2 mb-2">
+								<div class="input-group">
 
-							<div class="input-group">
+									<input type="text" class="form-control fcs" name="METER_SEAL" id="meterSeal">
 
-								<input type="text" maxlength="1" class="form-control fcs" name="METER_DIGIT"
-									id="meterDigit">
-
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="currRatting">Curr. Ratting
-							&nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control fcs" name="CURR_RATING" id="currRatting">
+								</div>
 
 							</div>
+							<label class="col-lg-2" for="protType">Prot Type &nbsp</label>
+							<div class="col-md-2 mb-2">
 
-						</div>
-						<label class="col-lg-2" for="voltRatting">Volt Rating &nbsp</label>
-						<div class="col-md-2 mb-2">
+								<div class="input-group">
 
-							<div class="input-group">
+									<input type="text" class="form-control fcs" name="PROT_TYPE" id="protType">
 
-								<input type="number" class="form-control fcs" name="VOLT_VALUE" id="voltRatting">
-
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="mtrCond">Mtr Cond &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control fcs" name="METER_CONDITION" id="mtrCond">
+								</div>
 
 							</div>
+							<label class="col-lg-2" for="TSno">T S No. &nbsp</label>
+							<div class="col-md-2 mb-2">
 
-						</div>
-						<label class="col-lg-2" for="mtrCond(KW)">Mtr Cond(KW) &nbsp</label>
-						<div class="col-md-2 mb-2">
+								<div class="input-group">
 
-							<div class="input-group">
+									<input type="text" class="form-control fcs" name="TIME_SWITCH_NUM" id="TSno">
 
-								<input type="number" class="form-control fcs" name="mtrCond(KW)" id="mtrCond(KW)">
-
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="assKWHMtrNo">Ass. KWH Mtr No.
-							&nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control fcs" name="ASSOCIATED_KWH_METER_NUM"
-									id="assKWHMtrNo">
+								</div>
 
 							</div>
+							<label class="col-lg-2" for="TSsetting">T S setting &nbsp</label>
+							<div class="col-md-2 mb-2">
 
-						</div>
-						<label class="col-lg-2" for="DAILmF(KWH)">Dail MF(KWH) &nbsp</label>
-						<div class="col-md-2 mb-2">
+								<div class="input-group">
 
-							<div class="input-group">
+									<input type="text" class="form-control fcs" name="TIME_SWITCH_START" id="TSsetting">
 
-								<input type="number" class="form-control fcs" name="DAILmF(KWH)" id="DAILmF(KWH)">
-
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="dailMf(kvarh)">Dail MF(KVARH)
-							&nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control fcs" name="dailMf(kvarh)" id="dailMf(kvarh)">
+								</div>
 
 							</div>
+							<label class="col-lg-2" for="TSseal">TS seal &nbsp</label>
+							<div class="col-md-2 mb-2">
 
-						</div>
-						<label class="col-lg-2" for="DAILmF(KW)">Dail MF(KW) &nbsp</label>
-						<div class="col-md-2 mb-2">
+								<div class="input-group">
 
-							<div class="input-group">
+									<input type="text" class="form-control fcs" name="TIME_SWITCH_SEAL" id="TSseal">
 
-								<input type="number" class="form-control fcs" name="DAILmF(KW)" id="DAILmF(KW)">
+								</div>
 
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="DAILmF(KVA)">Dail MF(KVA) &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control" name="DAILmF(KVA)" id="DAILmF(KVA)" readonly>
-
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="ptRatio">PT Ratio &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control fcs" name="ptRatio" id="ptRatio">
-
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="ctRatio">Ct Ratio &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control fcs" name="ctRatio" id="ctRatio">
-
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="omf(kwh)">OMF(KWH) &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control fcs" name="omf(kwh)" id="omf(kwh)">
-
-							</div>
-
-						</div>
-
-						<label class="col-lg-2" for="omf(kvarh)">OMF(KVARH) &nbsp</label>
-						<div class="col-md-2 mb-2">
-							<div class="input-group">
-								<input type="number" class="form-control fcs" name="omf(kvarh)" id="omf(kvarh)">
 							</div>
 						</div>
 
-						<label class="col-lg-2" for="omf(kw)">OMF(KW) &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control fcs" name="omf(kw)" id="omf(kw)">
-
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="omf(kva)">OMF(KVA) &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control" name="omf(kva)" id="omf(kva)" readonly>
-
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="meterSeal">Meter seal &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control fcs" name="meterSeal" id="meterSeal">
-
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="protType">Prot Type &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control fcs" name="protType" id="protType">
-
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="TSno">T S No. &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control fcs" name="TSno" id="TSno">
-
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="TSsetting">T S setting &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control fcs" name="TSsetting" id="TSsetting">
-
-							</div>
-
-						</div>
-						<label class="col-lg-2" for="TSseal">TS seal &nbsp</label>
-						<div class="col-md-2 mb-2">
-
-							<div class="input-group">
-
-								<input type="number" class="form-control fcs" name="TSseal" id="TSseal">
-
-							</div>
-
-						</div>
-					</div>
 				</fieldset>
 			</div>
 
@@ -405,11 +428,10 @@
 							class="btn btn-primary">Consumer</button>
 						<button type="button" th:onclick="|window.location.href='/distribution'|"
 							class="btn btn-primary">Distribution</button>
-						<button type="button" th:onclick="|window.location.href='/distribution'|"
-							class="btn btn-success">Save</button>
+						<button type="submit" class="btn btn-success">Save</button>
 					</div>
 				</div>
-
+				</form>
 			</div>
 			<legend class="w-auto px-2">TOD Details</legend>
 			<div class="row fixTableHead">
@@ -494,7 +516,6 @@
 	</div>
 
 
-
 	<!-- JavaScript -->
 	<div th:replace="fragments/links :: javaScriptLink"></div>
 	<script>
@@ -502,13 +523,12 @@
 			$("#first-element").focus();
 			$(document).fcs(".fcs");
 		});
-	</script>
-	<script>
 
-		$('.select_owner_list').select2();
-		$('.select_make_list').select2();
 
 	</script>
+	
+ 
+
 
 </body>
 
