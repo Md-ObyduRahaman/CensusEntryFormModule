@@ -23,6 +23,7 @@
 
 			<a th:href="@{/meterDetailsFormEntry}" id="updateButton"
 				class="btn btn-primary btn-lg btn-block mb-5">Create new customer Meter</a>
+				
 			<table id="datatable" class="table table-striped">
 				<thead>
 					<tr>					
@@ -44,7 +45,7 @@
 						
 						<input type="hidden" th:id="'CUST_INT_ID_'+${iterStatus.index}" name="CUST_INT_ID"
 							th:value="${list.CUST_INT_ID}"></input>
-						<td><a th:href="@{'/meterDetailsForm/' + ${O_CUST_ID}}" id="updateButton"
+						<td><a th:href="@{'/meterDetailsForm/' + ${list.METER_INT_ID}}" id="updateButton"
 								class="btn btn-success  text-right">Update</a></td>
 					</tr>
 

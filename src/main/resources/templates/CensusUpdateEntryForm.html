@@ -66,6 +66,11 @@
 					<fieldset class="form-group text-left border p-3">
 						<legend class="w-auto px-2"><strong>Consumer Census Entry</strong></legend>
 
+
+
+
+
+
 						<div class="row  text-black">
 							<label class="col-lg-1" for="location">Location &nbsp </label>
 							<div class="col-md-2 mb-2 input-group search_select_box ">
@@ -151,7 +156,7 @@
 								<select name="CONSUMER_STATUS" id="CONSUMER_STATUS" class="form-select form-select-sm"
 									aria-label=".form-select-sm example">
 									<option value="N" th:selected="${SCD.CONSUMER_STATUS =='N'} ">New consumers</option>
-									
+
 									<option value="L" th:selected="${SCD.CONSUMER_STATUS =='L'} ">Additional meter
 									</option>
 								</select>
@@ -176,7 +181,8 @@
 
 								<div class="input-group">
 
-									<input type="text" id="conSrlNo" required name="CONS_SRL_NO" th:value="${SCD.CONS_SRL_NO}" maxlength="4"
+									<input type="text" id="conSrlNo" required name="CONS_SRL_NO"
+										th:value="${SCD.CONS_SRL_NO}" maxlength="4"
 										class="form-control form-control-lg fcs" />
 								</div>
 
@@ -216,7 +222,6 @@
 
 
 
-
 						</div>
 
 					</fieldset>
@@ -245,26 +250,66 @@
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
-							<label class="form-label col-lg-2" for="serviceAddress">Service Address:
+								<label class="form-label col-lg-2" for="serviceAddress1">Service Address:
 								&nbsp</label>
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
 
-									<input type="text" id="serviceAddress" name="SERV_ADDR_DESCR1"
-										th:value="${SCD.SERV_ADDR_DESCR1}" class="form-control fcs form-control-lg" />
+									<input type="text" id="serviceAddress1" name="SERV_ADDR_DESCR1" th:value="${SCD.SERV_ADDR_DESCR1}"
+										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
-							<label class="form-label col-lg-2" for="mailingAddress"> Address &nbsp</label>
+							<label class="form-label col-lg-2" for="mailingAddress1"> Address &nbsp</label>
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
 
-									<input readonly name="MAIL_ADDR_DESCR1" th:value="${SCD.MAIL_ADDR_DESCR1}"
-										type="text" id="mailingAddress" class="form-control  form-control-lg" />
+									<input  name="MAIL_ADDR_DESCR1" type="text" id="mailingAddress1" th:value="${SCD.MAIL_ADDR_DESCR1}"
+										class="form-control  form-control-lg" />
 								</div>
 							</div>
-							<label class="form-label col-lg-2" for="city">City &nbsp</label>
+							<label class="form-label col-lg-2" for="serviceAddress2">
+								&nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" id="serviceAddress2" name="SERV_ADDR_DESCR2" th:value="${SCD.SERV_ADDR_DESCR2}"
+										class="form-control fcs form-control-lg" />
+								</div>
+							</div>
+								<label class="form-label col-lg-2" for="mailingAddress2">  &nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input  name="MAIL_ADDR_DESCR2" type="text" id="mailingAddress2" th:value="${SCD.MAIL_ADDR_DESCR2}"
+										class="form-control  form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="serviceAddress3">
+								&nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" id="serviceAddress3" name="SERV_ADDR_DESCR3" th:value="${SCD.SERV_ADDR_DESCR3}"
+										class="form-control fcs form-control-lg" />
+								</div>
+							</div>
+							
+						
+							<label class="form-label col-lg-2" for="mailingAddress3">  &nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input  name="MAIL_ADDR_DESCR3" type="text" id="mailingAddress3" th:value="${SCD.MAIL_ADDR_DESCR3}"
+										class="form-control  form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="city">Mailing City &nbsp</label>
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
@@ -273,16 +318,17 @@
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
-							<label class="form-label col-lg-2" for="cityReadOnly">City &nbsp</label>
+							<label class="form-label col-lg-2" for="cityReadOnly">Serv City &nbsp</label>
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
 
-									<input type="text" id="cityReadOnly" name="SERV_CITY" readonly
-										th:value="${SCD.SERV_CITY}" class="form-control form-control-lg" />
+									<input type="text" id="cityReadOnly" name="SERV_CITY" readonly th:value="${SCD.SERV_CITY}"
+										class="form-control form-control-lg" />
 
 								</div>
 							</div>
+
 
 							<label class="form-label col-lg-2" for="postalCode">Postal code &nbsp</label>
 							<div class="col-md-4 mb-4">
@@ -309,10 +355,11 @@
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
-									<select name="BANK_CODE" id="tariff" class="form-control select_tariff">
+									<select name="BANK_CODE" id="BankCode_1" class="form-control select_tariff">
 										<option value="">Select code </option>
 										<option th:each="code : ${listeff_BC_BANKS}" th:value="${code.BANK_CODE}"
-											th:text="${code.BANK_CODE}+'-'+${code.BANK_NAME}" th:selected="${code.BANK_CODE}==${SCD.BANK_CODE}">
+											th:text="${code.BANK_CODE}+'-'+${code.BANK_NAME}"
+											th:selected="${code.BANK_CODE}==${SCD.BANK_CODE}">
 										</option>
 									</select>
 								</div>
@@ -323,10 +370,11 @@
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
-									<select name="BRANCH_CODE" id="tariff" class="form-control select_tariff">
+									<select name="BRANCH_CODE" id="branchCode_1" class="form-control select_tariff">
 										<option value="null">Select code </option>
-										<option th:each="code : ${listOf_BRANCH_CODE}"
-											th:value="${code.BRANCH_CODE}" th:selected="${code.BRANCH_CODE}==${SCD.BRANCH_CODE}" th:text="${code.BRANCH_CODE}+'-'+${code.BRANCH_NAME}">
+										<option th:each="code : ${listOf_BRANCH_CODE}" th:value="${code.BRANCH_CODE}"
+											th:selected="${code.BRANCH_CODE}==${SCD.BRANCH_CODE}"
+											th:text="${code.BRANCH_CODE}+'-'+${code.BRANCH_NAME}">
 										</option>
 									</select>
 								</div>
@@ -336,10 +384,11 @@
 
 								<div class="input-group">
 
-									<select name="BANK_CODE_1" id="tariff" class="form-control select_tariff">
+									<select name="BANK_CODE_1" id="BankCode_2" class="form-control select_tariff">
 										<option value="">Select code </option>
 										<option th:each="code : ${listeff_BC_BANKS}" th:value="${code.BANK_CODE}"
-											th:text="${code.BANK_CODE}+'-'+${code.BANK_NAME}" th:selected="${code.BANK_CODE}==${SCD.BANK_CODE_1}">
+											th:text="${code.BANK_CODE}+'-'+${code.BANK_NAME}"
+											th:selected="${code.BANK_CODE}==${SCD.BANK_CODE_1}">
 										</option>
 									</select>
 								</div>
@@ -348,12 +397,14 @@
 								&nbsp</label>
 							<div class="col-md-4 mb-4">
 								<div class="input-group">
-									<select name="BRANCH_CODE_1" id="tariff" class="form-control select_tariff">
+									<select name="BRANCH_CODE_1" id="branchCode_2" class="form-control select_tariff">
 										<option value="null">Select code </option>
-									
-									<option th:each="code : ${listOf_BRANCH_CODE}"
-											th:value="${code.BRANCH_CODE}" th:selected="${code.BRANCH_CODE}==${SCD.BRANCH_CODE_1}" th:text="${code.BRANCH_CODE}+'-'+${code.BRANCH_NAME}">
-										</option></select>
+
+										<option th:each="code : ${listOf_BRANCH_CODE2}" th:value="${code.BRANCH_CODE}"
+											th:selected="${code.BRANCH_CODE}==${SCD.BRANCH_CODE_1}"
+											th:text="${code.BRANCH_CODE}+'-'+${code.BRANCH_NAME}">
+										</option>
+									</select>
 								</div>
 							</div>
 							<input type="hidden" name="CUST_INT_ID" id="CUST_INT_ID" th:value="${SCD.CUST_INT_ID}"
@@ -365,7 +416,7 @@
 									<button type="button" class="btn btn-primary"
 										th:onclick="|window.location.href='/meterDetailsForm'|">MeterDetails</button>
 									<a th:href="@{'/' + ${URL}+'/' + ${SCD.CUST_INT_ID}}" id="updateButton"
-								class="btn btn-success  text-right">Distribution</a>
+										class="btn btn-success  text-right">Distribution</a>
 									<button type="submit" id="uptdBtn" class="btn btn-info">Update</button>
 								</div>
 							</div>
@@ -375,6 +426,7 @@
 			</div>
 		</div>
 	</div>
+
 
 
 
@@ -395,6 +447,8 @@
 
 
 	</script>
+
+
 
 	<!-- 		location dropdown starts  -->
 	<script>
@@ -467,19 +521,19 @@
 
 		var msg = [[${msg}]];
 		var flag = [[${flag}]];
-		
-		if(flag==2){
-		var button = document.getElementById('uptdBtn');
+
+		if (flag == 2) {
+			var button = document.getElementById('uptdBtn');
 			button.innerHTML = "Save";
 			button.style.background = "#00004d";
 			alert(msg);
-			}
-			else if(flag==2){
-				var button = document.getElementById('uptdBtn');
+		}
+		else if (flag == 1) {
+			var button = document.getElementById('uptdBtn');
 			button.innerHTML = "Update";
 			button.style.background = "#00004d";
 			alert(msg);
-			}
+		}
 
 		/*]]>*/
 	</script>
@@ -507,7 +561,7 @@
 	<script src=https://code.jquery.com/jquery-3.6.0.slim.min.js></script>
 	<script src="../../../../js/jquery.fcs.js"></script>
 	<script src="../../../../js/jquery.fcs.min.js"></script>
-	
+
 	<script>
 
 		jQuery(document).ready(function ($) {
@@ -516,12 +570,98 @@
 
 
 
-			
+
 		});
 	</script>
-	
 
 
+<script>
+		$(document).ready(function () {
+			$("#BankCode_1").change(function () {
+
+				$("#branchCode_1").empty();
+
+
+
+				var x = $("#BankCode_1").val();
+
+				if (x == "") {
+					$("#branchCode_1").empty();
+					$("<option>").val("").text("Select branchCode").appendTo(branchCodeDropdown);
+				}
+				else {
+
+					var urlString = "/api/branch/" + x;
+					console.log(urlString);
+
+					$.ajax({
+						method: "GET",
+						url: urlString
+					})
+						.done(function (responseJson) {
+
+							branchCodeDropdown = $("#branchCode_1");
+
+							$("<option>").val("").text("Select branchCode").appendTo(branchCodeDropdown);
+							$.each(responseJson, function (index, branchCode) {
+
+								$("<option>").val(branchCode.branch_CODE).text(branchCode.branch_CODE + '-' + branchCode.branch_NAME).appendTo(branchCodeDropdown);
+							});
+						})
+						.fail(function () {
+							alert("Connection Error");
+						})
+				}
+
+
+			})
+
+
+
+			$("#BankCode_2").change(function () {
+
+				$("#branchCode_2").empty();
+
+
+
+				var x = $("#BankCode_2").val();
+
+				if (x == "") {
+					$("#branchCode_2").empty();
+					$("<option>").val("").text("Select branchCode").appendTo(branchCodeDropdown);
+				}
+				else {
+
+					var urlString = "/api/branch/" + x;
+					console.log(urlString);
+
+					$.ajax({
+						method: "GET",
+						url: urlString
+					})
+						.done(function (responseJson) {
+
+							branchCodeDropdown = $("#branchCode_2");
+
+							$("<option>").val("").text("Select branchCode").appendTo(branchCodeDropdown);
+							$.each(responseJson, function (index, branchCode) {
+
+								$("<option>").val(branchCode.branch_CODE).text(branchCode.branch_CODE + '-' + branchCode.branch_NAME).appendTo(branchCodeDropdown);
+							});
+						})
+						.fail(function () {
+							alert("Connection Error");
+						})
+				}
+
+
+			})
+
+
+
+
+		});
+	</script>
 
 
 

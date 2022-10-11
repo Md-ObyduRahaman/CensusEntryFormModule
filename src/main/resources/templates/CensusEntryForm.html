@@ -6,12 +6,13 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+		integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.css"
 		integrity="sha512-RWhcC19d8A3vE7kpXq6Ze4GcPfGe3DQWuenhXAbcGiZOaqGojLtWwit1eeM9jLGHFv8hnwpX3blJKGjTsf2HxQ=="
 		crossorigin="anonymous" referrerpolicy="no-referrer" />
-		
+
 	<div th:replace="fragments/links :: cssLink"></div>
 
 
@@ -36,7 +37,8 @@
 			color: white;
 			display: block;
 		}
-			/* Chrome, Safari, Edge, Opera */
+
+		/* Chrome, Safari, Edge, Opera */
 		input::-webkit-outer-spin-button,
 		input::-webkit-inner-spin-button {
 			-webkit-appearance: none;
@@ -243,26 +245,66 @@
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
-							<label class="form-label col-lg-2" for="serviceAddress">Service Address:
+							<label class="form-label col-lg-2" for="serviceAddress1">Service Address:
 								&nbsp</label>
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
 
-									<input type="text" id="serviceAddress" name="SERV_ADDR_DESCR1"
+									<input type="text" id="serviceAddress1" name="SERV_ADDR_DESCR1"
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
-							<label class="form-label col-lg-2" for="mailingAddress"> Address &nbsp</label>
+							<label class="form-label col-lg-2" for="mailingAddress1"> Address &nbsp</label>
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
 
-									<input readonly name="MAIL_ADDR_DESCR1" type="text" id="mailingAddress"
+									<input name="MAIL_ADDR_DESCR1" type="text" id="mailingAddress1"
 										class="form-control  form-control-lg" />
 								</div>
 							</div>
-							<label class="form-label col-lg-2" for="city">City &nbsp</label>
+							<label class="form-label col-lg-2" for="serviceAddress2">
+								&nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" id="serviceAddress2" name="SERV_ADDR_DESCR2"
+										class="form-control fcs form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="mailingAddress2"> &nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input name="MAIL_ADDR_DESCR2" type="text" id="mailingAddress2"
+										class="form-control  form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="serviceAddress3">
+								&nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input type="text" id="serviceAddress3" name="SERV_ADDR_DESCR3"
+										class="form-control fcs form-control-lg" />
+								</div>
+							</div>
+
+
+							<label class="form-label col-lg-2" for="mailingAddress3"> &nbsp</label>
+							<div class="col-md-4 mb-4">
+
+								<div class="input-group">
+
+									<input name="MAIL_ADDR_DESCR3" type="text" id="mailingAddress3"
+										class="form-control  form-control-lg" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="city">Mailing City &nbsp</label>
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
@@ -271,7 +313,7 @@
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
-							<label class="form-label col-lg-2" for="cityReadOnly">City &nbsp</label>
+							<label class="form-label col-lg-2" for="cityReadOnly">Serv City &nbsp</label>
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
@@ -287,8 +329,8 @@
 
 								<div class="input-group">
 
-									<input type="number" id="postalCode" min="1000" max="9999" name="MAIL_PIN_CODE" required
-										class="form-control fcs form-control-lg" />
+									<input type="number" id="postalCode" min="1000" max="9999" name="MAIL_PIN_CODE"
+										required class="form-control fcs form-control-lg" />
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="postalCodeReadOnly">Postal code
@@ -306,7 +348,7 @@
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
-									<select name="BANK_CODE" id="tariff" class="form-control select_tariff">
+									<select name="BANK_CODE" id="BankCode_1" class="form-control select_tariff">
 										<option value="">Select code </option>
 										<option th:each="code : ${listeff_BC_BANKS}" th:value="${code.BANK_CODE}"
 											th:text="${code.BANK_CODE}+'-'+${code.BANK_NAME}">
@@ -320,10 +362,10 @@
 							<div class="col-md-4 mb-4">
 
 								<div class="input-group">
-									<select name="BRANCH_CODE" id="tariff" class="form-control select_tariff">
+									<select name="BRANCH_CODE" id="branchCode_1" class="form-control select_tariff">
 										<option value="null">Select code </option>
-										<option th:each="code : ${listOf_BRANCH_CODE}"
-											th:value="${code.BRANCH_CODE}" th:text="${code.BRANCH_CODE}+'-'+${code.BRANCH_NAME}">
+										<option th:each="code : ${listOf_BRANCH_CODE}" th:value="${code.BRANCH_CODE}"
+											th:text="${code.BRANCH_CODE}+'-'+${code.BRANCH_NAME}">
 										</option>
 									</select>
 								</div>
@@ -333,7 +375,7 @@
 
 								<div class="input-group">
 
-									<select name="BANK_CODE_1" id="tariff" class="form-control select_tariff">
+									<select name="BANK_CODE_1" id="BankCode_2" class="form-control select_tariff">
 										<option value="">Select code </option>
 										<option th:each="code : ${listeff_BC_BANKS}" th:value="${code.BANK_CODE}"
 											th:text="${code.BANK_CODE}+'-'+${code.BANK_NAME}">
@@ -345,13 +387,13 @@
 								&nbsp</label>
 							<div class="col-md-4 mb-4">
 								<div class="input-group">
-									<select name="BRANCH_CODE_1" id="tariff" class="form-control select_tariff">
+									<select name="BRANCH_CODE_1" id="branchCode_2" class="form-control select_tariff">
 										<option value="null">Select code </option>
-										<option th:each="code : ${listOf_BRANCH_CODE}"
-											th:value="${code.BRANCH_CODE}" th:text="${code.BRANCH_CODE}+'-'+${code.BRANCH_NAME}">
+										<option th:each="code : ${listOf_BRANCH_CODE}" th:value="${code.BRANCH_CODE}"
+											th:text="${code.BRANCH_CODE}+'-'+${code.BRANCH_NAME}">
 										</option>
 									</select>
-									
+
 								</div>
 							</div>
 						</div>
@@ -362,7 +404,8 @@
 								aria-label="Basic example">
 
 								<button type="button" class="btn btn-primary"
-									th:onclick="|window.location.href='/meterDetailsForm'|" disabled>MeterDetails</button>
+									th:onclick="|window.location.href='/meterDetailsForm'|"
+									disabled>MeterDetails</button>
 								<button type="button" class="btn btn-primary"
 									th:onclick="|window.location.href='/distribution'|" disabled>Distribution</button>
 								<button type="submit" class="btn btn-success">Save</button>
@@ -370,10 +413,10 @@
 						</div>
 			</div>
 			</fieldset>
-			
+
 			<div class="row form-inline" style="margin-left: 450px;">
-	
-</div>
+
+			</div>
 			</form>
 		</div>
 	</div>
@@ -381,7 +424,7 @@
 
 
 
-<!-- Modal -->
+	<!-- Modal -->
 	<div th:if="${flag}== '1'" class="modal fade" id="myModal" tabindex="-1" role="dialog"
 		aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 		<div class="modal-dialog modal-dialog-centered" role="document">
@@ -407,7 +450,7 @@
 
 	<!-- JavaScript -->
 	<div th:replace="fragments/links :: javaScriptLink"></div>
-	
+
 
 	<script>
 		$('.select_supplyType').select2({
@@ -484,9 +527,21 @@
 
 	<script>
 		$(document).ready(function () {
-			$("#serviceAddress").keyup(function () {
-				var serviceAddress = document.getElementById('serviceAddress').value;
-				document.getElementById("mailingAddress").value = serviceAddress;
+			$("#serviceAddress1").keyup(function () {
+				var serviceAddress = document.getElementById('serviceAddress1').value;
+				document.getElementById("mailingAddress1").value = serviceAddress;
+			});
+		});
+		$(document).ready(function () {
+			$("#serviceAddress2").keyup(function () {
+				var serviceAddress = document.getElementById('serviceAddress2').value;
+				document.getElementById("mailingAddress2").value = serviceAddress;
+			});
+		});
+		$(document).ready(function () {
+			$("#serviceAddress3").keyup(function () {
+				var serviceAddress = document.getElementById('serviceAddress3').value;
+				document.getElementById("mailingAddress3").value = serviceAddress;
 			});
 		});
 		$(document).ready(function () {
@@ -502,16 +557,111 @@
 			});
 		});
 	</script>
+
+
+
+
+
+
+
 	<script src=https://code.jquery.com/jquery-3.6.0.slim.min.js></script>
 	<script src="../../../../js/jquery.fcs.js"></script>
 	<script src="../../../../js/jquery.fcs.min.js"></script>
-	
-	
+
 	<script>
 
 		jQuery(document).ready(function ($) {
 			$("#first-element").focus();
 			$(document).fcs(".fcs");
+		});
+	</script>
+
+
+	<script>
+		$(document).ready(function () {
+			$("#BankCode_1").change(function () {
+
+				$("#branchCode_1").empty();
+
+
+
+				var x = $("#BankCode_1").val();
+
+				if (x == "") {
+					$("#branchCode_1").empty();
+					$("<option>").val("").text("Select branchCode").appendTo(branchCodeDropdown);
+				}
+				else {
+
+					var urlString = "/api/branch/" + x;
+					console.log(urlString);
+
+					$.ajax({
+						method: "GET",
+						url: urlString
+					})
+						.done(function (responseJson) {
+
+							branchCodeDropdown = $("#branchCode_1");
+
+							$("<option>").val("").text("Select branchCode").appendTo(branchCodeDropdown);
+							$.each(responseJson, function (index, branchCode) {
+
+								$("<option>").val(branchCode.branch_CODE).text(branchCode.branch_CODE + '-' + branchCode.branch_NAME).appendTo(branchCodeDropdown);
+							});
+						})
+						.fail(function () {
+							alert("Connection Error");
+						})
+				}
+
+
+			})
+
+
+
+			$("#BankCode_2").change(function () {
+
+				$("#branchCode_2").empty();
+
+
+
+				var x = $("#BankCode_2").val();
+
+				if (x == "") {
+					$("#branchCode_2").empty();
+					$("<option>").val("").text("Select branchCode").appendTo(branchCodeDropdown);
+				}
+				else {
+
+					var urlString = "/api/branch/" + x;
+					console.log(urlString);
+
+					$.ajax({
+						method: "GET",
+						url: urlString
+					})
+						.done(function (responseJson) {
+
+							branchCodeDropdown = $("#branchCode_2");
+
+							$("<option>").val("").text("Select branchCode").appendTo(branchCodeDropdown);
+							$.each(responseJson, function (index, branchCode) {
+
+								$("<option>").val(branchCode.branch_CODE).text(branchCode.branch_CODE + '-' + branchCode.branch_NAME).appendTo(branchCodeDropdown);
+							});
+						})
+						.fail(function () {
+							alert("Connection Error");
+						})
+				}
+
+
+			})
+
+
+
+
 		});
 	</script>
 

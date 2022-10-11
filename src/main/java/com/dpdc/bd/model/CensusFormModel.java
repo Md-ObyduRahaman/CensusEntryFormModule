@@ -38,6 +38,7 @@ public class CensusFormModel {
 	private String ZONE;
 	private String METER_NUM;
 	private String METER_TYPE_DESC_CODE;
+	private String METER_INT_ID;
 	public CensusFormModel() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -45,6 +46,18 @@ public class CensusFormModel {
 	
 	
 	
+	public String getMETER_INT_ID() {
+		return METER_INT_ID;
+	}
+
+
+
+	public void setMETER_INT_ID(String mETER_INT_ID) {
+		METER_INT_ID = mETER_INT_ID;
+	}
+
+
+
 	public String getMETER_NUM() {
 		return METER_NUM;
 	}
@@ -268,21 +281,26 @@ public class CensusFormModel {
 	public void setZONE(String zONE) {
 		ZONE = zONE;
 	}
+
+
+
 	@Override
 	public String toString() {
-		return "CensusFormModel [BANK_CODE=" + BANK_CODE + ", BANK_CODE_1=" + BANK_CODE_1 + ", BILL_GRP=" + BILL_GRP
-				+ ", BLOCK_NO=" + BLOCK_NO + ", BRANCH_CODE=" + BRANCH_CODE + ", BRANCH_CODE_1=" + BRANCH_CODE_1
-				+ ", CONS_SRL_NO=" + CONS_SRL_NO + ", CIRCLE=" + CIRCLE + ", CONSUMER_FLAG=" + CONSUMER_FLAG
-				+ ", CONSUMER_STATUS=" + CONSUMER_STATUS + ", CUSTOMER_NAME=" + CUSTOMER_NAME + ", CUSTOMER_NUM="
-				+ CUSTOMER_NUM + ", CUST_INT_ID=" + CUST_INT_ID + ", DIVISION=" + DIVISION + ", F_H_NAME=" + F_H_NAME
-				+ ", LOCATION_CODE=" + LOCATION_CODE + ", MAIL_ADDR_DESCR1=" + MAIL_ADDR_DESCR1 + ", MAIL_ADDR_DESCR2="
-				+ MAIL_ADDR_DESCR2 + ", MAIL_ADDR_DESCR3=" + MAIL_ADDR_DESCR3 + ", MAIL_PIN_CODE=" + MAIL_PIN_CODE
-				+ ", MAIL_CITY=" + MAIL_CITY + ", OLD_TRANS_CONNECTION_ID=" + OLD_TRANS_CONNECTION_ID
-				+ ", SERV_ADDR_DESCR1=" + SERV_ADDR_DESCR1 + ", SERV_ADDR_DESCR2=" + SERV_ADDR_DESCR2
-				+ ", SERV_ADDR_DESCR3=" + SERV_ADDR_DESCR3 + ", SERV_CITY=" + SERV_CITY + ", SUB_DIVISION="
-				+ SUB_DIVISION + ", SERV_PIN_CODE=" + SERV_PIN_CODE + ", WALKING_SEQUENCE=" + WALKING_SEQUENCE
-				+ ", ZONE=" + ZONE + "]";
+		return "CensusFormModel [BANK_CODE=" + BANK_CODE + ", BANK_CODE_1=" + BANK_CODE_1 + ", BANK_NAME=" + BANK_NAME
+				+ ", BRANCH_NAME=" + BRANCH_NAME + ", BILL_GRP=" + BILL_GRP + ", BLOCK_NO=" + BLOCK_NO
+				+ ", BRANCH_CODE=" + BRANCH_CODE + ", BRANCH_CODE_1=" + BRANCH_CODE_1 + ", CONS_SRL_NO=" + CONS_SRL_NO
+				+ ", CIRCLE=" + CIRCLE + ", CONSUMER_FLAG=" + CONSUMER_FLAG + ", CONSUMER_STATUS=" + CONSUMER_STATUS
+				+ ", CUSTOMER_NAME=" + CUSTOMER_NAME + ", CUSTOMER_NUM=" + CUSTOMER_NUM + ", CUST_INT_ID=" + CUST_INT_ID
+				+ ", DIVISION=" + DIVISION + ", F_H_NAME=" + F_H_NAME + ", LOCATION_CODE=" + LOCATION_CODE
+				+ ", MAIL_ADDR_DESCR1=" + MAIL_ADDR_DESCR1 + ", MAIL_ADDR_DESCR2=" + MAIL_ADDR_DESCR2
+				+ ", MAIL_ADDR_DESCR3=" + MAIL_ADDR_DESCR3 + ", MAIL_PIN_CODE=" + MAIL_PIN_CODE + ", MAIL_CITY="
+				+ MAIL_CITY + ", OLD_TRANS_CONNECTION_ID=" + OLD_TRANS_CONNECTION_ID + ", SERV_ADDR_DESCR1="
+				+ SERV_ADDR_DESCR1 + ", SERV_ADDR_DESCR2=" + SERV_ADDR_DESCR2 + ", SERV_ADDR_DESCR3=" + SERV_ADDR_DESCR3
+				+ ", SERV_CITY=" + SERV_CITY + ", SUB_DIVISION=" + SUB_DIVISION + ", SERV_PIN_CODE=" + SERV_PIN_CODE
+				+ ", WALKING_SEQUENCE=" + WALKING_SEQUENCE + ", ZONE=" + ZONE + ", METER_NUM=" + METER_NUM
+				+ ", METER_TYPE_DESC_CODE=" + METER_TYPE_DESC_CODE + ", METER_INT_ID=" + METER_INT_ID + "]";
 	}
+
 	
 	
 	

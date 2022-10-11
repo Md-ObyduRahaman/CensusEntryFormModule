@@ -13,6 +13,7 @@ import com.dpdc.bd.dao.AddMeterDAO;
 import com.dpdc.bd.dao.BillPrintDoa;
 import com.dpdc.bd.dao.CensusEntryDAO;
 import com.dpdc.bd.model.AddMeterModel;
+import com.dpdc.bd.model.CensusFormModel;
 import com.dpdc.bd.model.DPD_LOCATION_LIST;
 
 @RestController
@@ -80,6 +81,16 @@ public class ApiController {
 			) {
 		ArrayList<AddMeterModel> addMeterModelNet = billPrintDoa.listeff_BOOK_NO(lid,bid);
 		return addMeterModelNet;
+		
+		
+		
+		
+	}
+	@GetMapping("/branch/{id}")
+	public ArrayList<CensusFormModel> branch_LIST(@PathVariable("id") String id
+			) {
+		ArrayList<CensusFormModel>  listOf_BRANCH_CODE = censusEntryDAO.listOf_BRANCH_CODE(id);
+		return listOf_BRANCH_CODE;
 		
 		
 		

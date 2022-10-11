@@ -115,9 +115,9 @@ public class CensusEntryDAO {
 						a.getBANK_CODE_1(), a.getBILL_GRP(), a.getBLOCK_NO(), a.getBRANCH_CODE(), a.getBRANCH_CODE_1(),
 						a.getCONS_SRL_NO(), a.getCIRCLE(), a.getCONSUMER_FLAG(), a.getCONSUMER_STATUS(),
 						a.getCUSTOMER_NAME(), a.getCUSTOMER_NUM(), a.getDIVISION(), a.getF_H_NAME(),
-						a.getLOCATION_CODE(), a.getMAIL_ADDR_DESCR1(), a.getMAIL_ADDR_DESCR1(), a.getMAIL_ADDR_DESCR1(),
+						a.getLOCATION_CODE(), a.getMAIL_ADDR_DESCR1(), a.getMAIL_ADDR_DESCR2(), a.getMAIL_ADDR_DESCR3(),
 						a.getMAIL_PIN_CODE(), a.getMAIL_CITY(), a.getOLD_TRANS_CONNECTION_ID(), a.getSERV_ADDR_DESCR1(),
-						a.getSERV_ADDR_DESCR1(), a.getSERV_ADDR_DESCR1(), a.getSERV_CITY(), a.getSERV_PIN_CODE(),
+						a.getSERV_ADDR_DESCR2(), a.getSERV_ADDR_DESCR3(), a.getSERV_CITY(), a.getSERV_PIN_CODE(),
 						a.getWALKING_SEQUENCE(), a.getZONE(), a.getCUST_INT_ID(), user_name);
 		JSONObject json = new JSONObject(result);
 		String out = json.get("O_STATUS").toString();
@@ -148,23 +148,35 @@ public class CensusEntryDAO {
 	public String insertMeterDetailsFormEntry(MeterDetails a, String user_name, String O_CUST_ID) {
 
 		Map<String, Object> result = getAllStatesJdbcCallInsertMeterDetailsentryForm.withCatalogName("DPG_CENSUS")
+			/*.withProcedureName("DPD_CENSUS_METERNSERT") .declareParameters(new SqlOutParameter("O_STATUS",
+					  OracleTypes.INTEGER)).execute(O_CUST_ID, a.getMETER_OWNER(),
+							  a.getMETER_TYPE(), "BC_CONSCEN", user_name,a.getMETER_MFG_DATE(),
+							  a.getMETER_INST_DATE(), a.getMETER_NUM(), a.getMETER_DIGIT_KW(),
+							  a.getMETER_DIGIT_CUM(), a.getMETER_DIGIT(), a.getCURR_RATING(),						  
+							  a.getVOLT_VALUE(), a.getMETER_CONDITION()
+							 
+							 );*/
+				
 				.withProcedureName("DPD_CENSUS_METERDETAILS_INSERT")
-				/*
-				 * .declareParameters(new SqlOutParameter("O_STATUS",
-				 * OracleTypes.INTEGER)).execute(O_CUST_ID, a.getMETER_OWNER(),
-				 * a.getMETER_TYPE(), "BC_CONSCEN", user_name, a.getMETER_MFG_DATE(),
-				 * a.getMETER_INST_DATE(), a.getMETER_NUM(), a.getMETER_DIGIT_KW(),
-				 * a.getMETER_DIGIT_CUM(), a.getMETER_DIGIT(), a.getCURR_RATING(),
-				 * 
-				 * a.getVOLT_VALUE(), a.getMETER_CONDITION(), a.getASSOCIATED_KWH_METER_NUM(),
-				 * a.getSCALE_FACTOR_KW(), a.getSCALE_FACTOR_KVARH(), a.getSCALE_FACTOR_KVA(),
-				 * a.getPT_NUMERATOR(), a.getCT_NUMERATOR(), a.getOVERALL_MF_KWH(),
-				 * a.getMETER_SEAL(), a.getPROT_TYPE(), a.getTIME_SWITCH_NUM(),
-				 * a.getTIME_SWITCH_START(), a.getTIME_SWITCH_SEAL());
-				 */
-				.declareParameters(new SqlOutParameter("O_STATUS", OracleTypes.INTEGER)).execute(1, '2', "s",
-						"BC_CONSCEN", user_name, 02/03/2202, 02/03/2021, 12, 12, 12, 1, "1", 1, "1", "1", 1, 2, 3,
-						4, 5, 6, "f", "g", "h", "i", "j");
+				  
+				
+				  .declareParameters(new SqlOutParameter("O_STATUS",
+				  OracleTypes.INTEGER)).execute(O_CUST_ID, a.getMETER_OWNER(),
+				  a.getMETER_TYPE(), "BC_CONSCEN", user_name, a.getMETER_MFG_DATE(),
+				  a.getMETER_INST_DATE(), a.getMETER_NUM(), a.getMETER_DIGIT_KW(),
+				  a.getMETER_DIGIT_CUM(), a.getMETER_DIGIT(), a.getCURR_RATING(),
+				  
+				  a.getVOLT_VALUE(), a.getMETER_CONDITION(), a.getASSOCIATED_KWH_METER_NUM(),
+				  a.getSCALE_FACTOR_KW(), a.getSCALE_FACTOR_KVARH(), a.getSCALE_FACTOR_KVA(),
+				  a.getPT_NUMERATOR(), a.getCT_NUMERATOR(), a.getOVERALL_MF_KWH(),
+				  a.getMETER_SEAL(), a.getPROT_TYPE(), a.getTIME_SWITCH_NUM(),
+				  a.getTIME_SWITCH_START(), a.getTIME_SWITCH_SEAL(),a.getMETER_INT_ID());
+		/*
+		 * .declareParameters(new SqlOutParameter("O_STATUS",
+		 * OracleTypes.INTEGER)).execute(1, '2', "01", "BC_CONSCEN", user_name,
+		 * 02/03/2202, 02/03/2021, 12, 12, 12, 1, "s", 1, "1", "1", "1", 2, 3, 4, 5, 6,
+		 * "f", "g", "h", "i", "j");
+		 */
 		JSONObject json = new JSONObject(result);
 		String out = json.get("O_STATUS").toString();
 		return out;
@@ -193,7 +205,7 @@ public class CensusEntryDAO {
 
 	public ArrayList<CensusFormModel> listOf_BC_CONSUMER_INTERFACE(String P) {
 
-		String sql = "SELECT BMI.METER_NUM, CONCAT (BMI.METER_TYPE, BMTM.METER_TYPE_DESC) AS METER_TYPE_DESC_CODE\r\n"
+		String sql = "SELECT BMI.METER_NUM,BMI.METER_INT_ID, CONCAT (BMI.METER_TYPE, BMTM.METER_TYPE_DESC) AS METER_TYPE_DESC_CODE\r\n"
 				+ "  FROM BC_METER_INTERFACE  BMI\r\n" + "       INNER JOIN BC_METER_TYPECODE_MAP BMTM\r\n"
 				+ "           ON BMI.METER_TYPE = BMTM.OLD_METER_TYPECODE\r\n" + " WHERE REF_ID = '" + P + "'";
 
@@ -203,9 +215,11 @@ public class CensusEntryDAO {
 		return listeff_BC_CONSUMER_INTERFACE;
 	}
 
-	public ArrayList<CensusFormModel> listOf_BRANCH_CODE() {
+	public ArrayList<CensusFormModel> listOf_BRANCH_CODE(String id) {
 
-		String sql = "SELECT * FROM BC_BANK_BRANCHES";
+		String sql = "SELECT A.BANK_CODE,BANK_NAME,BRANCH_CODE,BRANCH_NAME FROM BC_BANKS A, BC_BANK_BRANCHES B\r\n"
+				+ "WHERE A.BANK_CODE=B.BANK_CODE\r\n"
+				+ "AND B.BANK_CODE= '" + id + "'";
 
 		ArrayList<CensusFormModel> listOf_BRANCH_CODE = (ArrayList<CensusFormModel>) jdbcTemplate.query(sql,
 				BeanPropertyRowMapper.newInstance(CensusFormModel.class));
@@ -329,6 +343,14 @@ public class CensusEntryDAO {
 		CensusFormModel single_CensusFormUpdate_Data = (CensusFormModel) jdbcTemplate.queryForObject(sql,
 				new Object[] { CUST_INT_ID }, new BeanPropertyRowMapper(CensusFormModel.class));
 		return single_CensusFormUpdate_Data;
+	}
+	public MeterDetails Single_MeterDetailsFormUpdate_Data(String METER_INT_ID) {
+		
+		String sql = "SELECT * FROM BC_METER_INTERFACE WHERE METER_INT_ID= ?";
+		
+		MeterDetails Single_MeterDetailsFormUpdate_Data = (MeterDetails) jdbcTemplate.queryForObject(sql,
+				new Object[] { METER_INT_ID }, new BeanPropertyRowMapper(MeterDetails.class));
+		return Single_MeterDetailsFormUpdate_Data;
 	}
 
 }

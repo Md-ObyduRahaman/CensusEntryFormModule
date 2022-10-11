@@ -81,7 +81,7 @@
 			<div class="card text-center">
 
 				<fieldset class="form-group text-left border p-3">
-					<form th:action="@{/meterDetailsFormPost}" method="post" th:object="${meterDetails}">
+					<form th:action="@{'/meterDetailsFormUpdate/' + ${MeterNumber}}" method="post" th:object="${meterDetails}">
 						<legend class="w-auto px-2">Meter details</legend>
 						<div class="row">
 							<label class="col-lg-2" for="coustomerName">Owner &nbsp </label>
@@ -133,7 +133,7 @@
 
 								<div class="input-group">
 
-									<input type="date"  class="form-control fcs" name="METER_MFG_DATE"
+									<input type="date"  class="form-control fcs" name="METER_MFG_DATE" th:value="${SMDF.METER_MFG_DATE}"
 										id="yrOfManuf">
 
 								</div>
@@ -154,7 +154,7 @@
 
 								<div class="input-group">
 
-									<input type="text" required maxlength="20" class="form-control fcs" name="METER_NUM"
+									<input type="text" required maxlength="20" class="form-control fcs" name="METER_NUM" th:value="${SMDF.METER_NUM}"
 										id="meterNo">
 
 								</div>
@@ -165,7 +165,7 @@
 
 								<div class="input-group">
 
-									<input type="number" required maxlength="1" class="form-control fcs" name="METER_DIGIT_KW"
+									<input type="number"  maxlength="1" class="form-control fcs" name="METER_DIGIT_KW" th:value="${SMDF.METER_DIGIT_KW}"
 										id="digit(KW)">
 
 								</div>
@@ -176,7 +176,7 @@
 
 								<div class="input-group">
 
-									<input type="number" required maxlength="1" class="form-control fcs" name="METER_DIGIT_CUM"
+									<input type="number" required maxlength="1" class="form-control fcs" name="METER_DIGIT_CUM" th:value="${SMDF.METER_DIGIT_CUM}"
 										id="digit(Cum)">
 
 								</div>
@@ -187,7 +187,7 @@
 
 								<div class="input-group">
 
-									<input type="number" required maxlength="1" class="form-control fcs" name="METER_DIGIT"
+									<input type="number"  maxlength="1" class="form-control fcs" name="METER_DIGIT" th:value="${SMDF.METER_DIGIT}"
 										id="meterDigit">
 
 								</div>
@@ -215,7 +215,7 @@
 
 								<div class="input-group">
 
-									<input type="number" required class="form-control fcs" name="VOLT_VALUE" id="voltRatting">
+									<input type="number"  class="form-control fcs" th:value="${SMDF.VOLT_VALUE}" name="VOLT_VALUE" id="voltRatting">
 
 								</div>
 
@@ -242,7 +242,7 @@
 
 								<div class="input-group">
 
-									<input type="text" class="form-control fcs" name="METER_COND" id="mtrCond(KW)">
+									<input type="text" class="form-control fcs" name="METER_COND"  id="mtrCond(KW)">
 
 								</div>
 
@@ -253,7 +253,7 @@
 
 								<div class="input-group">
 
-									<input type="text" class="form-control fcs" name="ASSOCIATED_KWH_METER_NUM"
+									<input type="text" class="form-control fcs" name="ASSOCIATED_KWH_METER_NUM" th:value="${SMDF.ASSOCIATED_KWH_METER_NUM}"
 										id="assKWHMtrNo">
 
 								</div>
@@ -275,7 +275,7 @@
 
 								<div class="input-group">
 
-									<input type="number" required class="form-control fcs" name="SCALE_FACTOR_KVARH"
+									<input type="number"  class="form-control fcs" name="SCALE_FACTOR_KVARH" th:value="${SMDF.SCALE_FACTOR_KVARH}"
 										id="dailMf(kvarh)">
 
 								</div>
@@ -286,7 +286,7 @@
 
 								<div class="input-group">
 
-									<input type="number" required class="form-control fcs" name="SCALE_FACTOR_KW" id="DAILmF(KW)">
+									<input type="number" th:value="${SMDF.SCALE_FACTOR_KW}" class="form-control fcs" name="SCALE_FACTOR_KW" id="DAILmF(KW)">
 
 								</div>
 
@@ -296,7 +296,7 @@
 
 								<div class="input-group">
 
-									<input type="number" required class="form-control" name="SCALE_FACTOR_KVA" id="DAILmF(KVA)"
+									<input type="number"  class="form-control" th:value="${SMDF.SCALE_FACTOR_KVA}" name="SCALE_FACTOR_KVA" id="DAILmF(KVA)"
 										>
 
 								</div>
@@ -307,7 +307,7 @@
 
 								<div class="input-group">
 
-									<input type="number" required class="form-control fcs" name="PT_NUMERATOR" id="ptRatio">
+									<input type="number" th:value="${SMDF.PT_NUMERATOR}" class="form-control fcs" name="PT_NUMERATOR" id="ptRatio">
 
 								</div>
 
@@ -317,7 +317,7 @@
 
 								<div class="input-group">
 
-									<input type="number" required class="form-control fcs" name="CT_NUMERATOR" id="ctRatio">
+									<input type="number" th:value="${SMDF.CT_NUMERATOR}" class="form-control fcs" name="CT_NUMERATOR" id="ctRatio">
 
 								</div>
 
@@ -327,7 +327,7 @@
 
 								<div class="input-group">
 
-									<input type="number" required class="form-control fcs" name="OVERALL_MF_KWH" id="omf(kwh)">
+									<input type="number" th:value="${SMDF.OVERALL_MF_KWH}" class="form-control fcs" name="OVERALL_MF_KWH" id="omf(kwh)">
 
 								</div>
 
@@ -336,7 +336,7 @@
 							<label class="col-lg-2" for="omf(kvarh)">OMF(KVARH) &nbsp</label>
 							<div class="col-md-2 mb-2">
 								<div class="input-group">
-									<input type="text" class="form-control fcs" name="OVERALL_MF_KVARH" id="omf(kvarh)">
+									<input type="text" class="form-control fcs" th:value="${SMDF.OVERALL_MF_KVARH}" name="OVERALL_MF_KVARH" id="omf(kvarh)">
 								</div>
 							</div>
 
@@ -345,7 +345,7 @@
 
 								<div class="input-group">
 
-									<input type="text" class="form-control fcs" name="OVERALL_MF_KW" id="omf(kw)">
+									<input type="text" class="form-control fcs" th:value="${SMDF.OVERALL_MF_KW}" name="OVERALL_MF_KW" id="omf(kw)">
 
 								</div>
 
@@ -355,7 +355,7 @@
 
 								<div class="input-group">
 
-									<input type="text" class="form-control" name="OVERALL_MF_KVA" id="omf(kva)"
+									<input type="text" class="form-control" name="OVERALL_MF_KVA" id="omf(kva)" th:value="${SMDF.OVERALL_MF_KVA}"
 										readonly>
 
 								</div>
@@ -366,7 +366,7 @@
 
 								<div class="input-group">
 
-									<input type="text" class="form-control fcs" name="METER_SEAL" id="meterSeal">
+									<input type="text" class="form-control fcs" th:value="${SMDF.METER_SEAL}" name="METER_SEAL" id="meterSeal">
 
 								</div>
 
@@ -376,7 +376,7 @@
 
 								<div class="input-group">
 
-									<input type="text" class="form-control fcs" name="PROT_TYPE" id="protType">
+									<input type="text" class="form-control fcs" th:value="${SMDF.PROT_TYPE}" name="PROT_TYPE" id="protType">
 
 								</div>
 
@@ -386,7 +386,7 @@
 
 								<div class="input-group">
 
-									<input type="text" class="form-control fcs" name="TIME_SWITCH_NUM" id="TSno">
+									<input type="text" class="form-control fcs" name="TIME_SWITCH_NUM" th:value="${SMDF.TIME_SWITCH_NUM}" id="TSno">
 
 								</div>
 
@@ -396,7 +396,7 @@
 
 								<div class="input-group">
 
-									<input type="text" class="form-control fcs" name="TIME_SWITCH_START" id="TSsetting">
+									<input type="text" class="form-control fcs" th:value="${SMDF.TIME_SWITCH_START}" name="TIME_SWITCH_START" id="TSsetting">
 
 								</div>
 
@@ -406,7 +406,7 @@
 
 								<div class="input-group">
 
-									<input type="text" class="form-control fcs" name="TIME_SWITCH_SEAL" id="TSseal">
+									<input type="text" class="form-control fcs" name="TIME_SWITCH_SEAL" th:value="${SMDF.TIME_SWITCH_SEAL}" id="TSseal">
 
 								</div>
 

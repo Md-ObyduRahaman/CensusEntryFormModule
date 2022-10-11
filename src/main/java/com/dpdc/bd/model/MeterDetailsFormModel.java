@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 public class MeterDetailsFormModel {
 	private String SUPPLY_TYPE;
 	private String FEEDER_TRANS_CODE;
-	private int FEEDER_TRANS_ID;
+	private String FEEDER_TRANS_ID;
 	private String PHASE_TYPE;
 	private String PHASE_CONNECT;
 	private String SERV_CONNEC_TYPE;
@@ -17,10 +17,10 @@ public class MeterDetailsFormModel {
 	private String POLE_NUM;
 	private String SANC_LOAD;
 	private String USAGE_CATEGORY;
-	private int LIKELY_MONTHLY_CONSUMP;
+	private String LIKELY_MONTHLY_CONSUMP;
 	private String CONNECT_LOAD;
 	private String CONSUMER_STATUS;
-	private int SECURITY_DEPOSIT;
+	private String SECURITY_DEPOSIT;
 	private String COOK_FUEL_TYPE;
 	private String BUS_TYPE_CODE;
 	private String SPL_CONS_CODE;
@@ -138,11 +138,11 @@ public class MeterDetailsFormModel {
 		FEEDER_TRANS_CODE = fEEDER_TRANS_CODE;
 	}
 
-	public int getFEEDER_TRANS_ID() {
+	public String getFEEDER_TRANS_ID() {
 		return FEEDER_TRANS_ID;
 	}
 
-	public void setFEEDER_TRANS_ID(int fEEDER_TRANS_ID) {
+	public void setFEEDER_TRANS_ID(String fEEDER_TRANS_ID) {
 		FEEDER_TRANS_ID = fEEDER_TRANS_ID;
 	}
 
@@ -226,11 +226,11 @@ public class MeterDetailsFormModel {
 		USAGE_CATEGORY = uSAGE_CATEGORY;
 	}
 
-	public int getLIKELY_MONTHLY_CONSUMP() {
+	public String getLIKELY_MONTHLY_CONSUMP() {
 		return LIKELY_MONTHLY_CONSUMP;
 	}
 
-	public void setLIKELY_MONTHLY_CONSUMP(int lIKELY_MONTHLY_CONSUMP) {
+	public void setLIKELY_MONTHLY_CONSUMP(String lIKELY_MONTHLY_CONSUMP) {
 		LIKELY_MONTHLY_CONSUMP = lIKELY_MONTHLY_CONSUMP;
 	}
 
@@ -250,11 +250,11 @@ public class MeterDetailsFormModel {
 		CONSUMER_STATUS = cONSUMER_STATUS;
 	}
 
-	public int getSECURITY_DEPOSIT() {
+	public String getSECURITY_DEPOSIT() {
 		return SECURITY_DEPOSIT;
 	}
 
-	public void setSECURITY_DEPOSIT(int sECURITY_DEPOSIT) {
+	public void setSECURITY_DEPOSIT(String sECURITY_DEPOSIT) {
 		SECURITY_DEPOSIT = sECURITY_DEPOSIT;
 	}
 
