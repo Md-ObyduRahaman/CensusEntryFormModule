@@ -28,12 +28,17 @@ public class AddMeterModel {
 	private int  NET_METER_DIGIT ;
 	private int NET_METER_OMF ;
 	private String EFF_BILL_CYCLE_CODE_UPDATE;
-
-	
-
-
-	
-
+	private String SOLAR_GRID_TYPE;
+	private String NO_OF_PANELS;
+	private String PANEL_LENGTH;
+	private Integer PANEL_WIDTH;
+	private String WATT_PK_PANEL;
+	private Integer TOTAL_SOLAR_LOAD;
+	private String SOLAR_METER_NUM;
+	private String IMAGE_SYSTEM;
+	private String INVERTER_CAPACITY;
+	private String INVERTER_PHASE;
+	private String INVERTER_STATUS;	
 	public AddMeterModel(String lOCATION_CODE, String bILL_GR, String bOOK_NO, String cONSUMER_NUM,
 			String bILL_CYCLE_CODE,String aREA_CODE) {
 		super();
@@ -325,6 +330,105 @@ public class AddMeterModel {
 		BILL_CYCLE_CODE = bILL_CYCLE_CODE;
 	}
 
+	public String getSOLAR_GRID_TYPE() {
+		return SOLAR_GRID_TYPE;
+	}
+
+
+	public void setSOLAR_GRID_TYPE(String sOLAR_GRID_TYPE) {
+		SOLAR_GRID_TYPE = sOLAR_GRID_TYPE;
+	}
+
+
+	public String getNO_OF_PANELS() {
+		return NO_OF_PANELS;
+	}
+
+
+	public void setNO_OF_PANELS(String nO_OF_PANELS) {
+		NO_OF_PANELS = nO_OF_PANELS;
+	}
+
+
+	public String getPANEL_LENGTH() {
+		return PANEL_LENGTH;
+	}
+
+
+	public void setPANEL_LENGTH(String pANEL_LENGTH) {
+		PANEL_LENGTH = pANEL_LENGTH;
+	}
+
+
+	public Integer getPANEL_WIDTH() {
+		return PANEL_WIDTH;
+	}
+
+
+	public void setPANEL_WIDTH(Integer pANEL_WIDTH) {
+		PANEL_WIDTH = pANEL_WIDTH;
+	}
+
+
+	public String getWATT_PK_PANEL() {
+		return WATT_PK_PANEL;
+	}
+
+
+	public void setWATT_PK_PANEL(String wATT_PK_PANEL) {
+		WATT_PK_PANEL = wATT_PK_PANEL;
+	}
+
+
+	public Integer getTOTAL_SOLAR_LOAD() {
+		return TOTAL_SOLAR_LOAD;
+	}
+
+
+	public void setTOTAL_SOLAR_LOAD(Integer tOTAL_SOLAR_LOAD) {
+		TOTAL_SOLAR_LOAD = tOTAL_SOLAR_LOAD;
+	}
+
+
+	public String getSOLAR_METER_NUM() {
+		return SOLAR_METER_NUM;
+	}
+
+
+	public void setSOLAR_METER_NUM(String sOLAR_METER_NUM) {
+		SOLAR_METER_NUM = sOLAR_METER_NUM;
+	}
+
+
+	public String getINVERTER_CAPACITY() {
+		return INVERTER_CAPACITY;
+	}
+
+
+	public void setINVERTER_CAPACITY(String iNVERTER_CAPACITY) {
+		INVERTER_CAPACITY = iNVERTER_CAPACITY;
+	}
+
+
+	public String getINVERTER_PHASE() {
+		return INVERTER_PHASE;
+	}
+
+
+	public void setINVERTER_PHASE(String iNVERTER_PHASE) {
+		INVERTER_PHASE = iNVERTER_PHASE;
+	}
+
+
+	public String getINVERTER_STATUS() {
+		return INVERTER_STATUS;
+	}
+
+
+	public void setINVERTER_STATUS(String iNVERTER_STATUS) {
+		INVERTER_STATUS = iNVERTER_STATUS;
+	}
+
 
 	@Override
 	public String toString() {
@@ -336,8 +440,16 @@ public class AddMeterModel {
 				+ NET_CUST_CHECK_DIGIT + ", NET_CUST_ID=" + NET_CUST_ID + ", EXP_BILL_CYCLE=" + EXP_BILL_CYCLE
 				+ ", NET_CAPACITY=" + NET_CAPACITY + ", BILL_CYCLE_CODE=" + BILL_CYCLE_CODE + ", AREA_CODE=" + AREA_CODE
 				+ ", LOCATION_NAME=" + LOCATION_NAME + ", CUSTOMER_NAME=" + CUSTOMER_NAME + ", NET_METER_DIGIT="
-				+ NET_METER_DIGIT + ", NET_METER_OMF=" + NET_METER_OMF + "]";
+				+ NET_METER_DIGIT + ", NET_METER_OMF=" + NET_METER_OMF + ", EFF_BILL_CYCLE_CODE_UPDATE="
+				+ EFF_BILL_CYCLE_CODE_UPDATE + ", SOLAR_GRID_TYPE=" + SOLAR_GRID_TYPE + ", NO_OF_PANELS=" + NO_OF_PANELS
+				+ ", PANEL_LENGTH=" + PANEL_LENGTH + ", PANEL_WIDTH=" + PANEL_WIDTH + ", WATT_PK_PANEL=" + WATT_PK_PANEL
+				+ ", TOTAL_SOLAR_LOAD=" + TOTAL_SOLAR_LOAD + ", SOLAR_METER_NUM=" + SOLAR_METER_NUM + ", IMAGE_SYSTEM="
+				+ IMAGE_SYSTEM + ", INVERTER_CAPACITY=" + INVERTER_CAPACITY + ", INVERTER_PHASE=" + INVERTER_PHASE
+				+ ", INVERTER_STATUS=" + INVERTER_STATUS + "]";
 	}
+
+
+
 
 
 	

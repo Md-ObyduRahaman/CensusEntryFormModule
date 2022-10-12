@@ -220,6 +220,113 @@
 										class="form-control fcs form-control-lg" />
 								</div>
 							</div>
+							<label class="form-label col-lg-2" for="SOLAR_GRID_TYPE"><strong>Solar Grid Type</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<select class="form-select" name="SOLAR_GRID_TYPE" aria-label="Default select example">
+
+									<option value="1">ON Grid</option>
+									<option value="2">OFF Grid</option>
+								</select>
+							</div>
+							<label class="form-label col-lg-2" for="NO_OF_PANELS"><strong>Number of Panels</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input class="form-control fcs form-control-lg" type="text" id="NO_OF_PANELS"
+										placeholder="Pc" name="NO_OF_PANELS" />
+
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="PANEL_LENGTH"><strong>Panel Length</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input class="form-control fcs form-control-lg" type="text" id="PANEL_LENGTH"
+										placeholder="feet/meter" name="PANEL_LENGTH" />
+									<select class="form-select col-lg-1" name="PANEL_LENGTH_TYPE"
+										aria-label="Default select example">
+										<option selected value="1">Meter</option>
+										<option value="2">Feet</option>
+									</select>
+								</div>
+
+							</div>
+
+							<label class="form-label col-lg-2" for="PANEL_WIDTH"><strong>Panel Width</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input class="form-control fcs form-control-lg" type="text" id="PANEL_WIDTH"
+										placeholder="feet/meter" name="PANEL_WIDTH" />
+									<select name="PANEL_WIDTH_TYPE" class="form-select col-lg-1"
+										aria-label="Default select example">
+										<option selected value="1">Meter</option>
+										<option value="2">Feet</option>
+									</select>
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="WATT_PK_PANEL"><strong>Watt peak per Panel</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input class="form-control fcs form-control-lg" type="text" id="WATT_PK_PANEL"
+										placeholder="WP" name="WATT_PK_PANEL" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="TOTAL_SOLAR_LOAD"><strong>Total Solar
+									Load(Watt)</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input class="form-control fcs form-control-lg" type="text" id="TOTAL_SOLAR_LOAD"
+										placeholder="Watt" name="TOTAL_SOLAR_LOAD" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="SOLAR_METER_NUM"><strong>Solar Meter Number</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input class="form-control fcs form-control-lg" type="text" id="SOLAR_METER_NUM"
+										placeholder="(if any)" name="SOLAR_METER_NUM" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="IMAGE_SYSTEM"><strong>Image of Solar
+									System</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input type="file" id="IMAGE_SYSTEM" name="IMAGE_SYSTEM" accept="image/*">
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="INVERTER_CAPACITY"><strong>Inverter
+									Capacity</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<input class="form-control fcs form-control-lg" type="text" id="INVERTER_CAPACITY"
+										placeholder="KW" name="INVERTER_CAPACITY" />
+								</div>
+							</div>
+							<label class="form-label col-lg-2" for="INVERTER_PHASE"><strong>Inverter phase</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<select class="form-select" name="INVERTER_PHASE" aria-label="Default select example">
+									<option selected value="1">Single phase</option>
+									<option value="3">Three phase</option>
+								</select>
+							</div>
+							<label class="form-label col-lg-2" for="INVERTER_STATUS"><strong>Inverter Status</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<select class="form-select" name="INVERTER_STATUS" aria-label="Default select example">
+									<option selected>select menu</option>
+									<option value="1">One</option>
+									<option value="2">Two</option>
+									<option value="3">Three</option>
+								</select>
+							</div>
+							<div class="col-sm-4"></div>
 							<label class="form-label col-lg-2" for="REMARKS"><strong>REMARKS</strong>
 								&nbsp</label>
 							<div class="col-lg-10 ">
@@ -229,7 +336,7 @@
 
 								</div>
 							</div>
-								<div class="alert alert-success mt-1 col-sm-12 text-center" th:text="${msg}" th:if="${msg}"
+							<div class="alert alert-success mt-1 col-sm-12 text-center" th:text="${msg}" th:if="${msg}"
 								role="alert"></div>
 
 							<div class="col-12  text-center">
@@ -238,11 +345,11 @@
 									class="btn col-12  mt-3 btn-success ">Save</button>
 
 							</div>
-							
+
 					</form>
-					
+
 				</fieldset>
-			
+
 				<div class="card-header mb-3" style="color: green; background-color: paleturquoise;"><strong>Data
 						Table</strong></div>
 
