@@ -223,9 +223,10 @@
 							<label class="form-label col-lg-2" for="SOLAR_GRID_TYPE"><strong>Solar Grid Type</strong>
 								&nbsp</label>
 							<div class="col-lg-2 ">
-								<select class="form-select" name="SOLAR_GRID_TYPE" aria-label="Default select example">
+								<select class="form-select" name="SOLAR_GRID_TYPE" id="SOLAR_GRID_TYPE" required
+									aria-label="Default select example">
 
-									<option value="1">ON Grid</option>
+									<option value="1" selected>ON Grid</option>
 									<option value="2">OFF Grid</option>
 								</select>
 							</div>
@@ -233,7 +234,7 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input class="form-control fcs form-control-lg" type="text" id="NO_OF_PANELS"
+									<input class="form-control fcs form-control-lg" required type="number" id="NO_OF_PANELS"
 										placeholder="Pc" name="NO_OF_PANELS" />
 
 								</div>
@@ -242,12 +243,12 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input class="form-control fcs form-control-lg" type="text" id="PANEL_LENGTH"
+									<input class="form-control fcs form-control-lg" required type="number" id="PANEL_LENGTH"
 										placeholder="feet/meter" name="PANEL_LENGTH" />
-									<select class="form-select col-lg-1" name="PANEL_LENGTH_TYPE"
+									<select class="form-select col-lg-1" required name="PANEL_LENGTH_TYPE" id="PANEL_LENGTH_TYPE"
 										aria-label="Default select example">
-										<option selected value="1">Meter</option>
-										<option value="2">Feet</option>
+										<option selected value="M">Meter</option>
+										<option value="F">Feet</option>
 									</select>
 								</div>
 
@@ -257,20 +258,20 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input class="form-control fcs form-control-lg" type="text" id="PANEL_WIDTH"
+									<input class="form-control fcs form-control-lg" required type="number" id="PANEL_WIDTH"
 										placeholder="feet/meter" name="PANEL_WIDTH" />
-									<select name="PANEL_WIDTH_TYPE" class="form-select col-lg-1"
+									<select name="PANEL_WIDTH_TYPE" required class="form-select col-lg-1" id="PANEL_WIDTH_TYPE"
 										aria-label="Default select example">
-										<option selected value="1">Meter</option>
-										<option value="2">Feet</option>
+										<option selected value="M">Meter</option>
+										<option value="F">Feet</option>
 									</select>
 								</div>
 							</div>
-							<label class="form-label col-lg-2" for="WATT_PK_PANEL"><strong>Watt peak per Panel</strong>
+							<label class="form-label col-lg-2" required for="WATT_PK_PANEL"><strong>Watt peak per Panel</strong>
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input class="form-control fcs form-control-lg" type="text" id="WATT_PK_PANEL"
+									<input class="form-control fcs form-control-lg" required type="number" id="WATT_PK_PANEL"
 										placeholder="WP" name="WATT_PK_PANEL" />
 								</div>
 							</div>
@@ -279,7 +280,7 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input class="form-control fcs form-control-lg" type="text" id="TOTAL_SOLAR_LOAD"
+									<input class="form-control fcs form-control-lg" required type="number" id="TOTAL_SOLAR_LOAD"
 										placeholder="Watt" name="TOTAL_SOLAR_LOAD" />
 								</div>
 							</div>
@@ -287,7 +288,7 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input class="form-control fcs form-control-lg" type="text" id="SOLAR_METER_NUM"
+									<input class="form-control fcs form-control-lg" required type="text" id="SOLAR_METER_NUM"
 										placeholder="(if any)" name="SOLAR_METER_NUM" />
 								</div>
 							</div>
@@ -304,14 +305,14 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input class="form-control fcs form-control-lg" type="text" id="INVERTER_CAPACITY"
+									<input class="form-control fcs form-control-lg" required type="text" id="INVERTER_CAPACITY"
 										placeholder="KW" name="INVERTER_CAPACITY" />
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="INVERTER_PHASE"><strong>Inverter phase</strong>
 								&nbsp</label>
 							<div class="col-lg-2 ">
-								<select class="form-select" name="INVERTER_PHASE" aria-label="Default select example">
+								<select class="form-select" name="INVERTER_PHASE" required id="INVERTER_PHASE" aria-label="Default select example">
 									<option selected value="1">Single phase</option>
 									<option value="3">Three phase</option>
 								</select>
@@ -320,7 +321,7 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<select class="form-select" name="INVERTER_STATUS" aria-label="Default select example">
-									<option selected>select menu</option>
+									<option selected value="0">select menu</option>
 									<option value="1">One</option>
 									<option value="2">Two</option>
 									<option value="3">Three</option>
@@ -415,6 +416,52 @@
 								th:value="${list.BOOK_NO}"></input>
 							<input type="hidden" th:id="'CHECK_DIGIT_'+${iterStatus.index}" name="CHECK_DIGIT"
 								th:value="${list.CHECK_DIGIT}"></input>
+
+
+
+
+							<input type="hidden" th:id="'SOLAR_GRID_TYPE_'+${iterStatus.index}" name="SOLAR_GRID_TYPE"
+								th:value="${list.SOLAR_GRID_TYPE}"></input>
+							<input type="hidden" th:id="'NO_OF_PANELS_'+${iterStatus.index}" name="NO_OF_PANELS"
+								th:value="${list.NO_OF_PANELS}"></input>
+							<input type="hidden" th:id="'PANEL_LENGTH_'+${iterStatus.index}" name="PANEL_LENGTH"
+								th:value="${list.PANEL_LENGTH}"></input>
+							<input type="hidden" th:id="'PANEL_LENGTH_TYPE_'+${iterStatus.index}"
+								name="PANEL_LENGTH_TYPE" th:value="${list.PANEL_LENGTH_TYPE}"></input>
+							<input type="hidden" th:id="'PANEL_WIDTH_'+${iterStatus.index}" name="PANEL_WIDTH"
+								th:value="${list.PANEL_WIDTH}"></input>
+							<input type="hidden" th:id="'PANEL_WIDTH_TYPE_'+${iterStatus.index}" name="PANEL_WIDTH_TYPE"
+								th:value="${list.PANEL_WIDTH_TYPE}"></input>
+							<input type="hidden" th:id="'WATT_PK_PANEL_'+${iterStatus.index}" name="WATT_PK_PANEL"
+								th:value="${list.WATT_PK_PANEL}"></input>
+							<input type="hidden" th:id="'TOTAL_SOLAR_LOAD_'+${iterStatus.index}" name="TOTAL_SOLAR_LOAD"
+								th:value="${list.TOTAL_SOLAR_LOAD}"></input>
+							<input type="hidden" th:id="'SOLAR_METER_NUM_'+${iterStatus.index}" name="SOLAR_METER_NUM"
+								th:value="${list.SOLAR_METER_NUM}"></input>
+							<input type="hidden" th:id="'INVERTER_CAPACITY_'+${iterStatus.index}"
+								name="INVERTER_CAPACITY" th:value="${list.INVERTER_CAPACITY}"></input>
+							<input type="hidden" th:id="'INVERTER_PHASE_'+${iterStatus.index}" name="INVERTER_PHASE"
+								th:value="${list.INVERTER_PHASE}"></input>
+							<input type="hidden" th:id="'INVERTER_STATUS_'+${iterStatus.index}" name="INVERTER_STATUS"
+								th:value="${list.INVERTER_STATUS}"></input>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 							<input type="hidden" th:id="'CUST_ID_'+${iterStatus.index}" name="CUST_ID"
 								th:value="${list.CUST_ID}"></input>
 							<input type="hidden" th:id="'ADJ_FLAG_'+${iterStatus.index}" name="ADJ_FLAG"
@@ -471,6 +518,20 @@
 			var net_METER_DIGIT = document.getElementById('NET_METER_DIGIT_' + id).value;
 			var customer_NAME = document.getElementById('CUSTOMER_NAME_' + id).value;
 			var net_METER_OMF = document.getElementById('NET_METER_OMF_' + id).value;
+			var no_OF_PANELS = document.getElementById('NO_OF_PANELS_' + id).value;
+			var panel_LENGTH = document.getElementById('PANEL_LENGTH_' + id).value;
+			var panel_LENGTH_TYPE = document.getElementById('PANEL_LENGTH_TYPE_' + id).value;
+			var panel_WIDTH = document.getElementById('PANEL_WIDTH_' + id).value;
+			var panel_WIDTH_TYPE = document.getElementById('PANEL_WIDTH_TYPE_' + id).value;
+			var watt_PK_PANEL = document.getElementById('WATT_PK_PANEL_' + id).value;
+			var total_SOLAR_LOAD = document.getElementById('TOTAL_SOLAR_LOAD_' + id).value;
+			var solar_METER_NUM = document.getElementById('SOLAR_METER_NUM_' + id).value;
+			var inverter_CAPACITY = document.getElementById('INVERTER_CAPACITY_' + id).value;
+			var inverter_PHASE = document.getElementById('INVERTER_PHASE_' + id).value;
+			var inverter_STATUS = document.getElementById('INVERTER_STATUS_' + id).value;
+			var solar_GRID_TYPE = document.getElementById('SOLAR_GRID_TYPE_' + id).value;
+
+
 
 
 
@@ -492,6 +553,18 @@
 			document.getElementById("EXP_BILL_CYCLE").value = exp_BILL_CYCLE;
 			document.getElementById("NET_CAPACITY").value = net_CAPACITY;
 			document.getElementById("CUSTOMER_NAME").value = customer_NAME;
+			document.getElementById("NO_OF_PANELS").value = no_OF_PANELS;
+			document.getElementById("PANEL_LENGTH").value = panel_LENGTH;
+			document.getElementById("PANEL_WIDTH").value = panel_WIDTH;
+			document.getElementById("WATT_PK_PANEL").value = watt_PK_PANEL;
+			document.getElementById("TOTAL_SOLAR_LOAD").value = total_SOLAR_LOAD;
+			document.getElementById("SOLAR_METER_NUM").value = solar_METER_NUM;
+			document.getElementById("INVERTER_CAPACITY").value = inverter_CAPACITY;
+			$("#SOLAR_GRID_TYPE option[value='" + solar_GRID_TYPE + "']").prop("selected", "selected");
+			$("#PANEL_LENGTH_TYPE option[value='" + panel_LENGTH_TYPE + "']").prop("selected", "selected");
+			$("#PANEL_WIDTH_TYPE option[value='" + panel_WIDTH_TYPE + "']").prop("selected", "selected");
+			$("#INVERTER_PHASE option[value='" + inverter_PHASE + "']").prop("selected", "selected");
+
 
 			//var button = document.getElementById('SaveButton');
 			//button.innerHTML = "Update";

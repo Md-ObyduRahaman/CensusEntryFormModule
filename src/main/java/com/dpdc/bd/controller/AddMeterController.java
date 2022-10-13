@@ -65,6 +65,11 @@ public class AddMeterController {
 			model.addAttribute("msg", msg);
 			System.out.println(msg);
 		}
+		else {
+			String msg = "Save/Update Not Successfull ";
+			model.addAttribute("msg", msg);
+			System.out.println(msg);
+		}
 
 		 return "redirect:/ADD_METER";
 
