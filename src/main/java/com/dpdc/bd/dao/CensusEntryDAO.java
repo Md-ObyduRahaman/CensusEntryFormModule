@@ -147,6 +147,7 @@ public class CensusEntryDAO {
 
 	public String insertMeterDetailsFormEntry(MeterDetails a, String user_name, String O_CUST_ID) {
 
+		System.out.println(O_CUST_ID);
 		Map<String, Object> result = getAllStatesJdbcCallInsertMeterDetailsentryForm.withCatalogName("DPG_CENSUS")
 			/*.withProcedureName("DPD_CENSUS_METERNSERT") .declareParameters(new SqlOutParameter("O_STATUS",
 					  OracleTypes.INTEGER)).execute(O_CUST_ID, a.getMETER_OWNER(),
@@ -170,7 +171,7 @@ public class CensusEntryDAO {
 				  a.getSCALE_FACTOR_KW(), a.getSCALE_FACTOR_KVARH(), a.getSCALE_FACTOR_KVA(),
 				  a.getPT_NUMERATOR(), a.getCT_NUMERATOR(), a.getOVERALL_MF_KWH(),
 				  a.getMETER_SEAL(), a.getPROT_TYPE(), a.getTIME_SWITCH_NUM(),
-				  a.getTIME_SWITCH_START(), a.getTIME_SWITCH_SEAL(),a.getMETER_INT_ID());
+				  a.getTIME_SWITCH_START(), a.getTIME_SWITCH_SEAL(),a.getMETER_INT_ID(),a.getMETER_MAKE(),a.getMETER_LOC());
 		/*
 		 * .declareParameters(new SqlOutParameter("O_STATUS",
 		 * OracleTypes.INTEGER)).execute(1, '2', "01", "BC_CONSCEN", user_name,

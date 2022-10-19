@@ -1,9 +1,16 @@
 package com.dpdc.bd.controller;
 
 import java.util.ArrayList;
+import java.util.Map;
 
+import javax.sql.DataSource;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.ui.Model;
+import org.springframework.jdbc.core.SqlOutParameter;
+import org.springframework.jdbc.core.simple.SimpleJdbcCall;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,8 +20,11 @@ import com.dpdc.bd.dao.AddMeterDAO;
 import com.dpdc.bd.dao.BillPrintDoa;
 import com.dpdc.bd.dao.CensusEntryDAO;
 import com.dpdc.bd.model.AddMeterModel;
+import com.dpdc.bd.model.BillCycleModel;
 import com.dpdc.bd.model.CensusFormModel;
 import com.dpdc.bd.model.DPD_LOCATION_LIST;
+
+import oracle.jdbc.OracleTypes;
 
 @RestController
 @RequestMapping(path = "/api")
@@ -30,6 +40,12 @@ public class ApiController {
 	DPD_LOCATION_LIST dpd_LOCATION_LIST;
 	@Autowired
 	AddMeterModel addMeterModel;
+	
+	SimpleJdbcCall getAllStatesJdbcCall;
+
+	public ApiController(DataSource dataSource) {
+		this.getAllStatesJdbcCall = new SimpleJdbcCall(dataSource);
+	}
 
 	@GetMapping("/location/{id}")
 	public DPD_LOCATION_LIST get_DPD_Z_C_D_SD_LIST(@PathVariable("id") String id) {
@@ -96,4 +112,29 @@ public class ApiController {
 		
 		
 	}
+	
+	
+	@GetMapping("/book/{location}/{billgrp}")
+	public ArrayList<BillCycleModel> book(@PathVariable("location") String location,
+			@PathVariable("billgrp") String billgrp,
+			@CookieValue(value = "user_name", defaultValue = "") String user_name) {
+		ArrayList<BillCycleModel> billCycleModels = new ArrayList<>();
+System.out.println("HELLO API");
+		Map<String, Object> result = getAllStatesJdbcCall.withCatalogName("DPG_NET_MRS_ENTRY")
+				.withProcedureName("DPD_BOOK_LIST")
+				.declareParameters(new SqlOutParameter("CUR_DATA", OracleTypes.CURSOR))
+				.execute(location, billgrp, user_name);
+
+		JSONObject json = new JSONObject(result);
+		String jesonString = json.get("CUR_DATA").toString();
+		JSONArray jsonArray = new JSONArray(jesonString);
+
+		for (int i = 0; i < jsonArray.length(); i++) {
+			JSONObject jsonData = jsonArray.getJSONObject(i);
+			billCycleModels.add(new BillCycleModel(jsonData.optString("BLOCK_NUM")));
+		}
+
+		return billCycleModels;
+	}
+
 }

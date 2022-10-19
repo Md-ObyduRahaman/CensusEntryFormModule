@@ -77,9 +77,10 @@ public class CensusEntryController {
 		ArrayList<DPD_LOCATION_LIST> dPD_LOCATION_LIST = censusEntryDAO.Get_DPD_LOCATION_LIST(user_name);
 		model.addAttribute("dPD_LOCATION_LIST", dPD_LOCATION_LIST);
 		CensusFormModel single_CensusFormUpdate_Data = censusEntryDAO.Single_CensusFormUpdate_Data(CUST_INT_ID);
-		String cString=single_CensusFormUpdate_Data.getBANK_CODE();
+		String cString = single_CensusFormUpdate_Data.getBANK_CODE();
 		model.addAttribute("SCD", single_CensusFormUpdate_Data);
-		ArrayList<CensusFormModel>  listOf_BRANCH_CODE1 = censusEntryDAO.listOf_BRANCH_CODE(single_CensusFormUpdate_Data.getBANK_CODE());
+		ArrayList<CensusFormModel> listOf_BRANCH_CODE1 = censusEntryDAO
+				.listOf_BRANCH_CODE(single_CensusFormUpdate_Data.getBANK_CODE());
 		model.addAttribute("listOf_BRANCH_CODE", listOf_BRANCH_CODE1);
 		model.addAttribute("LOCATION_CODE", single_CensusFormUpdate_Data.getLOCATION_CODE());
 		model.addAttribute("flag", 3);
@@ -108,15 +109,17 @@ public class CensusEntryController {
 			CensusFormModel single_CensusFormUpdate_Data = censusEntryDAO
 					.Single_CensusFormUpdate_Data(CensusEntryDAO.O_CUST_ID);
 			model.addAttribute("SCD", single_CensusFormUpdate_Data);
-			ArrayList<CensusFormModel>  listOf_BRANCH_CODE1 = censusEntryDAO.listOf_BRANCH_CODE(single_CensusFormUpdate_Data.getBANK_CODE());
+			ArrayList<CensusFormModel> listOf_BRANCH_CODE1 = censusEntryDAO
+					.listOf_BRANCH_CODE(single_CensusFormUpdate_Data.getBANK_CODE());
 			model.addAttribute("listOf_BRANCH_CODE", listOf_BRANCH_CODE1);
-			ArrayList<CensusFormModel>  listOf_BRANCH_CODE2 = censusEntryDAO.listOf_BRANCH_CODE(single_CensusFormUpdate_Data.getBANK_CODE_1());
+			ArrayList<CensusFormModel> listOf_BRANCH_CODE2 = censusEntryDAO
+					.listOf_BRANCH_CODE(single_CensusFormUpdate_Data.getBANK_CODE_1());
 			model.addAttribute("listOf_BRANCH_CODE2", listOf_BRANCH_CODE2);
-			
+
 			model.addAttribute("URL", "distributionEntry");
 			model.addAttribute("LOCATION_CODE", single_CensusFormUpdate_Data.getLOCATION_CODE());
 			String string = CensusEntryDAO.O_CUST_ID;
-			O_CUST_IDMeter=string;
+			O_CUST_IDMeter = string;
 			Cookie o_cust_idCookie = new Cookie("O_CUST_IDNew", CensusEntryDAO.O_CUST_ID);
 			response.addCookie(o_cust_idCookie);
 			return "CensusUpdateEntryForm";
@@ -130,9 +133,11 @@ public class CensusEntryController {
 			CensusFormModel single_CensusFormUpdate_Data = censusEntryDAO
 					.Single_CensusFormUpdate_Data(CensusEntryDAO.O_CUST_ID);
 			model.addAttribute("SCD", single_CensusFormUpdate_Data);
-			ArrayList<CensusFormModel>  listOf_BRANCH_CODE1 = censusEntryDAO.listOf_BRANCH_CODE(single_CensusFormUpdate_Data.getBANK_CODE());
+			ArrayList<CensusFormModel> listOf_BRANCH_CODE1 = censusEntryDAO
+					.listOf_BRANCH_CODE(single_CensusFormUpdate_Data.getBANK_CODE());
 			model.addAttribute("listOf_BRANCH_CODE", listOf_BRANCH_CODE1);
-			ArrayList<CensusFormModel>  listOf_BRANCH_CODE2 = censusEntryDAO.listOf_BRANCH_CODE(single_CensusFormUpdate_Data.getBANK_CODE_1());
+			ArrayList<CensusFormModel> listOf_BRANCH_CODE2 = censusEntryDAO
+					.listOf_BRANCH_CODE(single_CensusFormUpdate_Data.getBANK_CODE_1());
 			model.addAttribute("listOf_BRANCH_CODE2", listOf_BRANCH_CODE2);
 			model.addAttribute("LOCATION_CODE", single_CensusFormUpdate_Data.getLOCATION_CODE());
 			model.addAttribute("flag", 2);
@@ -140,7 +145,7 @@ public class CensusEntryController {
 
 			Cookie o_cust_idCookie = new Cookie("O_CUST_ID", CensusEntryDAO.O_CUST_ID);
 			response.addCookie(o_cust_idCookie);
-			O_CUST_IDMeter=CensusEntryDAO.O_CUST_ID;
+			O_CUST_IDMeter = CensusEntryDAO.O_CUST_ID;
 			return "CensusUpdateEntryForm";
 
 		}
@@ -190,9 +195,11 @@ public class CensusEntryController {
 		Cookie o_cust_idCookieM = new Cookie("O_CUST_ID", CUST_INT_ID);
 		response.addCookie(o_cust_idCookieM);
 		System.out.println("......hello...." + O_CUST_ID);
+		
 
 		MeterDetailsFormModel singleDistribution = censusEntryDAO.singleDistribution(CUST_INT_ID);
 		model.addAttribute("SDB", singleDistribution);
+		model.addAttribute("CUST_ID", CUST_INT_ID);
 
 		return "distributionFormUpdate";
 	}
@@ -320,17 +327,14 @@ public class CensusEntryController {
 		model.addAttribute("listOf_BC_RATED_CURRENT", listOf_BC_RATED_CURRENT);
 		ArrayList<MeterDetails> listOf_BC_DEFECTIVE_CODE = censusEntryDAO.listOf_BC_DEFECTIVE_CODE();
 		model.addAttribute("listOf_BC_DEFECTIVE_CODE", listOf_BC_DEFECTIVE_CODE);
-		MeterDetails Single_MeterDetailsFormUpdate_Data = censusEntryDAO.Single_MeterDetailsFormUpdate_Data(MeterNumber);
+		MeterDetails Single_MeterDetailsFormUpdate_Data = censusEntryDAO
+				.Single_MeterDetailsFormUpdate_Data(MeterNumber);
 		model.addAttribute("SMDF", Single_MeterDetailsFormUpdate_Data);
 		System.out.println(Single_MeterDetailsFormUpdate_Data.toString());
-	
+
 		System.out.println(MeterNumber);
-		model.addAttribute("MeterNumber",MeterNumber);
-		
-		
-		
-		
-		
+		model.addAttribute("MeterNumber", MeterNumber);
+
 		return "meterDetailsUpdateForm";
 	}
 
@@ -357,19 +361,39 @@ public class CensusEntryController {
 		System.out.println(O_CUST_ID + "..........." + user_name);
 		System.out.println(meterDetails.toString());
 		System.out.println(out);
-		System.out.println("Hello Welcome");
+		if (out == "1") {
+			String msg = "Save Successfull ";
+			model.addAttribute("msg", msg);
+		} else {
+			String msg = "Save Not Successfull ";
+			model.addAttribute("msg", msg);
 
+		}
 		return "meterDetailsForm";
 	}
+
 	@PostMapping("/meterDetailsFormUpdate/{id}")
 	public String meterDetailsEntryFormUpdate(@CookieValue(value = "user_name", defaultValue = "") String user_name,
-			MeterDetails meterDetails,@PathVariable("id") String MeterNumber, @CookieValue(value = "O_CUST_ID", defaultValue = "") String O_CUST_ID,
-			Model model)
-	
+			MeterDetails meterDetails, @PathVariable("id") String MeterNumber,
+			@CookieValue(value = "O_CUST_ID", defaultValue = "") String O_CUST_ID, Model model)
+
 	{
 		if (user_name.equals("")) {
 			return "redirect:/";
 		}
+
+		model.addAttribute("MeterNumber", MeterNumber);
+		
+		ArrayList<MeterDetails> listOf_BC_METER_TYPECODE_MAP = censusEntryDAO.listOf_BC_METER_TYPECODE_MAP();
+		model.addAttribute("listOf_BC_METER_TYPECODE_MAP", listOf_BC_METER_TYPECODE_MAP);
+		ArrayList<MeterDetails> listOf_BC_MANUF_CODE = censusEntryDAO.listOf_BC_MANUF_CODE();
+		model.addAttribute("listOf_BC_MANUF_CODE", listOf_BC_MANUF_CODE);
+		ArrayList<MeterDetails> listOf_BC_METER_LOCATION = censusEntryDAO.listOf_BC_METER_LOCATION();
+		model.addAttribute("listOf_BC_METER_LOCATION", listOf_BC_METER_LOCATION);
+		ArrayList<MeterDetails> listOf_BC_RATED_CURRENT = censusEntryDAO.listOf_BC_RATED_CURRENT();
+		model.addAttribute("listOf_BC_RATED_CURRENT", listOf_BC_RATED_CURRENT);
+		ArrayList<MeterDetails> listOf_BC_DEFECTIVE_CODE = censusEntryDAO.listOf_BC_DEFECTIVE_CODE();
+		model.addAttribute("listOf_BC_DEFECTIVE_CODE", listOf_BC_DEFECTIVE_CODE);
 		
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		String o = formatter.format(java.sql.Date.valueOf(meterDetails.getMETER_MFG_DATE()));
@@ -378,17 +402,26 @@ public class CensusEntryController {
 		String o2 = formatter2.format(java.sql.Date.valueOf(meterDetails.getMETER_INST_DATE()));
 		meterDetails.setMETER_INST_DATE(o2);
 		meterDetails.setMETER_INT_ID(Integer.parseInt(MeterNumber));
-		
+
 		String dsString = O_CUST_IDMeter;
-		
+		System.out.println(dsString+".....................");
+
 		String out = censusEntryDAO.insertMeterDetailsFormEntry(meterDetails, user_name, O_CUST_IDMeter);
 		System.out.println(O_CUST_ID + "..........." + user_name);
 		System.out.println(meterDetails.toString());
-		System.out.println(out);
-		System.out.println("Hello Welcome");
-		MeterDetails Single_MeterDetailsFormUpdate_Data = censusEntryDAO.Single_MeterDetailsFormUpdate_Data(MeterNumber);
+		if (out != "2") {
+			String msg = "Update Successfull ";
+			model.addAttribute("msg", msg);
+		} else {
+			String msg = "Update Not Successfull ";
+			model.addAttribute("msg", msg);
+			model.addAttribute("alrt","0");
+
+		}
+		MeterDetails Single_MeterDetailsFormUpdate_Data = censusEntryDAO
+				.Single_MeterDetailsFormUpdate_Data(MeterNumber);
 		model.addAttribute("SMDF", Single_MeterDetailsFormUpdate_Data);
-		
+
 		return "meterDetailsUpdateForm";
 	}
 

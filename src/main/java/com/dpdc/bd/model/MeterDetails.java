@@ -42,6 +42,8 @@ public class MeterDetails {
 	private String TIME_SWITCH_NUM;
 	private String TIME_SWITCH_START;
 	private String TIME_SWITCH_SEAL;
+	private String METER_MAKE;
+	private String METER_LOC;
 	public MeterDetails() {
 		super();
 	}
@@ -49,6 +51,34 @@ public class MeterDetails {
 	
 	
 	
+	public String getMETER_LOC() {
+		return METER_LOC;
+	}
+
+
+
+
+	public void setMETER_LOC(String mETER_LOC) {
+		METER_LOC = mETER_LOC;
+	}
+
+
+
+
+	public String getMETER_MAKE() {
+		return METER_MAKE;
+	}
+
+
+
+
+	public void setMETER_MAKE(String mETER_MAKE) {
+		METER_MAKE = mETER_MAKE;
+	}
+
+
+
+
 	public Integer getMETER_INT_ID() {
 		return METER_INT_ID;
 	}
@@ -598,8 +628,14 @@ public class MeterDetails {
 				+ OVERALL_MF_KWH + ", OVERALL_MF_KW=" + OVERALL_MF_KW + ", OVERALL_MF_KVARH=" + OVERALL_MF_KVARH
 				+ ", OVERALL_MF_KVA=" + OVERALL_MF_KVA + ", METER_SEAL=" + METER_SEAL + ", PROT_TYPE=" + PROT_TYPE
 				+ ", TIME_SWITCH_NUM=" + TIME_SWITCH_NUM + ", TIME_SWITCH_START=" + TIME_SWITCH_START
-				+ ", TIME_SWITCH_SEAL=" + TIME_SWITCH_SEAL + "]";
+				+ ", TIME_SWITCH_SEAL=" + TIME_SWITCH_SEAL + ", METER_MAKE=" + METER_MAKE + ", METER_LOC=" + METER_LOC
+				+ "]";
 	}
+
+
+
+
+
 
 
 

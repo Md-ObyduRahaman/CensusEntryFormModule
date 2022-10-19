@@ -1,20 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" xmlns:th="www.thymeleaf.org">
 
 <head>
+<title>Mrs entry</title>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description"
-		content="Responsive sidebar template with sliding effect and dropdown menu based on bootstrap 3">
-	<title>MRS Entry</title>
-
 	<div th:replace="fragments/links :: cssLink"></div>
-	<!-- using local links -->
-	<!-- <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
-    <link rel="stylesheet" href="../node_modules/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css"> -->
 
+	<link rel="stylesheet" href="../css/main.css">
 	
 
 
@@ -24,6 +17,7 @@
 	<!-- datatable link  -->
 	<link href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css" rel="stylesheet" />
 	<style>
+	
 		html {
 			box-sizing: border-box;
 		}
@@ -84,32 +78,6 @@
 			color: #fff;
 			z-index: 4;
 		}
-
-		a:focus {
-			background: red;
-		}
-
-		/* testing links*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 		table {
 			table-layout: fixed;
@@ -216,12 +184,17 @@
 </head>
 
 <body>
-	<div class="page-wrapper default-theme  bg1 toggled">
-		
-<span th:remove="tag" th:utext="${dataHtml}"></span>
-<div th:replace="fragments/sidebar :: header"></div>
 
-		<!-- page-content  -->
+	<div class="wrapper">
+		<span th:remove="tag" th:utext="${dataHtml}"></span>
+		<div class="container-fluid mw-100 py-2 h-100">
+			<div th:replace="fragments/sidebar :: header"></div>
+
+			<!--Start First Part -->
+
+			<div class="card text-center">
+
+				<!-- page-content  -->
 		<main class="page-content">
 		
 		
@@ -356,25 +329,29 @@
 										<!-- <td style="width: 50px;padding:0;margin:0;" th:text="${eachRow.WALK_SEQ}"></td> -->
 										<input type="hidden" class="readonly" tabindex="-1" readonly="readonly"
 											th:value="${eachRow.CUST_ID}" name="CUST_ID" id="'CUST_ID" />
+											<input type="hidden"   readonly="readonly"
+											th:value="${eachRow.METER_READING_ID}" onload="sojib()" name="METER_READING_ID" th:id="'METER_READING_ID_'+${iter.index}" />
 
 
 
 
 
-										<input type="hidden" th:id="'CUSTOMER_NUM_'+${iter.index}" name="CUSTOMER_NUM"
-											th:value="${eachRow.CUSTOMER_NUM}" />
+										<input type="hidden" th:id="'CONSUMER_NUM_'+${iter.index}" name="CONSUMER_NUM"
+											th:value="${eachRow.CONSUMER_NUM}" />
 										<input type="hidden" th:id="'WALK_SEQ_'+${iter.index}" name="WALK_SEQ"
 											th:value="${eachRow.WALK_SEQ}" />
 										<input type="hidden" th:id="'CUSTOMER_NAME_'+${iter.index}" name="CUSTOMER_NAME"
 											th:value="${eachRow.CUSTOMER_NAME}" />
 										<input type="hidden" th:id="'METER_NUM_'+${iter.index}" name="METER_NUM"
 											th:value="${eachRow.METER_NUM}" />
-										<input type="hidden" th:id="'TARIFF_'+${iter.index}" name="TARIFF"
-											th:value="${eachRow.TARIFF}" />
+										<input type="hidden" th:id="'TARIFF_'+${iter.index}" name="USAGE_CATEGORY_CODE"
+											th:value="${eachRow.USAGE_CATEGORY_CODE}" />
 										<input type="hidden" th:id="'PRE_RDG_DATE_'+${iter.index}" name="PRE_RDG_DATE"
 											th:value="${eachRow.PRE_RDG_DATE}" />
 										<input type="hidden" th:id="'PRV_RDG_DATE_'+${iter.index}" name="PRV_RDG_DATE"
 											th:value="${eachRow.PRV_RDG_DATE}" />
+										<input type="hidden" th:id="'SOURCE_TYPE_'+${iter.index}" name="SOURCE_TYPE"
+											th:value="${eachRow.SOURCE_TYPE}" />
 
 
 
@@ -490,7 +467,7 @@
 										<td style="background-color: yellowgreen;"><input
 												class="form-control Customer_No" id="METER_NUM" readonly></td>
 										<th>Tariff</th>
-										<td style="background-color: yellowgreen;"><input
+										<td style="background-color: yellowgreen;"><input name="TARIFF"
 												class="form-control Customer_No" id="TARIFF" readonly></td>
 
 									</tr>
@@ -498,9 +475,12 @@
 										<th colspan="2">Pre Rdg. Date</th>
 										<td colspan="2" style="background-color: yellowgreen;"><input
 												class="form-control " id="PRE_RDG_DATE" readonly></td>
-										<th colspan="2">Prv. Rdg. Date</th>
-										<td colspan="2" style="background-color: yellowgreen;"><input
+										<th colspan="1">Prv. Rdg. Date</th>
+										<td colspan="1" style="background-color: yellowgreen;"><input
 												class="form-control " id="PRV_RDG_DATE" readonly></td>
+										<th colspan="1">Source Flag</th>
+										<td colspan="1" style="background-color: yellowgreen;"><input
+												class="form-control " id="SOURCE_TYPE" readonly></td>
 										<td colspan="2"><button type="submit" id="SaveButton" value="Save"
 												th:if="${flag} == '1'" class="btn btn-primary btn-block">Save
 												All</button></td>
@@ -697,19 +677,31 @@
 				</footer>
 			</div>
 		</main>
-		<!-- page-content" -->
-	</div>
-	<!-- page-wrapper -->
+				</div>
 
-	<!-- using online scripts -->
-	<script>
-		$('.billcycle').fastselect();
-	</script>
+			</div>
+		</div>
+	</div>
+<!-- JavaScript -->
+	<!-- -->
+<!-- JavaScript -->
+
 	
+ <!-- using online scripts -->
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"
+		integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous">
+		</script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"
+		integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous">
+		</script>
 	<script src="//malihu.github.io/custom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
 
+
 	
 
+	
 	<script src="../js/main.js"></script>
 	<!-- datatable script  -->
 	<script th:inline="javascript">
@@ -1185,21 +1177,28 @@
 
 		function formDisplay(id) {
 
-			var Customer_No = document.getElementById('CUSTOMER_NUM_' + id).value;
+			var Customer_No = document.getElementById('CONSUMER_NUM_' + id).value;
 			var WALK_SEQ = document.getElementById('WALK_SEQ_' + id).value;
 			var CUSTOMER_NAME = document.getElementById('CUSTOMER_NAME_' + id).value;
 			var METER_NUM = document.getElementById('METER_NUM_' + id).value;
 			var PRE_RDG_DATE = document.getElementById('PRE_RDG_DATE_' + id).value;
 			var TARIFF = document.getElementById('TARIFF_' + id).value;
 			var PRV_RDG_DATE = document.getElementById('PRV_RDG_DATE_' + id).value;
+			var SOURCE_TYPE = document.getElementById('SOURCE_TYPE_' + id).value;
+			if(SOURCE_TYPE=="I"){
+				document.getElementById("SOURCE_TYPE").value = "IMPORT";
+			}else{
+				document.getElementById("SOURCE_TYPE").value = "EXPORT";
+			}
 
 			document.getElementById("Customer_No").value = Customer_No;
 			document.getElementById("WALK_SEQ").value = WALK_SEQ;
 			document.getElementById("CUSTOMER_NAME").value = CUSTOMER_NAME;
 			document.getElementById("METER_NUM").value = METER_NUM;
 			document.getElementById("PRE_RDG_DATE").value = PRE_RDG_DATE;
-			document.getElementById("TARIFF").value = TARIFF;
 			document.getElementById("PRV_RDG_DATE").value = PRV_RDG_DATE;
+			document.getElementById("TARIFF").value = TARIFF;
+			
 
 		}
 
@@ -1210,9 +1209,6 @@
 
 
 	</script>
-
-<div th:replace="fragments/links :: javaScriptLink"></div>
-
 
 
 </body>

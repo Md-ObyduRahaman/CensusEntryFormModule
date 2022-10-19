@@ -46,6 +46,9 @@ public class AddMeterController {
 		ArrayList<AddMeterModel> addMeterModelList = addMeterDAO.Get_AddMeterModel_ALL_LIST(user_name);
 		model.addAttribute("addMeterModelList", addMeterModelList);
 		
+		addMeterModel.setAREA_CODE(addMeterModel.getBOOK_NO()+addMeterModel.getBILL_GR());
+		
+		
 		model.addAttribute("addMeterModel", addMeterModel);
 
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

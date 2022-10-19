@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Bill</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<div th:replace="fragments/links :: cssLink"></div>
+
+</head>
+<style>
+	table,
+	th {
+		border: 1px solid #c591b6;
+		border-collapse: collapse;
+		font-family: Courier;
+		text-align: right;
+		padding-right: 30px;
+		color: #a8628d;
+		font-weight: normal;
+		font-style: initial;
+		font-size: 15px;
+		width: 20%;
+
+
+	}
+
+
+
+	.head_clr th,
+	td {
+		width: 10%;
+		text-align: right;
+		padding-right: 5px;
+		color: #c591b6;
+	}
+
+	.head_clr th {
+		font-family: Courier;
+		background-color: #ffebff;
+		border-collapse: collapse;
+		text-align: center;
+		color: #a96b92;
+		height: 10px;
+		font-weight: normal;
+		font-weight: bold;
+
+	}
+
+	.no_border {
+		border: 1px solid white !important;
+
+	}
+
+	/* Chrome, Safari, Edge, Opera */
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button {
+		-webkit-appearance: none;
+		margin: 0;
+	}
+
+	/* Firefox */
+	input[type=number] {
+		-moz-appearance: textfield;
+	}
+</style>
+
+<body>
+	<div class="wrapper">
+		<span th:remove="tag" th:utext="${dataHtml}"></span>
+
+
+
+		<div class="card">
+			<div th:replace="fragments/sidebar :: header"></div>
+			<div class="card-body">
+				<form onkeydown="return event.key != 'Enter';" th:action="@{/Result_MrsEntry}" method="post"
+					th:object="${AddMeterModel}">
+
+					<div class="form-group row">
+
+						<label for="BillCycleCode" class="col-sm-2  col-form-label">Bill Cycle</label>
+						<div class="col-sm-2  input-group search_select_box ">
+							<select id="select_box_BillCycle" class="form-control  search_select_box_BillCycle"
+								name="BILL_CYCLE_CODE" onchange="locationFunction()">
+								<option th:value="null" selected>select BillCycle</option>
+								<option th:each="code : ${Bill_Cycle_LIST}" th:value="${code.BILL_CYCLE_CODE}"
+									th:text="${code.BILL_CYCLE_CODE}"></option>
+							</select>
+						</div>
+						<div class="col-sm-4"></div>
+
+						<div class="col-4 mb-2 ">
+							<div class="btn-group border-black " id="show" role="group" aria-label="Basic example">
+								<button type="submit" class="btn mr-1 btn-primary">Generate
+								</button>
+
+							</div>
+						</div>
+						<label for="Location" class="col-sm-2 pr-1 mb-2  col-form-label">Location</label>
+
+						<div class="col-sm-2  input-group search_select_Location ">
+							<select name="LOCATION_CODE" id="select_box_Location"
+								class="form-control  search_select_box_BillCycle" onchange="locationFunction()">
+								<option th:value="null" selected>select Location</option>
+								<option th:each="code : ${Bill_Location_LIST}"
+									th:value="${code.LOCATION_NAME}+ '' +${code.LOCATION_CODE}"
+									th:text="${code.LOCATION_CODE}"></option>
+							</select>
+						</div>
+
+
+						<input readonly type="text" class="form-control Location col-sm-6" name="LOCATION_NAME"
+							id="Location">
+						<div class="col-sm-2"></div>
+
+						<label for="BillGroup" class="col-sm-2  col-form-label">Bill Group</label>
+						<div class="col-sm-2 mb-2 input-group search_select_box ">
+							<select id="select_box_BillGroup" class="form-control  search_select_box_BillGroup"
+								name="BILL_GR" onchange="locationFunction()">
+								<option th:value="null" selected>select BillGrp</option>
+								<option th:each="code : ${listeff_BILL_GROUP}" th:value="${code.BILL_GR}"
+									th:text="${code.BILL_GR}"></option>
+							</select>
+						</div>
+
+
+						<input readonly type="text" class="form-control col-sm-6" id="BillGroup">
+						<div class="col-sm-2"></div>
+
+						<label for="BookNo" class="col-sm-2  col-form-label">BOOK NO</label>
+						<div class="col-sm-2 mb-2 input-group search_select_box ">
+							<select id="select_box_BookNo" class="form-control  search_select_box_BookNo" onchange="locationFunction()"
+								name="BOOK_NO">
+								<option th:value="null" selected>select BookNo</option>
+
+							</select>
+						</div>
+
+						<input readonly type="text" class="form-control col-sm-6" id="BookNo">
+						<div class="col-sm-2"></div>
+
+						<label for="Area" class="col-sm-2 pr-1 mb-2  col-form-label">Area</label>
+
+						<input type="text" value="null" name="AREA_CODE" class="form-control   col-sm-2" id="AREA_CODE">
+
+
+						<input readonly type="text" class="form-control col-sm-6" id="Area">
+						<div class="col-sm-2"></div>
+
+						<label for="ConsumerNo" class="col-sm-2 pr-1   col-form-label">Consumer No</label>
+
+						<input type="number" value="null" name="CONSUMER_NUM" onchange="locationFunction()"
+							class="form-control   col-sm-2" id="ConsumerNo">
+						<input readonly type="text" class="form-control col-sm-6" id="ConsumerNo">
+						<div class="col-sm-2"></div>
+
+					</div>
+					
+					
+					<div class="alert alert-success  col-sm-12 text-center" id="alt"  style="margin-top: 100px;text-align: center;" th:text="${msg}" th:if="${msg}"
+								role="alert"></div>
+				</form>
+
+
+			</div>
+
+
+
+
+		</div>
+
+
+</body>
+
+<div th:replace="fragments/links :: javaScriptLink"></div>
+
+<script>
+
+
+	$('.search_select_box_BillCycle').select2();
+	$('.search_select_box_location').select2();
+	//$('#select_box_BillGroup').select2();
+
+
+</script>
+
+
+
+
+
+<script>
+
+	function locationFunction() {
+
+		var e = document.getElementById("select_box_Location");
+		var Location_value = e.options[e.selectedIndex].value;
+		var Location_T = e.options[e.selectedIndex].text;
+		console.log(Location_T + ".............")
+		document.getElementById("Location").text = Location_value;
+		var s = document.getElementById("Location").value = Location_value.substring(0, Location_value.length - 2);;
+		var b = document.getElementById("select_box_BillCycle");
+		var BillCycle_value = b.options[b.selectedIndex].value;
+
+		var ConsumerNo_value = document.getElementById("ConsumerNo").value;
+		var bill_grp = document.getElementById("select_box_BillGroup").value;
+		var book_No = document.getElementById("select_box_BookNo").value;
+
+
+		if (Location_T == "" && BillCycle_value == "" && ConsumerNo_value == "") {
+			var urlString = "/api/billprint/" + Location_T + "/" + BillCycle_value + "/" + ConsumerNo_value;
+			console.log(urlString);
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					//var response = xhttp.response.json();
+
+
+
+					var blg = JSON.parse(xhttp.response).bill_GR;
+					var area = JSON.parse(xhttp.response).area_CODE;
+					var bkno = JSON.parse(xhttp.response).book_NO;
+
+					document.getElementById("AREA_CODE").value = area;
+					document.getElementById("BillGroup").value = blg;
+					document.getElementById("BookNo").value = bkno;
+					$('#select_box_BillGroup').val(blg);
+					$('#select_box_BookNo').val(bkno);
+					console.log(JSON.parse(xhttp.response).book_NO);
+
+
+
+
+				}
+			};
+			xhttp.open("GET", urlString, true);
+
+			xhttp.send();
+
+
+		}
+
+
+		if (Location_T != "" && bill_grp != "") {
+			console.log("work properly...");
+
+
+			if (Location_T == "" && bill_grp == "") {
+				$("#select_box_BookNo").empty();
+				$("<option>").val("").text("Select Book").appendTo(bookDropdown);
+			}
+
+			var urlString = "/api/bookList/" + Location_T + "/" + bill_grp;
+			console.log(urlString);
+
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function () {
+				if (this.readyState == 4 && this.status == 200) {
+					var responseJson = JSON.parse(xhttp.response);
+					//.book_NO;
+
+					bookDropdown = $("#select_box_BookNo");
+
+					$.each(responseJson, function (index, book_List) {
+
+						$("<option>").val(book_List.book_NO).text(book_List.book_NO).appendTo(bookDropdown);
+					});
+
+
+
+
+
+
+
+				}
+			};
+			xhttp.open("GET", urlString, true);
+
+			xhttp.send();
+
+
+		}
+		
+		if (book_No != "" && bill_grp != "") {
+			document.getElementById("AREA_CODE").value = book_No+bill_grp;
+			}
+
+
+
+
+	}
+
+</script>
+
+<script th:inline="javascript">
+		/*<![CDATA[*/
+
+		var alrt = [[${alrt}]];
+		
+console.log(alrt)
+		if (alrt == 0) {
+			document.getElementById("alt").className = "alert alert-danger mt-4";
+
+		}
+		
+
+		/*]]>*/
+	</script>
+
+
+</html>

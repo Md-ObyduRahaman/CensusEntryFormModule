@@ -366,8 +366,8 @@
 									th:onclick="|window.location.href='/meterDetailsForm'|">Meter
 									Details</button>
 								<button type="button" class="btn btn-primary">X-F Details</button>
-								<button type="button" th:onclick="|window.location.href='/CensusEntryForm'|"
-									class="btn btn-primary">Consumer</button>
+								<a th:href="@{'/' + DATA_ENTRY_LT_FORM_Update+'/' + ${CUST_ID}}" id="updateButton"
+										class="btn btn-success  text-right">Consumer</a>
 								<button type="submit" class="btn btn-success">Save</button>
 
 							</div>
