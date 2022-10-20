@@ -41,6 +41,16 @@ public class AddMeterModel {
 	private String INVERTER_STATUS;
 	private String PANEL_LENGTH_TYPE;
 	private String PANEL_WIDTH_TYPE;
+	private String ERROR_DESC;
+	private String CUSTOMER_NUM;
+	
+	
+
+	public AddMeterModel(String eRROR_DESC, String cUSTOMER_NUM,int a) {
+		super();
+		ERROR_DESC = eRROR_DESC;
+		CUSTOMER_NUM = cUSTOMER_NUM;
+	}
 
 	public AddMeterModel(String lOCATION_CODE, String bILL_GR, String bOOK_NO, String cONSUMER_NUM,
 			String bILL_CYCLE_CODE, String aREA_CODE) {
@@ -51,6 +61,22 @@ public class AddMeterModel {
 		CONSUMER_NUM = cONSUMER_NUM;
 		BILL_CYCLE_CODE = bILL_CYCLE_CODE;
 		AREA_CODE = aREA_CODE;
+	}
+
+	public String getERROR_DESC() {
+		return ERROR_DESC;
+	}
+
+	public void setERROR_DESC(String eRROR_DESC) {
+		ERROR_DESC = eRROR_DESC;
+	}
+
+	public String getCUSTOMER_NUM() {
+		return CUSTOMER_NUM;
+	}
+
+	public void setCUSTOMER_NUM(String cUSTOMER_NUM) {
+		CUSTOMER_NUM = cUSTOMER_NUM;
 	}
 
 	public AddMeterModel(String bILL_CYCLE_CODE) {
@@ -454,9 +480,11 @@ public class AddMeterModel {
 				+ ", TOTAL_SOLAR_LOAD=" + TOTAL_SOLAR_LOAD + ", SOLAR_METER_NUM=" + SOLAR_METER_NUM + ", IMAGE_SYSTEM="
 				+ IMAGE_SYSTEM + ", INVERTER_CAPACITY=" + INVERTER_CAPACITY + ", INVERTER_PHASE=" + INVERTER_PHASE
 				+ ", INVERTER_STATUS=" + INVERTER_STATUS + ", PANEL_LENGTH_TYPE=" + PANEL_LENGTH_TYPE
-				+ ", PANEL_WIDTH_TYPE=" + PANEL_WIDTH_TYPE + "]";
+				+ ", PANEL_WIDTH_TYPE=" + PANEL_WIDTH_TYPE + ", ERROR_DESC=" + ERROR_DESC + ", CUSTOMER_NUM="
+				+ CUSTOMER_NUM + "]";
 	}
 
+	
 
 
 }

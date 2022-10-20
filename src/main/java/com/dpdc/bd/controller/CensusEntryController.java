@@ -171,6 +171,7 @@ public class CensusEntryController {
 		model.addAttribute("listOf_BC_SPL_CODE_list", listOf_BC_SPL_CODE_list);
 		Cookie o_cust_idCookieM = new Cookie("O_CUST_IDM", O_CUST_ID);
 		response.addCookie(o_cust_idCookieM);
+		model.addAttribute("O_CUST_ID", O_CUST_IDMeter);
 		System.out.println("......hello...." + O_CUST_ID);
 		return "distributionForm";
 	}
@@ -309,6 +310,7 @@ public class CensusEntryController {
 		model.addAttribute("listOf_BC_RATED_CURRENT", listOf_BC_RATED_CURRENT);
 		ArrayList<MeterDetails> listOf_BC_DEFECTIVE_CODE = censusEntryDAO.listOf_BC_DEFECTIVE_CODE();
 		model.addAttribute("listOf_BC_DEFECTIVE_CODE", listOf_BC_DEFECTIVE_CODE);
+		model.addAttribute("CUST_ID",O_CUST_IDMeter);
 
 		return "meterDetailsForm";
 	}
@@ -334,6 +336,8 @@ public class CensusEntryController {
 
 		System.out.println(MeterNumber);
 		model.addAttribute("MeterNumber", MeterNumber);
+		
+		model.addAttribute("CUST_ID",O_CUST_IDMeter);
 
 		return "meterDetailsUpdateForm";
 	}

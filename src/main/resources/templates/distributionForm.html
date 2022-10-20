@@ -258,7 +258,6 @@
 							<div class="input-group search_select_box ">
 								<select name="BUS_TYPE_CODE" id="typOfBusiness"
 									class="form-control selectTypOfBusiness">
-									
 									<option th:each="code : ${listOf_Bus_type}" th:value="${code.BUS_TYPE_CODE}"
 										th:text="${code.BUS_TYPE_CODE}+ '-' + ${code.BUS_TYPE_DESC}"></option>
 								</select>

@@ -423,10 +423,10 @@
 						aria-label="Basic example">
 						<button type="button" class="btn btn-primary">Initial Reading</button>
 						<button type="button" class="btn btn-primary">Last Reading</button>
-						<button type="button" th:onclick="|window.location.href='/CensusEntryForm'|"
-							class="btn btn-primary">Consumer</button>
-						<button type="button" th:onclick="|window.location.href='/distribution'|"
-							class="btn btn-primary">Distribution</button>
+						<a th:href="@{'/' + DATA_ENTRY_LT_FORM_Update+'/' + ${CUST_ID}}" id="updateButton"
+										class="btn btn-success  text-right">Consumer</a>
+						<a th:href="@{'/' + distribution+'/' + ${CUST_ID}}" id="updateButton"
+										class="btn btn-success  text-right">Distribution</a>
 						<button type="submit" class="btn btn-success">Save</button>
 					</div>
 				</div>

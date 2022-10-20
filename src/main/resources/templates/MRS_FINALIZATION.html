@@ -31,7 +31,7 @@
 		<div class="card">
 			<div th:replace="fragments/sidebar :: header"></div>
 			<div class="card-body">
-				<form onkeydown="return event.key != 'Enter';" th:action="@{/Result_MrsEntry}" method="post"
+				<form onkeydown="return event.key != 'Enter';" th:action="@{/Result_MRS_Finalization}" method="post"
 					th:object="${AddMeterModel}">
 
 					<div class="form-group row">
@@ -100,6 +100,7 @@
 						<label for="Area" class="col-sm-2 pr-1 mb-2  col-form-label">Area</label>
 
 						<input type="text" value="null" name="AREA_CODE" class="form-control   col-sm-2" id="AREA_CODE">
+
 
 						<input readonly type="text" class="form-control col-sm-6" id="Area">
 						<div class="col-sm-2"></div>
