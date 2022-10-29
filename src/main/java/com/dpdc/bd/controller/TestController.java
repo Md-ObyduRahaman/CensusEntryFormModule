@@ -64,7 +64,7 @@ public class TestController {
 			
 
 			
-	  return"iter"; }
+	  return"InitialReading"; }
 	  
 	 
 

@@ -2,6 +2,7 @@ package com.dpdc.bd.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.dpdc.bd.dao.CensusEntryDAO;
 import com.dpdc.bd.dao.GetDynamicMenuDAO;
+import com.dpdc.bd.dao.InitialReadingDoa;
+import com.dpdc.bd.model.BC_TODMTR_INTERFACE_Model;
 import com.dpdc.bd.model.CensusFormModel;
 import com.dpdc.bd.model.DPD_LOCATION_LIST;
 import com.dpdc.bd.model.MeterDetails;
@@ -31,6 +34,8 @@ public class CensusEntryController {
 	CensusEntryDAO censusEntryDAO;
 	@Autowired
 	GetDynamicMenuDAO getDynamicMenuDAO;
+	@Autowired
+	InitialReadingDoa initialReadingDoa;
 
 	static String O_CUST_IDMeter;
 
@@ -196,7 +201,6 @@ public class CensusEntryController {
 		Cookie o_cust_idCookieM = new Cookie("O_CUST_ID", CUST_INT_ID);
 		response.addCookie(o_cust_idCookieM);
 		System.out.println("......hello...." + O_CUST_ID);
-		
 
 		MeterDetailsFormModel singleDistribution = censusEntryDAO.singleDistribution(CUST_INT_ID);
 		model.addAttribute("SDB", singleDistribution);
@@ -310,7 +314,7 @@ public class CensusEntryController {
 		model.addAttribute("listOf_BC_RATED_CURRENT", listOf_BC_RATED_CURRENT);
 		ArrayList<MeterDetails> listOf_BC_DEFECTIVE_CODE = censusEntryDAO.listOf_BC_DEFECTIVE_CODE();
 		model.addAttribute("listOf_BC_DEFECTIVE_CODE", listOf_BC_DEFECTIVE_CODE);
-		model.addAttribute("CUST_ID",O_CUST_IDMeter);
+		model.addAttribute("CUST_ID", O_CUST_IDMeter);
 
 		return "meterDetailsForm";
 	}
@@ -336,8 +340,8 @@ public class CensusEntryController {
 
 		System.out.println(MeterNumber);
 		model.addAttribute("MeterNumber", MeterNumber);
-		
-		model.addAttribute("CUST_ID",O_CUST_IDMeter);
+
+		model.addAttribute("CUST_ID", O_CUST_IDMeter);
 
 		return "meterDetailsUpdateForm";
 	}
@@ -387,7 +391,7 @@ public class CensusEntryController {
 		}
 
 		model.addAttribute("MeterNumber", MeterNumber);
-		
+
 		ArrayList<MeterDetails> listOf_BC_METER_TYPECODE_MAP = censusEntryDAO.listOf_BC_METER_TYPECODE_MAP();
 		model.addAttribute("listOf_BC_METER_TYPECODE_MAP", listOf_BC_METER_TYPECODE_MAP);
 		ArrayList<MeterDetails> listOf_BC_MANUF_CODE = censusEntryDAO.listOf_BC_MANUF_CODE();
@@ -398,7 +402,7 @@ public class CensusEntryController {
 		model.addAttribute("listOf_BC_RATED_CURRENT", listOf_BC_RATED_CURRENT);
 		ArrayList<MeterDetails> listOf_BC_DEFECTIVE_CODE = censusEntryDAO.listOf_BC_DEFECTIVE_CODE();
 		model.addAttribute("listOf_BC_DEFECTIVE_CODE", listOf_BC_DEFECTIVE_CODE);
-		
+
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		String o = formatter.format(java.sql.Date.valueOf(meterDetails.getMETER_MFG_DATE()));
 		meterDetails.setMETER_MFG_DATE(o);
@@ -408,7 +412,7 @@ public class CensusEntryController {
 		meterDetails.setMETER_INT_ID(Integer.parseInt(MeterNumber));
 
 		String dsString = O_CUST_IDMeter;
-		System.out.println(dsString+".....................");
+		System.out.println(dsString + ".....................");
 
 		String out = censusEntryDAO.insertMeterDetailsFormEntry(meterDetails, user_name, O_CUST_IDMeter);
 		System.out.println(O_CUST_ID + "..........." + user_name);
@@ -419,7 +423,7 @@ public class CensusEntryController {
 		} else {
 			String msg = "Update Not Successfull ";
 			model.addAttribute("msg", msg);
-			model.addAttribute("alrt","0");
+			model.addAttribute("alrt", "0");
 
 		}
 		MeterDetails Single_MeterDetailsFormUpdate_Data = censusEntryDAO
@@ -427,6 +431,69 @@ public class CensusEntryController {
 		model.addAttribute("SMDF", Single_MeterDetailsFormUpdate_Data);
 
 		return "meterDetailsUpdateForm";
+	}
+
+	@GetMapping("/initialReading/{id}/{mt}")
+	public String InitialReading(@CookieValue(value = "user_name", defaultValue = "") String user_name,
+			@PathVariable("id") String MeterNumber, @PathVariable("mt") String mt, Model model)
+
+	{
+		if (user_name.equals("")) {
+			return "redirect:/";
+		}
+
+		String out = initialReadingDoa.get_InitialReading(user_name, "I", MeterNumber, mt);
+
+		if (out != "1") {
+
+			ArrayList<BC_TODMTR_INTERFACE_Model> BC_TODMTR_INTERFACE_Model = initialReadingDoa
+					.listOf_BC_TODMTR(Integer.valueOf(MeterNumber));
+			model.addAttribute("TOD", BC_TODMTR_INTERFACE_Model);
+
+		} else {
+			String msg = "Insert Not Successfull ";
+			model.addAttribute("msg", msg);
+			System.out.println(msg);
+		}
+
+		return "InitialReading";
+	}
+
+	@PostMapping("/initialReadingSave")
+	public String InitialReadingSave(@CookieValue(value = "user_name", defaultValue = "") String user_name,
+			BC_TODMTR_INTERFACE_Model TOD, Model model)
+
+	{
+		if (user_name.equals("")) {
+			return "redirect:/";
+		}
+
+		ArrayList<String> READING_DATE, READING, TOD_ID;
+		
+		READING_DATE = new ArrayList<String>(Arrays.asList(TOD.getREADING_DATE().split(",")));
+		READING = new ArrayList<String>(Arrays.asList(TOD.getREADING().split(",")));
+		TOD_ID = new ArrayList<String>(Arrays.asList(TOD.getTOD_ID().split(",")));
+		
+	
+		
+		int out= initialReadingDoa.updateTodMeterData(TOD_ID, READING_DATE, READING);
+		
+
+		if (out == 1) {
+
+			String msg = "Update Successfull ";
+			model.addAttribute("msgs", msg);
+			
+
+		} else {
+			String msg = "Update Not Successfull ";
+			model.addAttribute("msg", msg);
+			
+		}
+
+		model.addAttribute("TOD", null);
+
+		return "InitialReading";
 	}
 
 }

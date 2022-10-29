@@ -47,7 +47,7 @@ public class GetDynamicMenuDAO {
 		String dataHtml = " <nav id=\"sidebar\" th:fragment=\"sidebar\">\r\n"
 				+ "     <div class=\"sidebar-header\">\r\n" + "               \r\n" + "\r\n" + "\r\n"
 				+ "                    <div class=\"custom-thumbnail m-8\">\r\n"
-				+ "                      <img style=\"margin-left: 40px;\" src=\"../img/DPDC.png\" alt=\"Image\" width=\"100\" height=\"60\" class=\"img-fluid\">\r\n"
+				+ "                      <img style=\"margin-left: 40px;\" src=\"../../img/DPDC.png\" alt=\"Image\" width=\"100\" height=\"60\" class=\"img-fluid\">\r\n"
 				+ "                    </div>\r\n"
 
 				+ "\r\n" + "\r\n" + "\r\n" + "            </div>   " + "\r\n"
@@ -108,7 +108,7 @@ public class GetDynamicMenuDAO {
 
 										else {
 
-											dataHtml += "                <li>\r\n" + "                    <a href=../../../"
+											dataHtml += "                <li>\r\n" + "                    <a href=../../../../"
 													+ dynamicMenu.get(menu_level_2).getMOD_APP() + ">"
 													+ dynamicMenu.get(menu_level_2).getMOD_NAME() + "</a>\r\n";
 										}
@@ -123,7 +123,7 @@ public class GetDynamicMenuDAO {
 
 							else {
 
-								dataHtml += "                <li>\r\n" + "                    <a href=../../../"
+								dataHtml += "                <li>\r\n" + "                    <a href=../../../../"
 										+ dynamicMenu.get(menu_level_1).getMOD_APP() + ">"
 										+ dynamicMenu.get(menu_level_1).getMOD_NAME() + "</a>\r\n";
 							}
@@ -139,7 +139,7 @@ public class GetDynamicMenuDAO {
 
 				else {
 
-					dataHtml += "                <li>\r\n" + "                    <a href=../../../"
+					dataHtml += "                <li>\r\n" + "                    <a href=../../../../"
 							+ dynamicMenu.get(menu_level_0).getMOD_APP() + ">"
 							+ dynamicMenu.get(menu_level_0).getMOD_NAME() + "</a>\r\n";
 				}
@@ -148,9 +148,9 @@ public class GetDynamicMenuDAO {
 
 		}
 		dataHtml += "                </li>\r\n" + "         <li>\r\n" + "                    <a \r\n"
-				+ "							href=\"../../../logout\">Logout</a>\r\n" + "                </li>        "
+				+ "							href=\"../../../../logout\">Logout</a>\r\n" + "                </li>        "
 				+ "            </ul>\r\n" + "\r\n" + "           \r\n" + "      <div >\r\n" + "                \r\n"
-				+ "                <img src=\"../img/itbt.jfif\" alt=\"picture not available\" width=\"250\" height=\"60\">\r\n"
+				+ "                <img src=\"../../img/itbt.jfif\" alt=\"picture not available\" width=\"250\" height=\"60\">\r\n"
 				+ "                \r\n" + "                </div>   </nav> ";
 
 		return dataHtml;
