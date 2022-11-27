@@ -5,6 +5,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class BC_TODMTR_INTERFACE_Model {
 	
+	
+	
 	private String TOD_ID;
 	private String TIME_CYCLE_CODE;
 	private String DESCR;

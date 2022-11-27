@@ -140,7 +140,7 @@
 								<div class="input-group">
 
 									<input type="date" required class="form-control fcs" name="METER_MFG_DATE"
-										th:value="${SMDF.METER_MFG_DATE}" id="yrOfManuf">
+										 id="yrOfManuf">
 
 								</div>
 
@@ -442,9 +442,10 @@
 				<div class="col-12 text-right">
 					<div class="btn-group border-black " style="display: inline;" role="group"
 						aria-label="Basic example">
-						<a th:href="@{'/initialReading'+'/' + ${SMDF.METER_INT_ID}+'/' + ${SMDF.METER_TYPE}}" id="updateButton"
+						<a th:href="@{'/initialReading'+'/' + ${SMDF.METER_INT_ID}+'/' + ${SMDF.METER_TYPE}}+'I'" id="updateButton"
 										class="btn btn-primary  text-right">Initial Reading</a>
-						<button type="button" class="btn btn-primary">Last Reading</button>
+						<a th:href="@{'/initialReading'+'/' + ${SMDF.METER_INT_ID}+'/' + ${SMDF.METER_TYPE}}+'B'" id="updateButton"
+										class="btn btn-primary  text-right">Last Reading</a>
 						<a th:href="@{'/' + DATA_ENTRY_LT_FORM_Update+'/' + ${CUST_ID}}" id="updateButton"
 										class="btn btn-primary  text-right">Consumer</a>
 						<a th:href="@{'/' + distribution+'/' + ${CUST_ID}}" id="updateButton"

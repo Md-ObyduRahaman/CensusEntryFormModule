@@ -64,7 +64,7 @@ public class TestController {
 			
 
 			
-	  return"InitialReading"; }
+	  return"ss"; }
 	  
 	 
 

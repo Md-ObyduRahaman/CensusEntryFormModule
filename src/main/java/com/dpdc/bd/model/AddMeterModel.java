@@ -45,6 +45,7 @@ public class AddMeterModel {
 	private String CUSTOMER_NUM;
 	
 	
+	
 
 	public AddMeterModel(String eRROR_DESC, String cUSTOMER_NUM,int a) {
 		super();
@@ -62,6 +63,8 @@ public class AddMeterModel {
 		BILL_CYCLE_CODE = bILL_CYCLE_CODE;
 		AREA_CODE = aREA_CODE;
 	}
+	
+	
 
 	public String getERROR_DESC() {
 		return ERROR_DESC;

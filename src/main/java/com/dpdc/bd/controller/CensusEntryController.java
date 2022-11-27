@@ -103,7 +103,6 @@ public class CensusEntryController {
 		ArrayList<CensusFormModel> listeff_BC_BANKS = censusEntryDAO.listOf_Bank_Code();
 		model.addAttribute("listeff_BC_BANKS", listeff_BC_BANKS);
 		String insertStatus = censusEntryDAO.insertCensusEntry(censusFormModel, user_name);
-		System.out.println(censusFormModel.toString());
 		int i = Integer.parseInt(insertStatus);
 		if (i == 1) {
 			String msg = "Save Successfull ";
@@ -132,7 +131,6 @@ public class CensusEntryController {
 		} else {
 			String msg = "Update Successfull ";
 			model.addAttribute("msg", msg);
-			System.out.println(CensusEntryDAO.O_CUST_ID + ".............ok.............");
 			ArrayList<DPD_LOCATION_LIST> dPD_LOCATION_LIST = censusEntryDAO.Get_DPD_LOCATION_LIST(user_name);
 			model.addAttribute("dPD_LOCATION_LIST", dPD_LOCATION_LIST);
 			CensusFormModel single_CensusFormUpdate_Data = censusEntryDAO
@@ -177,7 +175,6 @@ public class CensusEntryController {
 		Cookie o_cust_idCookieM = new Cookie("O_CUST_IDM", O_CUST_ID);
 		response.addCookie(o_cust_idCookieM);
 		model.addAttribute("O_CUST_ID", O_CUST_IDMeter);
-		System.out.println("......hello...." + O_CUST_ID);
 		return "distributionForm";
 	}
 
@@ -200,7 +197,6 @@ public class CensusEntryController {
 		model.addAttribute("listOf_BC_SPL_CODE_list", listOf_BC_SPL_CODE_list);
 		Cookie o_cust_idCookieM = new Cookie("O_CUST_ID", CUST_INT_ID);
 		response.addCookie(o_cust_idCookieM);
-		System.out.println("......hello...." + O_CUST_ID);
 
 		MeterDetailsFormModel singleDistribution = censusEntryDAO.singleDistribution(CUST_INT_ID);
 		model.addAttribute("SDB", singleDistribution);
@@ -228,7 +224,6 @@ public class CensusEntryController {
 		model.addAttribute("listOf_BC_SPL_CODE_list", listOf_BC_SPL_CODE_list);
 		Cookie o_cust_idCookieM = new Cookie("O_CUST_IDM", O_CUST_ID);
 		response.addCookie(o_cust_idCookieM);
-		System.out.println("......hello...." + O_CUST_ID);
 
 		return "distributionForm";
 	}
@@ -250,25 +245,19 @@ public class CensusEntryController {
 		model.addAttribute("listOf_Status_list", listOf_Status_list);
 		ArrayList<MeterDetailsFormModel> listOf_BC_SPL_CODE_list = censusEntryDAO.listOf_BC_SPL_CODE_list();
 		model.addAttribute("listOf_BC_SPL_CODE_list", listOf_BC_SPL_CODE_list);
-		System.out.println("......hello...." + O_CUST_ID);
-		System.out.println(detailsFormModel.toString());
 		String insertStatus = censusEntryDAO.insertDistributionFormEntry(detailsFormModel, user_name, O_CUST_ID);
-		System.out.println(detailsFormModel.toString());
 		int i = Integer.parseInt(insertStatus);
 		if (i == 1) {
 			String msg = "Save Successfull ";
 			model.addAttribute("msg", msg);
-			System.out.println(CensusEntryDAO.O_CUST_ID + ".............ok.............");
 			Cookie o_cust_idCookie = new Cookie("O_CUST_ID", CensusEntryDAO.O_CUST_ID);
 			response.addCookie(o_cust_idCookie);
 			MeterDetailsFormModel singleDistribution = censusEntryDAO.singleDistribution(O_CUST_ID);
 			model.addAttribute("SDB", singleDistribution);
-			System.out.println(msg);
 			return "distributionFormUpdate";
 		} else {
 			String msg = "Update Successfull ";
 			model.addAttribute("msg", msg);
-			System.out.println(CensusEntryDAO.O_CUST_ID + ".............ok.............");
 			Cookie o_cust_idCookie = new Cookie("O_CUST_ID", CensusEntryDAO.O_CUST_ID);
 			response.addCookie(o_cust_idCookie);
 			MeterDetailsFormModel singleDistribution = censusEntryDAO.singleDistribution(CensusEntryDAO.O_CUST_ID);
@@ -283,8 +272,7 @@ public class CensusEntryController {
 			@CookieValue(value = "O_CUST_IDNew", defaultValue = "") String O_CUST_ID, HttpServletResponse response,
 			Model model) {
 		String string = O_CUST_IDMeter;
-		System.out.println("......hello..FFFFFFFFFFFFFF.." + O_CUST_ID);
-		System.out.println("......hello..FFFFFFFFFFFFFF.." + string);
+		
 		if (string == null) {
 			ArrayList<CensusFormModel> listeff_BC_CONSUMER_INTERFACE = censusEntryDAO
 					.listOf_BC_CONSUMER_INTERFACE(O_CUST_ID);
@@ -336,9 +324,7 @@ public class CensusEntryController {
 		MeterDetails Single_MeterDetailsFormUpdate_Data = censusEntryDAO
 				.Single_MeterDetailsFormUpdate_Data(MeterNumber);
 		model.addAttribute("SMDF", Single_MeterDetailsFormUpdate_Data);
-		System.out.println(Single_MeterDetailsFormUpdate_Data.toString());
 
-		System.out.println(MeterNumber);
 		model.addAttribute("MeterNumber", MeterNumber);
 
 		model.addAttribute("CUST_ID", O_CUST_IDMeter);
@@ -366,18 +352,22 @@ public class CensusEntryController {
 		String dsString = O_CUST_IDMeter;
 
 		String out = censusEntryDAO.insertMeterDetailsFormEntry(meterDetails, user_name, O_CUST_IDMeter);
-		System.out.println(O_CUST_ID + "..........." + user_name);
-		System.out.println(meterDetails.toString());
-		System.out.println(out);
-		if (out == "1") {
+	
+		if (out != "1") {
 			String msg = "Save Successfull ";
 			model.addAttribute("msg", msg);
+			
+			MeterDetails Single_MeterDetailsFormUpdate_Data = censusEntryDAO
+					.Single_MeterDetailsFormUpdate_Data(CensusEntryDAO.oP);
+			model.addAttribute("SMDF", Single_MeterDetailsFormUpdate_Data);
+			model.addAttribute("CUST_ID", O_CUST_IDMeter);
+			
 		} else {
 			String msg = "Save Not Successfull ";
 			model.addAttribute("msg", msg);
 
 		}
-		return "meterDetailsForm";
+		return "meterDetailsUpdateForm";
 	}
 
 	@PostMapping("/meterDetailsFormUpdate/{id}")
@@ -412,11 +402,8 @@ public class CensusEntryController {
 		meterDetails.setMETER_INT_ID(Integer.parseInt(MeterNumber));
 
 		String dsString = O_CUST_IDMeter;
-		System.out.println(dsString + ".....................");
 
 		String out = censusEntryDAO.insertMeterDetailsFormEntry(meterDetails, user_name, O_CUST_IDMeter);
-		System.out.println(O_CUST_ID + "..........." + user_name);
-		System.out.println(meterDetails.toString());
 		if (out != "2") {
 			String msg = "Update Successfull ";
 			model.addAttribute("msg", msg);
@@ -435,33 +422,46 @@ public class CensusEntryController {
 
 	@GetMapping("/initialReading/{id}/{mt}")
 	public String InitialReading(@CookieValue(value = "user_name", defaultValue = "") String user_name,
-			@PathVariable("id") String MeterNumber, @PathVariable("mt") String mt, Model model)
+			@PathVariable("id") String MeterNumber, @PathVariable("mt") String mt, Model model,HttpServletResponse response)
 
 	{
+		final String out;
 		if (user_name.equals("")) {
 			return "redirect:/";
 		}
+		String str = mt.substring(mt.length() - 1);
 
-		String out = initialReadingDoa.get_InitialReading(user_name, "I", MeterNumber, mt);
+		if (str.equals("I")) {
+			out = initialReadingDoa.get_InitialReading(user_name, "I", MeterNumber, mt.substring(0, 2));
+			model.addAttribute("rdg", "Initial Reading");
+
+		} else {
+			out = initialReadingDoa.get_InitialReading(user_name, "B", MeterNumber, mt.substring(0, 2));
+			model.addAttribute("rdg", "Last Reading");
+
+		}
 
 		if (out != "1") {
 
 			ArrayList<BC_TODMTR_INTERFACE_Model> BC_TODMTR_INTERFACE_Model = initialReadingDoa
-					.listOf_BC_TODMTR(Integer.valueOf(MeterNumber));
+					.listOf_BC_TODMTR(Integer.valueOf(MeterNumber), mt.substring(mt.length() - 1));
+			
+			
 			model.addAttribute("TOD", BC_TODMTR_INTERFACE_Model);
+			model.addAttribute("MeterNumber", MeterNumber);
+			model.addAttribute("mt", mt.substring(mt.length() - 1));
 
 		} else {
 			String msg = "Insert Not Successfull ";
 			model.addAttribute("msg", msg);
-			System.out.println(msg);
 		}
 
 		return "InitialReading";
 	}
 
-	@PostMapping("/initialReadingSave")
+	@PostMapping("/initialReadingSave/{id}/{mt}")
 	public String InitialReadingSave(@CookieValue(value = "user_name", defaultValue = "") String user_name,
-			BC_TODMTR_INTERFACE_Model TOD, Model model)
+			BC_TODMTR_INTERFACE_Model TOD,	@PathVariable("id") String MeterNumber, @PathVariable("mt") String mt, Model model)
 
 	{
 		if (user_name.equals("")) {
@@ -469,30 +469,30 @@ public class CensusEntryController {
 		}
 
 		ArrayList<String> READING_DATE, READING, TOD_ID;
-		
+
 		READING_DATE = new ArrayList<String>(Arrays.asList(TOD.getREADING_DATE().split(",")));
 		READING = new ArrayList<String>(Arrays.asList(TOD.getREADING().split(",")));
 		TOD_ID = new ArrayList<String>(Arrays.asList(TOD.getTOD_ID().split(",")));
-		
-	
-		
-		int out= initialReadingDoa.updateTodMeterData(TOD_ID, READING_DATE, READING);
-		
+
+		int out = initialReadingDoa.updateTodMeterData(TOD_ID, READING_DATE, READING);
 
 		if (out == 1) {
-
+			
+			ArrayList<BC_TODMTR_INTERFACE_Model> BC_TODMTR_INTERFACE_Model = initialReadingDoa
+					.listOf_BC_TODMTR(Integer.valueOf(MeterNumber), mt);
+			
+			
+			model.addAttribute("TOD", BC_TODMTR_INTERFACE_Model);
 			String msg = "Update Successfull ";
 			model.addAttribute("msgs", msg);
 			
 
 		} else {
-			String msg = "Update Not Successfull ";
+			String msg = "Please check your Date format! And try again! ";
 			model.addAttribute("msg", msg);
-			
+
 		}
-
 		model.addAttribute("TOD", null);
-
 		return "InitialReading";
 	}
 

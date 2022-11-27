@@ -1,681 +1,598 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<head>
-	<title>Bill</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<div th:replace="fragments/links :: cssLink"></div>
+    <!-- Bootstrap CSS -->
 
-</head>
+    <title>Hello, world!</title>
+ 
 <style>
-	table,
-	th {
-		border: 1px solid #c591b6;
-		border-collapse: collapse;
-		font-family: Courier;
-		text-align: right;
-		padding-right: 30px;
-		color: #a8628d;
-		font-weight: normal;
-		font-style: initial;
-		font-size: 15px;
-		width: 20%;
+  h4, h3{
+    margin: 0;
+    padding: 0;
+  }
+  hr.dashed {
+  border-top: 1px dashed black;
+  }
+  .vertical_Text {
+
+    display: block;
 
 
-	}
+    -webkit-transform: rotate(-90deg); 
+    -moz-transform: rotate(-90deg);                 
+  }
+  table,
+  th {
+    border: 1px solid #c591b6;
+    border-collapse: collapse;
+    font-family: Courier;
+    text-align: right;
+    padding-right: 30px;
+    color: #a8628d;
+    font-weight: normal;
+    font-style: initial;
+    font-size: 10px;
+    width: 20%;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
 
+  .head_clr th,
+  td {
+    width: 10%;
+    /* text-align: right; */
+    color: black;
+    padding-right: 5px;
+  }
 
+  .head_clr th {
+    font-family: Courier;
+    background-color: #ffebff;
+    border-collapse: collapse;
+    text-align: center;
+    color: blue;
+    height: 10px;
+    font-weight: normal;
+    font-weight: bold;
+  }
 
-	.head_clr th,
-	td {
-		width: 10%;
-		text-align: right;
-		padding-right: 5px;
-		color: #c591b6;
-	}
+  .no_border {
+    border: 1px solid white !important;
+  }
 
-	.head_clr th {
-		font-family: Courier;
-		background-color: #ffebff;
-		border-collapse: collapse;
-		text-align: center;
-		color: #a96b92;
-		height: 10px;
-		font-weight: normal;
-		font-weight: bold;
+  #sectionid {
+    margin-top: 30px;
+  }
 
-	}
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
 
-	.no_border {
-		border: 1px solid white !important;
-
-	}
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 </style>
-
+ </head>
 <body>
-	<div class="wrapper">
-		<span th:remove="tag" th:utext="${dataHtml}"></span>
-
-
-
-		<div class="card">
-			<div th:replace="fragments/sidebar :: header"></div>
-			<div class="card-body">
-				<form th:action="@{/Show_BillPrint}" method="post" th:object="${AddMeterModel}">
-
-					<div class="form-group row">
-
-						<label for="BillCycleCode" class="col-sm-2  col-form-label">Bill Cycle</label>
-						<div class="col-sm-6  input-group search_select_box ">
-							<select id="select_box_BillCycle" class="form-control  search_select_box_BillCycle"
-								name="BILL_CYCLE_CODE" onchange="locationFunction()">
-								<option th:value="0" selected>select BillCycle</option>
-								<option th:each="code : ${Bill_Cycle_LIST}" th:value="${code.BILL_CYCLE_CODE}"
-									th:text="${code.BILL_CYCLE_CODE}"></option>
-							</select>
-						</div>
-
-						<div class="col-4 mb-2 ">
-							<div class="btn-group border-black " id="show" role="group" aria-label="Basic example">
-								<button type="submit" class="btn mr-1 btn-primary">Show
-								</button>
-								<button type="button" onclick="printDiv('printableArea')"
-									class="btn btn-success">Print</button>
-							</div>
-						</div>
-						<label for="Location" class="col-sm-2 pr-1 mb-2  col-form-label">Location</label>
-
-						<div class="col-sm-2  input-group search_select_Location ">
-							<select name="LOCATION_CODE" id="select_box_Location"
-								class="form-control  search_select_box_BillCycle" onchange="locationFunction()">
-								<option th:value="0" selected>select Location</option>
-								<option th:each="code : ${Bill_Location_LIST}"
-									th:value="${code.LOCATION_NAME}+ '' +${code.LOCATION_CODE}"
-									th:text="${code.LOCATION_CODE}"></option>
-							</select>
-						</div>
-
-
-						<input readonly type="text" class="form-control Location col-sm-6" id="Location">
-						<div class="col-sm-2"></div>
-
-						<label for="BillGroup" class="col-sm-2 pr-1 mb-2  col-form-label">Bill Group</label>
-
-						<input type="number" name="BILL_GR" class="form-control   col-sm-2" id="BillGroup">
-
-
-						<input readonly type="text" class="form-control col-sm-6" id="BillGroup">
-						<div class="col-sm-2"></div>
-
-						<label for="BookNo" class="col-sm-2 pr-1 mb-2 col-form-label">Book No</label>
-
-						<input type="text" class="form-control   col-sm-2" name="BOOK_NO" id="BookNo">
-
-
-						<input readonly type="text" class="form-control col-sm-6" id="BookNo">
-						<div class="col-sm-2"></div>
-
-						<label for="Area" class="col-sm-2 pr-1 mb-2  col-form-label">Area</label>
-
-						<input type="text" name="AREA_CODE" class="form-control   col-sm-2" id="AREA_CODE">
-
-
-						<input readonly type="text" class="form-control col-sm-6" id="Area">
-						<div class="col-sm-2"></div>
-
-						<label for="ConsumerNo" class="col-sm-2 pr-1   col-form-label">Consumer No</label>
-
-						<input type="number" name="CONSUMER_NUM" onchange="locationFunction()" value="0"
-							class="form-control   col-sm-2" id="ConsumerNo">
-
-
-						<input readonly type="text" class="form-control col-sm-6" id="ConsumerNo">
-						<div class="col-sm-2"></div>
-
-					</div>
-				</form>
-
-
-			</div>
-
-
-
-			<div class="container-fluid mt-5 mw-100 py-2 h-100">
-				<!--Start First Part -->
-
-				<section id="printableArea">
-
-
-					<div class="container-fluid">
-
-						<div class="row">
-							<div class="col-sm-2"><img src="../img/DPDC.png" alt="" height="130px" width="135px"></div>
-
-							<div class="col-sm-8" style="text-align: center;">
-								<h4>শেখ হাসিনার উদ্যোগ ঘরে ঘরে বিদ্যুৎ</h4>
-								<h4 style="color: blue;">Dhaka Power Distribution Company</h4>
-								<h4>Office of the . . . </h4>
-								<h4 style="color: green;">Net Metering Bill</h4>
-							</div>
-							<div class="col-sm-2">
-								<img src="../img/service.png" alt="" height="130px" width="140px">
-							</div>
-						</div>
-					</div>
-					<table style="width:100%;" class="head_clr">
-
-						<tr>
-							<th>Consumer Name</th>
-							<td colspan="3" th:text="${billPrint.CUSTOMER_NAME}"></td>
-							<th style="background-color: #d1eefc;">MONTH</th>
-							<th style="background-color: #d1eefc;">BILL NO</th>
-							<th style="background-color: #d1eefc;">CD</th>
-							<th style="background-color: #d1eefc;" colspan="2">ISSUE DATE</th>
-						</tr>
-						<tr>
-							<th rowspan="3">Address</th>
-							<td colspan="3" rowspan="3" th:text="${billPrint.ADDR_DESCR1}+ '' + ${billPrint.ADDR_DESCR2}+ '' + ${billPrint.ADDR_DESCR3}"></td>
-							<td style="border-left: 1px solid #c591b6;" th:text="${billPrint.BMONTH}"></td>
-							<td th:text="${billPrint.INVOICE_NUM}"></td>
-							<td th:text="${billPrint.INVOICE_CHKDIGIT}"></td>
-							<td colspan="2" th:text="${billPrint.INVOICE_DATE}"></td>
-						</tr>
-						<tr>
-							<th style="background-color: #d1eefc;">LOCATION</th>
-							<th style="background-color: #d1eefc;">BILL GROUP</th>
-							<th style="background-color: #d1eefc;">BOOK NO</th>
-							<th style="background-color: #d1eefc;" colspan="2">WALK ORD</th>
-						</tr>
-						<tr style="border-style: white;">
-							<td style="border-left: 1px solid #c591b6;" th:text="${billPrint.LOCATION_CODE}"></td>
-							<td th:text="${billPrint.BILL_GR}"></td>
-							<td th:text="${billPrint.BOOK}"></td>
-							<td colspan="2" th:text="${billPrint.WLK}"></td>
-						</tr>
-						<tr>
-							<th>Mobile</th>
-							<td colspan="3"></td>
-							<th>PRV A/C No</th>
-							<th colspan="3">CONSUMER No</th>
-							<th>DUE DATE</th>
-						</tr>
-						<tr>
-							<th>E-mail</th>
-							<td colspan="3"></td>
-							<td style="border-left: 1px solid #c591b6;" th:text="${billPrint.CONS_EXTG_NUM}"></td>
-							<td colspan="3" th:text="${billPrint.CUST_ID}"></td>
-							<td th:text="${billPrint.INVOICE_DUE_DATE}"></td>
-						</tr>
-						<tr>
-							<th>TARIFF</th>
-							<th>MAIN SUB</th>
-							<th>STATUS</th>
-							<th>CT</th>
-							<th>PT</th>
-							<th>S.LOAD(KW)</th>
-							<th>MAX DEMAND(KW)</th>
-							<th>SOLAR CAPACITY</th>
-							<th>MODE</th>
-						</tr>
-						<tr>
-							<td th:text="${billPrint.TARIFF}"></td>
-							<td></td>
-							<td th:text="${billPrint.CUST_STATUS}"></td>
-							<td></td>
-							<td></td>
-							<td th:text="${billPrint.SANC_LOAD}"></td>
-							<td th:text="${billPrint.CONNECT_LOAD}"></td>
-							<td></td>
-							<td></td>
-						</tr>
-
-						<tr>
-							<th>MTR TYPE</th>
-							<th>METER NO</th>
-							<th>COND</th>
-							<th>OMF</th>
-							<th colspan="5">METER SEAL NO</th>
-
-						</tr>
-						<tr>
-							<th>IMPORT EXPORT</th>
-							<td style="border: 1px solid #c591b6;"></td>
-							<td style="border: 1px solid #c591b6;" th:text="${billPrint.METER_COND_KWH}"></td>
-							<td style="border: 1px solid #c591b6;" th:text="${billPrint.OMF_KWH}"></td>
-							<td colspan="5" style="border: 1px solid #c591b6;"></td>
-						</tr>
-					</table>
-					<table style="width:100% ; margin-top:2px ;" class="head_clr">
-						<tr>
-							<th colspan="2" style="background-color: #a9e58f; text-align: left;">CARRY OVER UNIT</th>
-							<th colspan="4">IMPORT METER</th>
-							<th colspan="2">EXPORT METER</th>
-						</tr>
-						<tr>
-							<th colspan="2">READING</th>
-							<th colspan="2">KWH</th>
-							<th colspan="2">KVarh</th>
-							<th colspan="2">KWH</th>
-						</tr>
-						<tr>
-							<th>DETAIL</th>
-							<th><strong style="color: #cd2e89;">DATE</strong></th>
-							<th>SIN.REG/OFF PEAK</th>
-
-							<th><strong style="color: #cd2e89;">PEAK</strong></th>
-							<th>SIN.REG/OFF PEAK</th>
-							<th><strong style="color: #cd2e89;">PEAK</strong></th>
-							<th>SIN.REG/OFF PEAK</th>
-							<th><strong style="color: #cd2e89;">PEAK</strong></th>
-						</tr>
-						<tr>
-							<th>PRESENT</th>
-							<td style="border: 1px solid #c591b6;" th:text="${billPrint.PRESENT_READING_DATE}"></td>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.CLS_KWH_OFPK_RDNG}"></td>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.CLS_KWH_PK_RDNG}"></td>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.CLS_KVARH_OFPK_RDNG}">
-							</td>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.CLS_KVARH_PK_RDNG}"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-
-						</tr>
-						<tr>
-							<th>PREVIOUS</th>
-							<td style="border: 1px solid #c591b6;" th:text="${billPrint.PRESENT_READING_DATE}"></td>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.OPN_KWH_OFPK_RDNG}"></td>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.OPN_KWH_PK_RDNG}"></td>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.OPN_KVARH_OFPK_RDNG}">
-							</td>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.OPN_KVARH_PK_RDNG}"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-						</tr>
-						<tr>
-							<th colspan="2">DIFFERENCE</th>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-						</tr>
-						<tr>
-							<th colspan="2">CONSUMED</th>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.CONS_KWH_OFPK}"></td>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.CONS_KWH_PK}"></td>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.CONS_KVARH_OFPK}"></td>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.CONS_KVARH_PK}"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-						</tr>
-						<tr>
-							<th colspan="2">ADJUSTED UNIT</th>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-						</tr>
-						<tr>
-							<th colspan="2">X-FORMER LOSS UNIT</th>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-						</tr>
-						<tr>
-							<th colspan="2">OLD METER UNIT</th>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.OLD_KWH_OFPK_CONS}"></td>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.OLD_KWH_PK_CONS}"></td>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.OLD_KVARH_OFPK_CONS}">
-							</td>
-							<td style="border-right: 1px solid #c591b6;" th:text="${billPrint.OLD_KVARH_PK_CONS}"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-						</tr>
-						<tr>
-							<th colspan="2">SUB M.CONS</th>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border-right: 1px solid #c591b6;"></td>
-						</tr>
-
-						<tr>
-							<th style="background-color: #d1eefc;" colspan="2">NET BILLED UNIT</th>
-							<td style="border: 1px solid #c591b6;"></td>
-							<td style="border: 1px solid #c591b6;"></td>
-							<th>PF</th>
-							<td style="border: 1px solid #c591b6;" th:text="${billPrint.POWER_FACTOR}"></td>
-							<th style="background-color: #d1eefc;">CARRY FORWARD UNIT</th>
-							<td style="border: 1px solid #c591b6;"></td>
-						</tr>
-					</table>
-					<table style="width:100% ; margin-top: 2px;" class="head_clr">
-
-						<tr>
-							<th colspan="6">DEMAND METER READING DETAILS(KW)</th>
-							<th style="background-color: #d1eefc;">SETTELMENT UNIT</th>
-							<td></td>
-						</tr>
-						<tr>
-							<th>PRESENT</th>
-							<td th:text="${billPrint.PRESENT_DMD_RDNG}"></td>
-							<th>PREVIOUS</th>
-							<td th:text="${billPrint.PREVIOUS_DMD_RDNG}"></td>
-							<th>CONSUMED</th>
-							<td th:text="${billPrint.MAX_DMD_RDNG}"></td>
-							<th style="background-color: #d1eefc;">SETTLEMNT RATE</th>
-							<td></td>
-						</tr>
-					</table>
-					<table style="width: 100% ; margin-top: 2px; ">
-						<tr>
-							<th>CURRENT CHARGES</th>
-							<th> TAKA</th>
-							<th>OTHER CHARGES</th>
-							<th> TAKA</th>
-
-						</tr>
-						<tr>
-							<th>S.REG.ELEC.CHARGE</th>
-							<td th:text="${billPrint.ENG_CHRG_SR}"></td>
-							<th>ADJ. PRINCIPAL</th>
-							<td th:text="${billPrint.ADJUSTED_PRN}"></td>
-						</tr>
-						<tr>
-							<th>OFF .PEAK.ELEC.CHARGE</th>
-							<td th:text="${billPrint.ENG_CHRG_OFPK}"></td>
-							<th>ADJ. L.P.S</th>
-							<td th:text="${billPrint.ADJUSTED_LPS}"></td>
-						</tr>
-						<tr>
-							<th>PEAK.ELEC.CHARGE</th>
-							<td th:text="${billPrint.ENG_CHRG_PK}"></td>
-							<th>ADJ. VAT</th>
-							<td th:text="${billPrint.ADJUSTED_VAT}"></td>
-						</tr>
-						<tr>
-							<th>DEMAND CHARGE</th>
-							<td th:text="${billPrint.DEMAND_CHRG}"></td>
-							<th>ADV/ARP PRINCIPAL</th>
-							<td style="border-top: 1px solid #c591b6;" th:text="${billPrint.ADJUSTED_PRN}">3l</td>
-						</tr>
-						<tr>
-							<th>METER CHARGE</th>
-							<td th:text="${billPrint.XF_RENT}"></td>
-							<th>CURR. & ARP.L.P.S</th>
-							<td th:text="${billPrint.CURRENT_LPS}"></td>
-						</tr>
-						<tr>
-							<th>PF CHARGE</th>
-							<td th:text="${billPrint.PFC_CHARGE}"></td>
-							<th> ADD./ARR. VAT</th>
-							<td th:text="${billPrint.TOTAL_LPS}"></td>
-						</tr>
-						<tr>
-							<th rowspan="3">MISC.Bill/FEE</th>
-							<td rowspan="3"></td>
-							<th style="background-color: #a9e58f;">NEM SETTELMENT AMT</th>
-							<td style="background-color: #a9e58f;border: 1px solid #c591b6;"></td>
-
-						</tr>
-						<tr>
-							<th style="background-color: #a9e58f;">PRINCIPAL SETTELMENT</th>
-							<td style="background-color: #a9e58f;border: 1px solid #c591b6;"></td>
-						</tr>
-						<tr>
-							<th style="background-color: #a9e58f;"> VAT SETTELMENT</th>
-							<td style="background-color: #a9e58f;border: 1px solid #c591b6;"></td>
-						</tr>
-						<tr>
-							<th> PRINCIPAL AMOUNT</th>
-							<td style="border: 1px solid #c591b6;" th:text="${billPrint.PRINC_AMT}"></td>
-							<th style="background-color: #d1eefc;">VAT TOTAL </th>
-							<td style="background-color: #d1eefc;border: 1px solid #c591b6;" th:text="${billPrint.TOTAL_VAT}"></td>
-						</tr>
-						<tr>
-							<th> VAT</th>
-							<td style="border: 1px solid #c591b6;" th:text="${billPrint.CURRENT_VAT}"></td>
-							<th rowspan="2" style="background-color: #d1eefc;"> AMOUNT TO BE PAID BY CONSUMER</th>
-							<td rowspan="2" style="background-color: #d1eefc;border: 1px solid #c591b6;" th:text="${billPrint.TOTAL_BILL}"></td>
-						</tr>
-						<tr>
-							<th> Bill Month Total</th>
-							<td style="border: 1px solid #c591b6;"></td>
-						</tr>
-						<tr>
-							<th>LAST PAYMENT</th>
-							<td style="border: 1px solid #c591b6;" th:text="${billPrint.RCPT_PRN_1}"></td>
-							<th> AMOUNT TO BE PAID TO CONSUMER</th>
-							<td></td>
-						</tr>
-					</table>
-
-					<table style="width: 100% ; margin-top: 10px;" class="head_clr head_clr_border_css ">
-						<tr>
-							<th rowspan="4"> ARRER DETAILS</th>
-							<th> MONTH</th>
-							<th>Principal</th>
-							<th>MIS BILL/FEE</th>
-							<th> LPS</th>
-							<th>VAT</th>
-							<th>TOTAL (TK)</th>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</table>
-					<table style="width:100% ; margin-top:2px ;">
-						<tr>
-							<th style=" text-align: left;border-right: 0px solid white;">PAY AT</th>
-							<td style=" text-align: right; padding: 25px 15px 0px 50px;">Executive engineer<p>Office
-									Name &
-									01783726898 </p>
-							</td>
-						</tr>
-					</table>
-
-					<table style="width: 100% ; margin-top: 2PX;">
-						<tr>
-							<td style="text-align: left;">Office of the .......</td>
-							<td style="text-align: right;">Bank & Office copy</td>
-						</tr>
-					</table>
-					<table style="width:100% ; margin-top: 2px;" class="head_clr">
-						<tr>
-							<th>Serial NO</th>
-							<td></td>
-							<th>LOCATION</th>
-							<th>BILLGR</th>
-							<th>BOOK NO</th>
-							<th>WALK ORD</th>
-							<th>PAY AT</th>
-						</tr>
-						<tr>
-							<th>RCVD TK.</th>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td style="border: 1px solid #c591b6;" th:text="${billPrint.LOCATION_CODE}"></td>
-							<td style="border: 1px solid #c591b6;" th:text="${billPrint.BILL_GR}"></td>
-							<td style="border: 1px solid #c591b6;" th:text="${billPrint.BOOK}"></td>
-							<td style="border: 1px solid #c591b6;" th:text="${billPrint.WLK}"></td>
-							<td style="border: 1px solid #c591b6;"></td>
-						</tr>
-						<tr>
-							<th>DATE</th>
-							<td></td>
-							<th>CONSUMER NO</th>
-							<th colspan="2">ISSUE DATE</th>
-							<th colspan="2">DUE DATE</th>
-
-						</tr>
-						<tr>
-							<th>TARIFF</th>
-							<td style="border-right: 1px solid #c591b6;"></td>
-							<td th:text="${billPrint.CUST_ID}"></td>
-							<td colspan="2" style="border: 1px solid #c591b6;" th:text="${billPrint.INVOICE_DATE}"></td>
-							<td colspan="2" style="border: 1px solid #c591b6;" th:text="${billPrint.INVOICE_DUE_DATE}"></td>
-						</tr>
-						<tr>
-							<td rowspan="3" colspan="2" style="border: 1px solid #c591b6;"></td>
-
-							<th>BILL NO</th>
-							<th>CD</th>
-							<th style="background-color: #d1eefc;">VAT (TK)</th>
-							<th colspan="2" style="background-color: #d1eefc;">TOTAL AMOUNT (TK)</th>
-
-						</tr>
-						<tr>
-							<td style="border: 1px solid #c591b6;" th:text="${billPrint.INVOICE_NUM}"></td>
-							<td style="border: 1px solid #c591b6;"></td>
-							<td style="background-color: #d1eefc;border: 1px solid #c591b6;" th:text="${billPrint.CURRENT_VAT}"></td>
-							<td style="background-color: #d1eefc;border: 1px solid #c591b6;" colspan="2" th:text="${billPrint.TOTAL_BILL}"></td>
-						</tr>
-						<tr>
-							<th>BILL MONTH</th>
-							<th colspan="2">LPS</th>
-							<th colspan="2">AMOUNT TO BE PAID TO BE CONSUMER</th>
-						</tr>
-						<tr>
-							<th>CONS NO</th>
-							<td style="border: 1px solid #c591b6;"></td>
-							<td style="border: 1px solid #c591b6;" th:text="${billPrint.BMONTH}"></td>
-							<td colspan="2" style="border: 1px solid #c591b6;"></td>
-							<td colspan="2" style="border: 1px solid #c591b6;"></td>
-						</tr>
-					</table>
-				</section>
-				<!--<div class="col-12 text-right">
-					<button style="margin: 20px;" type="button" class="btn btn-primary" value="Print"
-						onclick="printDiv('printableArea')">PRINT BILL</button>
-				</div>-->
-
-			</div>
-		</div>
-	</div>
-
-
-</body>
-
-<div th:replace="fragments/links :: javaScriptLink"></div>
-
-<script>
-
-
-	$('.search_select_box_BillCycle').select2();
-	$('.search_select_box_location').select2();
-
-
-</script>
-
-
-<script>
-	function printDiv(divName) {
-		var divToPrint = document.getElementById(divName);
-		var newWin = window.open('', 'Print-Window');
-		newWin.document.open();
-		newWin.document.write('<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">');
-		newWin.document.write('<style>table,th{border: 1px solid #c591b6;border-collapse: collapse;font-family: Courier;text-align: right;padding-right: 30px;color: #a8628d;font-weight: normal;font-style: initial;font-size: 15px;width: 20%}.head_clr th,td{width: 10%;padding-right: 5px;text-align: right;color: #c591b6}.head_clr th{font-family:  Courier;background-color: #ffebff;border-collapse: collapse;text-align: center;color: #a96b92;height: 10px;font-weight: normal;font-weight: bold}.no_border{border: 1px solid white !important}</style>');
-		newWin.document.write('<body onload="window.print()"> ');
-		newWin.document.write(divToPrint.innerHTML);
-		newWin.document.write('</body></html>');
-		newWin.document.close();
-		setTimeout(function () {newWin.close();}, 1000);
-
-	}
-
-</script>
-
-<script>
-	$(document).ready(function () {
-		$("#show").click(function () {
-			$('#printableArea').show();
-		});
-	});
-</script>
-
-<script>
-
-	function locationFunction() {
-
-		var e = document.getElementById("select_box_Location");
-		var Location_value = e.options[e.selectedIndex].value;
-		var Location_T = e.options[e.selectedIndex].text;
-		console.log(Location_T)
-		document.getElementById("Location").text = Location_value;
-		var s = document.getElementById("Location").value = Location_value.substring(0, Location_value.length - 2);;
-		var b = document.getElementById("select_box_BillCycle");
-		var BillCycle_value = b.options[b.selectedIndex].value;
-
-		var ConsumerNo_value = document.getElementById("ConsumerNo").value;
-
-
-		if (Location_T != "0" && BillCycle_value != "0" && ConsumerNo_value != "0") {
-			var urlString = "/api/billprint/" + Location_T + "/" + BillCycle_value + "/" + ConsumerNo_value;
-			console.log(urlString);
-			var xhttp = new XMLHttpRequest();
-			xhttp.onreadystatechange = function () {
-				if (this.readyState == 4 && this.status == 200) {
-					//var response = xhttp.response.json();
-
-
-
-					var blg = JSON.parse(xhttp.response).bill_GR;
-					var area = JSON.parse(xhttp.response).area_CODE;
-					var bkno = JSON.parse(xhttp.response).book_NO;
-
-					document.getElementById("AREA_CODE").value = area;
-					document.getElementById("BillGroup").value = blg;
-					document.getElementById("BookNo").value = bkno;
-					console.log(JSON.parse(xhttp.response).book_NO);
-
-
-
-
-				}
-			};
-			xhttp.open("GET", urlString, true);
-
-			xhttp.send();
-
-
-		}
-
-
-	}
-
-
-
-</script>
-
-
-
+  <div class="wrapper">
+   
+    <div class="card">
+     
+
+      <div class="container-fluid mt-5 mw-100 py-2 h-100">
+        <!--Start First Part -->
+        <div id="printableArea">
+        
+        
+            <table style="width: 100%"  class="no_border">
+              <tr>
+                <td style="width:98%"  class="no_border">
+                  <table style="width: 100%" class="head_clr">
+                    <tr>
+                      <td style="border-right: 1px solid white;" align="center">
+                        <div class="container-fluid mt-5">
+                          <div class="row">
+                            <div class="col-sm-2">
+                              <img
+                                src="../img/DPDC.png"
+                                alt=""
+                                height="90px"
+                                width="95px"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="border-bottom: 1px solid #c591b6;" align="center" colspan="8">
+                        <div class="container-fluid mt-5">
+                          <div class="row">
+                            <div class="col-sm-8" style="text-align: center">
+                              <h4 style="color: blue">গ্রাহকের কপি</h4>
+                              <h4 style="color: blue">এলটি-এ কনজুমার (আবাসিক গ্রাহক)</h4>
+                              <h3 style="color: blue">প্রতিষ্ঠানের নাম</h3>
+                              <h4 style="color: blue">বিদ্যুৎ বিল</h4>
+                              <h4 style="color: blue">-------অফিসের নাম--------</h4>
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                      <td style="border-left: 1px solid white;" align="center">
+                        <div class="container-fluid mt-5">
+                          <div class="row">
+                            <div class="col-sm-2">
+                              <img
+                                src="../img/DPDC.png"
+                                alt=""
+                                height="90px"
+                                width="95px"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr> 
+                      <th>গ্রাহকের নাম (Consumer name)</th>
+                      <td
+                        
+                        style="text-align: left"
+                        text="h"
+                      >
+                        <datagrid></datagrid>ssssssss
+                      </td>
+                      <th style="background-color: #ffebff">গ্রাহক/হিসাব নং</th>
+                      <th style="background-color: #ffebff">পূর্ববর্তী হিসাব নং</th>
+                      <th style="background-color: #ffebff">অফিস কোড</th>
+                      <th style="text-align: left" "background-color: #ffebff" colspan="2">
+                        বিল মাস [Bill Month]
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th rowspan="6">ঠিকানা:</th>
+                      <td
+                        colspan="3"
+                        rowspan="6"
+                        style="text-align: left"
+                       
+                      ></td>
+                    </tr>
+      
+                    <tr>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="text-align: left" "background-color: #ffebff" colspan="2">
+                        বিল ইস্যুর তারিখ [Issue Date]
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff">বিল স্ট্যাটাস</th>
+                      <th style="background-color: #ffebff">বিল নং</th>
+                      <th style="background-color: #ffebff">সিডি</th>
+                      <th style="text-align: left" "background-color: #ffebff" colspan="2">
+                        বিল পরিশোধের শেষ তারিখ [Due Date]
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="text-align: left" "background-color: #ffebff" colspan="2">
+                        সর্বমোট প্রদেয় বিল (টাকা) [Total Bill]
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff">বিল গ্রুপ</th>
+                      <th style="background-color: #ffebff">বই নং</th>
+                      <th style="background-color: #ffebff">ওয়াক অর্ডার</th>
+                      <th style="text-align: left" "background-color: #ffebff" colspan="2">
+                        ট্যারিফ ক্যাটেগরি [Tariff Category]
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="text-align: left" "background-color: #ffebff" colspan="2">
+                        অনুমোদিত লোড (kW) [Sanction Load]
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff">ই-মেইল:</th>
+                      <td colspan="3"></td>
+                      <th colspan="2" style="background-color: #ffebff">
+                        ফিডারের নাম
+                      </th>
+                      <th style="background-color: #ffebff">মেইন/সাবমিটার</th>
+                      <th style="text-align: left" "background-color: #ffebff" colspan="2">
+                        সর্বোচ্চ চাহিদা (kW)
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff">মোবাইল:</th>
+                      <td colspan="3"></td>
+                      <td colspan="2" style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="text-align: left" "background-color: #ffebff" colspan="2">
+                        ওএমএফ (OMF)
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                  </table>
+                  <table style="width: 100%" class="head_clr">
+                    <tr>
+                      <th>মিটার নং</th>
+                      <th>মিটার কনডিশন</th>
+                      <th>মিটার মালিকানা</th>
+                      <th style="width: 30%">মিটার সিল</th>
+                      <th style="width: 10%">পি.এফ. [p.f.]</th>
+                    </tr>
+                    <tr>
+                      <td style="height:15px" "border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;">kl;</td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;" "width: 30%"></td>
+                      <td style="border: 1px solid #c591b6;" "width: 10%"></td>
+                    </tr>
+                  </table>
+                  <table style="width: 100%" class="head_clr">
+                    <tr>
+                      <th style="background-color: #ffebff" rowspan="2">বিবরণ</th>
+                      <th style="background-color: #ffebff" rowspan="2">তারিখ</th>
+                      <th style="background-color: #ffebff" colspan="2">
+                        মিটার রিডিং
+                      </th>
+                      <th style="background-color: #ffebff" colspan="4">
+                        ধাপ অনুযায়ী বিদ্যুৎ ব্যবহারের বিবরণ
+                      </th>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff">কিলো ওয়াট ঘন্টা [kWh]</th>
+                      <th style="background-color: #ffebff">কিলোভার ঘন্টা [kVarh]</th>
+                      <th style="background-color: #ffebff">ধাপ</th>
+                      <th style="background-color: #ffebff">মূল্যহার [Tk/kWh]</th>
+                      <th style="background-color: #ffebff">বিদ্যুৎ ব্যবহার [kWh]</th>
+                      <th style="background-color: #ffebff">এনার্জি চার্জ [Tk]</th>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff">বর্তমান (i)</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="background-color: #ffebff">লাইফ লাইন [০-৫০]</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff">পূর্ববর্তী (ii)</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="background-color: #ffebff">প্রথম [০-৭৫]</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff" colspan="2">
+                        ব্যবধান [(i)-(ii)=(iii)]
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="background-color: #ffebff">দ্বিতীয় [৭৬-২০০]</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff" colspan="2">
+                        প্রাক্কলিত/সমন্বয়(Estd/Adjustment)=(iv)
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="background-color: #ffebff">তৃতীয় [২০১-৩০০]</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff" colspan="2">
+                        পুরাতন মিটার (v)
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="background-color: #ffebff">চতুর্থ [৩০১-৪০০]</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff" colspan="2">
+                        সাব মিটার (Sub-Meter)=(vi)
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="background-color: #ffebff">পঞ্চম [৪০১-৬০০]</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff" colspan="2" rowspan="2">
+                        মোট ব্যবহৃত ইউনিট (Consumption)=(vii)
+                      </th>
+                      <td
+                        style="border: 1px solid #c591b6;"
+                        colspan="2"
+                        rowspan="2"
+                      ></td>
+                      <th style="background-color: #ffebff">ষষ্ট [৬০০ এর ঊর্ধ্বে]</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff" colspan="2">
+                        মোট বিদ্যুৎ ব্যবহার/এনার্জি চার্জ(১)
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                  </table>
+                  <table style="width: 100%" class="head_clr">
+                    <tr>
+                      <th style="background-color: #ffebff" colspan="5">
+                        বকেয়া/সমন্বয়সহ মোট বিল[Total Bill Including Arrear &
+                        Adjustment] (Tk)
+                      </th>
+                      <th style="background-color: #ffebff">
+                        ডিমান্ড চার্জ (২) [Demand Charge]
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff">বিবরণ</th>
+                      <th style="background-color: #ffebff">
+                        বর্তমান মান (Present Month)
+                      </th>
+                      <th style="background-color: #ffebff">
+                        বকেয়া/অগ্রিম Arrear/Advance
+                      </th>
+                      <th style="background-color: #ffebff">সমন্বয়(Adjustment)</th>
+                      <th style="background-color: #ffebff">মোট (Total)</th>
+                      <th style="background-color: #ffebff">পি.এফ. সারচার্জ (৩)</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff">মূল [Principal]</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="background-color: #ffebff">মিটার ভাড়া (৪)</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff">বিবিধ বিল/ফিঃ</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="background-color: #ffebff">বিবিধ বিল (৫)</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff">
+                        বিলম্ব পরিশোধ মাশুল (LPS)
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="background-color: #ffebff">
+                        বিলের পরিমান (৬=১+২+৩+৪+৫)
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff">ভ্যাট [VAT]</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="background-color: #ffebff">
+                        ভ্যাট (VAT)=[{(১)+(২)+(৩)}x......%]+[{(৪)+(৫)}x......%]
+                      </th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style="background-color: #ffebff">মোট (Total)</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="background-color: #ffebff">প্রদেয় সর্বমোট ভ্যাট (টাকা) (Total VAT) (৪)</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                  </table>
+                  <table style="width: 100%" class="head_clr">
+                    <tr align="left">
+                      <th style= "width: 10%" "background-color: #ffebff">বিল পরিশোধের বিবরণ <br>[Payment Details]</th>
+                      <td style= "width: 20%" "border: 1px solid #c591b6;">[তারিখ]</td>
+                      <td style= "width: 20%" "border: 1px solid #c591b6;">[টাকা]</td>
+                      <th style= "width: 10%" "background-color: #ffebff">প্রদেয় সর্বমোট বিল (টাকা) (Total Bill)</th>
+                      <td style= "border: 1px solid #c591b6;"></td>
+                    </tr>
+                  </table>
+                  <table style="width: 100%" class="head_clr">
+                    <tr>
+                      <th style="width: 20%" "background-color: #ffebff">বিলম্ব পরিশোধ মাশুল (বর্তমান মান)</th>
+                      <td style="width: 10%" "border: 1px solid #c591b6;"></td>
+                      <th style="width: 56%" "background-color: #ffebff">পরিশোধের শেষ তারিখের পর বিলম্ব মাশুল সহ পরিশোধযোগ্য সর্বমোট টাকা</th>
+                      <td style="width: 19%" "border: 1px solid #c591b6;"></td>
+                    </tr>
+                  </table>
+                  <table style="width: 100%" class="head_clr">
+                    <tr>
+                      <th style="background-color: #ffebff" colspan="7">বিগত ছয় মাসের বিদ্যুৎ ব্যবহার [Last Six Month's Consumption] (kWh)</th>
+                    </tr>
+                    <tr align="center">
+                      <td style="border: 1px solid #c591b6;">[Dec'19]</td>
+                      <td style="border: 1px solid #c591b6;">[Nov'19]</td>
+                      <td style="border: 1px solid #c591b6;">[Oct'19]</td>
+                      <td style="border: 1px solid #c591b6;">[Sep'19]</td>
+                      <td style="border: 1px solid #c591b6;">[Aug'19]</td>
+                      <td style="border: 1px solid #c591b6;">[July'19]</td>
+                      <th style="border: 1px solid #c591b6;">গড় বিদ্যুৎ ব্যবহার [Average Consumption]</th>
+                    </tr>
+                    <tr>
+                      <td style="height:15px" "border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                  </table>
+                  <table style="width: 100%" class="head_clr">
+                    <tr>
+                      <th style="width: 1%" "height:70px" "background-color: #ffebff" rowspan="2">
+                                    <span class="vertical_Text" title="vertical text">বকেয়ার বিবরণ</span></th>
+                      <th style="height:15px" "background-color: #ffebff">বিল মাস (Bill Month)</th>
+                      <th style="background-color: #ffebff">মূল (Principal)</th>
+                      <th style="background-color: #ffebff">বিবিধ বিল/ফিঃ</th>
+                      <th style="background-color: #ffebff">ভ্যাট (VAT)</th>
+                      <th style="background-color: #ffebff">বিলম্ব পরিশোধ মাশুল (LPS)</th>
+                      <th style="background-color: #ffebff">মোট বকেয়া (Total Arrear)</th>
+                    </tr>
+                    <tr>
+                      <td style="height:50px" "border: 1px solid #c591b6;" colspan="6"></td>
+                    </tr>
+                  </table>
+                  <table style="width: 100%" class="head_clr">
+                    <tr height="70px">
+                      <th style="width: 5%" "background-color: #ffebff">ব্যাংক এর নাম<br>(Bank Name)</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;" align="center">
+                        [পদবি]<br>[বিতরণ দপ্তরের নাম ও টেলিফোন]
+                      </td>
+                    </tr>
+                  </table>
+                  <table style="width: 100%" class="head_clr">
+                    <tr>
+                      <th style="width: 10%" "background-color: #ffebff">সতকীকরণঃ</th>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <th style="width: 70%" "background-color: #ffebff">DD/MM/YYYY তারিখের মধ্যে পরিশোধিত না হলে পূর্ববর্তী বকেয়া কারনে বিদ্যুৎ সংযোগ বিচ্ছিন্ন করার আইনগত বিধান রয়েছে</th>
+                    </tr>
+                    <tr>
+                      <th style="width: 10%" "background-color: #ffebff">বার্তা (Message)</th>
+                      <td style="width: 90%" "border: 1px solid #c591b6;" colspan="2"></td>
+                    </tr>
+                  </table>
+                  <!-- <hr class="dashed"> -->
+                  <table style="width: 100%" class="no_border">
+                    <tr>
+                      <hr class="dashed">
+                    </tr>
+                    <tr>
+                      <td style="text-align: left">-------অফিসের নাম--------</td>
+                      <td>ব্যাংক ও অফিস কপি</td>
+                    </tr>
+                  </table>   
+                  <table style="width: 100%" class="head_clr">
+                    <tr>
+                      <th style= "background-color: #ffebff" rowspan="4">স্ক্রল নং গ্রহনক্রিত টাকা তারিখ</th>
+                      <td style="border: 1px solid #c591b6;" rowspan="4"></td>
+                      <th style= "background-color: #ffebff">অফিস কোড</th>
+                      <th style= "background-color: #ffebff">বিল গ্রুপ</th>
+                      <th style= "background-color: #ffebff">বই নং</th>
+                      <th style= "background-color: #ffebff">ওয়াক অর্ডার</th>
+                      <th style= "background-color: #ffebff">ব্যাংক</th>
+                      <th style= "background-color: #ffebff">শাখা</th>
+                    </tr>
+                    <tr>
+                      <td style="height:15px" "border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                      <td style="border: 1px solid #c591b6;"></td>
+                    </tr>
+                    <tr>
+                      <th style= "background-color: #ffebff" colspan="2">গ্রাহক/হিসাব নং</th>
+                      <th style= "background-color: #ffebff" colspan="2">বিল ইস্যুর তারিখ</th>
+                      <th style= "background-color: #ffebff" colspan="2">বিল পরিশোধের শেষ তারিখ</th>
+                    </tr>
+                    <tr>
+                      <td style= "height:15px" "border: 1px solid #c591b6;" colspan="2"></td>
+                      <td style= "border: 1px solid #c591b6;" colspan="2"></td>
+                      <td style= "border: 1px solid #c591b6;" colspan="2"></td>
+                    </tr>
+                    <tr>
+                      <th style= "background-color: #ffebff" colspan="2">গ্রাহকের নাম এবং ঠিকানা</th>
+                      <th style= "background-color: #ffebff">ট্যারিফ</th>
+                      <th style= "background-color: #ffebff">ভ্যাট (টাকা)</th>
+                      <th style= "background-color: #ffebff" colspan="2">সর্বমোট প্রদেয় বিল (টাকা)</th>
+                      <th style= "background-color: #ffebff" colspan="2">পরিশোধের শেষ তারিখের পর পরিশোধযোগ্য সর্বমোট টাকা</th>
+                    </tr>
+                    <tr>
+                      <td style= "border: 1px solid #c591b6;" colspan="2" rowspan="3"></td>
+                      <td style= "border: 1px solid #c591b6;" rowspan="3"></td>
+                      <td style= "height:15px" "border: 1px solid #c591b6;"></td>
+                      <td style= "border: 1px solid #c591b6;" colspan="2"></td>
+                      <td style= "border: 1px solid #c591b6;" colspan="2"></td>
+                    </tr>
+                    <tr>
+                      <th style= "background-color: #ffebff">বিল-মাস</th>
+                      <th style= "background-color: #ffebff" colspan="2">বিলম্ব পরিশোধের মাশুল (টাকা)</th>
+                      <th style= "background-color: #ffebff" colspan="2">বিল নং - সিডি</th>
+                    </tr>
+                    <tr>
+                      <td style= "height:15px" "border: 1px solid #c591b6;"></td>
+                      <td style= "border: 1px solid #c591b6;" colspan="2"></td>
+                      <td style= "border: 1px solid #c591b6;" colspan="2"></td>
+                    </tr>
+                  </table>
+                  <table style="width: 100%" class="no_border">
+      
+                    <tr>
+                      <td style="text-align: left">প্রতিষ্ঠানের নাম..........</td>
+                      <td style="text-align: center">সদা আপনার সেবায় নিয়োজিত</td>
+                      <td>অপর পৃষ্ঠায় বর্ণিত নির্দেশনাবলী দেখুন</td>
+                    </tr>
+                  </table> 
+                </td>
+               
+                <td style= "width:1%" class="no_border">
+                  <span class="vertical_Text" title="vertical text">
+                    <p>সংযোগ বিচ্ছিন্নকরণ এড়াতে নিয়মিত বিদ্যুৎ বিল পরিশোধ করুন। &emsp; ভ্যাট আইডি নং----------</p>
+                  </span>
+                </td>
+              </tr>
+            </table> 
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+ </body>
 </html>

@@ -27,6 +27,7 @@ import oracle.jdbc.internal.OracleTypes;
 public class CensusEntryDAO {
 
 	public static String O_CUST_ID;
+	public static String oP;
 
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
@@ -180,6 +181,8 @@ public class CensusEntryDAO {
 		 */
 		JSONObject json = new JSONObject(result);
 		String out = json.get("O_STATUS").toString();
+		 oP = json.get("P_METER_INT_ID").toString();
+		System.out.println();
 		return out;
 
 	}

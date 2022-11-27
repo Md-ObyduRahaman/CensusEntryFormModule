@@ -234,8 +234,8 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input class="form-control fcs form-control-lg" required type="number" id="NO_OF_PANELS"
-										placeholder="Pc" name="NO_OF_PANELS" />
+									<input class="form-control fcs form-control-lg" required type="number"
+										id="NO_OF_PANELS" placeholder="Pc" name="NO_OF_PANELS" />
 
 								</div>
 							</div>
@@ -243,10 +243,10 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input class="form-control fcs form-control-lg" required type="number" id="PANEL_LENGTH"
-										placeholder="feet/meter" name="PANEL_LENGTH" />
-									<select class="form-select col-lg-1" required name="PANEL_LENGTH_TYPE" id="PANEL_LENGTH_TYPE"
-										aria-label="Default select example">
+									<input class="form-control fcs form-control-lg" required type="number"
+										id="PANEL_LENGTH" placeholder="feet/meter" name="PANEL_LENGTH" />
+									<select class="form-select col-lg-1" required name="PANEL_LENGTH_TYPE"
+										id="PANEL_LENGTH_TYPE" aria-label="Default select example">
 										<option selected value="M">Meter</option>
 										<option value="F">Feet</option>
 									</select>
@@ -258,21 +258,22 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input class="form-control fcs form-control-lg" required type="number" id="PANEL_WIDTH"
-										placeholder="feet/meter" name="PANEL_WIDTH" />
-									<select name="PANEL_WIDTH_TYPE" required class="form-select col-lg-1" id="PANEL_WIDTH_TYPE"
-										aria-label="Default select example">
+									<input class="form-control fcs form-control-lg" required type="number"
+										id="PANEL_WIDTH" placeholder="feet/meter" name="PANEL_WIDTH" />
+									<select name="PANEL_WIDTH_TYPE" required class="form-select col-lg-1"
+										id="PANEL_WIDTH_TYPE" aria-label="Default select example">
 										<option selected value="M">Meter</option>
 										<option value="F">Feet</option>
 									</select>
 								</div>
 							</div>
-							<label class="form-label col-lg-2" required for="WATT_PK_PANEL"><strong>Watt peak per Panel</strong>
+							<label class="form-label col-lg-2" required for="WATT_PK_PANEL"><strong>Watt peak per
+									Panel</strong>
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input class="form-control fcs form-control-lg" required type="number" id="WATT_PK_PANEL"
-										placeholder="WP" name="WATT_PK_PANEL" />
+									<input class="form-control fcs form-control-lg" required type="number"
+										id="WATT_PK_PANEL" placeholder="WP" name="WATT_PK_PANEL" />
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="TOTAL_SOLAR_LOAD"><strong>Total Solar
@@ -280,16 +281,16 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input class="form-control fcs form-control-lg" required type="number" id="TOTAL_SOLAR_LOAD"
-										placeholder="Watt" name="TOTAL_SOLAR_LOAD" />
+									<input class="form-control fcs form-control-lg" required type="number"
+										id="TOTAL_SOLAR_LOAD" placeholder="Watt" name="TOTAL_SOLAR_LOAD" />
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="SOLAR_METER_NUM"><strong>Solar Meter Number</strong>
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input class="form-control fcs form-control-lg" required type="text" id="SOLAR_METER_NUM"
-										placeholder="(if any)" name="SOLAR_METER_NUM" />
+									<input class="form-control fcs form-control-lg" required type="text"
+										id="SOLAR_METER_NUM" placeholder="(if any)" name="SOLAR_METER_NUM" />
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="IMAGE_SYSTEM"><strong>Image of Solar
@@ -297,7 +298,11 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input type="file" id="IMAGE_SYSTEM" name="IMAGE_SYSTEM" accept="image/*">
+									<img class="form-control-image" id="IMAGE_SYSTEM" height="150px" width="150px"
+										alt="No image" />
+									<input type="file" id="IMAGE_SYSTEM_FILE" onchange="readURL(this);"
+										accept="image/*">
+									<input type="hidden" id="IMAGE_SYSTEM" name="IMAGE_SYSTEM">
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="INVERTER_CAPACITY"><strong>Inverter
@@ -305,14 +310,15 @@
 								&nbsp</label>
 							<div class="col-lg-2 ">
 								<div class="input-group">
-									<input class="form-control fcs form-control-lg" required type="text" id="INVERTER_CAPACITY"
-										placeholder="KW" name="INVERTER_CAPACITY" />
+									<input class="form-control fcs form-control-lg" required type="text"
+										id="INVERTER_CAPACITY" placeholder="KW" name="INVERTER_CAPACITY" />
 								</div>
 							</div>
 							<label class="form-label col-lg-2" for="INVERTER_PHASE"><strong>Inverter phase</strong>
 								&nbsp</label>
 							<div class="col-lg-2 ">
-								<select class="form-select" name="INVERTER_PHASE" required id="INVERTER_PHASE" aria-label="Default select example">
+								<select class="form-select" name="INVERTER_PHASE" required id="INVERTER_PHASE"
+									aria-label="Default select example">
 									<option selected value="1">Single phase</option>
 									<option value="3">Three phase</option>
 								</select>
@@ -337,10 +343,10 @@
 
 								</div>
 							</div>
-							
-							
-							
-							
+
+
+
+
 							<div class="alert alert-success mt-1 col-sm-12 text-center" th:text="${msg}" th:if="${msg}"
 								role="alert"></div>
 
@@ -359,7 +365,7 @@
 						Table</strong></div>
 
 
-				<table id="datatable" class="table table-striped table-bordered" style="width:100%">
+				<table class="table table-striped table-bordered" style="width:100%">
 
 					<thead>
 						<tr>
@@ -409,6 +415,7 @@
 							<td><input type="hidden" th:id="'CUSTOMER_NAME_'+${iterStatus.index}"
 									th:text="${list.CUSTOMER_NAME}" name="CUSTOMER_NAME"
 									th:value="${list.CUSTOMER_NAME}"></input></td>
+
 							<td><a th:onclick="'updateById('+${iterStatus.index}+')'" id="updateButton"
 									class="btn btn-primary  text-right" target="_blank">Update</a><br>
 							</td>
@@ -418,6 +425,8 @@
 								th:value="${list.BILL_GR}"></input>
 							<input type="hidden" th:id="'BOOK_NO_'+${iterStatus.index}" name="BOOK_NO"
 								th:value="${list.BOOK_NO}"></input>
+							<input type="hidden" th:id="'IMAGE_SYSTEM_'+${iterStatus.index}" name="IMAGE_SYSTEM"
+								th:value="${list.IMAGE_SYSTEM}"></input>
 							<input type="hidden" th:id="'CHECK_DIGIT_'+${iterStatus.index}" name="CHECK_DIGIT"
 								th:value="${list.CHECK_DIGIT}"></input>
 
@@ -534,9 +543,10 @@
 			var inverter_PHASE = document.getElementById('INVERTER_PHASE_' + id).value;
 			var inverter_STATUS = document.getElementById('INVERTER_STATUS_' + id).value;
 			var solar_GRID_TYPE = document.getElementById('SOLAR_GRID_TYPE_' + id).value;
-
-
-
+			var image_SYSTEM = document.getElementById('IMAGE_SYSTEM_' + id).value;
+			const baseStr64 = window.btoa(image_SYSTEM);
+			console.log(baseStr64 + ".........");
+			document.getElementById("IMAGE_SYSTEM").setAttribute('src', "data:image/jpg;base64," + baseStr64);
 
 
 			document.getElementById("REF_NO").value = ref_NO;
@@ -699,7 +709,41 @@
 			}
 		}
 
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+
+				let reader = new FileReader();
+
+				reader.onload = function (e) {
+
+					//  if(input.files[0].size <= 1024*100){
+
+					$('#IMAGE_SYSTEM_FILE').html(input.files[0].name);
+					const base64String = reader.result
+						.replace('data:', '')
+						.replace(/^.+,/, '');
+					$('#IMAGE_SYSTEM').val(base64String);
+					//  }
+
+					// else{
+					//  alert('Image should be within 100 KB.');
+					//}
+
+					$('#IMAGE_SYSTEM')
+						.attr('src', e.target.result)
+						.width(150)
+						.height(200);
+
+				};
+
+				reader.readAsDataURL(input.files[0]);
+
+			}
+		}
+
 	</script>
+
+
 
 
 </body>

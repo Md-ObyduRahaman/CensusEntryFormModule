@@ -92,7 +92,7 @@ public class AddMeterDAO {
 						a.getNO_OF_PANELS(), a.getPANEL_LENGTH(), a.getPANEL_WIDTH(), a.getWATT_PK_PANEL(),
 						a.getTOTAL_SOLAR_LOAD(), a.getSOLAR_METER_NUM(), a.getINVERTER_CAPACITY(),
 						a.getINVERTER_PHASE(), a.getINVERTER_STATUS(),a.getPANEL_LENGTH_TYPE(),a.getPANEL_WIDTH_TYPE(),
-						a.getAREA_CODE()
+						a.getAREA_CODE(),a.getIMAGE_SYSTEM()
 
 				);
 		JSONObject json = new JSONObject(result);

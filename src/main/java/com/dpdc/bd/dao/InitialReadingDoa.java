@@ -48,12 +48,13 @@ public class InitialReadingDoa {
 		return out;
 	}
 
-	public ArrayList<BC_TODMTR_INTERFACE_Model> listOf_BC_TODMTR(Integer P) {
+	public ArrayList<BC_TODMTR_INTERFACE_Model> listOf_BC_TODMTR(Integer P,String C) {
 
-		String sql = "SELECT * FROM BC_TODMTR_INTERFACE  BMI, BC_METER_TYPECODE_MAP BMTM,bc_TIME_CYCLE_CODE a ,BC_READING_TYPE_CODE b,BC_TOD_CODE tc\r\n"
+		String sql = "SELECT BMI.TOD_ID,BMI.READING_DATE,TC.TOD_DESC,BMI.TOD_CODE,decode(purpose_of_rdng,'B','Last Billing Reading','Initial Reading') PURPOSE_OF_RDNG,BMI.POWER_FACTOR,BMI.CUM_NUM,B.READING_DESCR,BMI.READING,\r\n"
+				+ "BMI.READING_TYPE_CODE,A.DESCR,BMI.TIME_CYCLE_CODE  FROM BC_TODMTR_INTERFACE  BMI, BC_METER_TYPECODE_MAP BMTM,bc_TIME_CYCLE_CODE a ,BC_READING_TYPE_CODE b,BC_TOD_CODE tc\r\n"
 				+ "where BMI.METER_TYPE = BMTM.OLD_METER_TYPECODE\r\n"
 				+ "and BMI.TIME_CYCLE_CODE=a.TIME_CYCLE_CODE \r\n" + "and BMI.READING_TYPE_CODE=b.READING_TYPE_CODE\r\n"
-				+ "and BMI.TOD_CODE=tc.TOD_CODE\r\n" + " and  BMI.REF_ID = '" + P + "'";
+				+ "and BMI.TOD_CODE=tc.TOD_CODE\r\n" + " and  BMI.REF_ID = '" + P + "' "+ " and  BMI.PURPOSE_OF_RDNG = '" + C + "' ORDER BY READING_DESCR DESC";
 
 		ArrayList<BC_TODMTR_INTERFACE_Model> BC_TODMTR_INTERFACE_Model = (ArrayList<BC_TODMTR_INTERFACE_Model>) jdbcTemplate
 				.query(sql, BeanPropertyRowMapper.newInstance(BC_TODMTR_INTERFACE_Model.class));
