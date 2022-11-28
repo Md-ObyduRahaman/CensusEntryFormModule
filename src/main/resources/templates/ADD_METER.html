@@ -293,18 +293,7 @@
 										id="SOLAR_METER_NUM" placeholder="(if any)" name="SOLAR_METER_NUM" />
 								</div>
 							</div>
-							<label class="form-label col-lg-2" for="IMAGE_SYSTEM"><strong>Image of Solar
-									System</strong>
-								&nbsp</label>
-							<div class="col-lg-2 ">
-								<div class="input-group">
-									<img class="form-control-image" id="IMAGE_SYSTEM" height="150px" width="150px"
-										alt="No image" />
-									<input type="file" id="IMAGE_SYSTEM_FILE" onchange="readURL(this);"
-										accept="image/*">
-									<input type="hidden" id="IMAGE_SYSTEM" name="IMAGE_SYSTEM">
-								</div>
-							</div>
+							
 							<label class="form-label col-lg-2" for="INVERTER_CAPACITY"><strong>Inverter
 									Capacity</strong>
 								&nbsp</label>
@@ -332,6 +321,18 @@
 									<option value="2">Two</option>
 									<option value="3">Three</option>
 								</select>
+							</div>
+							<label class="form-label col-lg-2" for="IMAGE_SYSTEM"><strong>Image of Solar
+									System</strong>
+								&nbsp</label>
+							<div class="col-lg-2 ">
+								<div class="input-group">
+									<img  class="form-control-image" src="" id="IMAGE_SYSTEM_view" height="150px" width="150px"
+										alt="No image" />
+									<input type="file" id="IMAGE_SYSTEM_FILE" onchange="readURL(this);"
+										accept="image/*">
+									<input type="hidden" id="IMAGE_SYSTEM" name="IMAGE_SYSTEM">
+								</div>
 							</div>
 							<div class="col-sm-4"></div>
 							<label class="form-label col-lg-2" for="REMARKS"><strong>REMARKS</strong>
@@ -544,10 +545,7 @@
 			var inverter_STATUS = document.getElementById('INVERTER_STATUS_' + id).value;
 			var solar_GRID_TYPE = document.getElementById('SOLAR_GRID_TYPE_' + id).value;
 			var image_SYSTEM = document.getElementById('IMAGE_SYSTEM_' + id).value;
-			const baseStr64 = window.btoa(image_SYSTEM);
-			console.log(baseStr64 + ".........");
-			document.getElementById("IMAGE_SYSTEM").setAttribute('src', "data:image/jpg;base64," + baseStr64);
-
+			$("#IMAGE_SYSTEM_view").attr('src', 'data:image/png;base64,'+image_SYSTEM+'');
 
 			document.getElementById("REF_NO").value = ref_NO;
 			document.getElementById("REF_DATE").value = ref_DATE;
@@ -574,6 +572,7 @@
 			document.getElementById("TOTAL_SOLAR_LOAD").value = total_SOLAR_LOAD;
 			document.getElementById("SOLAR_METER_NUM").value = solar_METER_NUM;
 			document.getElementById("INVERTER_CAPACITY").value = inverter_CAPACITY;
+			document.getElementById("IMAGE_SYSTEM").value = image_SYSTEM;
 			$("#SOLAR_GRID_TYPE option[value='" + solar_GRID_TYPE + "']").prop("selected", "selected");
 			$("#PANEL_LENGTH_TYPE option[value='" + panel_LENGTH_TYPE + "']").prop("selected", "selected");
 			$("#PANEL_WIDTH_TYPE option[value='" + panel_WIDTH_TYPE + "']").prop("selected", "selected");
@@ -716,20 +715,15 @@
 
 				reader.onload = function (e) {
 
-					//  if(input.files[0].size <= 1024*100){
 
 					$('#IMAGE_SYSTEM_FILE').html(input.files[0].name);
 					const base64String = reader.result
 						.replace('data:', '')
 						.replace(/^.+,/, '');
 					$('#IMAGE_SYSTEM').val(base64String);
-					//  }
+					
 
-					// else{
-					//  alert('Image should be within 100 KB.');
-					//}
-
-					$('#IMAGE_SYSTEM')
+					$('#IMAGE_SYSTEM_view')
 						.attr('src', e.target.result)
 						.width(150)
 						.height(200);
